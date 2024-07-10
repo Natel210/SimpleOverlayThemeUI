@@ -1,0 +1,52 @@
+﻿<Window x:Class="GrayThemeUI_Test.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GrayThemeUI_Test"
+        xmlns:grayTheme="clr-namespace:GrayThemeUI;assembly=GrayThemeUI"
+        Style="{StaticResource GrayThemeUI.Window}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="600">
+    <ScrollViewer>
+        <StackPanel>
+            <TextBlock Text="Default TextBlock" Margin="10"/>
+            <Label Content=" Label " Grid.Column="0" VerticalAlignment="Center" Margin="10" Style="{StaticResource GrayThemeUI.Label}"/>
+            <Label Content=" LabeledSeparator " Grid.Column="0" VerticalAlignment="Center" Margin="10" Style="{StaticResource GrayThemeUI.LabeledSeparator}"/>
+            <TextBox Text=" TextBox " MaxLines="1" MinLines="1" Margin="10" Style="{StaticResource GrayThemeUI.TextBox}"/>
+            <Button Content=" Button " Margin="10" Style="{StaticResource GrayThemeUI.SquareButton}"/>
+            <ToggleButton Content=" ToggleButton " Margin="10" Style="{StaticResource GrayThemeUI.ToggleButton}"/>
+            <grayTheme:NumericUpDown Value="100.101" Margin="10" Minimum="-200" Maximum="200" Interval="10" UseInteger="True" Background="DarkCyan" Foreground="YellowGreen"/>
+            <GroupBox Header=" GroupBox " Margin="10" Style="{StaticResource GrayThemeUI.GroupBox}">
+                <ComboBox x:Name="grayThemeUIComboBox" SelectedIndex="0" Style="{StaticResource GrayThemeUI.ComboBox}">
+                    <ComboBoxItem Content=" ComboBox1 "/>
+                    <ComboBoxItem Content=" ComboBox2 "/>
+                    <ComboBoxItem Content=" ComboBox3 "/>
+                    <ComboBoxItem Width="{Binding ActualWidth, ElementName=grayThemeUIComboBox}" IsSelected="False">
+                        <ComboBoxItem.Content>
+                            <Button Content=" Button " Style="{StaticResource GrayThemeUI.SquareButton}"/>
+                        </ComboBoxItem.Content>
+                    </ComboBoxItem>
+                </ComboBox>
+            </GroupBox>
+            <ListBox Style="{StaticResource GrayThemeUI.ListBox}" Margin="10">
+                <ListBoxItem Content="ListBox1"/>
+                <ListBoxItem Content="ListBox2"/>
+                <ListBoxItem Content="ListBox3"/>
+                <ListBoxItem Content="ListBox4"/>
+                <TextBlock Text="ListBox5"/>
+            </ListBox>
+            <DataGrid Name="dataGrid" FontSize="16" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeColumns="False" Margin="10" Style="{StaticResource GrayThemeUI.DataGrid}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Width="*">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text=" ID " FontSize="30"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header=" Name " Binding="{Binding Name}" Width="*"/>
+                    <DataGridTextColumn Header=" Age " Binding="{Binding Age}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

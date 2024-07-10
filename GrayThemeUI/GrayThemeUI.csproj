@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows10.0.17763.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+    <Copyright>MIT</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resource\Mask\check_mask.png" />
+    <None Remove="Resource\Mask\down_mask.png" />
+    <None Remove="Resource\Mask\minus_mask.png" />
+    <None Remove="Resource\Mask\plus_mask.png" />
+    <None Remove="Resource\Mask\up_mask.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Items\" />
+    <Folder Include="Theme\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resource\Mask\check_mask.png" />
+    <Resource Include="Resource\Mask\down_mask.png" />
+    <Resource Include="Resource\Mask\minus_mask.png" />
+    <Resource Include="Resource\Mask\plus_mask.png" />
+    <Resource Include="Resource\Mask\up_mask.png" />
+  </ItemGroup>
+
+</Project>
