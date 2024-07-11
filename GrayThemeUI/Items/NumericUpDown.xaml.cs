@@ -100,7 +100,7 @@ namespace GrayThemeUI
         {
             if (sender is null)
                 return;
-            TextBox tb = sender as TextBox;
+            TextBox? tb = sender as TextBox;
             if (tb is null)
                 return;
             int curCursor = tb.SelectionStart; // 현재 커서 위치 저장
