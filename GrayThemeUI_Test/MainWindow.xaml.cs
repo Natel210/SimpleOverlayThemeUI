@@ -32,7 +32,7 @@ namespace GrayThemeUI_Test
             };
 
             dataGrid.ItemsSource = data;
-            dataGrid2.ItemsSource = data;
+            
         }
     }
 

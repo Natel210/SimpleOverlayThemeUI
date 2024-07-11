@@ -11,14 +11,14 @@
     <ScrollViewer>
         <StackPanel>
             <TextBlock Text="Default TextBlock" Margin="10"/>
-            <Label Content=" Label " Grid.Column="0" VerticalAlignment="Center" Margin="10" Style="{StaticResource GrayThemeUI.Label}"/>
+            <Label Content=" Label " Grid.Column="0" VerticalAlignment="Center" Margin="10" Style="{StaticResource GrayThemeUI.Label}" Background="Red" Foreground="Blue"/>
             <Label Content=" LabeledSeparator " Grid.Column="0" VerticalAlignment="Center" Margin="10" Style="{StaticResource GrayThemeUI.LabeledSeparator}"/>
             <TextBox Text=" TextBox " MaxLines="1" MinLines="1" Margin="10" Style="{StaticResource GrayThemeUI.TextBox}"/>
             <Button Content=" Button " Margin="10" Style="{StaticResource GrayThemeUI.SquareButton}"/>
             <ToggleButton Content=" ToggleButton " Margin="10" Style="{StaticResource GrayThemeUI.ToggleButton}"/>
             <grayTheme:NumericUpDown Value="100.101" Margin="10" Minimum="-200" Maximum="200" Interval="10" UseInteger="True" Background="DarkCyan" Foreground="YellowGreen"/>
-            <GroupBox Header=" GroupBox " Margin="10" Style="{StaticResource GrayThemeUI.GroupBox}">
-                <ComboBox x:Name="grayThemeUIComboBox" SelectedIndex="0" Style="{StaticResource GrayThemeUI.ComboBox}">
+            <GroupBox Header=" GroupBox " Margin="10" Style="{StaticResource GrayThemeUI.GroupBox}" Background="Yellow" Foreground="Cyan">
+                <ComboBox x:Name="grayThemeUIComboBox" SelectedIndex="0" Style="{StaticResource GrayThemeUI.ComboBox}" Background="Magenta" Foreground="Black">
                     <ComboBoxItem Content=" ComboBox1 "/>
                     <ComboBoxItem Content=" ComboBox2 "/>
                     <ComboBoxItem Content=" ComboBox3 "/>
