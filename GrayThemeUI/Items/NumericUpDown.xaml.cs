@@ -103,7 +103,7 @@ namespace GrayThemeUI
             TextBox? tb = sender as TextBox;
             if (tb is null)
                 return;
-            int curCursor = tb.SelectionStart; // 현재 커서 위치 저장
+            int curCursor = tb.SelectionStart; // save current cursor pos.
 
             if (double.TryParse(textBox.Text, out double newValue))
             {
@@ -119,9 +119,9 @@ namespace GrayThemeUI
                 Value = Maximum;
             else if (Value < Minimum)
                 Value = Minimum;
-            UpdateText(); // 텍스트 업데이트
+            UpdateText(); // update text.
             curCursor = Math.Min(curCursor, tb.Text.Length);
-            tb.SelectionStart = curCursor; // 커서 위치 복원
+            tb.SelectionStart = curCursor; // recovery cursor pos.
         }
 
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)

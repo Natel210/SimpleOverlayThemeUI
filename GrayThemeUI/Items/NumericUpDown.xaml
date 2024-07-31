@@ -20,11 +20,11 @@
             <Style TargetType="Border">
                 <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Default}"/>
                 <Style.Triggers>
-                    <!-- 마우스 오버시 -->
+                    <!-- mouse over -->
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.MouseOver}"/>
                     </Trigger>
-                    <!-- 포커스가 설정됐을 때 -->
+                    <!-- set focus -->
                     <Trigger Property="IsKeyboardFocusWithin" Value="True">
                         <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Focus}"/>
                     </Trigger>
