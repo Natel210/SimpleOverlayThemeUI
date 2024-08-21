@@ -34,13 +34,13 @@
                                         Background="{TemplateBinding Foreground}"
                                         Width="{TemplateBinding ActualHeight}"
                                         Height="{TemplateBinding ActualHeight}"
-                                        OpacityMask="{StaticResource GrayThemeUI.DownMask}">
+                                        OpacityMask="{StaticResource GrayThemeUI.Mask.Down}">
                                 </Border>
                                 <Border x:Name="overlayArrow" Grid.Column="1"
                                         Background="{StaticResource GrayThemeUI.Overlay.BorderBrush.Default}"
                                         Width="{TemplateBinding ActualHeight}"
                                         Height="{TemplateBinding ActualHeight}"
-                                        OpacityMask="{StaticResource GrayThemeUI.DownMask}">
+                                        OpacityMask="{StaticResource GrayThemeUI.Mask.Down}">
                                 </Border>
                             </Grid>
                         </Border>
@@ -60,8 +60,8 @@
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="overlay" Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Focus}"/>
                             <Setter TargetName="overlay" Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.Background.Focus}"/>
-                            <Setter TargetName="Arrow" Property="OpacityMask" Value="{DynamicResource GrayThemeUI.UpMask}"/>
-                            <Setter TargetName="overlayArrow" Property="OpacityMask" Value="{DynamicResource GrayThemeUI.UpMask}"/>
+                            <Setter TargetName="Arrow" Property="OpacityMask" Value="{DynamicResource GrayThemeUI.Mask.Up}"/>
+                            <Setter TargetName="overlayArrow" Property="OpacityMask" Value="{DynamicResource GrayThemeUI.Mask.Up}"/>
                             <Setter TargetName="overlayArrow" Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Focus}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">

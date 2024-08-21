@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GrayThemeUI_Test"
+        xmlns:helper="clr-namespace:GrayThemeUI.Helper;assembly=GrayThemeUI"
         xmlns:grayTheme="clr-namespace:GrayThemeUI;assembly=GrayThemeUI"
         Style="{StaticResource GrayThemeUI.Window}"
         mc:Ignorable="d"
@@ -47,6 +48,23 @@
                     <DataGridTextColumn Header=" Age " Binding="{Binding Age}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
+            <Button Content=" ImageButton " Style="{StaticResource GrayThemeUI.ImageMaskButton}"/>
+            <!--GrayThemeUI.Mask.Plus-->
+            <Button Content=" Button5 "/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Content=" Button2 " Grid.Row="0" Style="{StaticResource GrayThemeUI.SquareButton}"/>
+                <Button Content=" Button3 " Grid.Row="1" Style="{StaticResource GrayThemeUI.SquareButton}"/>
+            </Grid>
+            <Button helper:ButtonHelper.DefaultMask="{StaticResource GrayThemeUI.Mask.Check}" Style="{StaticResource GrayThemeUI.ImageMaskButton}"/>
+
+            <grayTheme:WindowHeader Title="123" ShowMinimize="Visible" ShowToggleMaximizeRestore="Visible" ShowClose="Visible"/>
+
         </StackPanel>
     </ScrollViewer>
 </Window>
+
+    

@@ -11,9 +11,14 @@
 
   <ItemGroup>
     <None Remove="Resource\Mask\check_mask.png" />
+    <None Remove="Resource\Mask\close.png" />
     <None Remove="Resource\Mask\down_mask.png" />
+    <None Remove="Resource\Mask\empty.png" />
+    <None Remove="Resource\Mask\maximize.png" />
+    <None Remove="Resource\Mask\minimize.png" />
     <None Remove="Resource\Mask\minus_mask.png" />
     <None Remove="Resource\Mask\plus_mask.png" />
+    <None Remove="Resource\Mask\restore.png" />
     <None Remove="Resource\Mask\up_mask.png" />
   </ItemGroup>
 
@@ -23,9 +28,14 @@
 
   <ItemGroup>
     <Resource Include="Resource\Mask\check_mask.png" />
+    <Resource Include="Resource\Mask\close.png" />
     <Resource Include="Resource\Mask\down_mask.png" />
+    <Resource Include="Resource\Mask\empty.png" />
+    <Resource Include="Resource\Mask\maximize.png" />
+    <Resource Include="Resource\Mask\minimize.png" />
     <Resource Include="Resource\Mask\minus_mask.png" />
     <Resource Include="Resource\Mask\plus_mask.png" />
+    <Resource Include="Resource\Mask\restore.png" />
     <Resource Include="Resource\Mask\up_mask.png" />
   </ItemGroup>
 

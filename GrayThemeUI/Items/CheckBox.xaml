@@ -29,7 +29,7 @@
                                 Width="{TemplateBinding ActualHeight}"
                                 Height="{TemplateBinding ActualHeight}"
                                 Background="{DynamicResource GrayThemeUI.Theme.Foreground}"
-                                OpacityMask="{DynamicResource GrayThemeUI.CheckMask}"
+                                OpacityMask="{DynamicResource GrayThemeUI.Mask.Check}"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Visibility="Collapsed"/>

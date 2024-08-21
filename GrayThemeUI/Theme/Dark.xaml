@@ -16,4 +16,9 @@
     <SolidColorBrush x:Key="GrayThemeUI.Overlay.Background.MouseOver" Color="#25808080"/>
     <SolidColorBrush x:Key="GrayThemeUI.Overlay.Background.Focus" Color="#40808080"/>
 
+    <SolidColorBrush x:Key="GrayThemeUI.Overlay.Mask.Disable" Color="#25808080"/>
+    <!--<SolidColorBrush x:Key="GrayThemeUI.Overlay.Background.Default" Color="#10808080"/>-->
+    <SolidColorBrush x:Key="GrayThemeUI.Overlay.Mask.MouseOver" Color="#50EBEBEB"/>
+    <SolidColorBrush x:Key="GrayThemeUI.Overlay.Mask.Focus" Color="#A0EBEBEB"/>
+
 </ResourceDictionary>

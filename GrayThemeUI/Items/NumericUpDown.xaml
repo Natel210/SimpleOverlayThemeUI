@@ -76,13 +76,13 @@
                                                         Background="{TemplateBinding Foreground}"
                                                         Width="{TemplateBinding ActualHeight}"
                                                         Height="{TemplateBinding ActualHeight}"
-                                                        OpacityMask="{DynamicResource GrayThemeUI.PlusMask}">
+                                                        OpacityMask="{DynamicResource GrayThemeUI.Mask.Plus}">
                                                 </Border>
                                                 <Border x:Name="overlayMask"
                                                         Background="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Default}"
                                                         Width="{TemplateBinding ActualHeight}"
                                                         Height="{TemplateBinding ActualHeight}"
-                                                        OpacityMask="{DynamicResource GrayThemeUI.PlusMask}">
+                                                        OpacityMask="{DynamicResource GrayThemeUI.Mask.Plus}">
                                                 </Border>
                                             </Grid>
                                         </Border>
@@ -148,13 +148,13 @@
                                                         Background="{TemplateBinding Foreground}"
                                                         Width="{TemplateBinding ActualHeight}"
                                                         Height="{TemplateBinding ActualHeight}"
-                                                        OpacityMask="{StaticResource GrayThemeUI.MinusMask}">
+                                                        OpacityMask="{StaticResource GrayThemeUI.Mask.Minus}">
                                                 </Border>
                                                 <Border x:Name="overlayMask"
                                                         Background="{StaticResource GrayThemeUI.Overlay.BorderBrush.Default}"
                                                         Width="{TemplateBinding ActualHeight}"
                                                         Height="{TemplateBinding ActualHeight}"
-                                                        OpacityMask="{StaticResource GrayThemeUI.MinusMask}">
+                                                        OpacityMask="{StaticResource GrayThemeUI.Mask.Minus}">
                                                 </Border>
                                             </Grid>
                                         </Border>
