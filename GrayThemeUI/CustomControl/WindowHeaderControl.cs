@@ -1,25 +1,44 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using System.Windows.Media;
 
-namespace GrayThemeUI
+namespace GrayThemeUI.CustomControl
 {
-    /// <summary>
-    /// WindowHeader.xaml에 대한 상호 작용 논리
-    /// </summary>
-    public partial class WindowHeader : UserControl
+    public partial class WindowHeader : Control
     {
-        public WindowHeader()
+        static WindowHeader()
         {
-            InitializeComponent();
-            this.MouseLeftButtonDown += MainWindowHeader_MouseLeftButtonDown;
-            this.MouseMove += MainWindowHeader_MouseMove;
-            this.MouseLeftButtonUp += MainWindowHeader_MouseLeftButtonUp;
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(WindowHeader), new FrameworkPropertyMetadata(typeof(WindowHeader)));
         }
 
+        public WindowHeader()
+        {
+            MouseInit();
+            
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register("Title", typeof(string), typeof(WindowHeader), new PropertyMetadata(""));
+        DependencyProperty.Register("Title", typeof(string), typeof(WindowHeader), new PropertyMetadata(""));
         public string Title
         {
             get { return (string)GetValue(TitleProperty); }
@@ -67,22 +86,21 @@ namespace GrayThemeUI
             set { SetValue(ShowCloseProperty, value); }
         }
 
-        private void Minimize_Click(object sender, RoutedEventArgs e)
-        {
-            Window parentWindow = Window.GetWindow(this);
-            if (parentWindow is null)
-                return;
-            parentWindow.WindowState = WindowState.Minimized;
-        }
+    }
 
-        private void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            Window parentWindow = Window.GetWindow(this);
-            parentWindow?.Close();
-        }
 
+    public partial class WindowHeader : Control
+    {
         private bool isDragging = false;
         private Point startPoint;
+
+        private void MouseInit()
+        {
+            this.MouseLeftButtonDown += MainWindowHeader_MouseLeftButtonDown;
+            this.MouseMove += MainWindowHeader_MouseMove;
+            this.MouseLeftButtonUp += MainWindowHeader_MouseLeftButtonUp;
+            //this.MouseDoubleClick += MainWindowHeader_MouseLeftButtonUp;
+        }
 
         private void MainWindowHeader_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -102,16 +120,19 @@ namespace GrayThemeUI
             {
                 Point currentPoint = e.GetPosition(this);
                 double offsetX = currentPoint.X - startPoint.X;
-                    double offsetY = currentPoint.Y - startPoint.Y;
+                double offsetY = currentPoint.Y - startPoint.Y;
 
-                    parentWindow.Left += offsetX;
-                    parentWindow.Top += offsetY;
+                parentWindow.Left += offsetX;
+                parentWindow.Top += offsetY;
 
-                    if (fullScreen.IsChecked is true)
-                    {
-                        if (offsetX is not 0.0 || offsetY is not 0.0)
-                            fullScreen.IsChecked = false;
-                    }
+                // 상태 값에 대한 추가 보정
+                ToggleButton? fullScreen = GetTemplateChild("fullScreen") as ToggleButton;
+                if (fullScreen is null)
+                    return;
+                if (!fullScreen.IsChecked is false)
+                    return;
+                if (offsetX is not 0.0 || offsetY is not 0.0)
+                    fullScreen.IsChecked = false;
             }
         }
 
@@ -119,6 +140,37 @@ namespace GrayThemeUI
         {
             isDragging = false;
             this.ReleaseMouseCapture();
+        }
+    }
+
+    public partial class WindowHeader : Control
+    {
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            Button? minimizeButton = GetTemplateChild("minimizeButton") as Button;
+            if (minimizeButton != null)
+                minimizeButton.Click += Minimize_Click;
+
+            ToggleButton? fullScreen = GetTemplateChild("fullScreen") as ToggleButton;
+            if (fullScreen != null)
+            {
+                fullScreen.Checked += ToMaximized;
+                fullScreen.Unchecked += ToRestore;
+            }
+
+            Button? closeButton = GetTemplateChild("closeButton") as Button;
+            if (closeButton != null)
+                closeButton.Click += Exit_Click;
+        }
+
+        private void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            Window parentWindow = Window.GetWindow(this);
+            if (parentWindow is null)
+                return;
+            parentWindow.WindowState = WindowState.Minimized;
         }
 
         private void ToMaximized(object sender, RoutedEventArgs e)
@@ -137,6 +189,12 @@ namespace GrayThemeUI
                 return;
             if (parentWindow.WindowState is not WindowState.Normal)
                 parentWindow.WindowState = WindowState.Normal;
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Window parentWindow = Window.GetWindow(this);
+            parentWindow?.Close();
         }
     }
 }

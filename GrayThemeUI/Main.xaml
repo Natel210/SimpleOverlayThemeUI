@@ -3,13 +3,16 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Theme/Common.xaml" />
+
+        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Items/WindowHeader.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Items/Border.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Items/Button.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Items/TextBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Items/ComboBax.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Items/GroupBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Items/CheckBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Items/ComboBax.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Items/DataGrid.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Items/GroupBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Items/Label.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Items/ListBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Items/DataGrid.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Items/TextBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
