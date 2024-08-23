@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/YourAssemblyName;component/Theme/GeneratorParameters.json"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <sys:Double x:Key="GrayThemeUI.Internal.Common.FontSize.Header1">
+        {{GrayThemeUI.Internal.Generator.FontSize.Common.Header1}}
+    </sys:Double>
+    <sys:Double x:Key="GrayThemeUI.Internal.Common.FontSize.Header2">
+        {{GrayThemeUI.Internal.Generator.FontSize.Common.Header2}}
+    </sys:Double>
+    <sys:Double x:Key="GrayThemeUI.Internal.Common.FontSize.Header3">
+        {{GrayThemeUI.Internal.Generator.FontSize.Common.Header3}}
+    </sys:Double>
+    <sys:Double x:Key="GrayThemeUI.Internal.Common.FontSize.Header4">
+        {{GrayThemeUI.Internal.Generator.FontSize.Common.Header4}}
+    </sys:Double>
+    <sys:Double x:Key="GrayThemeUI.Internal.Common.FontSize.Header5">
+        {{GrayThemeUI.Internal.Generator.FontSize.Common.Header5}}
+    </sys:Double>
+    <sys:Double x:Key="GrayThemeUI.Internal.Common.FontSize.Header5">
+        {{GrayThemeUI.Internal.Generator.FontSize.Common.Header5}}
+    </sys:Double>
+    <Thickness x:Key="GrayThemeUI.Internal.Common.BorderThickness">1</Thickness>
+    
+
+</ResourceDictionary>

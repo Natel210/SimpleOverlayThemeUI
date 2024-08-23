@@ -16,7 +16,8 @@ namespace GrayThemeUI.Helper
 
     public static class OverlayBorderHelper
     {
-        public static readonly DependencyProperty IsDefaultProperty = DependencyProperty.RegisterAttached("GrayThemeUI.OverlayBorder.Overlay.IsDefault", typeof(bool), typeof(OverlayBorderHelper), new PropertyMetadata(false, OnIsDefaultChanged));
+        public static readonly DependencyProperty IsDefaultProperty = DependencyProperty.RegisterAttached("GrayThemeUI.OverlayBorder.Overlay.IsDefault", typeof(bool), 
+            typeof(OverlayBorderHelper), new PropertyMetadata(false, OnIsDefaultChanged));
 
         public static bool GetIsDefault(UIElement element)
         {
@@ -37,7 +38,8 @@ namespace GrayThemeUI.Helper
 
         //Disable
 
-        public static readonly DependencyProperty IsMouseOverProperty = DependencyProperty.RegisterAttached("GrayThemeUI.OverlayBorder.Overlay.IsMouseOver", typeof(bool), typeof(OverlayBorderHelper), new PropertyMetadata(false, OnIsMouseOverChanged));
+        public static readonly DependencyProperty IsMouseOverProperty = DependencyProperty.RegisterAttached("GrayThemeUI.OverlayBorder.Overlay.IsMouseOver", typeof(bool),
+            typeof(OverlayBorderHelper), new PropertyMetadata(false, OnIsMouseOverChanged));
 
         public static bool GetIsMouseOver(UIElement element)
         {
@@ -65,7 +67,8 @@ namespace GrayThemeUI.Helper
         }
 
 
-        public static readonly DependencyProperty IsFocusedProperty = DependencyProperty.RegisterAttached("GrayThemeUI.OverlayBorder.Overlay.IsFocused", typeof(bool),typeof(OverlayBorderHelper), new PropertyMetadata(false, OnIsFocusedChanged));
+        public static readonly DependencyProperty IsFocusedProperty = DependencyProperty.RegisterAttached("GrayThemeUI.OverlayBorder.Overlay.IsFocused", typeof(bool),
+            typeof(OverlayBorderHelper), new PropertyMetadata(false, OnIsFocusedChanged));
 
         public static bool GetIsFocused(UIElement element)
         {

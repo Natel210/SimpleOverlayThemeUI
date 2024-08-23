@@ -12,11 +12,4 @@
     <!--#region Check마스크 -->
     <ImageBrush x:Key="GrayThemeUI.Mask.Check" ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/check_mask.png" Stretch="Uniform"/>
     <!--#endregion-->
-    <!--#region Window관련 마스크 -->
-    <ImageBrush x:Key="GrayThemeUI.Mask.Minimize"  ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/minimize.png"/>
-    <ImageBrush x:Key="GrayThemeUI.Mask.Restore" ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/restore.png"/>
-    <ImageBrush x:Key="GrayThemeUI.Mask.Maximize" ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/maximize.png"/>
-    <ImageBrush x:Key="GrayThemeUI.Mask.Close" ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/close.png"/>
-    <!--#endregion-->
 </ResourceDictionary>
-

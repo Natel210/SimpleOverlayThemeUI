@@ -27,7 +27,11 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="overlay" Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.MouseOver}"/>
+                            <Setter TargetName="overlay" Property="BorderBrush">
+                                <Setter.Value>
+                                    <DynamicResource ResourceKey="GrayThemeUI.Overlay.BorderBrush.MouseOver"/>
+                                </Setter.Value>
+                            </Setter>
                             <Setter TargetName="overlay" Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.Background.MouseOver}"/>
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">

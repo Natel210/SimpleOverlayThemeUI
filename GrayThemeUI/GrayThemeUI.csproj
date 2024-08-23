@@ -23,10 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Theme\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Resource\Mask\check_mask.png" />
     <Resource Include="Resource\Mask\close.png" />
     <Resource Include="Resource\Mask\down_mask.png" />
@@ -37,6 +33,13 @@
     <Resource Include="Resource\Mask\plus_mask.png" />
     <Resource Include="Resource\Mask\restore.png" />
     <Resource Include="Resource\Mask\up_mask.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Theme\Common\" />
+    <Folder Include="Theme\Dark\" />
+    <Folder Include="Theme\Light\" />
+    <Folder Include="Utility\InI\" />
   </ItemGroup>
 
 </Project>

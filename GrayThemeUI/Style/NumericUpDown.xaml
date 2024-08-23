@@ -10,7 +10,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Theme/Common.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Items/TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/TextBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Resource/Resource.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

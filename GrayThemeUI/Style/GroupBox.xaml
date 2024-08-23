@@ -3,7 +3,7 @@
                     xmlns:themeUI="clr-namespace:GrayThemeUI">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Theme/Common.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Items/Label.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/Label.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <!-- Custom GroupBox -->

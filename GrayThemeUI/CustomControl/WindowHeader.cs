@@ -14,31 +14,18 @@ namespace GrayThemeUI.CustomControl
     {
         static WindowHeader()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(WindowHeader), new FrameworkPropertyMetadata(typeof(WindowHeader)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(WindowHeader),
+                new FrameworkPropertyMetadata(typeof(WindowHeader)));
         }
 
         public WindowHeader()
         {
             MouseInit();
-            
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public static readonly DependencyProperty TitleProperty =
-        DependencyProperty.Register("Title", typeof(string), typeof(WindowHeader), new PropertyMetadata(""));
+        DependencyProperty.Register("Title", typeof(string),
+            typeof(WindowHeader), new PropertyMetadata(""));
         public string Title
         {
             get { return (string)GetValue(TitleProperty); }
@@ -46,7 +33,8 @@ namespace GrayThemeUI.CustomControl
         }
 
         public static readonly DependencyProperty AddOnItemProperty =
-            DependencyProperty.Register(nameof(AddOnItem), typeof(object), typeof(WindowHeader), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(AddOnItem), typeof(object),
+                typeof(WindowHeader), new PropertyMetadata(null));
 
         public object AddOnItem
         {
@@ -55,7 +43,8 @@ namespace GrayThemeUI.CustomControl
         }
 
         public static readonly DependencyProperty WindowUnlockedProperty =
-            DependencyProperty.Register("WindowUnlocked", typeof(bool), typeof(WindowHeader), new PropertyMetadata(true));
+            DependencyProperty.Register("WindowUnlocked", typeof(bool),
+                typeof(WindowHeader), new PropertyMetadata(true));
         public bool WindowUnlocked
         {
             get { return (bool)GetValue(WindowUnlockedProperty); }
@@ -63,7 +52,8 @@ namespace GrayThemeUI.CustomControl
         }
 
         public static readonly DependencyProperty ShowMinimizeProperty =
-            DependencyProperty.Register("ShowMinimize", typeof(Visibility), typeof(WindowHeader), new PropertyMetadata(Visibility.Visible));
+            DependencyProperty.Register("ShowMinimize", typeof(Visibility),
+                typeof(WindowHeader), new PropertyMetadata(Visibility.Visible));
         public Visibility ShowMinimize
         {
             get { return (Visibility)GetValue(ShowMinimizeProperty); }
@@ -71,7 +61,8 @@ namespace GrayThemeUI.CustomControl
         }
 
         public static readonly DependencyProperty ShowToggleMaximizeRestoreProperty =
-            DependencyProperty.Register("ShowToggleMaximizeRestore", typeof(Visibility), typeof(WindowHeader), new PropertyMetadata(Visibility.Visible));
+            DependencyProperty.Register("ShowToggleMaximizeRestore",
+                typeof(Visibility), typeof(WindowHeader), new PropertyMetadata(Visibility.Visible));
         public Visibility ShowToggleMaximizeRestore
         {
             get { return (Visibility)GetValue(ShowToggleMaximizeRestoreProperty); }
@@ -79,7 +70,8 @@ namespace GrayThemeUI.CustomControl
         }
 
         public static readonly DependencyProperty ShowCloseProperty =
-            DependencyProperty.Register("ShowClose", typeof(Visibility), typeof(WindowHeader), new PropertyMetadata(Visibility.Visible));
+            DependencyProperty.Register("ShowClose", typeof(Visibility),
+                typeof(WindowHeader), new PropertyMetadata(Visibility.Visible));
         public Visibility ShowClose
         {
             get { return (Visibility)GetValue(ShowCloseProperty); }
