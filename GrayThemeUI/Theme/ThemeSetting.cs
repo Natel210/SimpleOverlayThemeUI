@@ -901,7 +901,8 @@ namespace GrayThemeUI.Theme
 
             ThemeDictionary.Clear();
             ThemeItems tempLight = new("Light");
-
+            tempLight.BrushForeground.Value =;
+            tempLight.BrushForeground.DefaultValue =;
 
 
             ThemeDictionary.Add(tempLight.Name, tempLight);
