@@ -66,7 +66,7 @@ namespace GrayThemeUI
 
     //<SolidColorBrush x:Key="GrayThemeUI.Common.LineColor" Color="Gray"/>
     //<SolidColorBrush x:Key="GrayThemeUI.Common.HighlightColor" Color="#50FFFFFF"/>
-    //<SolidColorBrush x:Key="GrayThemeUI.Common.CommonSelectionBrush" Color="#FF808080"/>
+    //<SolidColorBrush x:Key="GrayThemeUI.Common.Common_BrushSelection" Color="#FF808080"/>
     //<SolidColorBrush x:Key="GrayThemeUI.Common.MaskColor" Color="#A0808080"/>
 
 

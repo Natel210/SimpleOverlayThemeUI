@@ -5,240 +5,233 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media;
 using Utility.InI;
+using System.Numerics;
+using System.Windows.Media;
+using System.Windows.Input;
+using Microsoft.VisualBasic;
 
 namespace GrayThemeUI.Theme
 {
     public static partial class ThemeSettingData
     {
-        private static readonly double _fontSizeHeader1_BaseValue = 32.0;
-        private static readonly double _fontSizeHeader2_BaseValue = 24.0;
-        private static readonly double _fontSizeHeader3_BaseValue = 18.72;
-        private static readonly double _fontSizeHeader4_BaseValue = 16.0;
-        private static readonly double _fontSizeHeader5_BaseValue = 13.28;
-        private static readonly double _fontSizeHeader6_BaseValue = 10.72;
-        private static readonly double _fontSizeDefault_BaseValue = 16.0;
-
-        private static readonly double[] _borderThicknessDefault_BaseValue = [1.0, 1.0, 1.0, 1.0];
-        private static readonly double[] _borderThicknessZero_BaseValue = [0.0, 0.0, 0.0, 0.0];
-
-        private static readonly Color _lineColorBrush_Color_BaseValue
-            = new(){ R = 128, G = 128, B = 128, A = 255 };
-        private static readonly Color _highlightColorBrush_Color_BaseValue
-            = new() { R = 255, G = 255, B = 255, A = 80 };
-        private static readonly Color _selectionColorBrush_Color_BaseValue
-            = new() { R = 128, G = 128, B = 128, A = 255 };
-        private static readonly Color _maskColorBrush_Color_BaseValue
-            = new() { R = 128, G = 128, B = 128, A = 160 };
-
-        internal class ThemeBrushes
+        public class ThemeItems
         {
-            private static SolidColorBrush _emptyBrush = new ();
-            internal Dictionary<string, SolidColorBrush> brushes = new() {
-                {nameof(ThemeSettingData.ThemeForegroundBrush),_emptyBrush},
-                {nameof(ThemeSettingData.ThemeForegroundDisableBrush),_emptyBrush},
-                {nameof(ThemeSettingData.ThemeBackgroundBrush),_emptyBrush},
-                {"Theme_Background_Default",_emptyBrush},
-                {"Theme_Background_Default",_emptyBrush},
-                {"Theme_Background_Default",_emptyBrush},
-                {"Theme_Background_Default",_emptyBrush},
-                {"Theme_Background_Default",_emptyBrush},
-            };
+            public ThemeItems(string name)
+            {
+                Name = name;
+            }
+            private string _name = "Temp";
+            public string Name
+            {
+                get => _name;
+                set
+                {
+                    _name = value;
+                    SetEntry();
+                }
+            }
+
+            public IniItem<Color> BrushForeground { get; } = new();
+            public IniItem<Color> BrushForegroundDisable { get; } = new();
+            public IniItem<Color> BrushBackground { get; } = new();
+
+            public IniItem<Color> OverlayBackground_BrushDisable { get; } = new();
+            public IniItem<Color> OverlayBackground_BrushDefault { get; } = new();
+            public IniItem<Color> OverlayBackground_BrushMouseOver { get; } = new();
+            public IniItem<Color> OverlayBackground_BrushFocus { get; } = new();
+
+            public IniItem<Color> OverlayBorder_BrushDisable { get; } = new();
+            public IniItem<Color> OverlayBorder_BrushDefault { get; } = new();
+            public IniItem<Color> OverlayBorder_BrushMouseOver { get; } = new();
+            public IniItem<Color> OverlayBorder_BrushFocus { get; } = new();
+
+            public IniItem<Color> OverlayMask_BrushDisable { get; } = new();
+            public IniItem<Color> OverlayMask_BrushDefault { get; } = new();
+            public IniItem<Color> OverlayMask_BrushMouseOver { get; } = new();
+            public IniItem<Color> OverlayMask_BrushFocus { get; } = new();
+
+            private void SetEntry()
+            {
+                BrushForeground.Section = $"Theme.Items.{Name}";
+                BrushForeground.Key = "Brush.Foreground";
+                BrushForegroundDisable.Section = $"Theme.Items.{Name}";
+                BrushForegroundDisable.Key = "Brush.Foreground.Disable";
+                BrushBackground.Section = $"Theme.Items.{Name}";
+                BrushBackground.Key = "Brush.Background";
+
+                OverlayBackground_BrushDisable.Section = $"Theme.Items.{Name}.Overlay.Background";
+                OverlayBackground_BrushDisable.Key = "Brush.Disable";
+                OverlayBackground_BrushDefault.Section = $"Theme.Items.{Name}.Overlay.Background";
+                OverlayBackground_BrushDefault.Key = "Brush.Default";
+                OverlayBackground_BrushMouseOver.Section = $"Theme.Items.{Name}.Overlay.Background";
+                OverlayBackground_BrushMouseOver.Key = "Brush.MouseOver";
+                OverlayBackground_BrushFocus.Section = $"Theme.Items.{Name}.Overlay.Background";
+                OverlayBackground_BrushFocus.Key = "Brush.Focus";
+
+                OverlayBorder_BrushDisable.Section = $"Theme.Items.{Name}.Overlay.Border";
+                OverlayBorder_BrushDisable.Key = "Brush.Disable";
+                OverlayBorder_BrushDefault.Section = $"Theme.Items.{Name}.Overlay.Border";
+                OverlayBorder_BrushDefault.Key = "Brush.Default";
+                OverlayBorder_BrushMouseOver.Section = $"Theme.Items.{Name}.Overlay.Border";
+                OverlayBorder_BrushMouseOver.Key = "Brush.MouseOver";
+                OverlayBorder_BrushFocus.Section = $"Theme.Items.{Name}.Overlay.Border";
+                OverlayBorder_BrushFocus.Key = "Brush.Focus";
+
+                OverlayMask_BrushDisable.Section = $"Theme.Items.{Name}.Overlay.Mask";
+                OverlayMask_BrushDisable.Key = "Brush.Disable";
+                OverlayMask_BrushDefault.Section = $"Theme.Items.{Name}.Overlay.Mask";
+                OverlayMask_BrushDefault.Key = "Brush.Default";
+                OverlayMask_BrushMouseOver.Section = $"Theme.Items.{Name}.Overlay.Mask";
+                OverlayMask_BrushMouseOver.Key = "Brush.MouseOver";
+                OverlayMask_BrushFocus.Section = $"Theme.Items.{Name}.Overlay.Mask";
+                OverlayMask_BrushFocus.Key = "Brush.Focus";
+            }
+
+            internal void LoadINI(IniFile iniFile)
+            {
+                if (iniFile is null)
+                    return;
+                SetEntry();
+
+                Func<IniItem<Color>, Color> GetBrushValue = (item) => {
+                    var tempColor = iniFile.GetValue(item);
+                    if (tempColor is null)
+                        return new Color();
+                    if (tempColor.HasValue)
+                        return new Color();
+                    return tempColor.Value;
+                };
+
+                BrushForeground.Value = GetBrushValue(BrushForeground);
+                BrushForegroundDisable.Value = GetBrushValue(BrushForegroundDisable);
+                BrushBackground.Value = GetBrushValue(BrushBackground);
+
+                OverlayBackground_BrushDisable.Value = GetBrushValue(OverlayBackground_BrushDisable);
+                OverlayBackground_BrushDefault.Value = GetBrushValue(OverlayBackground_BrushDefault);
+                OverlayBackground_BrushMouseOver.Value = GetBrushValue(OverlayBackground_BrushMouseOver);
+                OverlayBackground_BrushFocus.Value = GetBrushValue(OverlayBackground_BrushFocus);
+
+                OverlayBorder_BrushDisable.Value = GetBrushValue(OverlayBorder_BrushDisable);
+                OverlayBorder_BrushDefault.Value = GetBrushValue(OverlayBorder_BrushDefault);
+                OverlayBorder_BrushMouseOver.Value = GetBrushValue(OverlayBorder_BrushMouseOver);
+                OverlayBorder_BrushFocus.Value = GetBrushValue(OverlayBorder_BrushFocus);
+
+                OverlayMask_BrushDisable.Value = GetBrushValue(OverlayMask_BrushDisable);
+                OverlayMask_BrushDefault.Value = GetBrushValue(OverlayMask_BrushDefault);
+                OverlayMask_BrushMouseOver.Value = GetBrushValue(OverlayMask_BrushMouseOver);
+                OverlayMask_BrushFocus.Value = GetBrushValue(OverlayMask_BrushFocus);
+            }
+
+            internal void SaveINI(IniFile iniFile)
+            {
+                if (iniFile is null)
+                    return;
+                SetEntry();
+
+                iniFile.SetValue(BrushForeground);
+                iniFile.SetValue(BrushForegroundDisable);
+                iniFile.SetValue(BrushBackground);
+
+                iniFile.SetValue(OverlayBackground_BrushDisable);
+                iniFile.SetValue(OverlayBackground_BrushDefault);
+                iniFile.SetValue(OverlayBackground_BrushMouseOver);
+                iniFile.SetValue(OverlayBackground_BrushFocus);
+
+                iniFile.SetValue(OverlayBorder_BrushDisable);
+                iniFile.SetValue(OverlayBorder_BrushDefault);
+                iniFile.SetValue(OverlayBorder_BrushMouseOver);
+                iniFile.SetValue(OverlayBorder_BrushFocus);
+
+                iniFile.SetValue(OverlayMask_BrushDisable);
+                iniFile.SetValue(OverlayMask_BrushDefault);
+                iniFile.SetValue(OverlayMask_BrushMouseOver);
+                iniFile.SetValue(OverlayMask_BrushFocus);
+            }
         }
 
     }
 
     public static partial class ThemeSettingData
     {
-#pragma warning disable CS8618
+        private static readonly IniFile iniFile = new("../GrayThemeUI/ThemeSettingData.ini");
         static ThemeSettingData()
-#pragma warning restore CS8618
         {
-            if(iniFile.CheckFileExist() is false)
+            if (iniFile.CheckFileExist() is false)
             {
-                FontSizeHeader1 = _fontSizeHeader1_BaseValue;
-                FontSizeHeader2 = _fontSizeHeader2_BaseValue;
-                FontSizeHeader3 = _fontSizeHeader3_BaseValue;
-                FontSizeHeader4 = _fontSizeHeader4_BaseValue;
-                FontSizeHeader5 = _fontSizeHeader5_BaseValue;
-                FontSizeHeader6 = _fontSizeHeader6_BaseValue;
-                FontSizeDefault = _fontSizeDefault_BaseValue;
-
-                BorderThicknessDefault = new(_borderThicknessDefault_BaseValue[0],
-                    _borderThicknessDefault_BaseValue[1],
-                    _borderThicknessDefault_BaseValue[2],
-                    _borderThicknessDefault_BaseValue[3]);
-                BorderThicknessZero = new(_borderThicknessZero_BaseValue[0],
-                    _borderThicknessZero_BaseValue[1],
-                    _borderThicknessZero_BaseValue[2],
-                    _borderThicknessZero_BaseValue[3]);
-
-                CommonLineBrush = new(_lineColorBrush_Color_BaseValue);
-                CommonHighlightBrush = new(_highlightColorBrush_Color_BaseValue);
-                CommonSelectionBrush = new(_selectionColorBrush_Color_BaseValue);
-                CommonMaskBrush = new(_maskColorBrush_Color_BaseValue);
-
-
-
+                SetDefaultValue();
                 SaveINI();
             }
             else
                 LoadInI();
+        }
+        #region INI FILE
 
+
+
+        //private static readonly IniItem<double> _common_fontSizeHeader1 = new() { Section = "Common", Key = "FontSize.Header1" };
+
+        private static void CreateIniItems()
+        {
 
         }
 
-
-        #region INI FILE
-
-        
-        private static readonly IniFile iniFile = new("../GrayThemeUI/ThemeSettingData.ini");
         public static void LoadInI()
         {
-            Func<string, string, double, double> doubleParse = (section, key, defaultValue) => {
-                var value = iniFile.GetValue(section, key, defaultValue.ToString());
-                if (double.TryParse(value, out double parsingValue))
-                    return parsingValue;
-                return defaultValue;
-            };
-            FontSizeHeader1 = doubleParse("Common", "FontSize.Header1", _fontSizeHeader1_BaseValue);
-            FontSizeHeader2 = doubleParse("Common", "FontSize.Header2", _fontSizeHeader2_BaseValue);
-            FontSizeHeader3 = doubleParse("Common", "FontSize.Header3", _fontSizeHeader3_BaseValue);
-            FontSizeHeader4 = doubleParse("Common", "FontSize.Header4", _fontSizeHeader4_BaseValue);
-            FontSizeHeader5 = doubleParse("Common", "FontSize.Header5", _fontSizeHeader5_BaseValue);
-            FontSizeHeader6 = doubleParse("Common", "FontSize.Header6", _fontSizeHeader6_BaseValue);
-            FontSizeDefault = doubleParse("Common", "FontSize.Default", _fontSizeDefault_BaseValue);
-            Func<string, string, double[], double[]> doubleArrayParse = (section, key, defaultValue) => {
-                List<string> tempDefaultList = [];
-                foreach (var item in defaultValue)
-                    tempDefaultList.Add(item.ToString());
-                var valueArray = iniFile.GetValueToStringList(section, key, [.. tempDefaultList]);
-                if (valueArray is null)
-                    return defaultValue;
-                if (valueArray.Length is not 4)
-                    return defaultValue;
-                List<double> result = [];
-                foreach (var item in valueArray)
-                {
-                    if (double.TryParse(item, out double parsingValue))
-                        result.Add(parsingValue);
-                    result = [.. defaultValue];
-                    break;
-                }
-                return [.. defaultValue];
-            };
+            if (iniFile is null) { throw new Exception("ThemeSetting INI Failed."); }
 
-            var tempBorderThicknessDefault =
-                doubleArrayParse("Common", "BorderThickness.Default", _borderThicknessDefault_BaseValue);
-            BorderThicknessDefault = new(tempBorderThicknessDefault[0],
-                tempBorderThicknessDefault[1],
-                tempBorderThicknessDefault[2],
-                tempBorderThicknessDefault[3]);
-            var tempBorderThicknessZreo =
-                doubleArrayParse("Common", "BorderThickness.Zero", _borderThicknessZero_BaseValue);
-            BorderThicknessDefault = new(tempBorderThicknessZreo[0],
-                tempBorderThicknessZreo[1],
-                tempBorderThicknessZreo[2],
-                tempBorderThicknessZreo[3]);
+            Common_FontSizeHeader1 = iniFile.GetValue(_common_fontSizeHeader1) ?? _common_fontSizeHeader1.DefaultValue;
+            Common_FontSizeHeader2 = iniFile.GetValue(_common_FontSizeHeader2) ?? _common_FontSizeHeader2.DefaultValue;
+            Common_FontSizeHeader3 = iniFile.GetValue(_common_FontSizeHeader3) ?? _common_FontSizeHeader3.DefaultValue;
+            Common_FontSizeHeader4 = iniFile.GetValue(_common_FontSizeHeader4) ?? _common_FontSizeHeader4.DefaultValue;
+            Common_FontSizeHeader5 = iniFile.GetValue(_common_FontSizeHeader5) ?? _common_FontSizeHeader5.DefaultValue;
+            Common_FontSizeHeader6 = iniFile.GetValue(_common_FontSizeHeader6) ?? _common_FontSizeHeader6.DefaultValue;
+            Common_FontSizeDefault = iniFile.GetValue(_common_FontSizeDefault) ?? _common_FontSizeDefault.DefaultValue;
 
+            Common_ThicknessDefault = GetThickness(_common_ThicknessDefault);
+            Common_ThicknessZero = GetThickness(_common_ThicknessZero);
 
+            Common_BrushLine = GetSolidColorBrush(_common_BrushLine);
+            Common_BrushHighlight = GetSolidColorBrush(_common_BrushHighlight);
+            Common_BrushSelection = GetSolidColorBrush(_common_BrushSelection);
+            Common_BrushMask = GetSolidColorBrush(_common_BrushMask);
+
+            string[] strings = iniFile.GetValue("Theme", "ThemeList", []) ?? [];
+            foreach (var item in strings)
+            {
+                ThemeItems temp = new(item);
+                temp.LoadINI(iniFile);
+                ThemeDictionary.Add(temp.Name, temp);
+            }
+            ThemeName = iniFile.GetValue(_themeName) ?? "Light";
         }
 
         public static void SaveINI()
         {
-            iniFile.SetValue("Common", "FontSize.Header1", FontSizeHeader1.ToString());
-            iniFile.SetValue("Common", "FontSize.Header2", FontSizeHeader2.ToString());
-            iniFile.SetValue("Common", "FontSize.Header3", FontSizeHeader3.ToString());
-            iniFile.SetValue("Common", "FontSize.Header4", FontSizeHeader4.ToString());
-            iniFile.SetValue("Common", "FontSize.Header5", FontSizeHeader5.ToString());
-            iniFile.SetValue("Common", "FontSize.Header6", FontSizeHeader6.ToString());
-            iniFile.SetValue("Common", "FontSize.Default", FontSizeDefault.ToString());
+            if (iniFile is null) { throw new Exception("ThemeSetting INI Failed."); }
 
-            string[] tempBorderThicknessDefault = [
-                BorderThicknessDefault.Left.ToString(),
-                BorderThicknessDefault.Top.ToString(),
-                BorderThicknessDefault.Right.ToString(),
-                BorderThicknessDefault.Bottom.ToString()];
-            iniFile.GetValueToStringList("Common", "BorderThickness.Default", tempBorderThicknessDefault);
-            string[] tempBorderThicknessZero = [
-                BorderThicknessDefault.Left.ToString(),
-                BorderThicknessDefault.Top.ToString(),
-                BorderThicknessDefault.Right.ToString(),
-                BorderThicknessDefault.Bottom.ToString()];
-            iniFile.GetValueToStringList("Common", "BorderThickness.Zero", tempBorderThicknessZero);
+            iniFile.SetValue(_common_fontSizeHeader1);
+            iniFile.SetValue(_common_FontSizeHeader2);
+            iniFile.SetValue(_common_FontSizeHeader3);
+            iniFile.SetValue(_common_FontSizeHeader4);
+            iniFile.SetValue(_common_FontSizeHeader5);
+            iniFile.SetValue(_common_FontSizeHeader6);
+            iniFile.SetValue(_common_FontSizeDefault);
 
-            foreach (var item in collection)
-            {
+            iniFile.SetValue(_common_ThicknessDefault);
+            iniFile.SetValue(_common_ThicknessZero);
 
-            }
+            iniFile.SetValue(_common_BrushLine);
+            iniFile.SetValue(_common_BrushHighlight);
+            iniFile.SetValue(_common_BrushSelection);
+            iniFile.SetValue(_common_BrushMask);
 
-
-
-
+            foreach (var item in ThemeDictionary.Values)
+                item.SaveINI(iniFile);
+            iniFile.SetValue(_themeName);
         }
         #endregion
-        #region Theme
-        internal static string CurrentTheme { get; private set; } = "";
-        private static Dictionary<string, ThemeBrushes> _themeBrushs = new();
-        public static void AddTheme(string addTheme)
-        {
-            ThemeBrushes themeBrushes = new();
 
-            themeBrushes.brushes[nameof(ThemeSettingData.ThemeForegroundBrush)] = ThemeForegroundBrush;
-            themeBrushes.brushes[nameof(ThemeSettingData.ThemeForegroundDisableBrush)] = ThemeForegroundDisableBrush;
-            themeBrushes.brushes[nameof(ThemeSettingData.ThemeBackgroundBrush)] = ThemeBackgroundBrush;
-
-            themeBrushes.brushes[nameof(ThemeSettingData.ThemeOverlayBackgroundDisableBrush)] =
-                ThemeOverlayBackgroundDisableBrush;
-            themeBrushes.brushes[nameof(ThemeSettingData.ThemeOverlayBackgroundDefaultBrush)] =
-                ThemeOverlayBackgroundDefaultBrush;
-            themeBrushes.brushes[nameof(ThemeSettingData.ThemeOverlayBackgroundMouseOverBrush)] =
-                ThemeOverlayBackgroundMouseOverBrush;
-            themeBrushes.brushes[nameof(ThemeSettingData.ThemeOverlayBackgroundFocusBrush)] =
-                ThemeOverlayBackgroundFocusBrush;
-
-            themeBrushes.brushes[nameof(ThemeSettingData.ThemeOverlayBackgroundDisableBrush)] =
-                ThemeOverlayBackgroundDisableBrush;
-            themeBrushes.brushes[nameof(ThemeSettingData.ThemeOverlayBackgroundDefaultBrush)] =
-                ThemeOverlayBackgroundDefaultBrush;
-            themeBrushes.brushes[nameof(ThemeSettingData.ThemeOverlayBackgroundMouseOverBrush)] =
-                ThemeOverlayBackgroundMouseOverBrush;
-            themeBrushes.brushes[nameof(ThemeSettingData.ThemeOverlayBackgroundFocusBrush)] =
-                ThemeOverlayBackgroundFocusBrush;
-
-        }
-
-        public static void ChangedTheme(string changedTheme)
-        {
-            if (_themeBrushs.ContainsKey(changedTheme) is false)
-                return;
-            CurrentTheme = changedTheme;
-
-            ThemeForegroundBrush = _themeBrushs[CurrentTheme].brushes[nameof(ThemeSettingData.ThemeForegroundBrush)];
-            ThemeForegroundDisableBrush =
-                _themeBrushs[CurrentTheme].brushes[nameof(ThemeSettingData.ThemeForegroundDisableBrush)];
-            ThemeBackgroundBrush = _themeBrushs[CurrentTheme].brushes[nameof(ThemeSettingData.ThemeBackgroundBrush)];
-
-            ThemeOverlayBackgroundDisableBrush = 
-                _themeBrushs[CurrentTheme].brushes[nameof(ThemeSettingData.ThemeOverlayBackgroundDisableBrush)];
-            ThemeOverlayBackgroundDefaultBrush =
-                _themeBrushs[CurrentTheme].brushes[nameof(ThemeSettingData.ThemeOverlayBackgroundDefaultBrush)];
-            ThemeOverlayBackgroundMouseOverBrush =
-                _themeBrushs[CurrentTheme].brushes[nameof(ThemeSettingData.ThemeOverlayBackgroundMouseOverBrush)];
-            ThemeOverlayBackgroundFocusBrush =
-                _themeBrushs[CurrentTheme].brushes[nameof(ThemeSettingData.ThemeOverlayBackgroundFocusBrush)];
-
-            ThemeOverlayBorderBrushDisableBrush =
-                _themeBrushs[CurrentTheme].brushes[nameof(ThemeSettingData.ThemeOverlayBorderBrushDisableBrush)];
-            ThemeOverlayBorderBrushDefaultBrush =
-                _themeBrushs[CurrentTheme].brushes[nameof(ThemeSettingData.ThemeOverlayBorderBrushDefaultBrush)];
-            ThemeOverlayBorderBrushMouseOverBrush =
-                _themeBrushs[CurrentTheme].brushes[nameof(ThemeSettingData.ThemeOverlayBorderBrushMouseOverBrush)];
-            ThemeOverlayBorderBrushFocusBrush =
-                _themeBrushs[CurrentTheme].brushes[nameof(ThemeSettingData.ThemeOverlayBorderBrushFocusBrush)];
-        }
-        #endregion
         #region PropertyChanged
         public static event PropertyChangedEventHandler? PropertyChanged;
         private static void OnPropertyChanged(string propertyName)
@@ -247,433 +240,729 @@ namespace GrayThemeUI.Theme
         }
         #endregion
         #region Common.FontSize
-        private static double _fontSizeHeader1;
-        public static double FontSizeHeader1
+        private static IniItem<double> _common_fontSizeHeader1 = new()
         {
-            get => _fontSizeHeader1;
+            Section = "Common",
+            Key = "FontSize.Header1",
+            Value = 32.0,
+            DefaultValue = 32.0
+        };
+        public static double Common_FontSizeHeader1
+        {
+            get => _common_fontSizeHeader1.Value;
             set
             {
-                if (_fontSizeHeader1 != value)
+                if (_common_fontSizeHeader1.Value != value)
                 {
-                    _fontSizeHeader1 = value;
-                    OnPropertyChanged(nameof(FontSizeHeader1));
+                    _common_fontSizeHeader1.Value = value;
+                    OnPropertyChanged(nameof(Common_FontSizeHeader1));
                 }
             }
         }
-        private static double _fontSizeHeader2;
-        public static double FontSizeHeader2
+        private static IniItem<double> _common_FontSizeHeader2 = new()
         {
-            get => _fontSizeHeader2;
+            Section = "Common",
+            Key = "FontSize.Header2",
+            Value = 24.0,
+            DefaultValue = 24.0
+        };
+        public static double Common_FontSizeHeader2
+        {
+            get => _common_FontSizeHeader2.Value;
             set
             {
-                if (_fontSizeHeader2 != value)
+                if (_common_FontSizeHeader2.Value != value)
                 {
-                    _fontSizeHeader2 = value;
-                    OnPropertyChanged(nameof(FontSizeHeader2));
+                    _common_FontSizeHeader2.Value = value;
+                    OnPropertyChanged(nameof(Common_FontSizeHeader2));
                 }
             }
         }
-        private static double _fontSizeHeader3;
-        public static double FontSizeHeader3
+        private static IniItem<double> _common_FontSizeHeader3 = new()
         {
-            get => _fontSizeHeader3;
+            Section = "Common",
+            Key = "FontSize.Header3",
+            Value = 18.72,
+            DefaultValue = 18.72
+        };
+        public static double Common_FontSizeHeader3
+        {
+            get => _common_FontSizeHeader3.Value;
             set
             {
-                if (_fontSizeHeader3 != value)
+                if (_common_FontSizeHeader3.Value != value)
                 {
-                    _fontSizeHeader3 = value;
-                    OnPropertyChanged(nameof(FontSizeHeader3));
+                    _common_FontSizeHeader3.Value = value;
+                    OnPropertyChanged(nameof(Common_FontSizeHeader3));
                 }
             }
         }
-        private static double _fontSizeHeader4;
-        public static double FontSizeHeader4
+        private static IniItem<double> _common_FontSizeHeader4 = new()
         {
-            get => _fontSizeHeader4;
+            Section = "Common",
+            Key = "FontSize.Header4",
+            Value = 16.0,
+            DefaultValue = 16.0
+        };
+        public static double Common_FontSizeHeader4
+        {
+            get => _common_FontSizeHeader4.Value;
             set
             {
-                if (_fontSizeHeader4 != value)
+                if (_common_FontSizeHeader4.Value != value)
                 {
-                    _fontSizeHeader4 = value;
-                    OnPropertyChanged(nameof(FontSizeHeader4));
+                    _common_FontSizeHeader4.Value = value;
+                    OnPropertyChanged(nameof(Common_FontSizeHeader4));
                 }
             }
         }
-        private static double _fontSizeHeader5;
-        public static double FontSizeHeader5
+        private static IniItem<double> _common_FontSizeHeader5 = new()
         {
-            get => _fontSizeHeader5;
+            Section = "Common",
+            Key = "FontSize.Header5",
+            Value = 13.28,
+            DefaultValue = 13.28
+        };
+        public static double Common_FontSizeHeader5
+        {
+            get => _common_FontSizeHeader5.Value;
             set
             {
-                if (_fontSizeHeader5 != value)
+                if (_common_FontSizeHeader5.Value != value)
                 {
-                    _fontSizeHeader5 = value;
-                    OnPropertyChanged(nameof(FontSizeHeader5));
+                    _common_FontSizeHeader5.Value = value;
+                    OnPropertyChanged(nameof(Common_FontSizeHeader5));
                 }
             }
         }
-        private static double _fontSizeHeader6;
-        public static double FontSizeHeader6
+        private static IniItem<double> _common_FontSizeHeader6 = new()
         {
-            get => _fontSizeHeader6;
+            Section = "Common",
+            Key = "FontSize.Header6",
+            Value = 10.72,
+            DefaultValue = 10.72
+        };
+        public static double Common_FontSizeHeader6
+        {
+            get => _common_FontSizeHeader6.Value;
             set
             {
-                if (_fontSizeHeader6 != value)
+                if (_common_FontSizeHeader6.Value != value)
                 {
-                    _fontSizeHeader6 = value;
-                    OnPropertyChanged(nameof(FontSizeHeader6));
+                    _common_FontSizeHeader6.Value = value;
+                    OnPropertyChanged(nameof(Common_FontSizeHeader6));
                 }
             }
         }
-        private static double _fontSizeDefault;
-        public static double FontSizeDefault
+        private static IniItem<double> _common_FontSizeDefault = new()
         {
-            get => _fontSizeDefault;
+            Section = "Common",
+            Key = "FontSize.Default",
+            Value = 16.0,
+            DefaultValue = 16.0
+        };
+        public static double Common_FontSizeDefault
+        {
+            get => _common_FontSizeDefault.Value;
             set
             {
-                if (_fontSizeDefault != value)
+                if (_common_FontSizeDefault.Value != value)
                 {
-                    _fontSizeDefault = value;
-                    OnPropertyChanged(nameof(FontSizeDefault));
+                    _common_FontSizeDefault.Value = value;
+                    OnPropertyChanged(nameof(Common_FontSizeDefault));
                 }
             }
         }
         #endregion
         #region Common.BorderThichness
-        private static Thickness _borderThicknessDefault;
-        public static Thickness BorderThicknessDefault
+        private static IniItem<Vector4> _common_ThicknessDefault = new()
         {
-            get => _borderThicknessDefault;
+            Section = "Common",
+            Key = "Thickness.Default",
+            Value = new Vector4(1.0f, 1.0f, 1.0f, 1.0f),
+            DefaultValue = new Vector4(1.0f, 1.0f, 1.0f, 1.0f)
+        };
+        public static Thickness Common_ThicknessDefault
+        {
+            get => new Thickness()
+            {
+                Left = _common_ThicknessDefault.Value.X,
+                Top = _common_ThicknessDefault.Value.Y,
+                Right = _common_ThicknessDefault.Value.Z,
+                Bottom = _common_ThicknessDefault.Value.W
+            };
             set
             {
-                if (_borderThicknessDefault != value)
+                Vector4 tempVector = new((float)value.Left, (float)value.Top, (float)value.Right, (float)value.Bottom);
+                if (_common_ThicknessDefault.Value != tempVector)
                 {
-                    _borderThicknessDefault = value;
-                    OnPropertyChanged(nameof(BorderThicknessDefault));
+                    _common_ThicknessDefault.Value = tempVector;
+                    OnPropertyChanged(nameof(Common_ThicknessDefault));
                 }
             }
         }
-        private static Thickness _borderThicknessZero;
-        public static Thickness BorderThicknessZero
+        private static IniItem<Vector4> _common_ThicknessZero = new()
         {
-            get => _borderThicknessZero;
+            Section = "Common",
+            Key = "Thickness.Zero",
+            Value = new Vector4(0.0f, 0.0f, 0.0f, 0.0f),
+            DefaultValue = new Vector4(0.0f, 0.0f, 0.0f, 0.0f)
+        };
+        public static Thickness Common_ThicknessZero
+        {
+            get => new Thickness()
+            {
+                Left = _common_ThicknessZero.Value.X,
+                Top = _common_ThicknessZero.Value.Y,
+                Right = _common_ThicknessZero.Value.Z,
+                Bottom = _common_ThicknessZero.Value.W
+            };
             set
             {
-                if (_borderThicknessZero != value)
+                Vector4 tempVector = new((float)value.Left, (float)value.Top, (float)value.Right, (float)value.Bottom);
+                if (_common_ThicknessZero.Value != tempVector)
                 {
-                    _borderThicknessZero = value;
-                    OnPropertyChanged(nameof(BorderThicknessZero));
+                    _common_ThicknessZero.Value = tempVector;
+                    OnPropertyChanged(nameof(Common_ThicknessZero));
                 }
             }
         }
         #endregion
         #region Common.Brush
-        private static SolidColorBrush _lineBrush;
-        public static SolidColorBrush CommonLineBrush
+        private static IniItem<Color> _common_BrushLine = new()
         {
-            get => _lineBrush;
+            Section = "Common",
+            Key = "Brush.Line",
+            Value = Color.FromArgb(255, 128, 128, 128),
+            DefaultValue = Color.FromArgb(255, 128, 128, 128)
+        };
+        public static SolidColorBrush Common_BrushLine
+        {
+            get => new(_common_BrushLine.Value);
             set
             {
-                if (_lineBrush != value)
+                if (_common_BrushLine.Value != value.Color)
                 {
-                    _lineBrush = value;
-                    OnPropertyChanged(nameof(CommonLineBrush));
+                    _common_BrushLine.Value = value.Color;
+                    OnPropertyChanged(nameof(Common_BrushLine));
                 }
             }
         }
-        private static SolidColorBrush _highlightBrush;
-        public static SolidColorBrush CommonHighlightBrush
+        private static IniItem<Color> _common_BrushHighlight = new()
         {
-            get => _highlightBrush;
+            Section = "Common",
+            Key = "Brush.Highlight",
+            Value = Color.FromArgb(80, 255, 255, 255),
+            DefaultValue = Color.FromArgb(80, 255, 255, 255)
+        };
+        public static SolidColorBrush Common_BrushHighlight
+        {
+            get => new(_common_BrushHighlight.Value);
             set
             {
-                if (_highlightBrush != value)
+                if (_common_BrushHighlight.Value != value.Color)
                 {
-                    _highlightBrush = value;
-                    OnPropertyChanged(nameof(_highlightBrush));
+                    _common_BrushHighlight.Value = value.Color;
+                    OnPropertyChanged(nameof(_common_BrushHighlight));
                 }
             }
         }
-        private static SolidColorBrush _selectionBrush;
-        public static SolidColorBrush CommonSelectionBrush
+        private static IniItem<Color> _common_BrushSelection = new()
         {
-            get => _selectionBrush;
+            Section = "Common",
+            Key = "Brush.Default",
+            Value = Color.FromArgb(255, 128, 128, 128),
+            DefaultValue = Color.FromArgb(255, 128, 128, 128)
+        };
+        public static SolidColorBrush Common_BrushSelection
+        {
+            get => new(_common_BrushSelection.Value);
             set
             {
-                if (_selectionBrush != value)
+                if (_common_BrushSelection.Value != value.Color)
                 {
-                    _selectionBrush = value;
-                    OnPropertyChanged(nameof(CommonSelectionBrush));
+                    _common_BrushSelection.Value = value.Color;
+                    OnPropertyChanged(nameof(Common_BrushSelection));
                 }
             }
         }
-        private static SolidColorBrush _maskBrush;
-        public static SolidColorBrush CommonMaskBrush
+        private static IniItem<Color> _common_BrushMask = new()
         {
-            get => _maskBrush;
+            Section = "Common",
+            Key = "Brush.Mask",
+            Value = Color.FromArgb(160, 128, 128, 128),
+            DefaultValue = Color.FromArgb(160, 128, 128, 128)
+        };
+        public static SolidColorBrush Common_BrushMask
+        {
+            get => new(_common_BrushMask.Value);
             set
             {
-                if (_maskBrush != value)
+                if (_common_BrushMask.Value != value.Color)
                 {
-                    _maskBrush = value;
-                    OnPropertyChanged(nameof(CommonMaskBrush));
+                    _common_BrushMask.Value = value.Color;
+                    OnPropertyChanged(nameof(Common_BrushMask));
                 }
             }
         }
         #endregion
+        #region Theme.Common
+        private static IniItem<string> _themeName = new()
+        {
+            Section = "Theme",
+            Key = "Name",
+            Value = "Light",
+            DefaultValue = "Light"
+        };
+        public static string ThemeName
+        {
+            get => new(_themeName.Value);
+            set
+            {
+                if (_themeName.Value == value)
+                    return;
+                if (ThemeDictionary.ContainsKey(value) is false)
+                    return;
+                _themeName.Value = value;
+                OnPropertyChanged(nameof(Common_BrushMask));
+                ChangedTheme();
+            }
+        }
+        public static Dictionary<string, ThemeItems> ThemeDictionary { get; } = new();
+
+        public static bool ChangedTheme()
+        {
+            if (ThemeDictionary.ContainsKey(ThemeName) is false)
+                return false;
+
+            Theme_BrushForeground = new(ThemeDictionary[ThemeName].BrushForeground.Value);
+            Theme_BrushForegroundDisable = new(ThemeDictionary[ThemeName].BrushForegroundDisable.Value);
+            Theme_BrushBackground = new(ThemeDictionary[ThemeName].BrushBackground.Value);
+
+            ThemeOverlayBackground_BrushDisable = new(ThemeDictionary[ThemeName].OverlayBackground_BrushDisable.Value);
+            ThemeOverlayBackground_BrushDefault = new(ThemeDictionary[ThemeName].OverlayBackground_BrushDefault.Value);
+            ThemeOverlayBackground_BrushMouseOver = new(ThemeDictionary[ThemeName].OverlayBackground_BrushMouseOver.Value);
+            ThemeOverlayBackground_BrushFocus = new(ThemeDictionary[ThemeName].OverlayBackground_BrushFocus.Value);
+
+            ThemeOverlayBorder_BrushDisable = new(ThemeDictionary[ThemeName].OverlayBorder_BrushDisable.Value);
+            ThemeOverlayBorder_BrushDefault = new(ThemeDictionary[ThemeName].OverlayBorder_BrushDefault.Value);
+            ThemeOverlayBorder_BrushMouseOver = new(ThemeDictionary[ThemeName].OverlayBorder_BrushMouseOver.Value);
+            ThemeOverlayBorder_BrushFocus = new(ThemeDictionary[ThemeName].OverlayBorder_BrushFocus.Value);
+
+            ThemeOverlayMask_BrushDisable = new(ThemeDictionary[ThemeName].OverlayMask_BrushDisable.Value);
+            ThemeOverlayMask_BrushDefault = new(ThemeDictionary[ThemeName].OverlayMask_BrushDefault.Value);
+            ThemeOverlayMask_BrushMouseOver = new(ThemeDictionary[ThemeName].OverlayMask_BrushMouseOver.Value);
+            ThemeOverlayMask_BrushFocus = new(ThemeDictionary[ThemeName].OverlayMask_BrushFocus.Value);
+
+            return true;
+        }
+        #endregion
         #region Theme.Common.Brush
-        private static SolidColorBrush _themeForegroundBrush;
-        public static SolidColorBrush ThemeForegroundBrush
+        private static IniItem<Color> _theme_BrushForeground = new()
         {
-            get => _themeForegroundBrush;
+            Section = "Theme",
+            Key = "Brush.Foreground",
+            Value = Color.FromArgb(255, 21, 21, 21),
+            DefaultValue = Color.FromArgb(255, 21, 21, 21)
+        };
+        public static SolidColorBrush Theme_BrushForeground
+        {
+            get => new(_theme_BrushForeground.Value);
             set
             {
-                if (_themeForegroundBrush != value)
+                if (_theme_BrushForeground.Value != value.Color)
                 {
-                    _themeForegroundBrush = value;
-                    OnPropertyChanged(nameof(ThemeForegroundBrush));
+                    _theme_BrushForeground.Value = value.Color;
+                    OnPropertyChanged(nameof(Theme_BrushForeground));
                 }
             }
         }
-        private static SolidColorBrush _themeForegroundDisableBrush;
-        public static SolidColorBrush ThemeForegroundDisableBrush
+        private static IniItem<Color> _theme_BrushForegroundDisable = new()
         {
-            get => _themeForegroundDisableBrush;
+            Section = "Theme",
+            Key = "Brush.Foreground.Disable",
+            Value = Color.FromArgb(160, 128, 128, 128),
+            DefaultValue = Color.FromArgb(160, 128, 128, 128)
+        };
+        public static SolidColorBrush Theme_BrushForegroundDisable
+        {
+            get => new(_theme_BrushForegroundDisable.Value);
             set
             {
-                if (_themeForegroundDisableBrush != value)
+                if (_theme_BrushForegroundDisable.Value != value.Color)
                 {
-                    _themeForegroundDisableBrush = value;
-                    OnPropertyChanged(nameof(ThemeForegroundDisableBrush));
+                    _theme_BrushForegroundDisable.Value = value.Color;
+                    OnPropertyChanged(nameof(Theme_BrushForegroundDisable));
                 }
             }
         }
-        private static SolidColorBrush _themeBackgroundBrush;
-        public static SolidColorBrush ThemeBackgroundBrush
+        private static IniItem<Color> _theme_BrushBackground = new()
         {
-            get => _themeBackgroundBrush;
+            Section = "Theme",
+            Key = "Brush.Background",
+            Value = Color.FromArgb(255, 255, 255, 255),
+            DefaultValue = Color.FromArgb(255, 255, 255, 255)
+        };
+        public static SolidColorBrush Theme_BrushBackground
+        {
+            get => new(_theme_BrushBackground.Value);
             set
             {
-                if (_themeBackgroundBrush != value)
+                if (_theme_BrushBackground.Value != value.Color)
                 {
-                    _themeBackgroundBrush = value;
-                    OnPropertyChanged(nameof(ThemeBackgroundBrush));
+                    _theme_BrushBackground.Value = value.Color;
+                    OnPropertyChanged(nameof(Theme_BrushBackground));
                 }
             }
         }
         #endregion
         #region Theme.Overlay.Background.Brush
-        private static SolidColorBrush _themeOverlayBackgroundDisableBrush;
-        public static SolidColorBrush ThemeOverlayBackgroundDisableBrush
+        private static IniItem<Color> _themeOverlayBackground_BrushDisable = new()
         {
-            get => _themeOverlayBackgroundDisableBrush;
+            Section = "Theme.Overlay.Background",
+            Key = "Brush.Disable",
+            Value = Color.FromArgb(5, 128, 128, 128),
+            DefaultValue = Color.FromArgb(5, 128, 128, 128)
+        };
+        public static SolidColorBrush ThemeOverlayBackground_BrushDisable
+        {
+            get => new(_themeOverlayBackground_BrushDisable.Value);
             set
             {
-                if (_themeOverlayBackgroundDisableBrush != value)
+                if (_themeOverlayBackground_BrushDisable.Value != value.Color)
                 {
-                    _themeOverlayBackgroundDisableBrush = value;
-                    OnPropertyChanged(nameof(ThemeOverlayBackgroundDisableBrush));
+                    _themeOverlayBackground_BrushDisable.Value = value.Color;
+                    OnPropertyChanged(nameof(ThemeOverlayBackground_BrushDisable));
                 }
             }
         }
-        private static SolidColorBrush _themeOverlayBackgroundDefaultBrush;
-        public static SolidColorBrush ThemeOverlayBackgroundDefaultBrush
+        private static IniItem<Color> _themeOverlayBackground_BrushDefault = new()
         {
-            get => _themeOverlayBackgroundDefaultBrush;
+            Section = "Theme.Overlay.Background",
+            Key = "Brush.Default",
+            Value = Color.FromArgb(16, 128, 128, 128),
+            DefaultValue = Color.FromArgb(16, 128, 128, 128)
+        };
+        public static SolidColorBrush ThemeOverlayBackground_BrushDefault
+        {
+            get => new(_themeOverlayBackground_BrushDefault.Value);
             set
             {
-                if (_themeOverlayBackgroundDefaultBrush != value)
+                if (_themeOverlayBackground_BrushDefault.Value != value.Color)
                 {
-                    _themeOverlayBackgroundDefaultBrush = value;
-                    OnPropertyChanged(nameof(ThemeOverlayBackgroundDefaultBrush));
+                    _themeOverlayBackground_BrushDefault.Value = value.Color;
+                    OnPropertyChanged(nameof(ThemeOverlayBackground_BrushDefault));
                 }
             }
         }
-        private static SolidColorBrush _themeOverlayBackgroundMouseOverBrush;
-        public static SolidColorBrush ThemeOverlayBackgroundMouseOverBrush
+        private static IniItem<Color> _themeOverlayBackground_BrushMouseOver = new()
         {
-            get => _themeOverlayBackgroundMouseOverBrush;
+            Section = "Theme.Overlay.Background",
+            Key = "Brush.MouseOver",
+            Value = Color.FromArgb(37, 128, 128, 128),
+            DefaultValue = Color.FromArgb(37, 128, 128, 128)
+        };
+        public static SolidColorBrush ThemeOverlayBackground_BrushMouseOver
+        {
+            get => new(_themeOverlayBackground_BrushMouseOver.Value);
             set
             {
-                if (_themeOverlayBackgroundMouseOverBrush != value)
+                if (_themeOverlayBackground_BrushMouseOver.Value != value.Color)
                 {
-                    _themeOverlayBackgroundMouseOverBrush = value;
-                    OnPropertyChanged(nameof(ThemeOverlayBackgroundMouseOverBrush));
+                    _themeOverlayBackground_BrushMouseOver.Value = value.Color;
+                    OnPropertyChanged(nameof(ThemeOverlayBackground_BrushMouseOver));
                 }
             }
         }
-        private static SolidColorBrush _themeOverlayBackgroundFocusBrush;
-        public static SolidColorBrush ThemeOverlayBackgroundFocusBrush
+        private static IniItem<Color> _themeOverlayBackground_BrushFocus = new()
         {
-            get => _themeOverlayBackgroundFocusBrush;
+            Section = "Theme.Overlay.Background",
+            Key = "Brush.Focus",
+            Value = Color.FromArgb(64, 128, 128, 128),
+            DefaultValue = Color.FromArgb(64, 128, 128, 128)
+
+        };
+        public static SolidColorBrush ThemeOverlayBackground_BrushFocus
+        {
+            get => new(_themeOverlayBackground_BrushFocus.Value);
             set
             {
-                if (_themeOverlayBackgroundFocusBrush != value)
+                if (_themeOverlayBackground_BrushFocus.Value != value.Color)
                 {
-                    _themeOverlayBackgroundFocusBrush = value;
-                    OnPropertyChanged(nameof(ThemeOverlayBackgroundFocusBrush));
+                    _themeOverlayBackground_BrushFocus.Value = value.Color;
+                    OnPropertyChanged(nameof(ThemeOverlayBackground_BrushFocus));
                 }
             }
         }
         #endregion
-        #region Theme.Overlay.BorderBrush.Brush
-        private static SolidColorBrush _themeOverlayBorderBrushDisableBrush;
-        public static SolidColorBrush ThemeOverlayBorderBrushDisableBrush
+        #region Theme.Overlay.Border.Brush
+        private static IniItem<Color> _themeOverlayBorder_BrushDisable = new()
         {
-            get => _themeOverlayBorderBrushDisableBrush;
+            Section = "Theme.Overlay.Border",
+            Key = "Brush.Disable",
+            Value = Color.FromArgb(37, 128, 128, 128),
+            DefaultValue = Color.FromArgb(37, 128, 128, 128)
+        };
+        public static SolidColorBrush ThemeOverlayBorder_BrushDisable
+        {
+            get => new(_themeOverlayBorder_BrushDisable.Value);
             set
             {
-                if (_themeOverlayBorderBrushDisableBrush != value)
+                if (_themeOverlayBorder_BrushDisable.Value != value.Color)
                 {
-                    _themeOverlayBorderBrushDisableBrush = value;
-                    OnPropertyChanged(nameof(ThemeOverlayBorderBrushDisableBrush));
+                    _themeOverlayBorder_BrushDisable.Value = value.Color;
+                    OnPropertyChanged(nameof(ThemeOverlayBorder_BrushDisable));
                 }
             }
         }
-        private static SolidColorBrush _themeOverlayBorderBrushDefaultBrush;
-        public static SolidColorBrush ThemeOverlayBorderBrushDefaultBrush
+        private static IniItem<Color> _themeOverlayBorder_BrushDefault = new()
         {
-            get => _themeOverlayBorderBrushDefaultBrush;
+            Section = "Theme.Overlay.Border",
+            Key = "Brush.Default",
+            Value = Color.FromArgb(80, 0, 0, 0),
+            DefaultValue = Color.FromArgb(80, 0, 0, 0)
+        };
+        public static SolidColorBrush ThemeOverlayBorder_BrushDefault
+        {
+            get => new(_themeOverlayBorder_BrushDefault.Value);
             set
             {
-                if (_themeOverlayBorderBrushDefaultBrush != value)
+                if (_themeOverlayBorder_BrushDefault.Value != value.Color)
                 {
-                    _themeOverlayBorderBrushDefaultBrush = value;
-                    OnPropertyChanged(nameof(ThemeOverlayBorderBrushDefaultBrush));
+                    _themeOverlayBorder_BrushDefault.Value = value.Color;
+                    OnPropertyChanged(nameof(ThemeOverlayBorder_BrushDefault));
                 }
             }
         }
-        private static SolidColorBrush _themeOverlayBorderBrushMouseOverBrush;
-        public static SolidColorBrush ThemeOverlayBorderBrushMouseOverBrush
+        private static IniItem<Color> _themeOverlayBorder_BrushMouseOver = new()
         {
-            get => _themeOverlayBorderBrushMouseOverBrush;
+            Section = "Theme.Overlay.Border",
+            Key = "Brush.MouseOver",
+            Value = Color.FromArgb(208, 0, 0, 0),
+            DefaultValue = Color.FromArgb(208, 0, 0, 0)
+        };
+        public static SolidColorBrush ThemeOverlayBorder_BrushMouseOver
+        {
+            get => new(_themeOverlayBorder_BrushMouseOver.Value);
             set
             {
-                if (_themeOverlayBorderBrushMouseOverBrush != value)
+                if (_themeOverlayBorder_BrushMouseOver.Value != value.Color)
                 {
-                    _themeOverlayBorderBrushMouseOverBrush = value;
-                    OnPropertyChanged(nameof(ThemeOverlayBorderBrushMouseOverBrush));
+                    _themeOverlayBorder_BrushMouseOver.Value = value.Color;
+                    OnPropertyChanged(nameof(ThemeOverlayBorder_BrushMouseOver));
                 }
             }
         }
-        private static SolidColorBrush _themeOverlayBorderBrushFocusBrush;
-        public static SolidColorBrush ThemeOverlayBorderBrushFocusBrush
+        private static IniItem<Color> _themeOverlayBorder_BrushFocus = new()
         {
-            get => _themeOverlayBorderBrushFocusBrush;
+            Section = "Theme.Overlay.Border",
+            Key = "Brush.Focus",
+            Value = Color.FromArgb(255, 0, 0, 0),
+            DefaultValue = Color.FromArgb(255, 0, 0, 0)
+        };
+        public static SolidColorBrush ThemeOverlayBorder_BrushFocus
+        {
+            get => new(_themeOverlayBorder_BrushFocus.Value);
             set
             {
-                if (_themeOverlayBorderBrushFocusBrush != value)
+                if (_themeOverlayBorder_BrushFocus.Value != value.Color)
                 {
-                    _themeOverlayBorderBrushFocusBrush = value;
-                    OnPropertyChanged(nameof(ThemeOverlayBorderBrushFocusBrush));
+                    _themeOverlayBorder_BrushFocus.Value = value.Color;
+                    OnPropertyChanged(nameof(ThemeOverlayBorder_BrushFocus));
                 }
             }
         }
         #endregion
         #region Theme.Overlay.Mask.Brush
-        private static SolidColorBrush _themeOverlayMaskDisableBrush;
-        public static SolidColorBrush ThemeOverlayMaskDisableBrush
+        private static IniItem<Color> _themeOverlayMask_BrushDisable = new()
         {
-            get => _themeOverlayMaskDisableBrush;
+            Section = "Theme.Overlay.Mask",
+            Key = "Brush.Disable",
+            Value = Color.FromArgb(37, 128, 128, 128),
+            DefaultValue = Color.FromArgb(37, 128, 128, 128)
+        };
+        public static SolidColorBrush ThemeOverlayMask_BrushDisable
+        {
+            get => new(_themeOverlayMask_BrushDisable.Value);
             set
             {
-                if (_themeOverlayMaskDisableBrush != value)
+                if (_themeOverlayMask_BrushDisable.Value != value.Color)
                 {
-                    _themeOverlayMaskDisableBrush = value;
-                    OnPropertyChanged(nameof(ThemeOverlayMaskDisableBrush));
+                    _themeOverlayMask_BrushDisable.Value = value.Color;
+                    OnPropertyChanged(nameof(ThemeOverlayMask_BrushDisable));
                 }
             }
         }
-        private static SolidColorBrush _themeOverlayMaskDefaultBrush;
-        public static SolidColorBrush ThemeOverlayMaskDefaultBrush
+        private static IniItem<Color> _themeOverlayMask_BrushDefault = new()
         {
-            get => _themeOverlayMaskDefaultBrush;
+            Section = "Theme.Overlay.Mask",
+            Key = "Brush.Default",
+            //Color.FromArgb(80, 15, 15, 15),
+            Value = Color.FromArgb(0, 0, 0, 0),
+            DefaultValue = Color.FromArgb(0, 0, 0, 0)
+        };
+        public static SolidColorBrush ThemeOverlayMask_BrushDefault
+        {
+            get => new(_themeOverlayMask_BrushDefault.Value);
             set
             {
-                if (_themeOverlayMaskDefaultBrush != value)
+                if (_themeOverlayMask_BrushDefault.Value != value.Color)
                 {
-                    _themeOverlayMaskDefaultBrush = value;
-                    OnPropertyChanged(nameof(ThemeOverlayMaskDefaultBrush));
+                    _themeOverlayMask_BrushDefault.Value = value.Color;
+                    OnPropertyChanged(nameof(ThemeOverlayMask_BrushDefault));
                 }
             }
         }
-        private static SolidColorBrush _themeOverlayMaskMouseOverBrush;
-        public static SolidColorBrush ThemeOverlayMaskMouseOverBrush
+        private static IniItem<Color> _themeOverlayMask_BrushMouseOver = new()
         {
-            get => _themeOverlayMaskMouseOverBrush;
+            Section = "Theme.Overlay.Mask",
+            Key = "Brush.MouseOver",
+            Value = Color.FromArgb(160, 21, 21, 21),
+            DefaultValue = Color.FromArgb(160, 21, 21, 21)
+        };
+        public static SolidColorBrush ThemeOverlayMask_BrushMouseOver
+        {
+            get => new(_themeOverlayMask_BrushMouseOver.Value);
             set
             {
-                if (_themeOverlayMaskMouseOverBrush != value)
+                if (_themeOverlayMask_BrushMouseOver.Value != value.Color)
                 {
-                    _themeOverlayMaskMouseOverBrush = value;
-                    OnPropertyChanged(nameof(ThemeOverlayMaskMouseOverBrush));
+                    _themeOverlayMask_BrushMouseOver.Value = value.Color;
+                    OnPropertyChanged(nameof(ThemeOverlayMask_BrushMouseOver));
                 }
             }
         }
-        private static SolidColorBrush _themeOverlayMaskFocusBrush;
-        public static SolidColorBrush ThemeOverlayMaskFocusBrush
+        private static IniItem<Color> _themeOverlayMask_BrushFocus = new()
         {
-            get => _themeOverlayMaskFocusBrush;
+            Section = "Theme.Overlay.Mask",
+            Key = "Brush.Focus",
+            Value = Color.FromArgb(240, 21, 21, 21),
+            DefaultValue = Color.FromArgb(240, 21, 21, 21)
+        };
+        public static SolidColorBrush ThemeOverlayMask_BrushFocus
+        {
+            get => new(_themeOverlayMask_BrushFocus.Value);
             set
             {
-                if (_themeOverlayMaskFocusBrush != value)
+                if (_themeOverlayMask_BrushFocus.Value != value.Color)
                 {
-                    _themeOverlayMaskFocusBrush = value;
-                    OnPropertyChanged(nameof(ThemeOverlayMaskFocusBrush));
+                    _themeOverlayMask_BrushFocus.Value = value.Color;
+                    OnPropertyChanged(nameof(ThemeOverlayMask_BrushFocus));
                 }
             }
         }
         #endregion
+        #region Utility
+        private static Thickness GetThickness(IniItem<Vector4> item)
+        {
+            Vector4? getValue = iniFile.GetValue(item) ?? item.DefaultValue;
+            if (getValue is null)
+                return new(1.0);
+            return new(getValue.Value.X, getValue.Value.Y, getValue.Value.Z, getValue.Value.W);
+        }
+        private static Thickness GetDefaultThickness(IniItem<Vector4> item)
+        {
+            Vector4? getValue = item.DefaultValue;
+            if (getValue is null)
+                return new(1.0);
+            return new(getValue.Value.X, getValue.Value.Y, getValue.Value.Z, getValue.Value.W);
+        }
+        private static SolidColorBrush GetSolidColorBrush(IniItem<Color> item)
+        {
+            Color? getValue = iniFile.GetValue(item) ?? item.DefaultValue;
+            if (getValue is null)
+                return new(Color.FromArgb(0, 0, 0, 0));
+            return new(getValue.Value);
+        }
+        private static SolidColorBrush GetDefaultSolidColorBrush(IniItem<Color> item)
+        {
+            Color? getValue = item.DefaultValue;
+            if (getValue is null)
+                return new(Color.FromArgb(0, 0, 0, 0));
+            return new(getValue.Value);
+        }
+        public static void SetDefaultValue()
+        {
+            Common_FontSizeHeader1 = _common_fontSizeHeader1.DefaultValue;
+            Common_FontSizeHeader2 = _common_FontSizeHeader2.DefaultValue;
+            Common_FontSizeHeader3 = _common_FontSizeHeader3.DefaultValue;
+            Common_FontSizeHeader4 = _common_FontSizeHeader4.DefaultValue;
+            Common_FontSizeHeader5 = _common_FontSizeHeader5.DefaultValue;
+            Common_FontSizeHeader6 = _common_FontSizeHeader6.DefaultValue;
+            Common_FontSizeDefault = _common_FontSizeDefault.DefaultValue;
+
+            Common_ThicknessDefault = GetDefaultThickness(_common_ThicknessDefault);
+            Common_ThicknessZero = GetDefaultThickness(_common_ThicknessZero);
+
+            Common_BrushLine = GetDefaultSolidColorBrush(_common_BrushLine);
+            Common_BrushHighlight = GetDefaultSolidColorBrush(_common_BrushHighlight);
+            Common_BrushSelection = GetDefaultSolidColorBrush(_common_BrushSelection);
+            Common_BrushMask = GetDefaultSolidColorBrush(_common_BrushMask);
+
+            ThemeDictionary.Clear();
+            ThemeItems tempLight = new("Light");
+
+
+
+            ThemeDictionary.Add(tempLight.Name, tempLight);
+            ThemeItems tempDark = new("Dark");
+
+
+            ThemeDictionary.Add(tempDark.Name, tempDark);
+
+            ThemeName = _themeName.DefaultValue ?? "Light";
+        }
+        #endregion
     }
+
 
 
     public class ThemeSetting : ResourceDictionary
     {
         public ThemeSetting()
         {
-            this["Internal.Common.FontSize.Header1"] = ThemeSettingData.FontSizeHeader1;
-            this["Internal.Common.FontSize.Header2"] = ThemeSettingData.FontSizeHeader2;
-            this["Internal.Common.FontSize.Header3"] = ThemeSettingData.FontSizeHeader3;
-            this["Internal.Common.FontSize.Header4"] = ThemeSettingData.FontSizeHeader4;
-            this["Internal.Common.FontSize.Header5"] = ThemeSettingData.FontSizeHeader5;
-            this["Internal.Common.FontSize.Header6"] = ThemeSettingData.FontSizeHeader6;
-            this["Internal.Common.FontSize.Default"] = ThemeSettingData.FontSizeDefault;
+            this["Internal.Common.FontSize.Header1"] = ThemeSettingData.Common_FontSizeHeader1;
+            this["Internal.Common.FontSize.Header2"] = ThemeSettingData.Common_FontSizeHeader2;
+            this["Internal.Common.FontSize.Header3"] = ThemeSettingData.Common_FontSizeHeader3;
+            this["Internal.Common.FontSize.Header4"] = ThemeSettingData.Common_FontSizeHeader4;
+            this["Internal.Common.FontSize.Header5"] = ThemeSettingData.Common_FontSizeHeader5;
+            this["Internal.Common.FontSize.Header6"] = ThemeSettingData.Common_FontSizeHeader6;
+            this["Internal.Common.FontSize.Default"] = ThemeSettingData.Common_FontSizeDefault;
 
-            this["Internal.Common.BorderThickness.Default"] = ThemeSettingData.BorderThicknessDefault;
-            this["Internal.Common.BorderThickness.Zero"] = ThemeSettingData.BorderThicknessZero;
+            this["Internal.Common.Thickness.Default"] = ThemeSettingData.Common_ThicknessDefault;
+            this["Internal.Common.Thickness.Zero"] = ThemeSettingData.Common_ThicknessZero;
 
-            this["Internal.Brush.Common.Line"] = ThemeSettingData.CommonLineBrush;
-            this["Internal.Brush.Common.Highlight"] = ThemeSettingData.CommonHighlightBrush;
-            this["Internal.Brush.Common.Selection"] = ThemeSettingData.CommonSelectionBrush;
-            this["Internal.Brush.Common.Mask"] = ThemeSettingData.CommonMaskBrush;
+            this["Internal.Common.Brush.Line"] = ThemeSettingData.Common_BrushLine;
+            this["Internal.Common.Brush.Highlight"] = ThemeSettingData.Common_BrushHighlight;
+            this["Internal.Common.Brush.Selection"] = ThemeSettingData.Common_BrushSelection;
+            this["Internal.Common.Brush.Mask"] = ThemeSettingData.Common_BrushMask;
 
-            this["Internal.Brush.Theme.Foreground"] = ThemeSettingData.ThemeForegroundBrush;
-            this["Internal.Brush.Theme.Foreground.Disable"] = ThemeSettingData.ThemeForegroundDisableBrush;
-            this["Internal.Brush.Theme.Background"] = ThemeSettingData.ThemeBackgroundBrush;
+            this["Internal.Theme.Brush.Foreground"] = ThemeSettingData.Theme_BrushForeground;
+            this["Internal.Theme.Brush.Foreground.Disable"] = ThemeSettingData.Theme_BrushForegroundDisable;
+            this["Internal.Theme.Brush.Background"] = ThemeSettingData.Theme_BrushBackground;
 
-            this["Internal.Brush.Theme.Overlay.Background.Disable"]
-                = ThemeSettingData.ThemeOverlayBackgroundDisableBrush;
-            this["Internal.Brush.Theme.Overlay.Background.Default"]
-                = ThemeSettingData.ThemeOverlayBackgroundDefaultBrush;
-            this["Internal.Brush.Theme.Overlay.Background.MouseOver"]
-                = ThemeSettingData.ThemeOverlayBackgroundMouseOverBrush;
-            this["Internal.Brush.Theme.Overlay.Background.Focus"]
-                = ThemeSettingData.ThemeOverlayBackgroundFocusBrush;
+            this[$"Internal.Theme.Overlay.Background.Brush.Disable"]
+                = ThemeSettingData.ThemeOverlayBackground_BrushDisable;
+            this["Internal.Theme.Overlay.Background.Brush.Default"]
+                = ThemeSettingData.ThemeOverlayBackground_BrushDefault;
+            this["Internal.Theme.Overlay.Background.Brush.MouseOver"]
+                = ThemeSettingData.ThemeOverlayBackground_BrushMouseOver;
+            this["Internal.Theme.Overlay.Background.Brush.Focus"]
+                = ThemeSettingData.ThemeOverlayBackground_BrushFocus;
 
-            this["Internal.Brush.Theme.Overlay.BorderBrush.Disable"]
-                = ThemeSettingData.ThemeOverlayBorderBrushDisableBrush;
-            this["Internal.Brush.Theme.Overlay.BorderBrush.Default"]
-                = ThemeSettingData.ThemeOverlayBorderBrushDefaultBrush;
-            this["Internal.Brush.Theme.Overlay.BorderBrush.MouseOver"]
-                = ThemeSettingData.ThemeOverlayBorderBrushMouseOverBrush;
-            this["Internal.Brush.Theme.Overlay.BorderBrush.Focus"]
-                = ThemeSettingData.ThemeOverlayBorderBrushFocusBrush;
+            this["Internal.Theme.Overlay.Border.Brush.Disable"]
+                = ThemeSettingData.ThemeOverlayBorder_BrushDisable;
+            this["Internal.Theme.Overlay.Border.Brush.Default"]
+                = ThemeSettingData.ThemeOverlayBorder_BrushDefault;
+            this["Internal.Theme.Overlay.Border.Brush.MouseOver"]
+                = ThemeSettingData.ThemeOverlayBorder_BrushMouseOver;
+            this["Internal.Theme.Overlay.Border.Brush.Focus"]
+                = ThemeSettingData.ThemeOverlayBorder_BrushFocus;
 
-            this["Internal.Brush.Theme.Overlay.Mask.Disable"] = ThemeSettingData.ThemeOverlayMaskDisableBrush;
-            this["Internal.Brush.Theme.Overlay.Mask.Default"] = ThemeSettingData.ThemeOverlayMaskDefaultBrush;
-            this["Internal.Brush.Theme.Overlay.Mask.MouseOver"] = ThemeSettingData.ThemeOverlayMaskMouseOverBrush;
-            this["Internal.Brush.Theme.Overlay.Mask.Focus"] = ThemeSettingData.ThemeOverlayMaskFocusBrush;
-
+            this["Internal.Theme.Overlay.Mask.Brush.Disable"] = ThemeSettingData.ThemeOverlayMask_BrushDisable;
+            this["Internal.Theme.Overlay.Mask.Brush.Default"] = ThemeSettingData.ThemeOverlayMask_BrushDefault;
+            this["Internal.Theme.Overlay.Mask.Brush.MouseOver"] = ThemeSettingData.ThemeOverlayMask_BrushMouseOver;
+            this["Internal.Theme.Overlay.Mask.Brush.Focus"] = ThemeSettingData.ThemeOverlayMask_BrushFocus;
 
             ThemeSettingData.PropertyChanged += OnGlobalVariableChanged;
         }
