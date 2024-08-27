@@ -10,6 +10,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Theme\Common\**" />
+    <Compile Remove="Theme\Dark\**" />
+    <Compile Remove="Theme\Light\**" />
+    <EmbeddedResource Remove="Theme\Common\**" />
+    <EmbeddedResource Remove="Theme\Dark\**" />
+    <EmbeddedResource Remove="Theme\Light\**" />
+    <None Remove="Theme\Common\**" />
+    <None Remove="Theme\Dark\**" />
+    <None Remove="Theme\Light\**" />
+    <Page Remove="Theme\Common\**" />
+    <Page Remove="Theme\Dark\**" />
+    <Page Remove="Theme\Light\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resource\Mask\check_mask.png" />
     <None Remove="Resource\Mask\close.png" />
     <None Remove="Resource\Mask\down_mask.png" />
@@ -33,13 +48,6 @@
     <Resource Include="Resource\Mask\plus_mask.png" />
     <Resource Include="Resource\Mask\restore.png" />
     <Resource Include="Resource\Mask\up_mask.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Theme\Common\" />
-    <Folder Include="Theme\Dark\" />
-    <Folder Include="Theme\Light\" />
-    <Folder Include="Utility\InI\" />
   </ItemGroup>
 
 </Project>

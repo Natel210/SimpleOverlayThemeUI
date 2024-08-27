@@ -15,14 +15,14 @@ namespace GrayThemeUI_Test
 
         private void LoadData()
         {
-            var data = new List<Person>
-            {
-                new Person { Id = 1, Name = "John Doe", Age = 30 },
-                new Person { Id = 2, Name = "Jane Smith", Age = 25 },
-                new Person { Id = 3, Name = "Sam Brown", Age = 35 }
-            };
+            //var data = new List<Person>
+            //{
+            //    new Person { Id = 1, Name = "John Doe", Age = 30 },
+            //    new Person { Id = 2, Name = "Jane Smith", Age = 25 },
+            //    new Person { Id = 3, Name = "Sam Brown", Age = 35 }
+            //};
 
-            dataGrid.ItemsSource = data;
+            //dataGrid.ItemsSource = data;
 
         }
     }

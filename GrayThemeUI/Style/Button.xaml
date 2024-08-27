@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:GrayThemeUI"
                     xmlns:theme="clr-namespace:GrayThemeUI.Theme"
                     xmlns:helper="clr-namespace:GrayThemeUI.Helper">
     <ResourceDictionary.MergedDictionaries>
@@ -8,25 +9,35 @@
     </ResourceDictionary.MergedDictionaries>
     <!-- Square Button  -->
     <Style x:Key="GrayThemeUI.Button.Square" TargetType="Button">
-        <Setter Property="FontSize" Value="{DynamicResource GrayThemeUI.Internal.Common.FontSize.Default}"/>
-        <Setter Property="BorderThickness" Value="{DynamicResource GrayThemeUI.Internal.Common.Thickness.Default}"/>
+        <Setter Property="FontSize" Value="{DynamicResource GrayThemeUI.Internal.FontSize.Default}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource GrayThemeUI.Internal.Thickness.Default}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.Theme.Brush.Foreground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Grid>
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                        <Border x:Name="overlay">
+                        <Border x:Name="border" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Border.Background>
+                                <TemplateBinding Property="Background"/>
+                            </Border.Background>
+                            <Border.BorderThickness>
+                                <TemplateBinding Property="BorderThickness"/>
+                            </Border.BorderThickness>
+                            <Border.BorderBrush>
+                                <TemplateBinding Property="BorderBrush"/>
+                            </Border.BorderBrush>                            
+                        </Border>
+                        <Border x:Name="overlay" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Transparent">
                             <Border.Background>
                                 <DynamicResource ResourceKey="GrayThemeUI.Internal.Theme.Overlay.Background.Brush.Default"/>
                             </Border.Background>
                             <Border.BorderThickness>
                                 <TemplateBinding Property="BorderThickness"/>
                             </Border.BorderThickness>
-                        </Border> Background="Transparent" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5"/>
+                        </Border>
+                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -47,11 +58,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Foreground">
-                    <Setter.Value>
-                        <DynamicResource ResourceKey="GrayThemeUI.Theme.Foreground.Disable"/>
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.Theme.Brush.Foreground.Disable}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

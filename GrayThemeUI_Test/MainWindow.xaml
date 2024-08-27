@@ -4,40 +4,43 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GrayThemeUI_Test"
-        xmlns:helper="clr-namespace:GrayThemeUI.Helper;assembly=GrayThemeUI"
-        xmlns:grayTheme="clr-namespace:GrayThemeUI;assembly=GrayThemeUI"
+        xmlns:helpers="clr-namespace:GrayThemeUI.Helper;assembly=GrayThemeUI"
+        xmlns:control="clr-namespace:GrayThemeUI.CustomControl;assembly=GrayThemeUI"
+        xmlns:gui="clr-namespace:GrayThemeUI;assembly=GrayThemeUI"
         Style="{StaticResource GrayThemeUI.Window}"
         mc:Ignorable="d"
         Title="MainWindow" Height="300" d:Height="800" Width="600">
     <ScrollViewer>
         <StackPanel>
-            <TextBlock Text="Default TextBlock" Margin="10"/>
+            <TextBlock Text="Default TextBlock" Margin="10" />
             <Label Content=" Label " Grid.Column="0" VerticalAlignment="Center" Margin="10" Style="{StaticResource GrayThemeUI.Label}" Background="Red" Foreground="Blue"/>
             <Label Content=" LabeledSeparator " Grid.Column="0" VerticalAlignment="Center" Margin="10" Style="{StaticResource GrayThemeUI.LabeledSeparator}"/>
             <TextBox Text=" TextBox " MaxLines="1" MinLines="1" Margin="10" Style="{StaticResource GrayThemeUI.TextBox}"/>
-            <Button Content=" Button " Margin="10" Style="{StaticResource GrayThemeUI.SquareButton}"/>
-            <ToggleButton Content=" ToggleButton " Margin="10" Style="{StaticResource GrayThemeUI.ToggleButton}"/>
-            <grayTheme:NumericUpDown Value="100.101" Margin="10" Minimum="-200" Maximum="200" Interval="10" UseInteger="True" Background="DarkCyan" Foreground="YellowGreen"/>
-            <GroupBox Header=" GroupBox " Margin="10" Style="{StaticResource GrayThemeUI.GroupBox}" Background="Yellow" Foreground="Cyan">
+            <Button Content=" Button " Style="{StaticResource GrayThemeUI.Button.Square}" Width="60" Height="60"/>
+            <Button helpers:ButtonHelper.DefaultMask="{StaticResource GrayThemeUI.Mask.Check}" Style="{StaticResource GrayThemeUI.Button.ImageMask}" Width="60" Height="60"/>
+            
+            <ToggleButton Content=" ToggleButton (ThemeChanged) " Margin="10" Style="{StaticResource GrayThemeUI.ToggleButton.Square}"/>
+            <!--<gui:NumericUpDown Value="100.101" Margin="10" Minimum="-200" Maximum="200" Interval="10" UseInteger="True" Background="DarkCyan" Foreground="YellowGreen"/>-->
+            <!--<GroupBox Header=" GroupBox " Margin="10" Style="{StaticResource GrayThemeUI.GroupBox}" Background="Yellow" Foreground="Cyan">
                 <ComboBox x:Name="grayThemeUIComboBox" SelectedIndex="0" Style="{StaticResource GrayThemeUI.ComboBox}" Background="Magenta" Foreground="Black">
                     <ComboBoxItem Content=" ComboBox1 "/>
                     <ComboBoxItem Content=" ComboBox2 "/>
                     <ComboBoxItem Content=" ComboBox3 "/>
                     <ComboBoxItem Width="{Binding ActualWidth, ElementName=grayThemeUIComboBox}" IsSelected="False">
                         <ComboBoxItem.Content>
-                            <Button Content=" Button " Style="{StaticResource GrayThemeUI.SquareButton}"/>
+                            <Button Content=" Button " Style="{StaticResource GrayThemeUI.Button.Square}"/>
                         </ComboBoxItem.Content>
                     </ComboBoxItem>
                 </ComboBox>
-            </GroupBox>
-            <ListBox Style="{StaticResource GrayThemeUI.ListBox}" Margin="10">
+            </GroupBox>-->
+            <!--<ListBox Style="{StaticResource GrayThemeUI.ListBox}" Margin="10">
                 <ListBoxItem Content="ListBox1"/>
                 <ListBoxItem Content="ListBox2"/>
                 <ListBoxItem Content="ListBox3"/>
                 <ListBoxItem Content="ListBox4"/>
                 <TextBlock Text="ListBox5"/>
-            </ListBox>
-            <DataGrid Name="dataGrid" FontSize="16" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeColumns="False" Margin="10" Style="{StaticResource GrayThemeUI.DataGrid}">
+            </ListBox>-->
+            <!--<DataGrid Name="dataGrid" FontSize="16" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeColumns="False" Margin="10" Style="{StaticResource GrayThemeUI.DataGrid}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Id}" Width="*">
                         <DataGridTextColumn.Header>
@@ -47,21 +50,21 @@
                     <DataGridTextColumn Header=" Name " Binding="{Binding Name}" Width="*"/>
                     <DataGridTextColumn Header=" Age " Binding="{Binding Age}" Width="*"/>
                 </DataGrid.Columns>
-            </DataGrid>
-            <Button Content=" ImageButton " Style="{StaticResource GrayThemeUI.ImageMaskButton}"/>
+            </DataGrid>-->
+            <!--<Button Content=" ImageButton " Style="{StaticResource GrayThemeUI.Button.ImageMask}"/>-->
             <!--GrayThemeUI.Mask.Plus-->
-            <Button Content=" Button5 "/>
-            <Grid>
+            <!--<Button Content=" Button5 "/>-->
+            <!--<Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Button Content=" Button2 " Grid.Row="0" Style="{StaticResource GrayThemeUI.SquareButton}"/>
-                <Button Content=" Button3 " Grid.Row="1" Style="{StaticResource GrayThemeUI.SquareButton}"/>
-            </Grid>
-            <Button helper:ButtonHelper.DefaultMask="{StaticResource GrayThemeUI.Mask.Check}" Style="{StaticResource GrayThemeUI.ImageMaskButton}"/>
+                <Button Content=" Button2 " Grid.Row="0" Style="{StaticResource GrayThemeUI.Button.Square}"/>
+                <Button Content=" Button3 " Grid.Row="1" Style="{StaticResource GrayThemeUI.Button.Square}"/>
+            </Grid>-->
+            
 
-            <grayTheme:WindowHeader Title="123" ShowMinimize="Visible" ShowToggleMaximizeRestore="Visible" ShowClose="Visible"/>
+            <!--<grayTheme:WindowHeader Title="123" ShowMinimize="Visible" ShowToggleMaximizeRestore="Visible" ShowClose="Visible"/>-->
 
         </StackPanel>
     </ScrollViewer>

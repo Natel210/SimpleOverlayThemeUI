@@ -1,15 +1,16 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Numerics;
 using System.Windows.Media;
 
 
-namespace Utility.InI
+namespace utility.ini
 {
     public class IniItem<T>
     {
         public string Section { get; set; } = "";
         public string Key { get; set; } = "";
-        public T? DefaultValue { get; internal set; } = default;
+        public T? DefaultValue { get; set; } = default;
         public T? Value { get; set; } = default;
         public bool IsValidSectionKey
         {
@@ -27,31 +28,50 @@ namespace Utility.InI
 
         public IniItem(IniItem<T> iniItem)
         {
-            Section = iniItem.Section;
-            Key = iniItem.Key;
-            DefaultValue = iniItem.DefaultValue;
-            Value = iniItem.Value;
+            Section = new(iniItem.Section);
+            Key = new(iniItem.Key);
+            DefaultValue = CreateInstanceOrAssign(iniItem.DefaultValue);
+            Value = CreateInstanceOrAssign(iniItem.Value);
         }
-
+        private T? CreateInstanceOrAssign(T? value)
+        {
+            if (value is null)
+                return default;
+            var constructor = typeof(T).GetConstructor(new[] { typeof(T) });
+            if (constructor != null)
+                return (T)constructor.Invoke(new object[] { value }); // new instance
+            else
+                return value;
+        }
     }
 
     public partial class IniFile
     {
-        private readonly string filePath;
-        private readonly Dictionary<string, Dictionary<string, string>> sections = [];
-        
+        private string _filePath = "";
+        private readonly Dictionary<string, Dictionary<string, string>> _sections = [];
+        public string FilePath
+        {
+            get => _filePath;
+            set
+            {
+                if (_filePath != value)
+                {
+                    _filePath = value;
+                    Load();
+                }
+            }
+        }
 
         public IniFile(string path)
         {
-            filePath = path;
-            Load();
+            FilePath = path;
         }
 
         public T? GetValue<T>(string section, string key, T? defaultValue = default)
         {
-            if (sections.ContainsKey(section) && sections[section].ContainsKey(key))
+            if (_sections.ContainsKey(section) && _sections[section].ContainsKey(key))
             {
-                string value = sections[section][key];
+                string value = _sections[section][key];
 
                 // 기본적으로 값을 변환하려고 시도합니다.
                 try
@@ -69,11 +89,11 @@ namespace Utility.InI
 
         public string? GetValue(string section, string key , string? defaultValue = null)
         {
-            if (sections.ContainsKey(section) is false)
+            if (_sections.ContainsKey(section) is false)
                 return defaultValue;
-            if (sections[section].ContainsKey(key) is false)
+            if (_sections[section].ContainsKey(key) is false)
                 return defaultValue;
-            string tempValue = sections[section][key];
+            string tempValue = _sections[section][key];
             if (string.IsNullOrEmpty(tempValue) is true)
                 return defaultValue;
             return tempValue;
@@ -81,27 +101,27 @@ namespace Utility.InI
 
         public bool SetValue(string section, string key, string? value)
         {
-            if (sections.ContainsKey(section) is false)
-                sections[section] = [];
+            if (_sections.ContainsKey(section) is false)
+                _sections[section] = [];
             if (value is null)
                 return false;
             if (string.IsNullOrEmpty(value) is true)
                 return false;
-            sections[section][key] = value;
+            _sections[section][key] = value;
             return true;
         }
         public void Save()
         {
-            if (!File.Exists(filePath))
+            if (!File.Exists(_filePath))
             {
-                string? directoryPath = Path.GetDirectoryName(filePath);
+                string? directoryPath = Path.GetDirectoryName(_filePath);
                 if (directoryPath is null)
                     return;
                 if (!Directory.Exists(directoryPath))
                     Directory.CreateDirectory(directoryPath);
             }
-            using StreamWriter writer = new(filePath);
-            foreach (var section in sections)
+            using StreamWriter writer = new(_filePath);
+            foreach (var section in _sections)
             {
                 writer.WriteLine($"[{section.Key}]");
                 foreach (var keyValue in section.Value)
@@ -112,34 +132,35 @@ namespace Utility.InI
             }
         }
 
-        public void Load()
+        public bool Load()
         {
-            if (CheckFileExist() is true)
+            if (CheckFileExist() is false)
+                return false;
+            
+            string currentSection = "";
+            foreach (string line in File.ReadLines(_filePath))
             {
-                string currentSection = "";
-                foreach (string line in File.ReadLines(filePath))
+                string trimmedLine = line.Trim();
+                if (trimmedLine.StartsWith("[") && trimmedLine.EndsWith("]"))
                 {
-                    string trimmedLine = line.Trim();
-                    if (trimmedLine.StartsWith("[") && trimmedLine.EndsWith("]"))
+                    currentSection = trimmedLine.Substring(1, trimmedLine.Length - 2);
+                    if (!_sections.ContainsKey(currentSection))
                     {
-                        currentSection = trimmedLine.Substring(1, trimmedLine.Length - 2);
-                        if (!sections.ContainsKey(currentSection))
-                        {
-                            sections[currentSection] = new Dictionary<string, string>();
-                        }
-                    }
-                    else if (trimmedLine.Contains("=") && !trimmedLine.StartsWith(";") && currentSection != "")
-                    {
-                        string[] parts = trimmedLine.Split(['='], 2);
-                        sections[currentSection][parts[0].Trim()] = parts[1].Trim();
+                        _sections[currentSection] = new Dictionary<string, string>();
                     }
                 }
+                else if (trimmedLine.Contains("=") && !trimmedLine.StartsWith(";") && currentSection != "")
+                {
+                    string[] parts = trimmedLine.Split(['='], 2);
+                    _sections[currentSection][parts[0].Trim()] = parts[1].Trim();
+                }
             }
+            return true;
         }
 
         public bool CheckFileExist()
         {
-            return File.Exists(filePath);
+            return File.Exists(_filePath);
         }
     }
 
