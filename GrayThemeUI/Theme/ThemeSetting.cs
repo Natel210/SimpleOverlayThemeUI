@@ -13,6 +13,7 @@ using Microsoft.VisualBasic;
 
 namespace GrayThemeUI.Theme
 {
+
     public static partial class ThemeSettingData
     {
         public class ThemeItems
@@ -881,7 +882,8 @@ namespace GrayThemeUI.Theme
                 return new(Color.FromArgb(0, 0, 0, 0));
             return new(getValue.Value);
         }
-        public static void SetDefaultValue()
+
+        public static void SetDefaultCommon()
         {
             Common_FontSizeHeader1 = _common_fontSizeHeader1.DefaultValue;
             Common_FontSizeHeader2 = _common_FontSizeHeader2.DefaultValue;
@@ -893,6 +895,20 @@ namespace GrayThemeUI.Theme
 
             Common_ThicknessDefault = GetDefaultThickness(_common_ThicknessDefault);
             Common_ThicknessZero = GetDefaultThickness(_common_ThicknessZero);
+        }
+        public static void SetDefaultThemeList()
+        {
+
+        }
+
+        public static void SetDefaultThemeItem(string themeItem)
+        {
+
+        }
+
+        public static void SetDefaultValue()
+        {
+
 
             Common_BrushLine = GetDefaultSolidColorBrush(_common_BrushLine);
             Common_BrushHighlight = GetDefaultSolidColorBrush(_common_BrushHighlight);
@@ -901,9 +917,9 @@ namespace GrayThemeUI.Theme
 
             ThemeDictionary.Clear();
             ThemeItems tempLight = new("Light");
-            tempLight.BrushForeground.Value =;
-            tempLight.BrushForeground.DefaultValue =;
-
+            //tempLight.BrushForeground.Value =;
+            //tempLight.BrushForegroundDisable.Value =;
+            //tempLight.BrushBackground.Value =;
 
             ThemeDictionary.Add(tempLight.Name, tempLight);
             ThemeItems tempDark = new("Dark");
@@ -922,48 +938,40 @@ namespace GrayThemeUI.Theme
     {
         public ThemeSetting()
         {
-            this["Internal.Common.FontSize.Header1"] = ThemeSettingData.Common_FontSizeHeader1;
-            this["Internal.Common.FontSize.Header2"] = ThemeSettingData.Common_FontSizeHeader2;
-            this["Internal.Common.FontSize.Header3"] = ThemeSettingData.Common_FontSizeHeader3;
-            this["Internal.Common.FontSize.Header4"] = ThemeSettingData.Common_FontSizeHeader4;
-            this["Internal.Common.FontSize.Header5"] = ThemeSettingData.Common_FontSizeHeader5;
-            this["Internal.Common.FontSize.Header6"] = ThemeSettingData.Common_FontSizeHeader6;
-            this["Internal.Common.FontSize.Default"] = ThemeSettingData.Common_FontSizeDefault;
+            this["GrayThemeUI.Internal.Common.FontSize.Header1"] = ThemeSettingData.Common_FontSizeHeader1;
+            this["GrayThemeUI.Internal.Common.FontSize.Header2"] = ThemeSettingData.Common_FontSizeHeader2;
+            this["GrayThemeUI.Internal.Common.FontSize.Header3"] = ThemeSettingData.Common_FontSizeHeader3;
+            this["GrayThemeUI.Internal.Common.FontSize.Header4"] = ThemeSettingData.Common_FontSizeHeader4;
+            this["GrayThemeUI.Internal.Common.FontSize.Header5"] = ThemeSettingData.Common_FontSizeHeader5;
+            this["GrayThemeUI.Internal.Common.FontSize.Header6"] = ThemeSettingData.Common_FontSizeHeader6;
+            this["GrayThemeUI.Internal.Common.FontSize.Default"] = ThemeSettingData.Common_FontSizeDefault;
 
-            this["Internal.Common.Thickness.Default"] = ThemeSettingData.Common_ThicknessDefault;
-            this["Internal.Common.Thickness.Zero"] = ThemeSettingData.Common_ThicknessZero;
+            this["GrayThemeUI.Internal.Common.Thickness.Default"] = ThemeSettingData.Common_ThicknessDefault;
+            this["GrayThemeUI.Internal.Common.Thickness.Zero"] = ThemeSettingData.Common_ThicknessZero;
 
-            this["Internal.Common.Brush.Line"] = ThemeSettingData.Common_BrushLine;
-            this["Internal.Common.Brush.Highlight"] = ThemeSettingData.Common_BrushHighlight;
-            this["Internal.Common.Brush.Selection"] = ThemeSettingData.Common_BrushSelection;
-            this["Internal.Common.Brush.Mask"] = ThemeSettingData.Common_BrushMask;
+            this["GrayThemeUI.Internal.Common.Brush.Line"] = ThemeSettingData.Common_BrushLine;
+            this["GrayThemeUI.Internal.Common.Brush.Highlight"] = ThemeSettingData.Common_BrushHighlight;
+            this["GrayThemeUI.Internal.Common.Brush.Selection"] = ThemeSettingData.Common_BrushSelection;
+            this["GrayThemeUI.Internal.Common.Brush.Mask"] = ThemeSettingData.Common_BrushMask;
 
-            this["Internal.Theme.Brush.Foreground"] = ThemeSettingData.Theme_BrushForeground;
-            this["Internal.Theme.Brush.Foreground.Disable"] = ThemeSettingData.Theme_BrushForegroundDisable;
-            this["Internal.Theme.Brush.Background"] = ThemeSettingData.Theme_BrushBackground;
+            this["GrayThemeUI.Internal.Theme.Brush.Foreground"] = ThemeSettingData.Theme_BrushForeground;
+            this["GrayThemeUI.Internal.Theme.Brush.Foreground.Disable"] = ThemeSettingData.Theme_BrushForegroundDisable;
+            this["GrayThemeUI.Internal.Theme.Brush.Background"] = ThemeSettingData.Theme_BrushBackground;
 
-            this[$"Internal.Theme.Overlay.Background.Brush.Disable"]
-                = ThemeSettingData.ThemeOverlayBackground_BrushDisable;
-            this["Internal.Theme.Overlay.Background.Brush.Default"]
-                = ThemeSettingData.ThemeOverlayBackground_BrushDefault;
-            this["Internal.Theme.Overlay.Background.Brush.MouseOver"]
-                = ThemeSettingData.ThemeOverlayBackground_BrushMouseOver;
-            this["Internal.Theme.Overlay.Background.Brush.Focus"]
-                = ThemeSettingData.ThemeOverlayBackground_BrushFocus;
+            this["GrayThemeUI.Internal.Theme.Overlay.Background.Brush.Disable"] = ThemeSettingData.ThemeOverlayBackground_BrushDisable;
+            this["GrayThemeUI.Internal.Theme.Overlay.Background.Brush.Default"] = ThemeSettingData.ThemeOverlayBackground_BrushDefault;
+            this["GrayThemeUI.Internal.Theme.Overlay.Background.Brush.MouseOver"] = ThemeSettingData.ThemeOverlayBackground_BrushMouseOver;
+            this["GrayThemeUI.Internal.Theme.Overlay.Background.Brush.Focus"] = ThemeSettingData.ThemeOverlayBackground_BrushFocus;
 
-            this["Internal.Theme.Overlay.Border.Brush.Disable"]
-                = ThemeSettingData.ThemeOverlayBorder_BrushDisable;
-            this["Internal.Theme.Overlay.Border.Brush.Default"]
-                = ThemeSettingData.ThemeOverlayBorder_BrushDefault;
-            this["Internal.Theme.Overlay.Border.Brush.MouseOver"]
-                = ThemeSettingData.ThemeOverlayBorder_BrushMouseOver;
-            this["Internal.Theme.Overlay.Border.Brush.Focus"]
-                = ThemeSettingData.ThemeOverlayBorder_BrushFocus;
+            this["GrayThemeUI.Internal.Theme.Overlay.Border.Brush.Disable"] = ThemeSettingData.ThemeOverlayBorder_BrushDisable;
+            this["GrayThemeUI.Internal.Theme.Overlay.Border.Brush.Default"] = ThemeSettingData.ThemeOverlayBorder_BrushDefault;
+            this["GrayThemeUI.Internal.Theme.Overlay.Border.Brush.MouseOver"] = ThemeSettingData.ThemeOverlayBorder_BrushMouseOver;
+            this["GrayThemeUI.Internal.Theme.Overlay.Border.Brush.Focus"] = ThemeSettingData.ThemeOverlayBorder_BrushFocus;
 
-            this["Internal.Theme.Overlay.Mask.Brush.Disable"] = ThemeSettingData.ThemeOverlayMask_BrushDisable;
-            this["Internal.Theme.Overlay.Mask.Brush.Default"] = ThemeSettingData.ThemeOverlayMask_BrushDefault;
-            this["Internal.Theme.Overlay.Mask.Brush.MouseOver"] = ThemeSettingData.ThemeOverlayMask_BrushMouseOver;
-            this["Internal.Theme.Overlay.Mask.Brush.Focus"] = ThemeSettingData.ThemeOverlayMask_BrushFocus;
+            this["GrayThemeUI.Internal.Theme.Overlay.Mask.Brush.Disable"] = ThemeSettingData.ThemeOverlayMask_BrushDisable;
+            this["GrayThemeUI.Internal.Theme.Overlay.Mask.Brush.Default"] = ThemeSettingData.ThemeOverlayMask_BrushDefault;
+            this["GrayThemeUI.Internal.Theme.Overlay.Mask.Brush.MouseOver"] = ThemeSettingData.ThemeOverlayMask_BrushMouseOver;
+            this["GrayThemeUI.Internal.Theme.Overlay.Mask.Brush.Focus"] = ThemeSettingData.ThemeOverlayMask_BrushFocus;
 
             ThemeSettingData.PropertyChanged += OnGlobalVariableChanged;
         }

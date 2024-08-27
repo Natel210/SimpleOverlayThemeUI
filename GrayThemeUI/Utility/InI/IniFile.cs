@@ -9,7 +9,7 @@ namespace Utility.InI
     {
         public string Section { get; set; } = "";
         public string Key { get; set; } = "";
-        public T? DefaultValue { get; set; } = default;
+        public T? DefaultValue { get; internal set; } = default;
         public T? Value { get; set; } = default;
         public bool IsValidSectionKey
         {
