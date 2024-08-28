@@ -9,7 +9,7 @@ namespace GrayThemeUI.Theme.InnerItems
         {
             public static string Section { get; } = "OverlayBoader.Outline";
             public static Color Disable { get; } = Color.FromArgb(37, 128, 128, 128);
-            public static Color Default { get; } = Color.FromArgb(0, 0, 0, 0); // Color.FromArgb(80, 0, 0, 0)
+            public static Color Default { get; } = Color.FromArgb(80, 0, 0, 0);
             public static Color MouseOver { get; } = Color.FromArgb(208, 0, 0, 0);
             public static Color Active { get; } = Color.FromArgb(255, 0, 0, 0);
         }
@@ -17,7 +17,7 @@ namespace GrayThemeUI.Theme.InnerItems
         internal static class BaceValueDark
         {
             public static Color Disable { get; } = Color.FromArgb(37, 128, 128, 128);
-            public static Color Default { get; } = Color.FromArgb(0, 0, 0, 0); // Color.FromArgb(51, 235, 235, 235)
+            public static Color Default { get; } = Color.FromArgb(51, 235, 235, 235);
             public static Color MouseOver { get; } = Color.FromArgb(128, 235, 235, 235);
             public static Color Active { get; } = Color.FromArgb(255, 235, 235, 235);
         }

@@ -12,14 +12,19 @@
         Title="MainWindow" Height="300" d:Height="800" Width="600">
     <ScrollViewer>
         <StackPanel>
-            <TextBlock Text="Default TextBlock" Margin="10" />
+            <Border Width="60" Height="60" Style="{StaticResource GrayThemeUI.OverlayBorder}"/>
+            <!--<TextBlock Text="Default TextBlock" Margin="10" />
             <Label Content=" Label " Grid.Column="0" VerticalAlignment="Center" Margin="10" Style="{StaticResource GrayThemeUI.Label}" Background="Red" Foreground="Blue"/>
-            <Label Content=" LabeledSeparator " Grid.Column="0" VerticalAlignment="Center" Margin="10" Style="{StaticResource GrayThemeUI.LabeledSeparator}"/>
-            <TextBox Text=" TextBox " MaxLines="1" MinLines="1" Margin="10" Style="{StaticResource GrayThemeUI.TextBox}"/>
-            <Button Content=" Button " Style="{StaticResource GrayThemeUI.Button.Square}" Width="60" Height="60"/>
-            <Button helpers:ButtonHelper.DefaultMask="{StaticResource GrayThemeUI.Mask.Check}" Style="{StaticResource GrayThemeUI.Button.ImageMask}" Width="60" Height="60"/>
+            <Label Content=" LabeledSeparator " Grid.Column="0" VerticalAlignment="Center" Margin="10" Style="{StaticResource GrayThemeUI.LabeledSeparator}"/>-->
+            <!--<TextBox Text=" TextBox " MaxLines="1" MinLines="1" Margin="10" Style="{StaticResource GrayThemeUI.TextBox}"/>-->
             
-            <ToggleButton Content=" ToggleButton (ThemeChanged) " Margin="10" Style="{StaticResource GrayThemeUI.ToggleButton.Square}"/>
+            <!--#region Button-->
+            <Button Content=" Button " Style="{StaticResource GrayThemeUI.Button.Square}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="120" Height="25"/>
+            <!--<Button helpers:ButtonHelper.DefaultMask="{StaticResource GrayThemeUI.Mask.Check}" Style="{StaticResource GrayThemeUI.Button.ImageMask}" Width="60" Height="60"/>-->
+            <ToggleButton Content=" ToggleButton " Margin="10" Style="{StaticResource GrayThemeUI.ToggleButton.Square}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="200" Height="30"/>
+            <!--#endregion-->
+            
+            
             <!--<gui:NumericUpDown Value="100.101" Margin="10" Minimum="-200" Maximum="200" Interval="10" UseInteger="True" Background="DarkCyan" Foreground="YellowGreen"/>-->
             <!--<GroupBox Header=" GroupBox " Margin="10" Style="{StaticResource GrayThemeUI.GroupBox}" Background="Yellow" Foreground="Cyan">
                 <ComboBox x:Name="grayThemeUIComboBox" SelectedIndex="0" Style="{StaticResource GrayThemeUI.ComboBox}" Background="Magenta" Foreground="Black">

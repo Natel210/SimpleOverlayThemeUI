@@ -16,7 +16,27 @@ namespace GrayThemeUI.Helper
 
     public static class OverlayBorderHelper
     {
-        public static readonly DependencyProperty IsDefaultProperty = DependencyProperty.RegisterAttached("GrayThemeUI.OverlayBorder.Overlay.IsDefault", typeof(bool), 
+        public static readonly DependencyProperty IsDisableProperty = DependencyProperty.RegisterAttached("IsDisable", typeof(bool),
+            typeof(OverlayBorderHelper), new PropertyMetadata(false, OnIsDisableChanged));
+
+        public static bool GetIsDisable(UIElement element)
+        {
+            return (bool)element.GetValue(IsDisableProperty);
+        }
+
+        public static void SetIsDisable(UIElement element, bool value)
+        {
+            element.SetValue(IsDisableProperty, value);
+        }
+
+        private static void OnIsDisableChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            //if (d is Border border && e.NewValue is bool isDisable)
+            //{
+            //}
+        }
+
+        public static readonly DependencyProperty IsDefaultProperty = DependencyProperty.RegisterAttached("IsDefault", typeof(bool), 
             typeof(OverlayBorderHelper), new PropertyMetadata(false, OnIsDefaultChanged));
 
         public static bool GetIsDefault(UIElement element)
@@ -31,14 +51,14 @@ namespace GrayThemeUI.Helper
 
         private static void OnIsDefaultChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Border border && e.NewValue is bool isDefault)
-            {
-            }
+            //if (d is Border border && e.NewValue is bool isDefault)
+            //{
+            //}
         }
 
         //Disable
 
-        public static readonly DependencyProperty IsMouseOverProperty = DependencyProperty.RegisterAttached("GrayThemeUI.OverlayBorder.Overlay.IsMouseOver", typeof(bool),
+        public static readonly DependencyProperty IsMouseOverProperty = DependencyProperty.RegisterAttached("IsMouseOver", typeof(bool),
             typeof(OverlayBorderHelper), new PropertyMetadata(false, OnIsMouseOverChanged));
 
         public static bool GetIsMouseOver(UIElement element)
@@ -55,36 +75,28 @@ namespace GrayThemeUI.Helper
         {
             if (d is Border border && e.NewValue is bool isMouseOver)
             {
-                //if (isPressed)
-                //{
-                //    border.Opacity = 0.5; // 예: 클릭된 상태에서 불투명도 변경
-                //}
-                //else
-                //{
-                //    border.Opacity = 1.0; // 예: 클릭되지 않은 상태로 돌아갈 때 불투명도 복원
-                //}
             }
         }
 
 
-        public static readonly DependencyProperty IsFocusedProperty = DependencyProperty.RegisterAttached("GrayThemeUI.OverlayBorder.Overlay.IsFocused", typeof(bool),
-            typeof(OverlayBorderHelper), new PropertyMetadata(false, OnIsFocusedChanged));
+        public static readonly DependencyProperty IsActiveProperty = DependencyProperty.RegisterAttached("IsActive", typeof(bool),
+            typeof(OverlayBorderHelper), new PropertyMetadata(false, OnIsActiveChanged));
 
-        public static bool GetIsFocused(UIElement element)
+        public static bool GetIsActive(UIElement element)
         {
-            return (bool)element.GetValue(IsFocusedProperty);
+            return (bool)element.GetValue(IsActiveProperty);
         }
 
-        public static void SetIsFocused(UIElement element, bool value)
+        public static void SetIsActive(UIElement element, bool value)
         {
-            element.SetValue(IsFocusedProperty, value);
+            element.SetValue(IsActiveProperty, value);
         }
 
-        private static void OnIsFocusedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnIsActiveChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Border border && e.NewValue is bool isFocused)
-            {
-            }
+            //if (d is Border border && e.NewValue is bool isActive)
+            //{
+            //}
         }
     }
 }

@@ -108,6 +108,8 @@ namespace GrayThemeUI.Theme
             foreach (var item in DataDictionary)
                 result |= !item.Value.Load();
 
+            CurrentThemeName = currentThemeName;
+
             return !result;
         }
 
@@ -125,28 +127,28 @@ namespace GrayThemeUI.Theme
                 lightTheme.FontSize.Header6.DefaultValue = InnerItems.FontSize.BaceValue.Header6;
                 lightTheme.FontSize.Default.DefaultValue = InnerItems.FontSize.BaceValue.Default;
 
-                lightTheme.DefaultBrush.Foreground.Value = InnerItems.DefaultBrush.BaceValue.Foreground;
-                lightTheme.DefaultBrush.Foreground_Disable.Value = InnerItems.DefaultBrush.BaceValue.Foreground_Disable;
-                lightTheme.DefaultBrush.Background.Value = InnerItems.DefaultBrush.BaceValue.Background;
-                lightTheme.DefaultBrush.Line.Value = InnerItems.DefaultBrush.BaceValue.Line;
-                lightTheme.DefaultBrush.Highlight.Value = InnerItems.DefaultBrush.BaceValue.Highlight;
-                lightTheme.DefaultBrush.Selection.Value = InnerItems.DefaultBrush.BaceValue.Selection;
-                lightTheme.DefaultBrush.Mask.Value = InnerItems.DefaultBrush.BaceValue.Mask;
+                lightTheme.DefaultBrush.Foreground.DefaultValue = InnerItems.DefaultBrush.BaceValue.Foreground;
+                lightTheme.DefaultBrush.Foreground_Disable.DefaultValue = InnerItems.DefaultBrush.BaceValue.Foreground_Disable;
+                lightTheme.DefaultBrush.Background.DefaultValue = InnerItems.DefaultBrush.BaceValue.Background;
+                lightTheme.DefaultBrush.Line.DefaultValue = InnerItems.DefaultBrush.BaceValue.Line;
+                lightTheme.DefaultBrush.Highlight.DefaultValue = InnerItems.DefaultBrush.BaceValue.Highlight;
+                lightTheme.DefaultBrush.Selection.DefaultValue = InnerItems.DefaultBrush.BaceValue.Selection;
+                lightTheme.DefaultBrush.Mask.DefaultValue = InnerItems.DefaultBrush.BaceValue.Mask;
 
-                lightTheme.OverlayBoaderBackground.Disable.Value = InnerItems.OverlayBoaderBackground.BaceValue.Disable;
-                lightTheme.OverlayBoaderBackground.Default.Value = InnerItems.OverlayBoaderBackground.BaceValue.Default;
-                lightTheme.OverlayBoaderBackground.MouseOver.Value = InnerItems.OverlayBoaderBackground.BaceValue.MouseOver;
-                lightTheme.OverlayBoaderBackground.Active.Value = InnerItems.OverlayBoaderBackground.BaceValue.Active;
+                lightTheme.OverlayBoaderBackground.Disable.DefaultValue = InnerItems.OverlayBoaderBackground.BaceValue.Disable;
+                lightTheme.OverlayBoaderBackground.Default.DefaultValue = InnerItems.OverlayBoaderBackground.BaceValue.Default;
+                lightTheme.OverlayBoaderBackground.MouseOver.DefaultValue = InnerItems.OverlayBoaderBackground.BaceValue.MouseOver;
+                lightTheme.OverlayBoaderBackground.Active.DefaultValue = InnerItems.OverlayBoaderBackground.BaceValue.Active;
 
-                lightTheme.OverlayBoaderOutline.Disable.Value = InnerItems.OverlayBoaderOutline.BaceValue.Disable;
-                lightTheme.OverlayBoaderOutline.Default.Value = InnerItems.OverlayBoaderOutline.BaceValue.Default;
-                lightTheme.OverlayBoaderOutline.MouseOver.Value = InnerItems.OverlayBoaderOutline.BaceValue.MouseOver;
-                lightTheme.OverlayBoaderOutline.Active.Value = InnerItems.OverlayBoaderOutline.BaceValue.Active;
+                lightTheme.OverlayBoaderOutline.Disable.DefaultValue = InnerItems.OverlayBoaderOutline.BaceValue.Disable;
+                lightTheme.OverlayBoaderOutline.Default.DefaultValue = InnerItems.OverlayBoaderOutline.BaceValue.Default;
+                lightTheme.OverlayBoaderOutline.MouseOver.DefaultValue = InnerItems.OverlayBoaderOutline.BaceValue.MouseOver;
+                lightTheme.OverlayBoaderOutline.Active.DefaultValue = InnerItems.OverlayBoaderOutline.BaceValue.Active;
 
-                lightTheme.OverlayMaskForeground.Disable.Value = InnerItems.OverlayMaskForeground.BaceValue.Disable;
-                lightTheme.OverlayMaskForeground.Default.Value = InnerItems.OverlayMaskForeground.BaceValue.Default;
-                lightTheme.OverlayMaskForeground.MouseOver.Value = InnerItems.OverlayMaskForeground.BaceValue.MouseOver;
-                lightTheme.OverlayMaskForeground.Active.Value = InnerItems.OverlayMaskForeground.BaceValue.Active;
+                lightTheme.OverlayMaskForeground.Disable.DefaultValue = InnerItems.OverlayMaskForeground.BaceValue.Disable;
+                lightTheme.OverlayMaskForeground.Default.DefaultValue = InnerItems.OverlayMaskForeground.BaceValue.Default;
+                lightTheme.OverlayMaskForeground.MouseOver.DefaultValue = InnerItems.OverlayMaskForeground.BaceValue.MouseOver;
+                lightTheme.OverlayMaskForeground.Active.DefaultValue = InnerItems.OverlayMaskForeground.BaceValue.Active;
 
                 lightTheme.ResetDefault();
             }
@@ -166,28 +168,28 @@ namespace GrayThemeUI.Theme
                 darkTheme.FontSize.Header6.DefaultValue = InnerItems.FontSize.BaceValue.Header6;
                 darkTheme.FontSize.Default.DefaultValue = InnerItems.FontSize.BaceValue.Default;
 
-                darkTheme.DefaultBrush.Foreground.Value = InnerItems.DefaultBrush.BaceValueDark.Foreground;
-                darkTheme.DefaultBrush.Foreground_Disable.Value = InnerItems.DefaultBrush.BaceValueDark.Foreground_Disable;
-                darkTheme.DefaultBrush.Background.Value = InnerItems.DefaultBrush.BaceValueDark.Background;
-                darkTheme.DefaultBrush.Line.Value = InnerItems.DefaultBrush.BaceValue.Line;
-                darkTheme.DefaultBrush.Highlight.Value = InnerItems.DefaultBrush.BaceValue.Highlight;
-                darkTheme.DefaultBrush.Selection.Value = InnerItems.DefaultBrush.BaceValue.Selection;
-                darkTheme.DefaultBrush.Mask.Value = InnerItems.DefaultBrush.BaceValue.Mask;
+                darkTheme.DefaultBrush.Foreground.DefaultValue = InnerItems.DefaultBrush.BaceValueDark.Foreground;
+                darkTheme.DefaultBrush.Foreground_Disable.DefaultValue = InnerItems.DefaultBrush.BaceValueDark.Foreground_Disable;
+                darkTheme.DefaultBrush.Background.DefaultValue = InnerItems.DefaultBrush.BaceValueDark.Background;
+                darkTheme.DefaultBrush.Line.DefaultValue = InnerItems.DefaultBrush.BaceValue.Line;
+                darkTheme.DefaultBrush.Highlight.DefaultValue = InnerItems.DefaultBrush.BaceValue.Highlight;
+                darkTheme.DefaultBrush.Selection.DefaultValue = InnerItems.DefaultBrush.BaceValue.Selection;
+                darkTheme.DefaultBrush.Mask.DefaultValue = InnerItems.DefaultBrush.BaceValue.Mask;
 
-                darkTheme.OverlayBoaderBackground.Disable.Value = InnerItems.OverlayBoaderBackground.BaceValueDark.Disable;
-                darkTheme.OverlayBoaderBackground.Default.Value = InnerItems.OverlayBoaderBackground.BaceValueDark.Default;
-                darkTheme.OverlayBoaderBackground.MouseOver.Value = InnerItems.OverlayBoaderBackground.BaceValueDark.MouseOver;
-                darkTheme.OverlayBoaderBackground.Active.Value = InnerItems.OverlayBoaderBackground.BaceValueDark.Active;
+                darkTheme.OverlayBoaderBackground.Disable.DefaultValue = InnerItems.OverlayBoaderBackground.BaceValueDark.Disable;
+                darkTheme.OverlayBoaderBackground.Default.DefaultValue = InnerItems.OverlayBoaderBackground.BaceValueDark.Default;
+                darkTheme.OverlayBoaderBackground.MouseOver.DefaultValue = InnerItems.OverlayBoaderBackground.BaceValueDark.MouseOver;
+                darkTheme.OverlayBoaderBackground.Active.DefaultValue = InnerItems.OverlayBoaderBackground.BaceValueDark.Active;
 
-                darkTheme.OverlayBoaderOutline.Disable.Value = InnerItems.OverlayBoaderOutline.BaceValueDark.Disable;
-                darkTheme.OverlayBoaderOutline.Default.Value = InnerItems.OverlayBoaderOutline.BaceValueDark.Default;
-                darkTheme.OverlayBoaderOutline.MouseOver.Value = InnerItems.OverlayBoaderOutline.BaceValueDark.MouseOver;
-                darkTheme.OverlayBoaderOutline.Active.Value = InnerItems.OverlayBoaderOutline.BaceValueDark.Active;
+                darkTheme.OverlayBoaderOutline.Disable.DefaultValue = InnerItems.OverlayBoaderOutline.BaceValueDark.Disable;
+                darkTheme.OverlayBoaderOutline.Default.DefaultValue = InnerItems.OverlayBoaderOutline.BaceValueDark.Default;
+                darkTheme.OverlayBoaderOutline.MouseOver.DefaultValue = InnerItems.OverlayBoaderOutline.BaceValueDark.MouseOver;
+                darkTheme.OverlayBoaderOutline.Active.DefaultValue = InnerItems.OverlayBoaderOutline.BaceValueDark.Active;
 
-                darkTheme.OverlayMaskForeground.Disable.Value = InnerItems.OverlayMaskForeground.BaceValueDark.Disable;
-                darkTheme.OverlayMaskForeground.Default.Value = InnerItems.OverlayMaskForeground.BaceValueDark.Default;
-                darkTheme.OverlayMaskForeground.MouseOver.Value = InnerItems.OverlayMaskForeground.BaceValueDark.MouseOver;
-                darkTheme.OverlayMaskForeground.Active.Value = InnerItems.OverlayMaskForeground.BaceValueDark.Active;
+                darkTheme.OverlayMaskForeground.Disable.DefaultValue = InnerItems.OverlayMaskForeground.BaceValueDark.Disable;
+                darkTheme.OverlayMaskForeground.Default.DefaultValue = InnerItems.OverlayMaskForeground.BaceValueDark.Default;
+                darkTheme.OverlayMaskForeground.MouseOver.DefaultValue = InnerItems.OverlayMaskForeground.BaceValueDark.MouseOver;
+                darkTheme.OverlayMaskForeground.Active.DefaultValue = InnerItems.OverlayMaskForeground.BaceValueDark.Active;
 
                 darkTheme.ResetDefault();
             }

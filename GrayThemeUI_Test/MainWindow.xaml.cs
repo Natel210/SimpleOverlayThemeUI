@@ -11,6 +11,7 @@ namespace GrayThemeUI_Test
         {
             InitializeComponent();
             LoadData();
+            GrayThemeUI.Theme.ThemeSettingDataManager.CurrentThemeName = "Dark";
         }
 
         private void LoadData()

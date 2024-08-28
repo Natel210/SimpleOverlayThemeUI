@@ -5,6 +5,7 @@
                     xmlns:helper="clr-namespace:GrayThemeUI.Helper">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Theme/Common.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/Border.xaml"/>
         <theme:ThemeSetting/>
     </ResourceDictionary.MergedDictionaries>
     <!-- Square Button  -->
@@ -12,8 +13,13 @@
         <Setter Property="FontSize" Value="{DynamicResource GrayThemeUI.Internal.FontSize.Default}"/>
         <Setter Property="BorderThickness" Value="{DynamicResource GrayThemeUI.Internal.Thickness.Default}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground}"/>
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground}"/>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="helper:OverlayBorderHelper.IsDefault" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -27,30 +33,37 @@
                             </Border.BorderThickness>
                             <Border.BorderBrush>
                                 <TemplateBinding Property="BorderBrush"/>
-                            </Border.BorderBrush>                            
+                            </Border.BorderBrush>
                         </Border>
-                        <Border x:Name="overlay" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Transparent">
-                            <Border.Background>
-                                <DynamicResource ResourceKey="GrayThemeUI.Internal.Theme.Overlay.Background.Brush.Default"/>
-                            </Border.Background>
+                        <Border x:Name="overlay" Style="{StaticResource GrayThemeUI.OverlayBorder}">
                             <Border.BorderThickness>
                                 <TemplateBinding Property="BorderThickness"/>
                             </Border.BorderThickness>
+                            <helper:OverlayBorderHelper.IsDefault>
+                                <TemplateBinding Property="helper:OverlayBorderHelper.IsDefault"/>
+                            </helper:OverlayBorderHelper.IsDefault>
                         </Border>
-                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        <ContentPresenter>
+                            <ContentPresenter.HorizontalAlignment>
+                                <TemplateBinding Property="HorizontalContentAlignment"/>
+                            </ContentPresenter.HorizontalAlignment>
+                            <ContentPresenter.VerticalAlignment>
+                                <TemplateBinding Property="VerticalContentAlignment"/>
+                            </ContentPresenter.VerticalAlignment>
+                            <ContentPresenter.Content>
+                                <TemplateBinding Property="Content"/>
+                            </ContentPresenter.Content>
+                        </ContentPresenter>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="overlay" Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.Theme.Overlay.Border.Brush.MouseOver}"/>
-                            <Setter TargetName="overlay" Property="Background" Value="{DynamicResource GrayThemeUI.Internal.Theme.Overlay.Background.Brush.MouseOver}"/>
+                            <Setter TargetName="overlay" Property="helper:OverlayBorderHelper.IsMouseOver" Value="True"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="overlay" Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.Theme.Overlay.Border.Brush.Focus}"/>
-                            <Setter TargetName="overlay" Property="Background" Value="{DynamicResource GrayThemeUI.Internal.Theme.Overlay.Background.Brush.Focus}"/>
+                            <Setter TargetName="overlay" Property="helper:OverlayBorderHelper.IsActive" Value="True"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="overlay" Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.Theme.Overlay.Border.Brush.Disable}"/>
-                            <Setter TargetName="overlay" Property="Background" Value="{DynamicResource GrayThemeUI.Internal.Theme.Overlay.Background.Brush.Disable}"/>
+                            <Setter TargetName="overlay" Property="helper:OverlayBorderHelper.IsDisable" Value="True"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -138,40 +151,74 @@
         </Setter>
     </Style>
 
-
     <!-- ToggleButton -->
     <Style x:Key="GrayThemeUI.ToggleButton.Square" TargetType="ToggleButton">
-        <Setter Property="FontSize" Value="{DynamicResource GrayThemeUI.Common.FontSize.Default}"/>
-        <Setter Property="BorderThickness" Value="{DynamicResource GrayThemeUI.Common.BorderThickness}"/>
+        <Setter Property="FontSize" Value="{DynamicResource DynamicResource GrayThemeUI.Internal.FontSize.Default}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource GrayThemeUI.Internal.Thickness.Default}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Theme.Foreground}"/>
-        <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Theme.Background}"/>
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground}"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="helper:OverlayBorderHelper.IsDefault" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
                     <Grid>
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                        <Border x:Name="overlay" Background="Transparent" BorderBrush="Transparent" BorderThickness="{TemplateBinding BorderThickness}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                        <ContentPresenter Margin="5" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Content="{TemplateBinding Content}"/>
+                        <Border x:Name="border" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Border.Background>
+                                <TemplateBinding Property="Background"/>
+                            </Border.Background>
+                            <Border.BorderThickness>
+                                <TemplateBinding Property="BorderThickness"/>
+                            </Border.BorderThickness>
+                            <Border.BorderBrush>
+                                <TemplateBinding Property="BorderBrush"/>
+                            </Border.BorderBrush>
+                        </Border>
+                        <Border x:Name="overlay" Style="{StaticResource GrayThemeUI.OverlayBorder}">
+                            <Border.BorderThickness>
+                                <TemplateBinding Property="BorderThickness"/>
+                            </Border.BorderThickness>
+                            <helper:OverlayBorderHelper.IsDefault>
+                                <TemplateBinding Property="helper:OverlayBorderHelper.IsDefault"/>
+                            </helper:OverlayBorderHelper.IsDefault>
+                        </Border>
+                        <ContentPresenter>
+                            <ContentPresenter.HorizontalAlignment>
+                                <TemplateBinding Property="HorizontalContentAlignment"/>
+                            </ContentPresenter.HorizontalAlignment>
+                            <ContentPresenter.VerticalAlignment>
+                                <TemplateBinding Property="VerticalContentAlignment"/>
+                            </ContentPresenter.VerticalAlignment>
+                            <ContentPresenter.Content>
+                                <TemplateBinding Property="Content"/>
+                            </ContentPresenter.Content>
+                        </ContentPresenter>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="overlay" Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.MouseOver}"/>
-                            <Setter TargetName="overlay" Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.Background.MouseOver}"/>
+                            <Setter TargetName="overlay" Property="helper:OverlayBorderHelper.IsMouseOver" Value="True"/>
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="overlay" Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Focus}"/>
-                            <Setter TargetName="overlay" Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.Background.Focus}"/>
+                            <Setter TargetName="overlay" Property="helper:OverlayBorderHelper.IsActive" Value="True"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="overlay" Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Disable}"/>
-                            <Setter TargetName="overlay" Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.Background.Disable}"/>
+                            <Setter TargetName="overlay" Property="helper:OverlayBorderHelper.IsDisable" Value="True"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.Theme.Brush.Foreground.Disable}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
+    
     <!-- ImageMask ToggleButton  -->
     <Style x:Key="GrayThemeUI.ToggleButton.ImageMask" TargetType="ToggleButton">
         <Setter Property="FontSize" Value="{DynamicResource GrayThemeUI.Common.FontSize.Default}"/>
