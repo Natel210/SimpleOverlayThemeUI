@@ -1,0 +1,43 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib"
+                    xmlns:theme="clr-namespace:GrayThemeUI.Theme">
+
+    <!-- Font Sizes -->
+    <System:Double x:Key="{x:Static theme:ThemeSetting.FontSize_Header1_DictionaryKey}">32</System:Double>
+    <System:Double x:Key="{x:Static theme:ThemeSetting.FontSize_Header2_DictionaryKey}">24</System:Double>
+    <System:Double x:Key="{x:Static theme:ThemeSetting.FontSize_Header3_DictionaryKey}">18.72</System:Double>
+    <System:Double x:Key="{x:Static theme:ThemeSetting.FontSize_Header4_DictionaryKey}">16</System:Double>
+    <System:Double x:Key="{x:Static theme:ThemeSetting.FontSize_Header5_DictionaryKey}">13.28</System:Double>
+    <System:Double x:Key="{x:Static theme:ThemeSetting.FontSize_Header6_DictionaryKey}">10.72</System:Double>
+    <System:Double x:Key="{x:Static theme:ThemeSetting.FontSize_Default_DictionaryKey}">16</System:Double>
+
+    <!-- Colors -->
+    <Color x:Key="{x:Static theme:ThemeSetting.DefaultBrush_Foreground_DictionaryKey}">#FFDADADA</Color>
+    <Color x:Key="{x:Static theme:ThemeSetting.DefaultBrush_Foreground_Disable_DictionaryKey}">#A0808080</Color>
+    <Color x:Key="{x:Static theme:ThemeSetting.DefaultBrush_Background_DictionaryKey}">#FF252525</Color>
+    <Color x:Key="{x:Static theme:ThemeSetting.DefaultBrush_Outline_DictionaryKey}">#FF808080</Color>
+    <Color x:Key="{x:Static theme:ThemeSetting.DefaultBrush_Line_DictionaryKey}">#FF808080</Color>
+    <Color x:Key="{x:Static theme:ThemeSetting.DefaultBrush_Highlight_DictionaryKey}">#50FFFFFF</Color>
+    <Color x:Key="{x:Static theme:ThemeSetting.DefaultBrush_Selection_DictionaryKey}">#FF808080</Color>
+    <Color x:Key="{x:Static theme:ThemeSetting.DefaultBrush_Mask_DictionaryKey}">#A0808080</Color>
+
+    <!-- Overlay Boader Background -->
+    <Color x:Key="{x:Static theme:ThemeSetting.OverlayBoaderBackground_Disable_DictionaryKey}">#05080808</Color>
+    <Color x:Key="{x:Static theme:ThemeSetting.OverlayBoaderBackground_Default_DictionaryKey}">#10808080</Color>
+    <Color x:Key="{x:Static theme:ThemeSetting.OverlayBoaderBackground_MouseOver_DictionaryKey}">#25808080</Color>
+    <Color x:Key="{x:Static theme:ThemeSetting.OverlayBoaderBackground_Active_DictionaryKey}">#40808080</Color>
+
+    <!-- Overlay Boader Outline -->
+    <Color x:Key="{x:Static theme:ThemeSetting.OverlayBoaderOutline_Disable_DictionaryKey}">#25808080</Color>
+    <Color x:Key="{x:Static theme:ThemeSetting.OverlayBoaderOutline_Default_DictionaryKey}">#50EBEBEB</Color>
+    <Color x:Key="{x:Static theme:ThemeSetting.OverlayBoaderOutline_MouseOver_DictionaryKey}">#80EBEBEB</Color>
+    <Color x:Key="{x:Static theme:ThemeSetting.OverlayBoaderOutline_Active_DictionaryKey}">#FFEBEBEB</Color>
+
+    <!-- Overlay Mask Foreground -->
+    <Color x:Key="{x:Static theme:ThemeSetting.OverlayMaskForeground_Disable_DictionaryKey}">#25808080</Color>
+    <Color x:Key="{x:Static theme:ThemeSetting.OverlayMaskForeground_Default_DictionaryKey}">#00000000</Color>
+    <Color x:Key="{x:Static theme:ThemeSetting.OverlayMaskForeground_MouseOver_DictionaryKey}">#A0EBEBEB</Color>
+    <Color x:Key="{x:Static theme:ThemeSetting.OverlayMaskForeground_Active_DictionaryKey}">#F0EBEBEB</Color>
+
+</ResourceDictionary>

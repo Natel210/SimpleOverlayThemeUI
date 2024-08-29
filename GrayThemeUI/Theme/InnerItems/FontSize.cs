@@ -93,13 +93,13 @@ namespace GrayThemeUI.Theme.InnerItems
         {
             if (iniFile is null)
                 return false;
-            Header1.DefaultValue = iniFile.GetValue(Header1) ?? Header1.DefaultValue;
-            Header2.DefaultValue = iniFile.GetValue(Header2) ?? Header2.DefaultValue;
-            Header3.DefaultValue = iniFile.GetValue(Header3) ?? Header3.DefaultValue;
-            Header4.DefaultValue = iniFile.GetValue(Header4) ?? Header4.DefaultValue;
-            Header5.DefaultValue = iniFile.GetValue(Header5) ?? Header5.DefaultValue;
-            Header6.DefaultValue = iniFile.GetValue(Header6) ?? Header6.DefaultValue;
-            Default.DefaultValue = iniFile.GetValue(Default) ?? Default.DefaultValue;
+            Header1.DefaultValue = iniFile.GetValue(Header1);
+            Header2.DefaultValue = iniFile.GetValue(Header2);
+            Header3.DefaultValue = iniFile.GetValue(Header3);
+            Header4.DefaultValue = iniFile.GetValue(Header4);
+            Header5.DefaultValue = iniFile.GetValue(Header5);
+            Header6.DefaultValue = iniFile.GetValue(Header6);
+            Default.DefaultValue = iniFile.GetValue(Default);
             ResetDefault();
             return true;
         }

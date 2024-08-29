@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows;
 using System.Windows.Media;
 using utility.ini;
 
@@ -6,7 +7,7 @@ namespace GrayThemeUI.Theme
 {
     public static partial class ThemeSettingDataManager
     {
-        private static readonly IniFile _iniFile = new("../GrayThemeUI/ThemeData.ini");
+        private static readonly IniFile _iniFile = new("./GrayThemeUI/ThemeData.ini");
 
         
 
@@ -36,6 +37,7 @@ namespace GrayThemeUI.Theme
             tempData.DefaultBrush.Foreground.Value = DefaultBrush_Foreground;
             tempData.DefaultBrush.Foreground_Disable.Value = DefaultBrush_Foreground_Disable;
             tempData.DefaultBrush.Background.Value = DefaultBrush_Background;
+            tempData.DefaultBrush.Outline.Value = DefaultBrush_Outline;
             tempData.DefaultBrush.Line.Value = DefaultBrush_Line;
             tempData.DefaultBrush.Highlight.Value = DefaultBrush_Highlight;
             tempData.DefaultBrush.Selection.Value = DefaultBrush_Selection;
@@ -88,18 +90,18 @@ namespace GrayThemeUI.Theme
             if (_iniFile.Load() is false)
                 return false;
 
-            string? currentThemeName = _iniFile.GetValue<string>("Common", "CurrentThemeName");
+            string currentThemeName = _iniFile.GetValue("Common", "CurrentThemeName", "Light");
             if (string.IsNullOrEmpty(currentThemeName) is true)
                 return false;
 
-            string[] themeNameList = _iniFile.GetValue("Common", "ThemeNameList", []) ?? [];
+            string[] themeNameList = _iniFile.GetValue("Common", "ThemeNameList", []);
             if (themeNameList.Length is 0)
                 return false;
 
             DataDictionary.Clear();
             foreach (var item in themeNameList)
             {
-                string? tempPath = _iniFile.GetValue<string>(item, "Path");
+                string tempPath = _iniFile.GetValue(item, "Path", "");
                 if (string.IsNullOrEmpty(tempPath) is false)
                     DataDictionary[item] = new(item, tempPath);
             }
@@ -116,7 +118,7 @@ namespace GrayThemeUI.Theme
         private static void BaseValue_LoadFailFallback()
         {
             #region Make Light Theme
-            CreateThemeSettingData("Light", "../GrayThemeUI/ThemeDataItem/Light.data");
+            CreateThemeSettingData("Light", "./GrayThemeUI/ThemeDataItem/Light.data");
             if (GetThemeSettingData("Light") is ThemeSettingData lightTheme)
             {
                 lightTheme.FontSize.Header1.DefaultValue = InnerItems.FontSize.BaceValue.Header1;
@@ -130,6 +132,7 @@ namespace GrayThemeUI.Theme
                 lightTheme.DefaultBrush.Foreground.DefaultValue = InnerItems.DefaultBrush.BaceValue.Foreground;
                 lightTheme.DefaultBrush.Foreground_Disable.DefaultValue = InnerItems.DefaultBrush.BaceValue.Foreground_Disable;
                 lightTheme.DefaultBrush.Background.DefaultValue = InnerItems.DefaultBrush.BaceValue.Background;
+                lightTheme.DefaultBrush.Outline.DefaultValue = InnerItems.DefaultBrush.BaceValue.Outline;
                 lightTheme.DefaultBrush.Line.DefaultValue = InnerItems.DefaultBrush.BaceValue.Line;
                 lightTheme.DefaultBrush.Highlight.DefaultValue = InnerItems.DefaultBrush.BaceValue.Highlight;
                 lightTheme.DefaultBrush.Selection.DefaultValue = InnerItems.DefaultBrush.BaceValue.Selection;
@@ -156,7 +159,7 @@ namespace GrayThemeUI.Theme
                 throw new Exception("no making theme [Light].");
             #endregion
             #region Make Dark Theme
-            CreateThemeSettingData("Dark", "../GrayThemeUI/ThemeDataItem/Dark.data");
+            CreateThemeSettingData("Dark", "./GrayThemeUI/ThemeDataItem/Dark.data");
 
             if (GetThemeSettingData("Dark") is ThemeSettingData darkTheme)
             {
@@ -171,6 +174,7 @@ namespace GrayThemeUI.Theme
                 darkTheme.DefaultBrush.Foreground.DefaultValue = InnerItems.DefaultBrush.BaceValueDark.Foreground;
                 darkTheme.DefaultBrush.Foreground_Disable.DefaultValue = InnerItems.DefaultBrush.BaceValueDark.Foreground_Disable;
                 darkTheme.DefaultBrush.Background.DefaultValue = InnerItems.DefaultBrush.BaceValueDark.Background;
+                darkTheme.DefaultBrush.Outline.DefaultValue = InnerItems.DefaultBrush.BaceValue.Outline;
                 darkTheme.DefaultBrush.Line.DefaultValue = InnerItems.DefaultBrush.BaceValue.Line;
                 darkTheme.DefaultBrush.Highlight.DefaultValue = InnerItems.DefaultBrush.BaceValue.Highlight;
                 darkTheme.DefaultBrush.Selection.DefaultValue = InnerItems.DefaultBrush.BaceValue.Selection;
@@ -218,7 +222,14 @@ namespace GrayThemeUI.Theme
 
     public static partial class ThemeSettingDataManager
     {
-        private static string _currentThemeName = "";
+        public static event PropertyChangedEventHandler? PropertyChanged;
+        private static void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(null, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #region Property
+        //Theme
         public static string CurrentThemeName
         {
             get => _currentThemeName;
@@ -243,6 +254,7 @@ namespace GrayThemeUI.Theme
                     DefaultBrush_Foreground = getTheme.DefaultBrush.Foreground.Value;
                     DefaultBrush_Foreground_Disable = getTheme.DefaultBrush.Foreground_Disable.Value;
                     DefaultBrush_Background = getTheme.DefaultBrush.Background.Value;
+                    DefaultBrush_Outline = getTheme.DefaultBrush.Outline.Value;
                     DefaultBrush_Line = getTheme.DefaultBrush.Line.Value;
                     DefaultBrush_Highlight = getTheme.DefaultBrush.Highlight.Value;
                     DefaultBrush_Selection = getTheme.DefaultBrush.Selection.Value;
@@ -262,11 +274,11 @@ namespace GrayThemeUI.Theme
                     OverlayMaskForeground_Default = getTheme.OverlayMaskForeground.Default.Value;
                     OverlayMaskForeground_MouseOver = getTheme.OverlayMaskForeground.MouseOver.Value;
                     OverlayMaskForeground_Active = getTheme.OverlayMaskForeground.Active.Value;
-                    OnPropertyChanged(nameof(CurrentThemeName));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.CurrentThemeName));
                 }
             }
         }
-        private static double _fontSize_Header1;
+        //FontSize
         public static double FontSize_Header1
         {
             get => _fontSize_Header1;
@@ -275,11 +287,10 @@ namespace GrayThemeUI.Theme
                 if (_fontSize_Header1 != value)
                 {
                     _fontSize_Header1 = value;
-                    OnPropertyChanged(nameof(FontSize_Header1));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.FontSize_Header1));
                 }
             }
         }
-        private static double _fontSize_Header2;
         public static double FontSize_Header2
         {
             get => _fontSize_Header2;
@@ -288,11 +299,10 @@ namespace GrayThemeUI.Theme
                 if (_fontSize_Header2 != value)
                 {
                     _fontSize_Header2 = value;
-                    OnPropertyChanged(nameof(FontSize_Header2));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.FontSize_Header2));
                 }
             }
         }
-        private static double _fontSize_Header3;
         public static double FontSize_Header3
         {
             get => _fontSize_Header3;
@@ -301,11 +311,10 @@ namespace GrayThemeUI.Theme
                 if (_fontSize_Header3 != value)
                 {
                     _fontSize_Header3 = value;
-                    OnPropertyChanged(nameof(FontSize_Header3));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.FontSize_Header3));
                 }
             }
         }
-        private static double _fontSize_Header4;
         public static double FontSize_Header4
         {
             get => _fontSize_Header4;
@@ -314,11 +323,10 @@ namespace GrayThemeUI.Theme
                 if (_fontSize_Header4 != value)
                 {
                     _fontSize_Header4 = value;
-                    OnPropertyChanged(nameof(FontSize_Header4));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.FontSize_Header4));
                 }
             }
         }
-        private static double _fontSize_Header5;
         public static double FontSize_Header5
         {
             get => _fontSize_Header5;
@@ -327,11 +335,10 @@ namespace GrayThemeUI.Theme
                 if (_fontSize_Header5 != value)
                 {
                     _fontSize_Header5 = value;
-                    OnPropertyChanged(nameof(FontSize_Header5));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.FontSize_Header5));
                 }
             }
         }
-        private static double _fontSize_Header6;
         public static double FontSize_Header6
         {
             get => _fontSize_Header6;
@@ -340,11 +347,10 @@ namespace GrayThemeUI.Theme
                 if (_fontSize_Header6 != value)
                 {
                     _fontSize_Header6 = value;
-                    OnPropertyChanged(nameof(FontSize_Header6));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.FontSize_Header6));
                 }
             }
         }
-        private static double _fontSize_Default;
         public static double FontSize_Default
         {
             get => _fontSize_Default;
@@ -353,12 +359,11 @@ namespace GrayThemeUI.Theme
                 if (_fontSize_Default != value)
                 {
                     _fontSize_Default = value;
-                    OnPropertyChanged(nameof(FontSize_Default));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.FontSize_Default));
                 }
             }
         }
-
-        private static Color _defaultBrush_Foreground;
+        //DefaultBrush
         public static Color DefaultBrush_Foreground
         {
             get => _defaultBrush_Foreground;
@@ -367,12 +372,10 @@ namespace GrayThemeUI.Theme
                 if (_defaultBrush_Foreground != value)
                 {
                     _defaultBrush_Foreground = value;
-                    OnPropertyChanged(nameof(DefaultBrush_Foreground));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.DefaultBrush_Foreground));
                 }
             }
         }
-
-        private static Color _defaultBrush_Foreground_Disable;
         public static Color DefaultBrush_Foreground_Disable
         {
             get => _defaultBrush_Foreground_Disable;
@@ -381,12 +384,10 @@ namespace GrayThemeUI.Theme
                 if (_defaultBrush_Foreground_Disable != value)
                 {
                     _defaultBrush_Foreground_Disable = value;
-                    OnPropertyChanged(nameof(DefaultBrush_Foreground_Disable));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.DefaultBrush_Foreground_Disable));
                 }
             }
         }
-
-        private static Color _defaultBrush_Background;
         public static Color DefaultBrush_Background
         {
             get => _defaultBrush_Background;
@@ -395,12 +396,22 @@ namespace GrayThemeUI.Theme
                 if (_defaultBrush_Background != value)
                 {
                     _defaultBrush_Background = value;
-                    OnPropertyChanged(nameof(DefaultBrush_Background));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.DefaultBrush_Background));
                 }
             }
         }
-
-        private static Color _defaultBrush_Line;
+        public static Color DefaultBrush_Outline
+        {
+            get => _defaultBrush_Outline;
+            set
+            {
+                if (_defaultBrush_Outline != value)
+                {
+                    _defaultBrush_Outline = value;
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.DefaultBrush_Outline));
+                }
+            }
+        }
         public static Color DefaultBrush_Line
         {
             get => _defaultBrush_Line;
@@ -409,12 +420,10 @@ namespace GrayThemeUI.Theme
                 if (_defaultBrush_Line != value)
                 {
                     _defaultBrush_Line = value;
-                    OnPropertyChanged(nameof(DefaultBrush_Line));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.DefaultBrush_Line));
                 }
             }
         }
-
-        private static Color _defaultBrush_Highlight;
         public static Color DefaultBrush_Highlight
         {
             get => _defaultBrush_Highlight;
@@ -423,12 +432,10 @@ namespace GrayThemeUI.Theme
                 if (_defaultBrush_Highlight != value)
                 {
                     _defaultBrush_Highlight = value;
-                    OnPropertyChanged(nameof(DefaultBrush_Highlight));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.DefaultBrush_Highlight));
                 }
             }
         }
-
-        private static Color _defaultBrush_Selection;
         public static Color DefaultBrush_Selection
         {
             get => _defaultBrush_Selection;
@@ -437,12 +444,10 @@ namespace GrayThemeUI.Theme
                 if (_defaultBrush_Selection != value)
                 {
                     _defaultBrush_Selection = value;
-                    OnPropertyChanged(nameof(DefaultBrush_Selection));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.DefaultBrush_Selection));
                 }
             }
         }
-
-        private static Color _defaultBrush_Mask;
         public static Color DefaultBrush_Mask
         {
             get => _defaultBrush_Mask;
@@ -451,12 +456,11 @@ namespace GrayThemeUI.Theme
                 if (_defaultBrush_Mask != value)
                 {
                     _defaultBrush_Mask = value;
-                    OnPropertyChanged(nameof(DefaultBrush_Mask));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.DefaultBrush_Mask));
                 }
             }
         }
-
-        private static Color _overlayBoaderBackground_Disable;
+        //OverlayBoader.Background
         public static Color OverlayBoaderBackground_Disable
         {
             get => _overlayBoaderBackground_Disable;
@@ -465,12 +469,10 @@ namespace GrayThemeUI.Theme
                 if (_overlayBoaderBackground_Disable != value)
                 {
                     _overlayBoaderBackground_Disable = value;
-                    OnPropertyChanged(nameof(OverlayBoaderBackground_Disable));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.OverlayBoaderBackground_Disable));
                 }
             }
         }
-
-        private static Color _overlayBoaderBackground_Default;
         public static Color OverlayBoaderBackground_Default
         {
             get => _overlayBoaderBackground_Default;
@@ -479,12 +481,10 @@ namespace GrayThemeUI.Theme
                 if (_overlayBoaderBackground_Default != value)
                 {
                     _overlayBoaderBackground_Default = value;
-                    OnPropertyChanged(nameof(OverlayBoaderBackground_Default));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.OverlayBoaderBackground_Default));
                 }
             }
         }
-
-        private static Color _overlayBoaderBackground_MouseOver;
         public static Color OverlayBoaderBackground_MouseOver
         {
             get => _overlayBoaderBackground_MouseOver;
@@ -493,12 +493,10 @@ namespace GrayThemeUI.Theme
                 if (_overlayBoaderBackground_MouseOver != value)
                 {
                     _overlayBoaderBackground_MouseOver = value;
-                    OnPropertyChanged(nameof(OverlayBoaderBackground_MouseOver));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.OverlayBoaderBackground_MouseOver));
                 }
             }
         }
-
-        private static Color _overlayBoaderBackground_Active;
         public static Color OverlayBoaderBackground_Active
         {
             get => _overlayBoaderBackground_Active;
@@ -507,12 +505,11 @@ namespace GrayThemeUI.Theme
                 if (_overlayBoaderBackground_Active != value)
                 {
                     _overlayBoaderBackground_Active = value;
-                    OnPropertyChanged(nameof(OverlayBoaderBackground_Active));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.OverlayBoaderBackground_Active));
                 }
             }
         }
-
-        private static Color _overlayBoaderOutline_Disable;
+        //OverlayBoader.Outline
         public static Color OverlayBoaderOutline_Disable
         {
             get => _overlayBoaderOutline_Disable;
@@ -521,12 +518,10 @@ namespace GrayThemeUI.Theme
                 if (_overlayBoaderOutline_Disable != value)
                 {
                     _overlayBoaderOutline_Disable = value;
-                    OnPropertyChanged(nameof(OverlayBoaderOutline_Disable));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.OverlayBoaderOutline_Disable));
                 }
             }
         }
-
-        private static Color _overlayBoaderOutline_Default;
         public static Color OverlayBoaderOutline_Default
         {
             get => _overlayBoaderOutline_Default;
@@ -535,12 +530,10 @@ namespace GrayThemeUI.Theme
                 if (_overlayBoaderOutline_Default != value)
                 {
                     _overlayBoaderOutline_Default = value;
-                    OnPropertyChanged(nameof(OverlayBoaderOutline_Default));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.OverlayBoaderOutline_Default));
                 }
             }
         }
-
-        private static Color _overlayBoaderOutline_MouseOver;
         public static Color OverlayBoaderOutline_MouseOver
         {
             get => _overlayBoaderOutline_MouseOver;
@@ -549,12 +542,10 @@ namespace GrayThemeUI.Theme
                 if (_overlayBoaderOutline_MouseOver != value)
                 {
                     _overlayBoaderOutline_MouseOver = value;
-                    OnPropertyChanged(nameof(OverlayBoaderOutline_MouseOver));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.OverlayBoaderOutline_MouseOver));
                 }
             }
         }
-
-        private static Color _overlayBoaderOutline_Active;
         public static Color OverlayBoaderOutline_Active
         {
             get => _overlayBoaderOutline_Active;
@@ -563,12 +554,11 @@ namespace GrayThemeUI.Theme
                 if (_overlayBoaderOutline_Active != value)
                 {
                     _overlayBoaderOutline_Active = value;
-                    OnPropertyChanged(nameof(OverlayBoaderOutline_Active));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.OverlayBoaderOutline_Active));
                 }
             }
         }
-
-        private static Color _overlayMaskForeground_Disable;
+        //OverlayMask.Foreground
         public static Color OverlayMaskForeground_Disable
         {
             get => _overlayMaskForeground_Disable;
@@ -577,12 +567,10 @@ namespace GrayThemeUI.Theme
                 if (_overlayMaskForeground_Disable != value)
                 {
                     _overlayMaskForeground_Disable = value;
-                    OnPropertyChanged(nameof(OverlayMaskForeground_Disable));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.OverlayMaskForeground_Disable));
                 }
             }
         }
-
-        private static Color _overlayMaskForeground_Default;
         public static Color OverlayMaskForeground_Default
         {
             get => _overlayMaskForeground_Default;
@@ -591,12 +579,10 @@ namespace GrayThemeUI.Theme
                 if (_overlayMaskForeground_Default != value)
                 {
                     _overlayMaskForeground_Default = value;
-                    OnPropertyChanged(nameof(OverlayMaskForeground_Default));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.OverlayMaskForeground_Default));
                 }
             }
         }
-
-        private static Color _overlayMaskForeground_MouseOver;
         public static Color OverlayMaskForeground_MouseOver
         {
             get => _overlayMaskForeground_MouseOver;
@@ -605,12 +591,10 @@ namespace GrayThemeUI.Theme
                 if (_overlayMaskForeground_MouseOver != value)
                 {
                     _overlayMaskForeground_MouseOver = value;
-                    OnPropertyChanged(nameof(OverlayMaskForeground_MouseOver));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.OverlayMaskForeground_MouseOver));
                 }
             }
         }
-
-        private static Color _overlayMaskForeground_Active;
         public static Color OverlayMaskForeground_Active
         {
             get => _overlayMaskForeground_Active;
@@ -619,14 +603,48 @@ namespace GrayThemeUI.Theme
                 if (_overlayMaskForeground_Active != value)
                 {
                     _overlayMaskForeground_Active = value;
-                    OnPropertyChanged(nameof(OverlayMaskForeground_Active));
+                    OnPropertyChanged(nameof(ThemeSettingDataManager.OverlayMaskForeground_Active));
                 }
             }
         }
-        public static event PropertyChangedEventHandler? PropertyChanged;
-        private static void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(null, new PropertyChangedEventArgs(propertyName));
-        }
+        #endregion
+
+        #region Private Property Source
+        //Theme
+        private static string _currentThemeName = "";
+        //FontSize
+        private static double _fontSize_Header1 = InnerItems.FontSize.BaceValue.Header1;
+        private static double _fontSize_Header2 = InnerItems.FontSize.BaceValue.Header2;
+        private static double _fontSize_Header3 = InnerItems.FontSize.BaceValue.Header3;
+        private static double _fontSize_Header4 = InnerItems.FontSize.BaceValue.Header4;
+        private static double _fontSize_Header5 = InnerItems.FontSize.BaceValue.Header5;
+        private static double _fontSize_Header6 = InnerItems.FontSize.BaceValue.Header6;
+        private static double _fontSize_Default = InnerItems.FontSize.BaceValue.Default;
+        //DefaultBrush
+        private static Color _defaultBrush_Foreground = InnerItems.DefaultBrush.BaceValue.Foreground;
+        private static Color _defaultBrush_Foreground_Disable = InnerItems.DefaultBrush.BaceValue.Foreground_Disable;
+        private static Color _defaultBrush_Background = InnerItems.DefaultBrush.BaceValue.Background;
+        private static Color _defaultBrush_Outline = InnerItems.DefaultBrush.BaceValue.Outline;
+        private static Color _defaultBrush_Line = InnerItems.DefaultBrush.BaceValue.Line;
+        private static Color _defaultBrush_Highlight = InnerItems.DefaultBrush.BaceValue.Highlight;
+        private static Color _defaultBrush_Selection = InnerItems.DefaultBrush.BaceValue.Selection;
+        private static Color _defaultBrush_Mask = InnerItems.DefaultBrush.BaceValue.Mask;
+        //OverlayBoader.Background
+        private static Color _overlayBoaderBackground_Disable = InnerItems.OverlayBoaderBackground.BaceValue.Disable;
+        private static Color _overlayBoaderBackground_Default = InnerItems.OverlayBoaderBackground.BaceValue.Default;
+        private static Color _overlayBoaderBackground_MouseOver = InnerItems.OverlayBoaderBackground.BaceValue.MouseOver;
+        private static Color _overlayBoaderBackground_Active = InnerItems.OverlayBoaderBackground.BaceValue.Active;
+        //OverlayBoader.Outline
+        private static Color _overlayBoaderOutline_Disable = InnerItems.OverlayBoaderOutline.BaceValue.Disable;
+        private static Color _overlayBoaderOutline_Default = InnerItems.OverlayBoaderOutline.BaceValue.Default;
+        private static Color _overlayBoaderOutline_MouseOver = InnerItems.OverlayBoaderOutline.BaceValue.MouseOver;
+        private static Color _overlayBoaderOutline_Active = InnerItems.OverlayBoaderOutline.BaceValue.Active;
+        //OverlayMask.Foreground
+        private static Color _overlayMaskForeground_Disable = InnerItems.OverlayMaskForeground.BaceValue.Disable;
+        private static Color _overlayMaskForeground_Default = InnerItems.OverlayMaskForeground.BaceValue.Default;
+        private static Color _overlayMaskForeground_MouseOver = InnerItems.OverlayMaskForeground.BaceValue.MouseOver;
+        private static Color _overlayMaskForeground_Active = InnerItems.OverlayMaskForeground.BaceValue.Active;
+        #endregion
+
     }
 }

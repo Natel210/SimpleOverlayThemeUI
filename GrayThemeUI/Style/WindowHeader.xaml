@@ -1,8 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:control="clr-namespace:GrayThemeUI.CustomControl"
-                    xmlns:helper="clr-namespace:GrayThemeUI.Helper"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:GrayThemeUI"
+                    xmlns:theme="clr-namespace:GrayThemeUI.Theme"
+                    xmlns:helper="clr-namespace:GrayThemeUI.Helper">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Theme/Common.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Resource/Resource.xaml" />
@@ -83,9 +85,9 @@
                                 <Button.Style>
                                     <StaticResource ResourceKey="GrayThemeUI.Button.ImageMask"/>
                                 </Button.Style>
-                                <helper:ButtonHelper.DefaultMask>
+                                <helper:MaskHelper.DefaultMask>
                                     <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/minimize.png"/>
-                                </helper:ButtonHelper.DefaultMask>
+                                </helper:MaskHelper.DefaultMask>
                             </Button>
                             <ToggleButton x:Name="fullScreen" Grid.Column="3">
                                 <ToggleButton.Width>
@@ -103,12 +105,12 @@
                                 <ToggleButton.Style>
                                     <StaticResource ResourceKey="GrayThemeUI.ToggleButton.ImageMask"/>
                                 </ToggleButton.Style>
-                                <helper:ToggleButtonHelper.DefaultMask>
+                                <helper:MaskHelper.DefaultMask>
                                     <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/maximize.png"/>
-                                </helper:ToggleButtonHelper.DefaultMask>
-                                <helper:ToggleButtonHelper.CheckedMask>
+                                </helper:MaskHelper.DefaultMask>
+                                <helper:MaskHelper.CheckedMask>
                                     <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/maximize.png"/>
-                                </helper:ToggleButtonHelper.CheckedMask>
+                                </helper:MaskHelper.CheckedMask>
                             </ToggleButton>
                             <Button x:Name="closeButton" Grid.Column="4">
                                 <Button.Width>
@@ -126,9 +128,9 @@
                                 <Button.Style>
                                     <StaticResource ResourceKey="GrayThemeUI.Button.ImageMask"/>
                                 </Button.Style>
-                                <helper:ButtonHelper.DefaultMask>
+                                <helper:MaskHelper.DefaultMask>
                                     <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/close.png"/>
-                                </helper:ButtonHelper.DefaultMask>
+                                </helper:MaskHelper.DefaultMask>
                             </Button>
                         </Grid>
                         <Grid Grid.Row="1">

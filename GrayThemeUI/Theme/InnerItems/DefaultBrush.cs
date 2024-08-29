@@ -11,6 +11,7 @@ namespace GrayThemeUI.Theme.InnerItems
             public static Color Foreground { get; } = Color.FromArgb(255, 21, 21, 21);
             public static Color Foreground_Disable { get; } = Color.FromArgb(160, 128, 128, 128);
             public static Color Background { get; } = Color.FromArgb(255, 255, 255, 255);
+            public static Color Outline { get; } = Color.FromArgb(255, 128, 128, 128);
             public static Color Line { get; } = Color.FromArgb(255, 128, 128, 128);
             public static Color Highlight { get; } = Color.FromArgb(80, 255, 255, 255);
             public static Color Selection { get; } = Color.FromArgb(255, 128, 128, 128);
@@ -22,6 +23,7 @@ namespace GrayThemeUI.Theme.InnerItems
             public static Color Foreground { get; } = Color.FromArgb(255, 218, 218, 218);
             public static Color Foreground_Disable { get; } = Color.FromArgb(160, 128, 128, 128);
             public static Color Background { get; } = Color.FromArgb(255, 37, 37, 37);
+            public static Color Outline { get; } = Color.FromArgb(255, 128, 128, 128);
         }
 
         public IniItem<Color> Foreground { get; } = new()
@@ -46,6 +48,14 @@ namespace GrayThemeUI.Theme.InnerItems
             Key = "Background",
             Value = BaceValue.Background,
             DefaultValue = BaceValue.Background
+        };
+
+        public IniItem<Color> Outline { get; } = new()
+        {
+            Section = BaceValue.Section,
+            Key = "Outline",
+            Value = BaceValue.Outline,
+            DefaultValue = BaceValue.Outline
         };
 
         public IniItem<Color> Line { get; } = new()
@@ -88,6 +98,7 @@ namespace GrayThemeUI.Theme.InnerItems
             result |= !iniFile.SetValue(Foreground);
             result |= !iniFile.SetValue(Foreground_Disable);
             result |= !iniFile.SetValue(Background);
+            result |= !iniFile.SetValue(Outline);
             result |= !iniFile.SetValue(Line);
             result |= !iniFile.SetValue(Highlight);
             result |= !iniFile.SetValue(Selection);
@@ -99,13 +110,14 @@ namespace GrayThemeUI.Theme.InnerItems
         {
             if (iniFile is null)
                 return false;
-            Foreground.DefaultValue = iniFile.GetValue(Foreground) ?? Foreground.DefaultValue;
-            Foreground_Disable.DefaultValue = iniFile.GetValue(Foreground_Disable) ?? Foreground_Disable.DefaultValue;
-            Background.DefaultValue = iniFile.GetValue(Background) ?? Background.DefaultValue;
-            Line.DefaultValue = iniFile.GetValue(Line) ?? Line.DefaultValue;
-            Highlight.DefaultValue = iniFile.GetValue(Highlight) ?? Highlight.DefaultValue;
-            Selection.DefaultValue = iniFile.GetValue(Selection) ?? Selection.DefaultValue;
-            Mask.DefaultValue = iniFile.GetValue(Mask) ?? Mask.DefaultValue;
+            Foreground.DefaultValue = iniFile.GetValue(Foreground);
+            Foreground_Disable.DefaultValue = iniFile.GetValue(Foreground_Disable);
+            Background.DefaultValue = iniFile.GetValue(Background);
+            Line.DefaultValue = iniFile.GetValue(Outline);
+            Line.DefaultValue = iniFile.GetValue(Line);
+            Highlight.DefaultValue = iniFile.GetValue(Highlight);
+            Selection.DefaultValue = iniFile.GetValue(Selection);
+            Mask.DefaultValue = iniFile.GetValue(Mask);
             ResetDefault();
             return true;
         }
@@ -115,6 +127,7 @@ namespace GrayThemeUI.Theme.InnerItems
             Foreground.Value = Foreground.DefaultValue;
             Foreground_Disable.Value = Foreground_Disable.DefaultValue;
             Background.Value = Background.DefaultValue;
+            Outline.Value = Outline.DefaultValue;
             Line.Value = Line.DefaultValue;
             Highlight.Value = Highlight.DefaultValue;
             Selection.Value = Selection.DefaultValue;
@@ -128,6 +141,7 @@ namespace GrayThemeUI.Theme.InnerItems
             Foreground = new(dest.Foreground);
             Foreground_Disable = new(dest.Foreground_Disable);
             Background = new(dest.Background);
+            Outline = new(dest.Outline);
             Line = new(dest.Line);
             Highlight = new(dest.Highlight);
             Selection = new(dest.Selection);

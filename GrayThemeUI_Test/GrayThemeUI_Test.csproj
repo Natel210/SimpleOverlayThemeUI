@@ -9,7 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resource\Test1.png" />
+    <None Remove="Resource\Test2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GrayThemeUI\GrayThemeUI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resource\Test1.png" />
+    <Resource Include="Resource\Test2.png" />
   </ItemGroup>
 
 </Project>

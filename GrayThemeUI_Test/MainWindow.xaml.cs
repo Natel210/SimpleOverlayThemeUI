@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using GrayThemeUI_Test.ExamplePage;
+using System.Windows;
 
 namespace GrayThemeUI_Test
 {
@@ -10,8 +11,9 @@ namespace GrayThemeUI_Test
         public MainWindow()
         {
             InitializeComponent();
+            buttonExample.Navigate(new ButtonExample());
             LoadData();
-            GrayThemeUI.Theme.ThemeSettingDataManager.CurrentThemeName = "Dark";
+            
         }
 
         private void LoadData()
@@ -26,6 +28,8 @@ namespace GrayThemeUI_Test
             //dataGrid.ItemsSource = data;
 
         }
+
+
     }
 
     public class Person

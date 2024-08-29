@@ -70,10 +70,10 @@ namespace GrayThemeUI.Theme.InnerItems
         {
             if (iniFile is null)
                 return false;
-            Disable.DefaultValue = iniFile.GetValue(Disable) ?? Disable.DefaultValue;
-            Default.DefaultValue = iniFile.GetValue(Default) ?? Default.DefaultValue;
-            MouseOver.DefaultValue = iniFile.GetValue(MouseOver) ?? MouseOver.DefaultValue;
-            Active.DefaultValue = iniFile.GetValue(Active) ?? Active.DefaultValue;
+            Disable.DefaultValue = iniFile.GetValue(Disable);
+            Default.DefaultValue = iniFile.GetValue(Default);
+            MouseOver.DefaultValue = iniFile.GetValue(MouseOver);
+            Active.DefaultValue = iniFile.GetValue(Active);
             ResetDefault();
             return true;
         }
