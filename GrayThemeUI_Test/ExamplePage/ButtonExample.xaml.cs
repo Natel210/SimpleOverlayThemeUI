@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -28,11 +29,18 @@ namespace GrayThemeUI_Test.ExamplePage
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             GrayThemeUI.Theme.ThemeSettingDataManager.CurrentThemeName = "Dark";
+            var getToggleButton = sender as ToggleButton;
+            if (getToggleButton is not null)
+                getToggleButton.Content = " To Light (ToggleButton) ";
         }
 
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
             GrayThemeUI.Theme.ThemeSettingDataManager.CurrentThemeName = "Light";
+            var getToggleButton = sender as ToggleButton;
+            if (getToggleButton is not null)
+                getToggleButton.Content = " To Dark (ToggleButton) ";
+            
         }
     }
 }

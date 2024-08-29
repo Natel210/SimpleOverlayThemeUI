@@ -78,8 +78,8 @@ namespace GrayThemeUI.Theme
 
         static ThemeSettingDataManager()
         {
-            if(Load() is false)
-                BaseValue_LoadFailFallback();
+            Load();
+            MakeDefaultTheme();
         }
 
 
@@ -115,7 +115,7 @@ namespace GrayThemeUI.Theme
             return !result;
         }
 
-        private static void BaseValue_LoadFailFallback()
+        private static void MakeDefaultTheme()
         {
             #region Make Light Theme
             CreateThemeSettingData("Light", "./GrayThemeUI/ThemeDataItem/Light.data");

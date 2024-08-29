@@ -10,12 +10,14 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!-- Design-time resources for Light and Dark themes -->
-                <ResourceDictionary d:IsDesignTimeCreatable="True" d:DesignTimeResources="pack://application:,,,/GrayThemeUI;component/Theme/LightModeDummy.xaml"/>
-                <!--<ResourceDictionary d:IsDesignTimeCreatable="True" Source="pack://application:,,,/GrayThemeUI;component/Theme/DarkModeDummy.xaml"/>-->
-
+                <ResourceDictionary d:IsDesignTimeCreatable="True" Source="pack://application:,,,/GrayThemeUI;component/Theme/Dummy/LightModeDummy.xaml"/>
+                <!--<ResourceDictionary d:IsDesignTimeCreatable="True" Source="pack://application:,,,/GrayThemeUI;component/Theme/Dummy/DarkModeDummy.xaml"/>-->
+                
+                
                 <!-- Main application resources -->
                 <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Main.xaml"/>
+
+
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
