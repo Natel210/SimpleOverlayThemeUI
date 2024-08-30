@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:theme="clr-namespace:GrayThemeUI.Theme"
                     xmlns:helper="clr-namespace:GrayThemeUI.Helper">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/Overlay.xaml"/>
@@ -8,21 +9,9 @@
     <Style x:Key="GrayThemeUI.Button.Square" TargetType="Button">
         <Setter Property="FontSize" Value="{DynamicResource GrayThemeUI.Internal.FontSize.Default}"/>
         <Setter Property="BorderThickness" Value="{DynamicResource GrayThemeUI.Internal.Thickness.Default}"/>
-        <Setter Property="BorderBrush">
-            <Setter.Value>
-                <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Outline}"/>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Foreground">
-            <Setter.Value>
-                <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground}"/>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Background">
-            <Setter.Value>
-                <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Background}"/>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Outline}"/>
+        <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground}"/>
+        <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Background}"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="helper:OverlayHelper.IsDefault" Value="True"/>
         <Setter Property="Template">
@@ -85,29 +74,18 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.Theme.Brush.Foreground.Disable}"/>
+                <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground.Disable}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
     <!-- ImageMask Button  -->
     <Style x:Key="GrayThemeUI.Button.ImageMask" TargetType="Button">
         <Setter Property="FontSize" Value="{DynamicResource GrayThemeUI.Internal.FontSize.Default}"/>
-        <Setter Property="BorderThickness" Value="{DynamicResource GrayThemeUI.Internal.Thickness.Default}"/>
-        <Setter Property="BorderBrush">
-            <Setter.Value>
-                <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Outline}"/>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Foreground">
-            <Setter.Value>
-                <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Mask}"/>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Background">
-            <Setter.Value>
-                <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Background}"/>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="BorderThickness" Value="{DynamicResource GrayThemeUI.Internal.Thickness.Zero}"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Outline}"/>
+        <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Mask}"/>
+        <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Background}"/>
         <Setter Property="Width">
             <Setter.Value>
                 <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(helper:MaskHelper.DefaultMask).ImageSource.Width"/>
@@ -124,17 +102,41 @@
                 <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/empty.png"/>
             </Setter.Value>
         </Setter>
-        <Setter Property="helper:MaskHelper.Background_Overlay_Visibility" Value="Hidden"/>
+        <Setter Property="helper:MaskHelper.Background_Overlay_Visibility" Value="Collapsed"/>
         <Setter Property="helper:MaskHelper.Background_Overlay_Outline_Thickness" Value="0.0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Grid>
-                        <Grid.Background>
-                            <TemplateBinding Property="Background"/>
-                        </Grid.Background>
+                        <!-- Background Border -->
+                        <Border x:Name="backgroundBorder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Border.Height>
+                                <TemplateBinding Property="ActualHeight"/>
+                            </Border.Height>
+                            <Border.Width>
+                                <TemplateBinding Property="ActualWidth"/>
+                            </Border.Width>
+                            <Border.Background>
+                                <TemplateBinding Property="Background"/>
+                            </Border.Background>
+                            <Border.BorderThickness>
+                                <TemplateBinding Property="BorderThickness"/>
+                            </Border.BorderThickness>
+                            <Border.BorderBrush>
+                                <TemplateBinding Property="BorderBrush"/>
+                            </Border.BorderBrush>
+                            <Border.SnapsToDevicePixels>
+                                <TemplateBinding Property="SnapsToDevicePixels"/>
+                            </Border.SnapsToDevicePixels>
+                        </Border>
                         <!-- Mask Border -->
-                        <Border x:Name="border" BorderBrush="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Border x:Name="imageMask" BorderBrush="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Border.Height>
+                                <TemplateBinding Property="ActualHeight"/>
+                            </Border.Height>
+                            <Border.Width>
+                                <TemplateBinding Property="ActualWidth"/>
+                            </Border.Width>
                             <Border.Background>
                                 <TemplateBinding Property="Foreground"/>
                             </Border.Background>
@@ -150,6 +152,12 @@
                         </Border>
                         <!-- Overlay Mask -->
                         <Border x:Name="overlayMask" Style="{StaticResource GrayThemeUI.Overlay.MaskBorder}">
+                            <Border.Height>
+                                <TemplateBinding Property="ActualHeight"/>
+                            </Border.Height>
+                            <Border.Width>
+                                <TemplateBinding Property="ActualWidth"/>
+                            </Border.Width>
                             <Border.OpacityMask>
                                 <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(helper:MaskHelper.DefaultMask)"/>
                             </Border.OpacityMask>
@@ -159,6 +167,12 @@
                         </Border>
                         <!-- Overlay -->
                         <Border x:Name="overlay" Style="{StaticResource GrayThemeUI.Overlay.Border}">
+                            <Border.Height>
+                                <TemplateBinding Property="ActualHeight"/>
+                            </Border.Height>
+                            <Border.Width>
+                                <TemplateBinding Property="ActualWidth"/>
+                            </Border.Width>
                             <Border.BorderThickness>
                                 <TemplateBinding Property="helper:MaskHelper.Background_Overlay_Outline_Thickness"/>
                             </Border.BorderThickness>
@@ -185,12 +199,11 @@
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="overlay" Property="helper:OverlayHelper.IsDisable" Value="True"/>
                             <Setter TargetName="overlayMask" Property="helper:OverlayHelper.IsDisable" Value="True"/>
-                            <Setter TargetName="border" Property="Background">
+                            <Setter TargetName="imageMask" Property="Background">
                                 <Setter.Value>
-                                    <DynamicResource ResourceKey="GrayThemeUI.Internal.Theme.Brush.Foreground.Disable"/>
+                                    <DynamicResource ResourceKey="GrayThemeUI.Internal.DefaultBrush.Foreground.Disable"/>
                                 </Setter.Value>
                             </Setter>
-                            
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -202,22 +215,10 @@
     <Style x:Key="GrayThemeUI.ToggleButton.Square" TargetType="ToggleButton">
         <Setter Property="FontSize" Value="{DynamicResource GrayThemeUI.Internal.FontSize.Default}"/>
         <Setter Property="BorderThickness" Value="{DynamicResource GrayThemeUI.Internal.Thickness.Default}"/>
-        <Setter Property="BorderBrush">
-            <Setter.Value>
-                <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Outline}"/>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Foreground">
-            <Setter.Value>
-                <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground}"/>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Background">
-            <Setter.Value>
-                <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Background}"/>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="helper:OverlayHelper.IsDefault" Value="True"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Outline}"/>
+        <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground}"/>
+        <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Background}"/>
+        <Setter Property="helper:OverlayHelper.IsDefault" Value="False"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -270,7 +271,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.Theme.Brush.Foreground.Disable}"/>
+                <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground.Disable}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -279,21 +280,9 @@
     <Style x:Key="GrayThemeUI.ToggleButton.ImageMask" TargetType="ToggleButton">
         <Setter Property="FontSize" Value="{DynamicResource GrayThemeUI.Internal.FontSize.Default}"/>
         <Setter Property="BorderThickness" Value="{DynamicResource GrayThemeUI.Internal.Thickness.Default}"/>
-        <Setter Property="BorderBrush">
-            <Setter.Value>
-                <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Outline}"/>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Foreground">
-            <Setter.Value>
-                <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Mask}"/>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Background">
-            <Setter.Value>
-                <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Background}"/>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Outline}"/>
+        <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Mask}"/>
+        <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Background}"/>
         <Setter Property="Width">
             <Setter.Value>
                 <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(helper:MaskHelper.DefaultMask).ImageSource.Width"/>
@@ -315,7 +304,7 @@
                 <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/empty.png"/>
             </Setter.Value>
         </Setter>
-        <Setter Property="helper:MaskHelper.Background_Overlay_Visibility" Value="Hidden"/>
+        <Setter Property="helper:MaskHelper.Background_Overlay_Visibility" Value="Collapsed"/>
         <Setter Property="helper:MaskHelper.Background_Overlay_Outline_Thickness" Value="0.0"/>
         <Setter Property="Template">
             <Setter.Value>

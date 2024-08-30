@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GrayThemeUI_Test"
         xmlns:helper="clr-namespace:GrayThemeUI.Helper;assembly=GrayThemeUI"
+        xmlns:control="clr-namespace:GrayThemeUI.CustomControl;assembly=GrayThemeUI"
         xmlns:example="clr-namespace:GrayThemeUI_Test.ExamplePage"
         Style="{StaticResource GrayThemeUI.Window}"
         mc:Ignorable="d"
@@ -12,218 +13,19 @@
     <ScrollViewer>
         <StackPanel>
             <Frame x:Name="buttonExample"/>
+            <CheckBox Content=" CheckBox" Style="{StaticResource GrayThemeUI.CheckBox}" Width="120" Height="30"/>
+            <!--<control:WindowHeader Title="MY WINDOW"/>-->
 
-            <!--<Border Width="60" Height="60" Style="{StaticResource GrayThemeUI.Overlay.Border}"/>-->
-            <!--<TextBlock Text="Default TextBlock" Margin="10" />
-            <Label Content=" Label " Grid.Column="0" VerticalAlignment="Center" Margin="10" Style="{StaticResource GrayThemeUI.Label}" Background="Red" Foreground="Blue"/>
-            <Label Content=" LabeledSeparator " Grid.Column="0" VerticalAlignment="Center" Margin="10" Style="{StaticResource GrayThemeUI.LabeledSeparator}"/>-->
-            <!--<TextBox Text=" TextBox " MaxLines="1" MinLines="1" Margin="10" Style="{StaticResource GrayThemeUI.TextBox}"/>-->
-            
-            <!--#region Button-->
-
-            <!--#endregion-->
-
-
-            <!--<TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Header1: {0}">
-                        <Binding>
-                            <Binding.Source>
-                                <DynamicResource ResourceKey="GrayThemeUI.Internal.FontSize.Header1"/>
-                            </Binding.Source>
-                        </Binding>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>-->
-            <!--<TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Header2: {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.FontSize.Header2}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Header3: {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.FontSize.Header3}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Header4: {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.FontSize.Header4}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Header5: {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.FontSize.Header5}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Header6: {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.FontSize.Header6}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Default: {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.FontSize.Default}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="DefaultBrush Foreground : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="DefaultBrush Foreground.Disable : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground.Disable}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="DefaultBrush Background : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Background}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="DefaultBrush Line : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Line}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="DefaultBrush Highlight : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Highlight}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="DefaultBrush Selection : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Selection}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="DefaultBrush Mask : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Mask}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Overlay.backg Disable : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.Disable}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Overlay.backg Default : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.Default}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Overlay.backg MouseOver : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.MouseOver}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Overlay.backg Active : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.Active}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Overlay.Outline Disable : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.Disable}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Overlay.Outline Default : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.Default}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Overlay.Outline MouseOver : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.MouseOver}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Overlay.Outline Active : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.Active}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Overlay.Mask.foreg Disable : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.OverlayMask.Foreground.Disable}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Overlay.Mask.foreg Default : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.OverlayMask.Foreground.Default}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Overlay.Mask.foreg MouseOver : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.OverlayMask.Foreground.MouseOver}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Overlay.Mask.foreg Active : {0}">
-                        <Binding Source="{DynamicResource GrayThemeUI.Internal.OverlayMask.Foreground.Active}"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <!--<gui:NumericUpDown Value="100.101" Margin="10" Minimum="-200" Maximum="200" Interval="10" UseInteger="True" Background="DarkCyan" Foreground="YellowGreen"/>-->
+            <!--<ComboBox x:Name="grayThemeUIComboBox" SelectedIndex="0" Style="{StaticResource GrayThemeUI.ComboBox}" Background="Magenta" Foreground="Black">
+                <ComboBoxItem Content=" ComboBox1 "/>
+                <ComboBoxItem Content=" ComboBox2 "/>
+                <ComboBoxItem Content=" ComboBox3 "/>
+                <ComboBoxItem Width="{Binding ActualWidth, ElementName=grayThemeUIComboBox}" IsSelected="False">
+                    <ComboBoxItem.Content>
+                        <Button Content=" Button " Style="{StaticResource GrayThemeUI.Button.Square}"/>
+                    </ComboBoxItem.Content>
+                </ComboBoxItem>
+            </ComboBox>-->
             <!--<GroupBox Header=" GroupBox " Margin="10" Style="{StaticResource GrayThemeUI.GroupBox}" Background="Yellow" Foreground="Cyan">
                 <ComboBox x:Name="grayThemeUIComboBox" SelectedIndex="0" Style="{StaticResource GrayThemeUI.ComboBox}" Background="Magenta" Foreground="Black">
                     <ComboBoxItem Content=" ComboBox1 "/>
@@ -236,6 +38,12 @@
                     </ComboBoxItem>
                 </ComboBox>
             </GroupBox>-->
+
+
+
+
+            <!--<gui:NumericUpDown Value="100.101" Margin="10" Minimum="-200" Maximum="200" Interval="10" UseInteger="True" Background="DarkCyan" Foreground="YellowGreen"/>-->
+            
             <!--<ListBox Style="{StaticResource GrayThemeUI.ListBox}" Margin="10">
                 <ListBoxItem Content="ListBox1"/>
                 <ListBoxItem Content="ListBox2"/>

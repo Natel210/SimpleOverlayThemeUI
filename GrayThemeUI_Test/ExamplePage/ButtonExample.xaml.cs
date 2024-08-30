@@ -42,5 +42,10 @@ namespace GrayThemeUI_Test.ExamplePage
                 getToggleButton.Content = " To Dark (ToggleButton) ";
             
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            GrayThemeUI.Theme.ThemeSettingDataManager.OverlayBoaderBackground_Active = new SolidColorBrush(Color.FromArgb(255, 255, 255, 0));
+        }
     }
 }

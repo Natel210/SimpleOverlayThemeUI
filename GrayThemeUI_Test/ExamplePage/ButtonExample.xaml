@@ -6,50 +6,78 @@
       xmlns:local="clr-namespace:GrayThemeUI_Test.ExamplePage"
       xmlns:helper="clr-namespace:GrayThemeUI.Helper;assembly=GrayThemeUI"
       mc:Ignorable="d"
-
       Style="{StaticResource GrayThemeUI.Page}"
-      Width="600" Height="240"
       Title="ButtonExample">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="60"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
-        </Grid.ColumnDefinitions>
-        <Button Content=" Button " Width="120" Height="25"
-                Grid.Row="0" Grid.Column="0" Style="{StaticResource GrayThemeUI.Button.Square}"
-                helper:OverlayHelper.IsDefault="False"
-                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Button Width="60" Height="60"
-                Grid.Row="0" Grid.Column="1" Style="{StaticResource GrayThemeUI.Button.ImageMask}">
-            <helper:MaskHelper.DefaultMask>
-                <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI_Test;component/Resource/Test1.png"/>
-            </helper:MaskHelper.DefaultMask>
-        </Button>
-        <Button helper:MaskHelper.DefaultMask="{StaticResource GrayThemeUI.Mask.Check}" Width="60" Height="60"
-                helper:MaskHelper.Background_Overlay_Visibility="Visible"
-                helper:MaskHelper.Background_Overlay_Outline_Thickness="2.0"
-                Grid.Row="0" Grid.Column="2" Style="{StaticResource GrayThemeUI.Button.ImageMask}"/>
-        <ToggleButton Content=" To Dark (ToggleButton) " Height="30" Margin="10"
-                      Grid.Row="1" Grid.Column="0" Style="{StaticResource GrayThemeUI.ToggleButton.Square}"
-                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                      Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked"/>
-        <ToggleButton Content=" ToggleButton " Width="120" Height="30" Margin="5"
-                      Grid.Row="1" Grid.Column="1" Style="{StaticResource GrayThemeUI.ToggleButton.ImageMask}"
-                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-            <helper:MaskHelper.DefaultMask>
-                <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI_Test;component/Resource/Test1.png"/>
-            </helper:MaskHelper.DefaultMask>
-            <helper:MaskHelper.CheckedMask>
-                <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI_Test;component/Resource/Test2.png"/>
-            </helper:MaskHelper.CheckedMask>
-        </ToggleButton>
+        <StackPanel Orientation="Vertical">
+            
+            <StackPanel Orientation="Horizontal">
+                <Button
+                    Content=" Button "
+                    Width="120" Height="25"
+                    Style="{StaticResource GrayThemeUI.Button.Square}"
+                    helper:OverlayHelper.IsDefault="True"
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Button Width="25" Height="25" Margin="5,0" Click="Button_Click">
+                    <Button.Style>
+                        <StaticResource ResourceKey="GrayThemeUI.Button.ImageMask"/>
+                    </Button.Style>
+                    <helper:MaskHelper.DefaultMask>
+                        <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI_Test;component/Resource/Test1.png"/>
+                    </helper:MaskHelper.DefaultMask>
+                </Button>
+                
+                <Button Width="25" Height="25" Margin="5,0" BorderThickness="1.0"
+                        helper:OverlayHelper.IsDefault="True"
+                        helper:MaskHelper.Background_Overlay_Visibility="Visible"
+                        helper:MaskHelper.Background_Overlay_Outline_Thickness="1.0">
+                    <Button.Style>
+                        <StaticResource ResourceKey="GrayThemeUI.Button.ImageMask"/>
+                    </Button.Style>
+                    <helper:MaskHelper.DefaultMask>
+                        <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI_Test;component/Resource/Test2.png"/>
+                    </helper:MaskHelper.DefaultMask>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <ToggleButton
+                    Content=" To Dark (ToggleButton) "
+                    Height="25" Width="200" Margin="5,0"
+                    Grid.Row="1" Grid.Column="0" Style="{StaticResource GrayThemeUI.ToggleButton.Square}"
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    helper:OverlayHelper.IsDefault="True"
+                    Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked"/>
+                <ToggleButton
+                    Content=" ToggleButton " Width="30" Height="30" Margin="5,0"
+                    Grid.Row="1" Grid.Column="1" Style="{StaticResource GrayThemeUI.ToggleButton.ImageMask}"
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                    <helper:MaskHelper.DefaultMask>
+                        <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI_Test;component/Resource/Test1.png"/>
+                    </helper:MaskHelper.DefaultMask>
+                    <helper:MaskHelper.CheckedMask>
+                        <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI_Test;component/Resource/Test2.png"/>
+                    </helper:MaskHelper.CheckedMask>
+                </ToggleButton>
+                <ToggleButton Content=" ToggleButton " Width="30" Height="30" Margin="5,0" Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                    <ToggleButton.Style>
+                        <StaticResource ResourceKey="GrayThemeUI.ToggleButton.ImageMask"/>
+                    </ToggleButton.Style>
+                    <helper:MaskHelper.DefaultMask>
+                        <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI_Test;component/Resource/Test1.png"/>
+                    </helper:MaskHelper.DefaultMask>
+                    <helper:MaskHelper.CheckedMask>
+                        <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI_Test;component/Resource/Test2.png"/>
+                    </helper:MaskHelper.CheckedMask>
+                </ToggleButton>
+            </StackPanel>
+        </StackPanel>
+        
+
+
+        
+
+
+
 
     </Grid>
 </Page>

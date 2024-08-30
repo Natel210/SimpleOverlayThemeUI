@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using GrayThemeUI.Theme;
+using System.Windows;
 
 namespace GrayThemeUI_Test
 {
@@ -7,6 +8,10 @@ namespace GrayThemeUI_Test
     /// </summary>
     public partial class App : Application
     {
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            ThemeSettingDataManager.InitializeModule();
+        }
     }
 
 }

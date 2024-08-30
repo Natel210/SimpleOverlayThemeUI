@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel;
+using System.IO;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
 using utility.ini;
@@ -34,29 +36,29 @@ namespace GrayThemeUI.Theme
             tempData.FontSize.Header6.Value = FontSize_Header6;
             tempData.FontSize.Default.Value = FontSize_Default;
 
-            tempData.DefaultBrush.Foreground.Value = DefaultBrush_Foreground;
-            tempData.DefaultBrush.Foreground_Disable.Value = DefaultBrush_Foreground_Disable;
-            tempData.DefaultBrush.Background.Value = DefaultBrush_Background;
-            tempData.DefaultBrush.Outline.Value = DefaultBrush_Outline;
-            tempData.DefaultBrush.Line.Value = DefaultBrush_Line;
-            tempData.DefaultBrush.Highlight.Value = DefaultBrush_Highlight;
-            tempData.DefaultBrush.Selection.Value = DefaultBrush_Selection;
-            tempData.DefaultBrush.Mask.Value = DefaultBrush_Mask;
+            tempData.DefaultBrush.Foreground = DefaultBrush_Foreground;
+            tempData.DefaultBrush.Foreground_Disable = DefaultBrush_Foreground_Disable;
+            tempData.DefaultBrush.Background = DefaultBrush_Background;
+            tempData.DefaultBrush.Outline = DefaultBrush_Outline;
+            tempData.DefaultBrush.Line = DefaultBrush_Line;
+            tempData.DefaultBrush.Highlight = DefaultBrush_Highlight;
+            tempData.DefaultBrush.Selection = DefaultBrush_Selection;
+            tempData.DefaultBrush.Mask = DefaultBrush_Mask;
 
-            tempData.OverlayBoaderBackground.Disable.Value = OverlayBoaderBackground_Disable;
-            tempData.OverlayBoaderBackground.Default.Value = OverlayBoaderBackground_Default;
-            tempData.OverlayBoaderBackground.MouseOver.Value = OverlayBoaderBackground_MouseOver;
-            tempData.OverlayBoaderBackground.Active.Value = OverlayBoaderBackground_Active;
+            tempData.OverlayBoaderBackground.Disable = OverlayBoaderBackground_Disable;
+            tempData.OverlayBoaderBackground.Default = OverlayBoaderBackground_Default;
+            tempData.OverlayBoaderBackground.MouseOver = OverlayBoaderBackground_MouseOver;
+            tempData.OverlayBoaderBackground.Active = OverlayBoaderBackground_Active;
 
-            tempData.OverlayBoaderOutline.Disable.Value = OverlayBoaderOutline_Disable;
-            tempData.OverlayBoaderOutline.Default.Value = OverlayBoaderOutline_Default;
-            tempData.OverlayBoaderOutline.MouseOver.Value = OverlayBoaderOutline_MouseOver;
-            tempData.OverlayBoaderOutline.Active.Value = OverlayBoaderOutline_Active;
+            tempData.OverlayBoaderOutline.Disable = OverlayBoaderOutline_Disable;
+            tempData.OverlayBoaderOutline.Default = OverlayBoaderOutline_Default;
+            tempData.OverlayBoaderOutline.MouseOver = OverlayBoaderOutline_MouseOver;
+            tempData.OverlayBoaderOutline.Active = OverlayBoaderOutline_Active;
 
-            tempData.OverlayMaskForeground.Disable.Value = OverlayMaskForeground_Disable;
-            tempData.OverlayMaskForeground.Default.Value = OverlayMaskForeground_Default;
-            tempData.OverlayMaskForeground.MouseOver.Value = OverlayMaskForeground_MouseOver;
-            tempData.OverlayMaskForeground.Active.Value = OverlayMaskForeground_Active;
+            tempData.OverlayMaskForeground.Disable = OverlayMaskForeground_Disable;
+            tempData.OverlayMaskForeground.Default = OverlayMaskForeground_Default;
+            tempData.OverlayMaskForeground.MouseOver = OverlayMaskForeground_MouseOver;
+            tempData.OverlayMaskForeground.Active = OverlayMaskForeground_Active;
 
             DataDictionary[name] = tempData;
             tempData.Save();
@@ -75,11 +77,18 @@ namespace GrayThemeUI.Theme
         }
 
 
-
-        static ThemeSettingDataManager()
+        public static void InitializeModule()
         {
             Load();
             MakeDefaultTheme();
+            Application.Current.Resources.MergedDictionaries.Add(new ThemeSetting());
+        }
+
+        static ThemeSettingDataManager()
+        {
+            //Load();
+            //MakeDefaultTheme();
+            //Application.Current.Resources.MergedDictionaries.Add(new ThemeSetting() );
         }
 
 
@@ -115,95 +124,6 @@ namespace GrayThemeUI.Theme
             return !result;
         }
 
-        private static void MakeDefaultTheme()
-        {
-            #region Make Light Theme
-            CreateThemeSettingData("Light", "./GrayThemeUI/ThemeDataItem/Light.data");
-            if (GetThemeSettingData("Light") is ThemeSettingData lightTheme)
-            {
-                lightTheme.FontSize.Header1.DefaultValue = InnerItems.FontSize.BaceValue.Header1;
-                lightTheme.FontSize.Header2.DefaultValue = InnerItems.FontSize.BaceValue.Header2;
-                lightTheme.FontSize.Header3.DefaultValue = InnerItems.FontSize.BaceValue.Header3;
-                lightTheme.FontSize.Header4.DefaultValue = InnerItems.FontSize.BaceValue.Header4;
-                lightTheme.FontSize.Header5.DefaultValue = InnerItems.FontSize.BaceValue.Header5;
-                lightTheme.FontSize.Header6.DefaultValue = InnerItems.FontSize.BaceValue.Header6;
-                lightTheme.FontSize.Default.DefaultValue = InnerItems.FontSize.BaceValue.Default;
-
-                lightTheme.DefaultBrush.Foreground.DefaultValue = InnerItems.DefaultBrush.BaceValue.Foreground;
-                lightTheme.DefaultBrush.Foreground_Disable.DefaultValue = InnerItems.DefaultBrush.BaceValue.Foreground_Disable;
-                lightTheme.DefaultBrush.Background.DefaultValue = InnerItems.DefaultBrush.BaceValue.Background;
-                lightTheme.DefaultBrush.Outline.DefaultValue = InnerItems.DefaultBrush.BaceValue.Outline;
-                lightTheme.DefaultBrush.Line.DefaultValue = InnerItems.DefaultBrush.BaceValue.Line;
-                lightTheme.DefaultBrush.Highlight.DefaultValue = InnerItems.DefaultBrush.BaceValue.Highlight;
-                lightTheme.DefaultBrush.Selection.DefaultValue = InnerItems.DefaultBrush.BaceValue.Selection;
-                lightTheme.DefaultBrush.Mask.DefaultValue = InnerItems.DefaultBrush.BaceValue.Mask;
-
-                lightTheme.OverlayBoaderBackground.Disable.DefaultValue = InnerItems.OverlayBoaderBackground.BaceValue.Disable;
-                lightTheme.OverlayBoaderBackground.Default.DefaultValue = InnerItems.OverlayBoaderBackground.BaceValue.Default;
-                lightTheme.OverlayBoaderBackground.MouseOver.DefaultValue = InnerItems.OverlayBoaderBackground.BaceValue.MouseOver;
-                lightTheme.OverlayBoaderBackground.Active.DefaultValue = InnerItems.OverlayBoaderBackground.BaceValue.Active;
-
-                lightTheme.OverlayBoaderOutline.Disable.DefaultValue = InnerItems.OverlayBoaderOutline.BaceValue.Disable;
-                lightTheme.OverlayBoaderOutline.Default.DefaultValue = InnerItems.OverlayBoaderOutline.BaceValue.Default;
-                lightTheme.OverlayBoaderOutline.MouseOver.DefaultValue = InnerItems.OverlayBoaderOutline.BaceValue.MouseOver;
-                lightTheme.OverlayBoaderOutline.Active.DefaultValue = InnerItems.OverlayBoaderOutline.BaceValue.Active;
-
-                lightTheme.OverlayMaskForeground.Disable.DefaultValue = InnerItems.OverlayMaskForeground.BaceValue.Disable;
-                lightTheme.OverlayMaskForeground.Default.DefaultValue = InnerItems.OverlayMaskForeground.BaceValue.Default;
-                lightTheme.OverlayMaskForeground.MouseOver.DefaultValue = InnerItems.OverlayMaskForeground.BaceValue.MouseOver;
-                lightTheme.OverlayMaskForeground.Active.DefaultValue = InnerItems.OverlayMaskForeground.BaceValue.Active;
-
-                lightTheme.ResetDefault();
-            }
-            else
-                throw new Exception("no making theme [Light].");
-            #endregion
-            #region Make Dark Theme
-            CreateThemeSettingData("Dark", "./GrayThemeUI/ThemeDataItem/Dark.data");
-
-            if (GetThemeSettingData("Dark") is ThemeSettingData darkTheme)
-            {
-                darkTheme.FontSize.Header1.DefaultValue = InnerItems.FontSize.BaceValue.Header1;
-                darkTheme.FontSize.Header2.DefaultValue = InnerItems.FontSize.BaceValue.Header2;
-                darkTheme.FontSize.Header3.DefaultValue = InnerItems.FontSize.BaceValue.Header3;
-                darkTheme.FontSize.Header4.DefaultValue = InnerItems.FontSize.BaceValue.Header4;
-                darkTheme.FontSize.Header5.DefaultValue = InnerItems.FontSize.BaceValue.Header5;
-                darkTheme.FontSize.Header6.DefaultValue = InnerItems.FontSize.BaceValue.Header6;
-                darkTheme.FontSize.Default.DefaultValue = InnerItems.FontSize.BaceValue.Default;
-
-                darkTheme.DefaultBrush.Foreground.DefaultValue = InnerItems.DefaultBrush.BaceValueDark.Foreground;
-                darkTheme.DefaultBrush.Foreground_Disable.DefaultValue = InnerItems.DefaultBrush.BaceValueDark.Foreground_Disable;
-                darkTheme.DefaultBrush.Background.DefaultValue = InnerItems.DefaultBrush.BaceValueDark.Background;
-                darkTheme.DefaultBrush.Outline.DefaultValue = InnerItems.DefaultBrush.BaceValue.Outline;
-                darkTheme.DefaultBrush.Line.DefaultValue = InnerItems.DefaultBrush.BaceValue.Line;
-                darkTheme.DefaultBrush.Highlight.DefaultValue = InnerItems.DefaultBrush.BaceValue.Highlight;
-                darkTheme.DefaultBrush.Selection.DefaultValue = InnerItems.DefaultBrush.BaceValue.Selection;
-                darkTheme.DefaultBrush.Mask.DefaultValue = InnerItems.DefaultBrush.BaceValue.Mask;
-
-                darkTheme.OverlayBoaderBackground.Disable.DefaultValue = InnerItems.OverlayBoaderBackground.BaceValueDark.Disable;
-                darkTheme.OverlayBoaderBackground.Default.DefaultValue = InnerItems.OverlayBoaderBackground.BaceValueDark.Default;
-                darkTheme.OverlayBoaderBackground.MouseOver.DefaultValue = InnerItems.OverlayBoaderBackground.BaceValueDark.MouseOver;
-                darkTheme.OverlayBoaderBackground.Active.DefaultValue = InnerItems.OverlayBoaderBackground.BaceValueDark.Active;
-
-                darkTheme.OverlayBoaderOutline.Disable.DefaultValue = InnerItems.OverlayBoaderOutline.BaceValueDark.Disable;
-                darkTheme.OverlayBoaderOutline.Default.DefaultValue = InnerItems.OverlayBoaderOutline.BaceValueDark.Default;
-                darkTheme.OverlayBoaderOutline.MouseOver.DefaultValue = InnerItems.OverlayBoaderOutline.BaceValueDark.MouseOver;
-                darkTheme.OverlayBoaderOutline.Active.DefaultValue = InnerItems.OverlayBoaderOutline.BaceValueDark.Active;
-
-                darkTheme.OverlayMaskForeground.Disable.DefaultValue = InnerItems.OverlayMaskForeground.BaceValueDark.Disable;
-                darkTheme.OverlayMaskForeground.Default.DefaultValue = InnerItems.OverlayMaskForeground.BaceValueDark.Default;
-                darkTheme.OverlayMaskForeground.MouseOver.DefaultValue = InnerItems.OverlayMaskForeground.BaceValueDark.MouseOver;
-                darkTheme.OverlayMaskForeground.Active.DefaultValue = InnerItems.OverlayMaskForeground.BaceValueDark.Active;
-
-                darkTheme.ResetDefault();
-            }
-            else
-                throw new Exception("no making theme [Dark].");
-            #endregion
-            CurrentThemeName = "Light";
-            Save();
-        }
-
         public static bool Save()
         {
             if (_iniFile is null)
@@ -215,9 +135,105 @@ namespace GrayThemeUI.Theme
             _iniFile.Save();
             bool result = false;
             foreach (var item in DataDictionary)
+            {
                 result |= !item.Value.Save();
+                var rootPath = Path.GetDirectoryName(_iniFile.FilePath) ?? "./GrayThemeUI/";
+                item.Value.MakeDummyXaml(new DirectoryInfo(Path.Combine(rootPath, "ThemeDummy")));
+            }
+                
+            //Make Dummy Data
             return !result;
         }
+
+        private static void MakeDefaultTheme()
+        {
+            #region Make Light Theme
+            CreateThemeSettingData("Light", "./GrayThemeUI/ThemeDataItem/Light.data");
+            if (GetThemeSettingData("Light") is ThemeSettingData lightTheme)
+            {
+                lightTheme.FontSize.Header1.Value = InnerItems.FontSize.BaceValue.Header1;
+                lightTheme.FontSize.Header2.Value = InnerItems.FontSize.BaceValue.Header2;
+                lightTheme.FontSize.Header3.Value = InnerItems.FontSize.BaceValue.Header3;
+                lightTheme.FontSize.Header4.Value = InnerItems.FontSize.BaceValue.Header4;
+                lightTheme.FontSize.Header5.Value = InnerItems.FontSize.BaceValue.Header5;
+                lightTheme.FontSize.Header6.Value = InnerItems.FontSize.BaceValue.Header6;
+                lightTheme.FontSize.Default.Value = InnerItems.FontSize.BaceValue.Default;
+
+                lightTheme.DefaultBrush.Foreground = new(InnerItems.DefaultBrush.BaceValue.Foreground);
+                lightTheme.DefaultBrush.Foreground_Disable = new(InnerItems.DefaultBrush.BaceValue.Foreground_Disable);
+                lightTheme.DefaultBrush.Background = new(InnerItems.DefaultBrush.BaceValue.Background);
+                lightTheme.DefaultBrush.Outline = new(InnerItems.DefaultBrush.BaceValue.Outline);
+                lightTheme.DefaultBrush.Line = new(InnerItems.DefaultBrush.BaceValue.Line);
+                lightTheme.DefaultBrush.Highlight = new(InnerItems.DefaultBrush.BaceValue.Highlight);
+                lightTheme.DefaultBrush.Selection = new(InnerItems.DefaultBrush.BaceValue.Selection);
+                lightTheme.DefaultBrush.Mask = new(InnerItems.DefaultBrush.BaceValue.Mask);
+
+                lightTheme.OverlayBoaderBackground.Disable = new(InnerItems.OverlayBoaderBackground.BaceValue.Disable);
+                lightTheme.OverlayBoaderBackground.Default = new(InnerItems.OverlayBoaderBackground.BaceValue.Default);
+                lightTheme.OverlayBoaderBackground.MouseOver = new(InnerItems.OverlayBoaderBackground.BaceValue.MouseOver);
+                lightTheme.OverlayBoaderBackground.Active = new(InnerItems.OverlayBoaderBackground.BaceValue.Active);
+
+                lightTheme.OverlayBoaderOutline.Disable = new(InnerItems.OverlayBoaderOutline.BaceValue.Disable);
+                lightTheme.OverlayBoaderOutline.Default = new(InnerItems.OverlayBoaderOutline.BaceValue.Default);
+                lightTheme.OverlayBoaderOutline.MouseOver = new(InnerItems.OverlayBoaderOutline.BaceValue.MouseOver);
+                lightTheme.OverlayBoaderOutline.Active = new(InnerItems.OverlayBoaderOutline.BaceValue.Active);
+
+                lightTheme.OverlayMaskForeground.Disable = new(InnerItems.OverlayMaskForeground.BaceValue.Disable);
+                lightTheme.OverlayMaskForeground.Default = new(InnerItems.OverlayMaskForeground.BaceValue.Default);
+                lightTheme.OverlayMaskForeground.MouseOver = new(InnerItems.OverlayMaskForeground.BaceValue.MouseOver);
+                lightTheme.OverlayMaskForeground.Active = new(InnerItems.OverlayMaskForeground.BaceValue.Active);
+
+                //lightTheme.ResetDefault();
+            }
+            else
+                throw new Exception("no making theme [Light].");
+            #endregion
+            #region Make Dark Theme
+            CreateThemeSettingData("Dark", "./GrayThemeUI/ThemeDataItem/Dark.data");
+
+            if (GetThemeSettingData("Dark") is ThemeSettingData darkTheme)
+            {
+                darkTheme.FontSize.Header1.Value = InnerItems.FontSize.BaceValue.Header1;
+                darkTheme.FontSize.Header2.Value = InnerItems.FontSize.BaceValue.Header2;
+                darkTheme.FontSize.Header3.Value = InnerItems.FontSize.BaceValue.Header3;
+                darkTheme.FontSize.Header4.Value = InnerItems.FontSize.BaceValue.Header4;
+                darkTheme.FontSize.Header5.Value = InnerItems.FontSize.BaceValue.Header5;
+                darkTheme.FontSize.Header6.Value = InnerItems.FontSize.BaceValue.Header6;
+                darkTheme.FontSize.Default.Value = InnerItems.FontSize.BaceValue.Default;
+
+                darkTheme.DefaultBrush.Foreground = new(InnerItems.DefaultBrush.BaceValueDark.Foreground);
+                darkTheme.DefaultBrush.Foreground_Disable = new(InnerItems.DefaultBrush.BaceValueDark.Foreground_Disable);
+                darkTheme.DefaultBrush.Background = new(InnerItems.DefaultBrush.BaceValueDark.Background);
+                darkTheme.DefaultBrush.Outline = new(InnerItems.DefaultBrush.BaceValue.Outline);
+                darkTheme.DefaultBrush.Line = new(InnerItems.DefaultBrush.BaceValue.Line);
+                darkTheme.DefaultBrush.Highlight = new(InnerItems.DefaultBrush.BaceValue.Highlight);
+                darkTheme.DefaultBrush.Selection = new(InnerItems.DefaultBrush.BaceValue.Selection);
+                darkTheme.DefaultBrush.Mask = new(InnerItems.DefaultBrush.BaceValue.Mask);
+
+                darkTheme.OverlayBoaderBackground.Disable = new(InnerItems.OverlayBoaderBackground.BaceValueDark.Disable);
+                darkTheme.OverlayBoaderBackground.Default = new(InnerItems.OverlayBoaderBackground.BaceValueDark.Default);
+                darkTheme.OverlayBoaderBackground.MouseOver = new(InnerItems.OverlayBoaderBackground.BaceValueDark.MouseOver);
+                darkTheme.OverlayBoaderBackground.Active = new(InnerItems.OverlayBoaderBackground.BaceValueDark.Active);
+
+                darkTheme.OverlayBoaderOutline.Disable = new(InnerItems.OverlayBoaderOutline.BaceValueDark.Disable);
+                darkTheme.OverlayBoaderOutline.Default = new(InnerItems.OverlayBoaderOutline.BaceValueDark.Default);
+                darkTheme.OverlayBoaderOutline.MouseOver = new(InnerItems.OverlayBoaderOutline.BaceValueDark.MouseOver);
+                darkTheme.OverlayBoaderOutline.Active = new(InnerItems.OverlayBoaderOutline.BaceValueDark.Active);
+
+                darkTheme.OverlayMaskForeground.Disable = new(InnerItems.OverlayMaskForeground.BaceValueDark.Disable);
+                darkTheme.OverlayMaskForeground.Default = new(InnerItems.OverlayMaskForeground.BaceValueDark.Default);
+                darkTheme.OverlayMaskForeground.MouseOver = new(InnerItems.OverlayMaskForeground.BaceValueDark.MouseOver);
+                darkTheme.OverlayMaskForeground.Active = new(InnerItems.OverlayMaskForeground.BaceValueDark.Active);
+
+                //darkTheme.ResetDefault();
+            }
+            else
+                throw new Exception("no making theme [Dark].");
+            #endregion
+            CurrentThemeName = "Light";
+            Save();
+        }
+
     }
 
     public static partial class ThemeSettingDataManager
@@ -251,30 +267,49 @@ namespace GrayThemeUI.Theme
                     FontSize_Header6 = getTheme.FontSize.Header6.Value;
                     FontSize_Default = getTheme.FontSize.Default.Value;
 
-                    DefaultBrush_Foreground = getTheme.DefaultBrush.Foreground.Value;
-                    DefaultBrush_Foreground_Disable = getTheme.DefaultBrush.Foreground_Disable.Value;
-                    DefaultBrush_Background = getTheme.DefaultBrush.Background.Value;
-                    DefaultBrush_Outline = getTheme.DefaultBrush.Outline.Value;
-                    DefaultBrush_Line = getTheme.DefaultBrush.Line.Value;
-                    DefaultBrush_Highlight = getTheme.DefaultBrush.Highlight.Value;
-                    DefaultBrush_Selection = getTheme.DefaultBrush.Selection.Value;
-                    DefaultBrush_Mask = getTheme.DefaultBrush.Mask.Value;
+                    DefaultBrush_Foreground = new(getTheme.DefaultBrush.Foreground.Color);
+                    DefaultBrush_Foreground_Disable = new(getTheme.DefaultBrush.Foreground_Disable.Color);
+                    DefaultBrush_Background = new(getTheme.DefaultBrush.Background.Color);
+                    DefaultBrush_Outline = new(getTheme.DefaultBrush.Outline.Color);
+                    DefaultBrush_Line = new(getTheme.DefaultBrush.Line.Color);
+                    DefaultBrush_Highlight = new(getTheme.DefaultBrush.Highlight.Color);
+                    DefaultBrush_Selection = new(getTheme.DefaultBrush.Selection.Color);
+                    DefaultBrush_Mask = new(getTheme.DefaultBrush.Mask.Color);
 
-                    OverlayBoaderBackground_Disable = getTheme.OverlayBoaderBackground.Disable.Value;
-                    OverlayBoaderBackground_Default = getTheme.OverlayBoaderBackground.Default.Value;
-                    OverlayBoaderBackground_MouseOver = getTheme.OverlayBoaderBackground.MouseOver.Value;
-                    OverlayBoaderBackground_Active = getTheme.OverlayBoaderBackground.Active.Value;
+                    OverlayBoaderBackground_Disable = new(getTheme.OverlayBoaderBackground.Disable.Color);
+                    OverlayBoaderBackground_Default = new(getTheme.OverlayBoaderBackground.Default.Color);
+                    OverlayBoaderBackground_MouseOver = new(getTheme.OverlayBoaderBackground.MouseOver.Color);
+                    OverlayBoaderBackground_Active = new(getTheme.OverlayBoaderBackground.Active.Color);
 
-                    OverlayBoaderOutline_Disable = getTheme.OverlayBoaderOutline.Disable.Value;
-                    OverlayBoaderOutline_Default = getTheme.OverlayBoaderOutline.Default.Value;
-                    OverlayBoaderOutline_MouseOver = getTheme.OverlayBoaderOutline.MouseOver.Value;
-                    OverlayBoaderOutline_Active = getTheme.OverlayBoaderOutline.Active.Value;
+                    OverlayBoaderOutline_Disable = new(getTheme.OverlayBoaderOutline.Disable.Color);
+                    OverlayBoaderOutline_Default = new(getTheme.OverlayBoaderOutline.Default.Color);
+                    OverlayBoaderOutline_MouseOver = new(getTheme.OverlayBoaderOutline.MouseOver.Color);
+                    OverlayBoaderOutline_Active = new(getTheme.OverlayBoaderOutline.Active.Color);
 
-                    OverlayMaskForeground_Disable = getTheme.OverlayMaskForeground.Disable.Value;
-                    OverlayMaskForeground_Default = getTheme.OverlayMaskForeground.Default.Value;
-                    OverlayMaskForeground_MouseOver = getTheme.OverlayMaskForeground.MouseOver.Value;
-                    OverlayMaskForeground_Active = getTheme.OverlayMaskForeground.Active.Value;
+                    OverlayMaskForeground_Disable = new(getTheme.OverlayMaskForeground.Disable.Color);
+                    OverlayMaskForeground_Default = new(getTheme.OverlayMaskForeground.Default.Color);
+                    OverlayMaskForeground_MouseOver = new(getTheme.OverlayMaskForeground.MouseOver.Color);
+                    OverlayMaskForeground_Active = new(getTheme.OverlayMaskForeground.Active.Color);
                     OnPropertyChanged(nameof(ThemeSettingDataManager.CurrentThemeName));
+
+                    var dictionaries = Application.Current.Resources.MergedDictionaries;
+
+                    // 특정 타입의 리소스 사전 찾기 (ThemeSetting 타입)
+                    var existingDictionary = dictionaries.OfType<ThemeSetting>().FirstOrDefault();
+
+                    if (existingDictionary != null)
+                    {
+                        // 기존 ThemeSetting 리소스 사전을 새로운 것으로 교체
+                        int index = dictionaries.IndexOf(existingDictionary);
+                        dictionaries[index] = new ThemeSetting(); // 새로운 ThemeSetting 인스턴스를 추가
+                    }
+                    else
+                    {
+                        // 기존 ThemeSetting이 없다면 새로 추가
+                        dictionaries.Add(new ThemeSetting());
+                    }
+
+                    Application.Current.Resources.MergedDictionaries.Add(new ThemeSetting());
                 }
             }
         }
@@ -364,7 +399,7 @@ namespace GrayThemeUI.Theme
             }
         }
         //DefaultBrush
-        public static Color DefaultBrush_Foreground
+        public static SolidColorBrush DefaultBrush_Foreground
         {
             get => _defaultBrush_Foreground;
             set
@@ -376,7 +411,7 @@ namespace GrayThemeUI.Theme
                 }
             }
         }
-        public static Color DefaultBrush_Foreground_Disable
+        public static SolidColorBrush DefaultBrush_Foreground_Disable
         {
             get => _defaultBrush_Foreground_Disable;
             set
@@ -388,7 +423,7 @@ namespace GrayThemeUI.Theme
                 }
             }
         }
-        public static Color DefaultBrush_Background
+        public static SolidColorBrush DefaultBrush_Background
         {
             get => _defaultBrush_Background;
             set
@@ -400,7 +435,7 @@ namespace GrayThemeUI.Theme
                 }
             }
         }
-        public static Color DefaultBrush_Outline
+        public static SolidColorBrush DefaultBrush_Outline
         {
             get => _defaultBrush_Outline;
             set
@@ -412,7 +447,7 @@ namespace GrayThemeUI.Theme
                 }
             }
         }
-        public static Color DefaultBrush_Line
+        public static SolidColorBrush DefaultBrush_Line
         {
             get => _defaultBrush_Line;
             set
@@ -424,7 +459,7 @@ namespace GrayThemeUI.Theme
                 }
             }
         }
-        public static Color DefaultBrush_Highlight
+        public static SolidColorBrush DefaultBrush_Highlight
         {
             get => _defaultBrush_Highlight;
             set
@@ -436,7 +471,7 @@ namespace GrayThemeUI.Theme
                 }
             }
         }
-        public static Color DefaultBrush_Selection
+        public static SolidColorBrush DefaultBrush_Selection
         {
             get => _defaultBrush_Selection;
             set
@@ -448,7 +483,7 @@ namespace GrayThemeUI.Theme
                 }
             }
         }
-        public static Color DefaultBrush_Mask
+        public static SolidColorBrush DefaultBrush_Mask
         {
             get => _defaultBrush_Mask;
             set
@@ -461,7 +496,7 @@ namespace GrayThemeUI.Theme
             }
         }
         //OverlayBoader.Background
-        public static Color OverlayBoaderBackground_Disable
+        public static SolidColorBrush OverlayBoaderBackground_Disable
         {
             get => _overlayBoaderBackground_Disable;
             set
@@ -473,7 +508,7 @@ namespace GrayThemeUI.Theme
                 }
             }
         }
-        public static Color OverlayBoaderBackground_Default
+        public static SolidColorBrush OverlayBoaderBackground_Default
         {
             get => _overlayBoaderBackground_Default;
             set
@@ -485,7 +520,7 @@ namespace GrayThemeUI.Theme
                 }
             }
         }
-        public static Color OverlayBoaderBackground_MouseOver
+        public static SolidColorBrush OverlayBoaderBackground_MouseOver
         {
             get => _overlayBoaderBackground_MouseOver;
             set
@@ -497,7 +532,7 @@ namespace GrayThemeUI.Theme
                 }
             }
         }
-        public static Color OverlayBoaderBackground_Active
+        public static SolidColorBrush OverlayBoaderBackground_Active
         {
             get => _overlayBoaderBackground_Active;
             set
@@ -510,7 +545,7 @@ namespace GrayThemeUI.Theme
             }
         }
         //OverlayBoader.Outline
-        public static Color OverlayBoaderOutline_Disable
+        public static SolidColorBrush OverlayBoaderOutline_Disable
         {
             get => _overlayBoaderOutline_Disable;
             set
@@ -522,7 +557,7 @@ namespace GrayThemeUI.Theme
                 }
             }
         }
-        public static Color OverlayBoaderOutline_Default
+        public static SolidColorBrush OverlayBoaderOutline_Default
         {
             get => _overlayBoaderOutline_Default;
             set
@@ -534,7 +569,7 @@ namespace GrayThemeUI.Theme
                 }
             }
         }
-        public static Color OverlayBoaderOutline_MouseOver
+        public static SolidColorBrush OverlayBoaderOutline_MouseOver
         {
             get => _overlayBoaderOutline_MouseOver;
             set
@@ -546,7 +581,7 @@ namespace GrayThemeUI.Theme
                 }
             }
         }
-        public static Color OverlayBoaderOutline_Active
+        public static SolidColorBrush OverlayBoaderOutline_Active
         {
             get => _overlayBoaderOutline_Active;
             set
@@ -559,7 +594,7 @@ namespace GrayThemeUI.Theme
             }
         }
         //OverlayMask.Foreground
-        public static Color OverlayMaskForeground_Disable
+        public static SolidColorBrush OverlayMaskForeground_Disable
         {
             get => _overlayMaskForeground_Disable;
             set
@@ -571,7 +606,7 @@ namespace GrayThemeUI.Theme
                 }
             }
         }
-        public static Color OverlayMaskForeground_Default
+        public static SolidColorBrush OverlayMaskForeground_Default
         {
             get => _overlayMaskForeground_Default;
             set
@@ -583,7 +618,7 @@ namespace GrayThemeUI.Theme
                 }
             }
         }
-        public static Color OverlayMaskForeground_MouseOver
+        public static SolidColorBrush OverlayMaskForeground_MouseOver
         {
             get => _overlayMaskForeground_MouseOver;
             set
@@ -595,7 +630,7 @@ namespace GrayThemeUI.Theme
                 }
             }
         }
-        public static Color OverlayMaskForeground_Active
+        public static SolidColorBrush OverlayMaskForeground_Active
         {
             get => _overlayMaskForeground_Active;
             set
@@ -621,29 +656,29 @@ namespace GrayThemeUI.Theme
         private static double _fontSize_Header6 = InnerItems.FontSize.BaceValue.Header6;
         private static double _fontSize_Default = InnerItems.FontSize.BaceValue.Default;
         //DefaultBrush
-        private static Color _defaultBrush_Foreground = InnerItems.DefaultBrush.BaceValue.Foreground;
-        private static Color _defaultBrush_Foreground_Disable = InnerItems.DefaultBrush.BaceValue.Foreground_Disable;
-        private static Color _defaultBrush_Background = InnerItems.DefaultBrush.BaceValue.Background;
-        private static Color _defaultBrush_Outline = InnerItems.DefaultBrush.BaceValue.Outline;
-        private static Color _defaultBrush_Line = InnerItems.DefaultBrush.BaceValue.Line;
-        private static Color _defaultBrush_Highlight = InnerItems.DefaultBrush.BaceValue.Highlight;
-        private static Color _defaultBrush_Selection = InnerItems.DefaultBrush.BaceValue.Selection;
-        private static Color _defaultBrush_Mask = InnerItems.DefaultBrush.BaceValue.Mask;
+        private static SolidColorBrush _defaultBrush_Foreground = new(InnerItems.DefaultBrush.BaceValue.Foreground);
+        private static SolidColorBrush _defaultBrush_Foreground_Disable = new(InnerItems.DefaultBrush.BaceValue.Foreground_Disable);
+        private static SolidColorBrush _defaultBrush_Background = new(InnerItems.DefaultBrush.BaceValue.Background);
+        private static SolidColorBrush _defaultBrush_Outline = new(InnerItems.DefaultBrush.BaceValue.Outline);
+        private static SolidColorBrush _defaultBrush_Line = new(InnerItems.DefaultBrush.BaceValue.Line);
+        private static SolidColorBrush _defaultBrush_Highlight = new(InnerItems.DefaultBrush.BaceValue.Highlight);
+        private static SolidColorBrush _defaultBrush_Selection = new(InnerItems.DefaultBrush.BaceValue.Selection);
+        private static SolidColorBrush _defaultBrush_Mask = new(InnerItems.DefaultBrush.BaceValue.Mask);
         //OverlayBoader.Background
-        private static Color _overlayBoaderBackground_Disable = InnerItems.OverlayBoaderBackground.BaceValue.Disable;
-        private static Color _overlayBoaderBackground_Default = InnerItems.OverlayBoaderBackground.BaceValue.Default;
-        private static Color _overlayBoaderBackground_MouseOver = InnerItems.OverlayBoaderBackground.BaceValue.MouseOver;
-        private static Color _overlayBoaderBackground_Active = InnerItems.OverlayBoaderBackground.BaceValue.Active;
+        private static SolidColorBrush _overlayBoaderBackground_Disable = new(InnerItems.OverlayBoaderBackground.BaceValue.Disable);
+        private static SolidColorBrush _overlayBoaderBackground_Default = new(InnerItems.OverlayBoaderBackground.BaceValue.Default);
+        private static SolidColorBrush _overlayBoaderBackground_MouseOver = new(InnerItems.OverlayBoaderBackground.BaceValue.MouseOver);
+        private static SolidColorBrush _overlayBoaderBackground_Active = new(InnerItems.OverlayBoaderBackground.BaceValue.Active);
         //OverlayBoader.Outline
-        private static Color _overlayBoaderOutline_Disable = InnerItems.OverlayBoaderOutline.BaceValue.Disable;
-        private static Color _overlayBoaderOutline_Default = InnerItems.OverlayBoaderOutline.BaceValue.Default;
-        private static Color _overlayBoaderOutline_MouseOver = InnerItems.OverlayBoaderOutline.BaceValue.MouseOver;
-        private static Color _overlayBoaderOutline_Active = InnerItems.OverlayBoaderOutline.BaceValue.Active;
+        private static SolidColorBrush _overlayBoaderOutline_Disable = new(InnerItems.OverlayBoaderOutline.BaceValue.Disable);
+        private static SolidColorBrush _overlayBoaderOutline_Default = new(InnerItems.OverlayBoaderOutline.BaceValue.Default);
+        private static SolidColorBrush _overlayBoaderOutline_MouseOver = new(InnerItems.OverlayBoaderOutline.BaceValue.MouseOver);
+        private static SolidColorBrush _overlayBoaderOutline_Active = new(InnerItems.OverlayBoaderOutline.BaceValue.Active);
         //OverlayMask.Foreground
-        private static Color _overlayMaskForeground_Disable = InnerItems.OverlayMaskForeground.BaceValue.Disable;
-        private static Color _overlayMaskForeground_Default = InnerItems.OverlayMaskForeground.BaceValue.Default;
-        private static Color _overlayMaskForeground_MouseOver = InnerItems.OverlayMaskForeground.BaceValue.MouseOver;
-        private static Color _overlayMaskForeground_Active = InnerItems.OverlayMaskForeground.BaceValue.Active;
+        private static SolidColorBrush _overlayMaskForeground_Disable = new(InnerItems.OverlayMaskForeground.BaceValue.Disable);
+        private static SolidColorBrush _overlayMaskForeground_Default = new(InnerItems.OverlayMaskForeground.BaceValue.Default);
+        private static SolidColorBrush _overlayMaskForeground_MouseOver = new(InnerItems.OverlayMaskForeground.BaceValue.MouseOver);
+        private static SolidColorBrush _overlayMaskForeground_Active = new(InnerItems.OverlayMaskForeground.BaceValue.Active);
         #endregion
 
     }

@@ -5,7 +5,7 @@
                     xmlns:helper="clr-namespace:GrayThemeUI.Helper">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Resource/Resource.xaml" />
-
+        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/Button.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/Overlay.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
@@ -34,6 +34,21 @@
                                         BorderBrush="Transparent"
                                         BorderThickness="0"
                                         Background="{TemplateBinding Background}"/>
+
+                                <ToggleButton x:Name="Arroow" Grid.Column="1" Visibility="Collapsed">
+                                    <ToggleButton.Style>
+                                        <StaticResource ResourceKey="GrayThemeUI.ToggleButton.ImageMask"/>
+                                    </ToggleButton.Style>
+                                    <helper:OverlayHelper.IsDefault>False</helper:OverlayHelper.IsDefault>
+                                    <helper:MaskHelper.Background_Overlay_Visibility>Collapsed</helper:MaskHelper.Background_Overlay_Visibility>
+                                    <helper:MaskHelper.Background_Overlay_Outline_Thickness>0</helper:MaskHelper.Background_Overlay_Outline_Thickness>
+                                    <helper:MaskHelper.DefaultMask>
+                                        <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/up_mask.png" Stretch="Uniform"/>
+                                    </helper:MaskHelper.DefaultMask>
+                                    <helper:MaskHelper.CheckedMask>
+                                        <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/up_mask.png" Stretch="Uniform"/>
+                                    </helper:MaskHelper.CheckedMask>
+                                </ToggleButton>
                                 
                                 
                                 <Border x:Name="Arrow" Grid.Column="1"
@@ -41,7 +56,6 @@
                                         Width="{TemplateBinding ActualHeight}"
                                         Height="{TemplateBinding ActualHeight}"
                                         OpacityMask="{StaticResource GrayThemeUI.Mask.Down}">
-                                    <!--<ImageBrush x:Key="GrayThemeUI.Mask.Up" ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/up_mask.png" Stretch="Uniform"/>-->
                                 </Border>
                                 <Border x:Name="overlayArrow" Grid.Column="1"
                                         Background="{StaticResource GrayThemeUI.Overlay.BorderBrush.Default}"

@@ -6,7 +6,7 @@
                     xmlns:theme="clr-namespace:GrayThemeUI.Theme"
                     xmlns:helper="clr-namespace:GrayThemeUI.Helper">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Theme/Common.xaml" />
+        <!--<ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Theme/Common.xaml" />-->
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Resource/Resource.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/TextBlock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/Button.xaml" />

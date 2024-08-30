@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Windows.Input;
+using System.Windows.Media;
 using utility.ini;
 
 namespace GrayThemeUI.Theme.InnerItems
@@ -26,83 +27,195 @@ namespace GrayThemeUI.Theme.InnerItems
             public static Color Outline { get; } = Color.FromArgb(255, 128, 128, 128);
         }
 
-        public IniItem<Color> Foreground { get; } = new()
+        private IniItem<Color> _foregroundItem = new()
         {
             Section = BaceValue.Section,
-            Key = "Foreground",
+            Key = "Disable",
             Value = BaceValue.Foreground,
             DefaultValue = BaceValue.Foreground
         };
+        private SolidColorBrush _foreground = new(BaceValue.Foreground);
+        public SolidColorBrush Foreground
+        {
+            get => _foreground;
+            set
+            {
+                if (_foreground != value)
+                {
+                    _foreground = value;
+                    _foregroundItem.Value = _foreground.Color;
+                }
+            }
+        }
 
-        public IniItem<Color> Foreground_Disable { get; } = new()
+        private IniItem<Color> _foreground_DisableItem = new()
         {
             Section = BaceValue.Section,
             Key = "Foreground.Disable",
             Value = BaceValue.Foreground_Disable,
             DefaultValue = BaceValue.Foreground_Disable
         };
+        private SolidColorBrush _foreground_Disable = new(BaceValue.Foreground_Disable);
+        public SolidColorBrush Foreground_Disable
+        {
+            get => _foreground_Disable;
+            set
+            {
+                if (_foreground_Disable != value)
+                {
+                    _foreground_Disable = value;
+                    _foreground_DisableItem.Value = _foreground_Disable.Color;
+                }
+            }
+        }
 
-        public IniItem<Color> Background { get; } = new()
+        private IniItem<Color> _backgroundItem = new()
         {
             Section = BaceValue.Section,
             Key = "Background",
             Value = BaceValue.Background,
             DefaultValue = BaceValue.Background
         };
+        private SolidColorBrush _background = new(BaceValue.Background);
+        public SolidColorBrush Background
+        {
+            get => _background;
+            set
+            {
+                if (_background != value)
+                {
+                    _background = value;
+                    _backgroundItem.Value = _background.Color;
+                }
+            }
+        }
 
-        public IniItem<Color> Outline { get; } = new()
+        private IniItem<Color> _outlineItem = new()
         {
             Section = BaceValue.Section,
             Key = "Outline",
             Value = BaceValue.Outline,
             DefaultValue = BaceValue.Outline
         };
+        private SolidColorBrush _outline = new(BaceValue.Outline);
+        public SolidColorBrush Outline
+        {
+            get => _outline;
+            set
+            {
+                if (_outline != value)
+                {
+                    _outline = value;
+                    _outlineItem.Value = _outline.Color;
+                }
+            }
+        }
 
-        public IniItem<Color> Line { get; } = new()
+        private IniItem<Color> _lineItem = new()
         {
             Section = BaceValue.Section,
             Key = "Line",
             Value = BaceValue.Line,
             DefaultValue = BaceValue.Line
         };
+        private SolidColorBrush _line = new(BaceValue.Line);
+        public SolidColorBrush Line
+        {
+            get => _line;
+            set
+            {
+                if (_line != value)
+                {
+                    _line = value;
+                    _lineItem.Value = _line.Color;
+                }
+            }
+        }
 
-        public IniItem<Color> Highlight { get; } = new()
+        private IniItem<Color> _highlightItem = new()
         {
             Section = BaceValue.Section,
             Key = "Highlight",
             Value = BaceValue.Highlight,
             DefaultValue = BaceValue.Highlight
         };
+        private SolidColorBrush _highlight = new(BaceValue.Highlight);
+        public SolidColorBrush Highlight
+        {
+            get => _highlight;
+            set
+            {
+                if (_highlight != value)
+                {
+                    _highlight = value;
+                    _highlightItem.Value = _highlight.Color;
+                }
+            }
+        }
 
-        public IniItem<Color> Selection { get; } = new()
+        private IniItem<Color> _selectionItem = new()
         {
             Section = BaceValue.Section,
             Key = "Selection",
             Value = BaceValue.Selection,
             DefaultValue = BaceValue.Selection
         };
+        private SolidColorBrush _selection = new(BaceValue.Selection);
+        public SolidColorBrush Selection
+        {
+            get => _selection;
+            set
+            {
+                if (_selection != value)
+                {
+                    _selection = value;
+                    _selectionItem.Value = _selection.Color;
+                }
+            }
+        }
 
-        public IniItem<Color> Mask { get; } = new()
+        private IniItem<Color> _maskItem = new()
         {
             Section = BaceValue.Section,
             Key = "Mask",
             Value = BaceValue.Mask,
             DefaultValue = BaceValue.Mask
         };
+        private SolidColorBrush _mask = new(BaceValue.Mask);
+        public SolidColorBrush Mask
+        {
+            get => _mask;
+            set
+            {
+                if (_mask != value)
+                {
+                    _mask = value;
+                    _maskItem.Value = _mask.Color;
+                }
+            }
+        }
 
         public bool SetValue_Form(IniFile? iniFile)
         {
             if (iniFile is null)
                 return false;
+            _foregroundItem.DefaultValue = _foregroundItem.Value;
+            _foreground_DisableItem.DefaultValue = _foreground_DisableItem.Value;
+            _backgroundItem.DefaultValue = _backgroundItem.Value;
+            _lineItem.DefaultValue = _lineItem.Value;
+            _lineItem.DefaultValue = _lineItem.Value;
+            _highlightItem.DefaultValue = _highlightItem.Value;
+            _selectionItem.DefaultValue = _selectionItem.Value;
+            _maskItem.DefaultValue = _maskItem.Value;
             bool result = false;
-            result |= !iniFile.SetValue(Foreground);
-            result |= !iniFile.SetValue(Foreground_Disable);
-            result |= !iniFile.SetValue(Background);
-            result |= !iniFile.SetValue(Outline);
-            result |= !iniFile.SetValue(Line);
-            result |= !iniFile.SetValue(Highlight);
-            result |= !iniFile.SetValue(Selection);
-            result |= !iniFile.SetValue(Mask);
+            result |= !iniFile.SetValue(_foregroundItem);
+            result |= !iniFile.SetValue(_foreground_DisableItem);
+            result |= !iniFile.SetValue(_backgroundItem);
+            result |= !iniFile.SetValue(_outlineItem);
+            result |= !iniFile.SetValue(_lineItem);
+            result |= !iniFile.SetValue(_highlightItem);
+            result |= !iniFile.SetValue(_selectionItem);
+            result |= !iniFile.SetValue(_maskItem);
             return !result;
         }
 
@@ -110,42 +223,42 @@ namespace GrayThemeUI.Theme.InnerItems
         {
             if (iniFile is null)
                 return false;
-            Foreground.DefaultValue = iniFile.GetValue(Foreground);
-            Foreground_Disable.DefaultValue = iniFile.GetValue(Foreground_Disable);
-            Background.DefaultValue = iniFile.GetValue(Background);
-            Line.DefaultValue = iniFile.GetValue(Outline);
-            Line.DefaultValue = iniFile.GetValue(Line);
-            Highlight.DefaultValue = iniFile.GetValue(Highlight);
-            Selection.DefaultValue = iniFile.GetValue(Selection);
-            Mask.DefaultValue = iniFile.GetValue(Mask);
+            _foregroundItem.DefaultValue = iniFile.GetValue(_foregroundItem);
+            _foreground_DisableItem.DefaultValue = iniFile.GetValue(_foreground_DisableItem);
+            _backgroundItem.DefaultValue = iniFile.GetValue(_backgroundItem);
+            _lineItem.DefaultValue = iniFile.GetValue(_outlineItem);
+            _lineItem.DefaultValue = iniFile.GetValue(_lineItem);
+            _highlightItem.DefaultValue = iniFile.GetValue(_highlightItem);
+            _selectionItem.DefaultValue = iniFile.GetValue(_selectionItem);
+            _maskItem.DefaultValue = iniFile.GetValue(_maskItem);
             ResetDefault();
             return true;
         }
 
         public void ResetDefault()
         {
-            Foreground.Value = Foreground.DefaultValue;
-            Foreground_Disable.Value = Foreground_Disable.DefaultValue;
-            Background.Value = Background.DefaultValue;
-            Outline.Value = Outline.DefaultValue;
-            Line.Value = Line.DefaultValue;
-            Highlight.Value = Highlight.DefaultValue;
-            Selection.Value = Selection.DefaultValue;
-            Mask.Value = Mask.DefaultValue;
+            Foreground = new(_foregroundItem.DefaultValue);
+            Foreground_Disable = new(_foreground_DisableItem.DefaultValue);
+            Background = new(_backgroundItem.DefaultValue);
+            Outline = new(_outlineItem.DefaultValue);
+            Line = new(_lineItem.DefaultValue);
+            Highlight = new(_highlightItem.DefaultValue);
+            Selection = new(_selectionItem.DefaultValue);
+            Mask = new(_maskItem.DefaultValue);
         }
 
         public DefaultBrush() { }
 
         public DefaultBrush(DefaultBrush dest)
         {
-            Foreground = new(dest.Foreground);
-            Foreground_Disable = new(dest.Foreground_Disable);
-            Background = new(dest.Background);
-            Outline = new(dest.Outline);
-            Line = new(dest.Line);
-            Highlight = new(dest.Highlight);
-            Selection = new(dest.Selection);
-            Mask = new(dest.Mask);
+            Foreground = new(dest.Foreground.Color);
+            Foreground_Disable = new(dest.Foreground_Disable.Color);
+            Background = new(dest.Background.Color);
+            Outline = new(dest.Outline.Color);
+            Line = new(dest.Line.Color);
+            Highlight = new(dest.Highlight.Color);
+            Selection = new(dest.Selection.Color);
+            Mask = new(dest.Mask.Color);
         }
     }
 }

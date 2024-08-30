@@ -13,7 +13,15 @@ namespace GrayThemeUI.Helper
 {
     public class MaskHelper
     {
-        public static readonly DependencyProperty DefaultMaskProperty = DependencyProperty.RegisterAttached("DefaultMask", typeof(ImageBrush), typeof(MaskHelper), new PropertyMetadata(null, OnDefaultMaskChanged));
+        public static readonly DependencyProperty DefaultMaskProperty
+            = DependencyProperty.RegisterAttached(
+                "DefaultMask",
+                typeof(ImageBrush),
+                typeof(MaskHelper),
+                new FrameworkPropertyMetadata(
+                    null,
+                    FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure,
+                    OnDefaultMaskChanged));
 
         [Category("GrayThemeUI.Mask.Helper")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
@@ -38,11 +46,19 @@ namespace GrayThemeUI.Helper
             if (d is Button button && e.NewValue is ImageBrush newImageBrush)
             {
                 // OpacityMask 속성에 ImageBrush를 적용
-                button.OpacityMask = newImageBrush;
+                //button.OpacityMask = newImageBrush;
             }
         }
 
-        public static readonly DependencyProperty CheckedMaskProperty = DependencyProperty.RegisterAttached("CheckedMask", typeof(ImageBrush), typeof(MaskHelper), new PropertyMetadata(null, OnCheckedMaskChanged));
+        public static readonly DependencyProperty CheckedMaskProperty
+            = DependencyProperty.RegisterAttached(
+                "CheckedMask",
+                typeof(ImageBrush),
+                typeof(MaskHelper),
+                new FrameworkPropertyMetadata(
+                    null,
+                    FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure,
+                    OnCheckedMaskChanged));
 
         [Category("GrayThemeUI.Mask.Helper")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
@@ -67,11 +83,19 @@ namespace GrayThemeUI.Helper
             if (d is Button button && e.NewValue is ImageBrush newImageBrush)
             {
                 // OpacityMask 속성에 ImageBrush를 적용
-                button.OpacityMask = newImageBrush;
+                //button.OpacityMask = newImageBrush;
             }
         }
 
-        public static readonly DependencyProperty Background_Overlay_VisibilityProperty = DependencyProperty.RegisterAttached("Background_Overlay_Visibility", typeof(Visibility), typeof(MaskHelper), new PropertyMetadata(Visibility.Hidden, OnBackground_Overlay_VisibilityChanged));
+        public static readonly DependencyProperty Background_Overlay_VisibilityProperty
+            = DependencyProperty.RegisterAttached(
+                "Background_Overlay_Visibility",
+                typeof(Visibility),
+                typeof(MaskHelper),
+                new FrameworkPropertyMetadata(
+                    Visibility.Collapsed,
+                    FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure,
+                    OnBackground_Overlay_VisibilityChanged));
 
         [Category("GrayThemeUI.Mask.Helper")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
@@ -95,7 +119,15 @@ namespace GrayThemeUI.Helper
         {
         }
 
-        public static readonly DependencyProperty Background_Overlay_Outline_ThicknessProperty =            DependencyProperty.RegisterAttached("Background_Overlay_Outline_Thickness", typeof(Thickness), typeof(MaskHelper), new PropertyMetadata(new Thickness(0.0), OnBackground_Overlay_Outline_ThicknessChanged));
+        public static readonly DependencyProperty Background_Overlay_Outline_ThicknessProperty
+            = DependencyProperty.RegisterAttached(
+                "Background_Overlay_Outline_Thickness",
+                typeof(Thickness),
+                typeof(MaskHelper),
+                    new FrameworkPropertyMetadata(
+                    new Thickness(0.0),
+                    FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure,
+                    OnBackground_Overlay_Outline_ThicknessChanged));
 
         [Category("GrayThemeUI.Mask.Helper")]
         [AttachedPropertyBrowsableForType(typeof(Border))]

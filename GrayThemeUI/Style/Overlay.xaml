@@ -16,64 +16,32 @@
         <Setter Property="IsEnabled" Value="False"/>
         <Style.Triggers>
             <Trigger Property="helper:OverlayHelper.IsDisable" Value="True">
-                <Setter Property="helper:OverlayHelper.IsDefault" Value="False"/>
+                <!--<Setter Property="helper:OverlayHelper.IsDefault" Value="False"/>
                 <Setter Property="helper:OverlayHelper.IsMouseOver" Value="False"/>
-                <Setter Property="helper:OverlayHelper.IsActive" Value="False"/>
-                <Setter Property="BorderBrush">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.Disable}"/>
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="Background">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.Disable}"/>
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="helper:OverlayHelper.IsActive" Value="False"/>-->
+                <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.Disable}"/>
+                <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.Disable}"/>
             </Trigger>
             <Trigger Property="helper:OverlayHelper.IsDefault" Value="True">
-                <Setter Property="helper:OverlayHelper.IsDisable" Value="False"/>
+                <!--<Setter Property="helper:OverlayHelper.IsDisable" Value="False"/>
                 <Setter Property="helper:OverlayHelper.IsMouseOver" Value="False"/>
-                <Setter Property="helper:OverlayHelper.IsActive" Value="False"/>
-                <Setter Property="BorderBrush">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.Default}"/>
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="Background">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.Default}"/>
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="helper:OverlayHelper.IsActive" Value="False"/>-->
+                <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.Default}"/>
+                <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.Default}"/>
             </Trigger>
             <Trigger Property="helper:OverlayHelper.IsMouseOver" Value="True">
-                <Setter Property="helper:OverlayHelper.IsDisable" Value="False"/>
+                <!--<Setter Property="helper:OverlayHelper.IsDisable" Value="False"/>
                 <Setter Property="helper:OverlayHelper.IsDefault" Value="False"/>
-                <Setter Property="helper:OverlayHelper.IsActive" Value="False"/>
-                <Setter Property="BorderBrush">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.MouseOver}"/>
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="Background">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.MouseOver}"/>
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="helper:OverlayHelper.IsActive" Value="False"/>-->
+                <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.MouseOver}"/>
+                <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.MouseOver}"/>
             </Trigger>
             <Trigger Property="helper:OverlayHelper.IsActive" Value="True">
-                <Setter Property="helper:OverlayHelper.IsDefault" Value="False"/>
+                <!--<Setter Property="helper:OverlayHelper.IsDefault" Value="False"/>
                 <Setter Property="helper:OverlayHelper.IsMouseOver" Value="False"/>
-                <Setter Property="helper:OverlayHelper.IsMouseOver" Value="False"/>
-                <Setter Property="BorderBrush">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.Active}"/>
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="Background">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.Active}"/>
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="helper:OverlayHelper.IsMouseOver" Value="False"/>-->
+                <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.Active}"/>
+                <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.Active}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -84,6 +52,7 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="helper:OverlayHelper.IsDisable" Value="False"/>
         <Setter Property="helper:OverlayHelper.IsDefault" Value="False"/>
         <Setter Property="helper:OverlayHelper.IsMouseOver" Value="False"/>
@@ -94,46 +63,26 @@
                 <Setter Property="helper:OverlayHelper.IsDefault" Value="False"/>
                 <Setter Property="helper:OverlayHelper.IsMouseOver" Value="False"/>
                 <Setter Property="helper:OverlayHelper.IsActive" Value="False"/>
-                <Setter Property="BorderBrush">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.Disable}"/>
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="Background">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.OverlayMask.Foreground.Disable}"/>
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.Disable}"/>
+                <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.OverlayMask.Foreground.Disable}"/>
             </Trigger>
             <Trigger Property="helper:OverlayHelper.IsDefault" Value="True">
                 <Setter Property="helper:OverlayHelper.IsDisable" Value="False"/>
                 <Setter Property="helper:OverlayHelper.IsMouseOver" Value="False"/>
                 <Setter Property="helper:OverlayHelper.IsActive" Value="False"/>
-                <Setter Property="Background">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.OverlayMask.Foreground.Default}"/>
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.OverlayMask.Foreground.Default}"/>
             </Trigger>
             <Trigger Property="helper:OverlayHelper.IsMouseOver" Value="True">
                 <Setter Property="helper:OverlayHelper.IsDisable" Value="False"/>
                 <Setter Property="helper:OverlayHelper.IsDefault" Value="False"/>
                 <Setter Property="helper:OverlayHelper.IsActive" Value="False"/>
-                <Setter Property="Background">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.OverlayMask.Foreground.MouseOver}"/>
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.OverlayMask.Foreground.MouseOver}"/>
             </Trigger>
             <Trigger Property="helper:OverlayHelper.IsActive" Value="True">
                 <Setter Property="helper:OverlayHelper.IsDefault" Value="False"/>
                 <Setter Property="helper:OverlayHelper.IsMouseOver" Value="False"/>
                 <Setter Property="helper:OverlayHelper.IsMouseOver" Value="False"/>
-                <Setter Property="Background">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{DynamicResource GrayThemeUI.Internal.OverlayMask.Foreground.Active}"/>
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.OverlayMask.Foreground.Active}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
