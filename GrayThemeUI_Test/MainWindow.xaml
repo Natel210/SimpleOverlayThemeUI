@@ -21,34 +21,7 @@
                 <CheckBox Content=" CheckBox" Style="{StaticResource GrayThemeUI.CheckBox}" Width="120" Height="30"/>
             </Border>
             <Border HorizontalAlignment="Left" Margin="5">
-                <ComboBox x:Name="grayThemeUIComboBox" SelectedIndex="0" Style="{StaticResource GrayThemeUI.ComboBox}" Width="300" >
-                    <ComboBoxItem>
-                        <ComboBoxItem.Content>
-                            <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                <TextBlock Text="ComboBox1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Border>
-                        </ComboBoxItem.Content>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <ComboBoxItem.Content>
-                            <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                <TextBlock Text="ComboBox2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Border>
-                        </ComboBoxItem.Content>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <ComboBoxItem.Content>
-                            <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                <TextBlock Text="ComboBox3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Border>
-                        </ComboBoxItem.Content>
-                    </ComboBoxItem>
-                    <ComboBoxItem Width="{Binding ActualWidth, ElementName=grayThemeUIComboBox}" IsSelected="False">
-                        <ComboBoxItem.Content>
-                            <Button Content=" Button " Style="{StaticResource GrayThemeUI.Button.Square}"/>
-                        </ComboBoxItem.Content>
-                    </ComboBoxItem>
-                </ComboBox>
+                
             </Border>
 
             <Border HorizontalAlignment="Left" Margin="5">
@@ -65,15 +38,46 @@
                 </DataGrid>
             </Border>
             
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="5">
-                <GroupBox Header=" GroupBox " Margin="10" Style="{StaticResource GrayThemeUI.GroupBox}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5">
+                <GroupBox Header=" GroupBox " Margin="10" Style="{StaticResource GrayThemeUI.GroupBox}" Width="150">
+                    <ComboBox x:Name="grayThemeUIComboBox" SelectedIndex="1" Style="{StaticResource GrayThemeUI.ComboBox}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                              HorizontalContentAlignment="Left">
+                        <ComboBoxItem VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <ComboBoxItem.Content>
+                                <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <TextBlock Text="ComboBox1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                                </Border>
+                            </ComboBoxItem.Content>
+                        </ComboBoxItem>
+                        <ComboBoxItem VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <ComboBoxItem.Content>
+                                <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <TextBlock Text="ComboBox2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                                </Border>
+                            </ComboBoxItem.Content>
+                        </ComboBoxItem>
+                        <ComboBoxItem VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <ComboBoxItem.Content>
+                                <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <TextBlock Text="ComboBox3" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                                </Border>
+                            </ComboBoxItem.Content>
+                        </ComboBoxItem>
+                        <ComboBoxItem Width="{Binding ActualWidth, ElementName=grayThemeUIComboBox}" IsSelected="False">
+                            <ComboBoxItem.Content>
+                                <Button Content=" Button " Style="{StaticResource GrayThemeUI.Button.Square}"/>
+                            </ComboBoxItem.Content>
+                        </ComboBoxItem>
+                    </ComboBox>
+                </GroupBox>
+                <GroupBox Header=" GroupBox Color " Margin="10" Style="{StaticResource GrayThemeUI.GroupBox}" Background="#40FF00FF">
                     <ComboBox x:Name="grayThemeUIComboBox2" SelectedIndex="0" Style="{StaticResource GrayThemeUI.ComboBox}" Background="#5000FF00">
                         <ComboBoxItem Content=" ComboBox1 "/>
                         <ComboBoxItem Content=" ComboBox2 "/>
                         <ComboBoxItem Content=" ComboBox3 "/>
                     </ComboBox>
                 </GroupBox>
-                <GroupBox Header=" none stlye " Margin="10" Style="{StaticResource GrayThemeUI.GroupBox}">
+                <GroupBox Header=" none style combo" Margin="10" Style="{StaticResource GrayThemeUI.GroupBox}">
                     <ComboBox x:Name="grayThemeUIComboBox3" SelectedIndex="0" Background="#5000FF00">
                         <ComboBoxItem Content=" ComboBox1 "/>
                         <ComboBoxItem Content=" ComboBox2 "/>

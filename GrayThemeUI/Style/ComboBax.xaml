@@ -78,12 +78,8 @@
                                 </ToggleButton.IsChecked>
                                 <ToggleButton.HorizontalAlignment>Stretch</ToggleButton.HorizontalAlignment>
                                 <ToggleButton.VerticalAlignment>Stretch</ToggleButton.VerticalAlignment>
-                                <ToggleButton.HorizontalContentAlignment>
-                                    <TemplateBinding Property="HorizontalContentAlignment"/>
-                                </ToggleButton.HorizontalContentAlignment>
-                                <ToggleButton.VerticalContentAlignment>
-                                    <TemplateBinding Property="VerticalContentAlignment"/>
-                                </ToggleButton.VerticalContentAlignment>
+                                <ToggleButton.HorizontalContentAlignment>Stretch</ToggleButton.HorizontalContentAlignment>
+                                <ToggleButton.VerticalContentAlignment>Stretch</ToggleButton.VerticalContentAlignment>
                                 <ToggleButton.SnapsToDevicePixels>
                                     <TemplateBinding Property="SnapsToDevicePixels"/>
                                 </ToggleButton.SnapsToDevicePixels>
