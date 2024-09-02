@@ -9,14 +9,14 @@
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/Border.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/Button.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/CheckBox.xaml" />
-        <!--<ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/ComboBax.xaml" />-->
-        <!--<ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/DataGrid.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/ComboBax.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/DataGrid.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/GroupBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/Label.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/ListBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/TextBlock.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/TextBox.xaml" />-->
-        <!--<ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/WindowHeader.xaml" />-->
+        <!--<ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/ListBox.xaml" />-->
+        <!--<ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/TextBlock.xaml" />-->
+        <!--<ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/TextBox.xaml" />-->
+        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/WindowHeader.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
     <Style x:Key="GrayThemeUI.Window" TargetType="Window">

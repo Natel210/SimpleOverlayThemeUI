@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GrayThemeUI.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace GrayThemeUI.CustomControl
 {
@@ -18,28 +20,33 @@ namespace GrayThemeUI.CustomControl
                 new FrameworkPropertyMetadata(typeof(WindowHeader)));
         }
 
+        private static readonly FrameworkPropertyMetadataOptions _frameworkPropertyMetadataOptions = FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure;
+
         public WindowHeader()
         {
             MouseInit();
         }
 
-        public static readonly DependencyProperty TitleProperty =
-        DependencyProperty.Register("Title", typeof(string),
-            typeof(WindowHeader), new PropertyMetadata(""));
-        public string Title
+        public static readonly DependencyProperty TitleContentProperty
+            = DependencyProperty.Register(
+                nameof(TitleContent),
+                typeof(object),
+                typeof(WindowHeader),
+                new PropertyMetadata(null/*new TextBlock() { Text = ""}*/));
+        public object TitleContent
         {
-            get { return (string)GetValue(TitleProperty); }
-            set { SetValue(TitleProperty, value); }
+            get { return GetValue(TitleContentProperty); }
+            set { SetValue(TitleContentProperty, value); }
         }
 
-        public static readonly DependencyProperty AddOnItemProperty =
-            DependencyProperty.Register(nameof(AddOnItem), typeof(object),
+        public static readonly DependencyProperty SideContentProperty =
+            DependencyProperty.Register(nameof(SideContent), typeof(object),
                 typeof(WindowHeader), new PropertyMetadata(null));
 
-        public object AddOnItem
+        public object SideContent
         {
-            get => GetValue(AddOnItemProperty);
-            set => SetValue(AddOnItemProperty, value);
+            get => GetValue(SideContentProperty);
+            set => SetValue(SideContentProperty, value);
         }
 
         public static readonly DependencyProperty WindowUnlockedProperty =
@@ -50,6 +57,17 @@ namespace GrayThemeUI.CustomControl
             get { return (bool)GetValue(WindowUnlockedProperty); }
             set { SetValue(WindowUnlockedProperty, value); }
         }
+
+        public static readonly DependencyProperty WindowControlForegroundProperty
+            = DependencyProperty.Register("WindowControlForeground", typeof(SolidColorBrush), typeof(WindowHeader),
+            new FrameworkPropertyMetadata(null, _frameworkPropertyMetadataOptions));
+        public SolidColorBrush WindowControlForeground
+        {
+            get { return (SolidColorBrush)GetValue(WindowControlForegroundProperty); }
+            set { SetValue(WindowControlForegroundProperty, value); }
+        }
+
+
 
         public static readonly DependencyProperty ShowMinimizeProperty =
             DependencyProperty.Register("ShowMinimize", typeof(Visibility),

@@ -9,8 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resource\DEFAULT_TITLE_OFF.png" />
+    <None Remove="Resource\DEFAULT_TITLE_ON.png" />
     <None Remove="Resource\Test1.png" />
     <None Remove="Resource\Test2.png" />
+    <None Remove="Resource\TitleTestImage.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,8 +21,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resource\Default_Title_Off.png" />
+    <Resource Include="Resource\Default_Title_On.png" />
     <Resource Include="Resource\Test1.png" />
     <Resource Include="Resource\Test2.png" />
+    <Resource Include="Resource\TitleTestImage.png" />
   </ItemGroup>
 
 </Project>

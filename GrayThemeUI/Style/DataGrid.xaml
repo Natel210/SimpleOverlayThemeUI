@@ -10,21 +10,21 @@
 
     <!-- Custom DataGrid -->
     <Style x:Key="GrayThemeUI.DataGrid" TargetType="DataGrid">
-        <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Theme.Background}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Default}"/>
-        <Setter Property="BorderThickness" Value="{DynamicResource GrayThemeUI.Common.BorderThickness}"/>
-        <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Theme.Foreground}"/>
+        <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Background}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Outline}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource GrayThemeUI.Internal.Thickness.Default}"/>
+        <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground}"/>
         <Setter Property="RowBackground" Value="Transparent"/>
-        <Setter Property="AlternatingRowBackground" Value="{DynamicResource GrayThemeUI.Theme.Background}"/>
-        <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Default}"/>
-        <Setter Property="VerticalGridLinesBrush" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Default}"/>
+        <Setter Property="AlternatingRowBackground" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Background}"/>
+        <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Outline}"/>
+        <Setter Property="VerticalGridLinesBrush" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Outline}"/>
         <Setter Property="GridLinesVisibility" Value="All"/>
         <Setter Property="ColumnHeaderStyle">
             <Setter.Value>
                 <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.Background.Default}"/>
-                    <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Theme.Foreground}"/>
-                    <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Default}"/>
+                    <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.Default}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.Default}"/>
                     <Setter Property="BorderThickness" Value="0,0,1,1"/>
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                     <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -45,7 +45,7 @@
                     </Setter>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.Background.MouseOver}"/>
+                            <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.MouseOver}"/>
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -55,7 +55,7 @@
             <Setter.Value>
                 <Style TargetType="DataGridRow">
                     <Setter Property="Background" Value="{Binding RowBackground, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
-                    <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Theme.Foreground}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground}"/>
                     <Setter Property="BorderBrush" Value="Transparent"/>
                     <Setter Property="BorderThickness" Value="0"/>
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -86,7 +86,7 @@
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="border" Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.Background.Focus}"/>
+                                        <Setter TargetName="border" Property="Background" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.Active}"/>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
@@ -99,22 +99,22 @@
             <Setter.Value>
                 <Style TargetType="DataGridCell">
                     <Setter Property="Background" Value="Transparent"/>
-                    <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Theme.Foreground}"/>
-                    <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Overlay.Background.Default}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.Default}"/>
                     <Setter Property="BorderThickness" Value="0"/>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.Background.MouseOver}"/>
-                            <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.MouseOver}"/>
+                            <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.MouseOver}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.MouseOver}"/>
                         </Trigger>
                         <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Focus}"/>
-                            <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.Background.Focus}"/>
+                            <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.Active}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.Active}"/>
                             <Setter Property="BorderThickness" Value="0"/>
                         </Trigger>
                         <Trigger Property="IsEditing" Value="True">
-                            <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Focus}"/>
-                            <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.Background.Focus}"/>
+                            <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.Active}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Outline.Active}"/>
                             <Setter Property="BorderThickness" Value="0"/>
                         </Trigger>
                     </Style.Triggers>

@@ -8,20 +8,17 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows;
+using GrayThemeUI.CustomControl;
 
 namespace GrayThemeUI.Helper
 {
     public class MaskHelper
     {
+        private static readonly FrameworkPropertyMetadataOptions _frameworkPropertyMetadataOptions = FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure;
+
         public static readonly DependencyProperty DefaultMaskProperty
-            = DependencyProperty.RegisterAttached(
-                "DefaultMask",
-                typeof(ImageBrush),
-                typeof(MaskHelper),
-                new FrameworkPropertyMetadata(
-                    null,
-                    FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure,
-                    OnDefaultMaskChanged));
+            = DependencyProperty.RegisterAttached("DefaultMask", typeof(ImageBrush), typeof(MaskHelper),
+                new FrameworkPropertyMetadata(null, _frameworkPropertyMetadataOptions));
 
         [Category("GrayThemeUI.Mask.Helper")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
@@ -41,24 +38,9 @@ namespace GrayThemeUI.Helper
             element.SetValue(DefaultMaskProperty, value);
         }
 
-        private static void OnDefaultMaskChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is Button button && e.NewValue is ImageBrush newImageBrush)
-            {
-                // OpacityMask 속성에 ImageBrush를 적용
-                //button.OpacityMask = newImageBrush;
-            }
-        }
-
         public static readonly DependencyProperty CheckedMaskProperty
-            = DependencyProperty.RegisterAttached(
-                "CheckedMask",
-                typeof(ImageBrush),
-                typeof(MaskHelper),
-                new FrameworkPropertyMetadata(
-                    null,
-                    FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure,
-                    OnCheckedMaskChanged));
+            = DependencyProperty.RegisterAttached("CheckedMask", typeof(ImageBrush), typeof(MaskHelper),
+                new FrameworkPropertyMetadata(null, _frameworkPropertyMetadataOptions));
 
         [Category("GrayThemeUI.Mask.Helper")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
@@ -78,24 +60,9 @@ namespace GrayThemeUI.Helper
             element.SetValue(CheckedMaskProperty, value);
         }
 
-        private static void OnCheckedMaskChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is Button button && e.NewValue is ImageBrush newImageBrush)
-            {
-                // OpacityMask 속성에 ImageBrush를 적용
-                //button.OpacityMask = newImageBrush;
-            }
-        }
-
         public static readonly DependencyProperty Background_Overlay_VisibilityProperty
-            = DependencyProperty.RegisterAttached(
-                "Background_Overlay_Visibility",
-                typeof(Visibility),
-                typeof(MaskHelper),
-                new FrameworkPropertyMetadata(
-                    Visibility.Collapsed,
-                    FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure,
-                    OnBackground_Overlay_VisibilityChanged));
+            = DependencyProperty.RegisterAttached("Background_Overlay_Visibility", typeof(Visibility), typeof(MaskHelper),
+                new FrameworkPropertyMetadata(Visibility.Collapsed, _frameworkPropertyMetadataOptions));
 
         [Category("GrayThemeUI.Mask.Helper")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
@@ -115,19 +82,9 @@ namespace GrayThemeUI.Helper
             element.SetValue(Background_Overlay_VisibilityProperty, value);
         }
 
-        private static void OnBackground_Overlay_VisibilityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-        }
-
         public static readonly DependencyProperty Background_Overlay_Outline_ThicknessProperty
-            = DependencyProperty.RegisterAttached(
-                "Background_Overlay_Outline_Thickness",
-                typeof(Thickness),
-                typeof(MaskHelper),
-                    new FrameworkPropertyMetadata(
-                    new Thickness(0.0),
-                    FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure,
-                    OnBackground_Overlay_Outline_ThicknessChanged));
+            = DependencyProperty.RegisterAttached("Background_Overlay_Outline_Thickness", typeof(Thickness), typeof(MaskHelper),
+                new FrameworkPropertyMetadata(new Thickness(0.0), _frameworkPropertyMetadataOptions));
 
         [Category("GrayThemeUI.Mask.Helper")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
@@ -147,8 +104,6 @@ namespace GrayThemeUI.Helper
             element.SetValue(Background_Overlay_Outline_ThicknessProperty, value);
         }
 
-        private static void OnBackground_Overlay_Outline_ThicknessChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-        }
+
     }
 }

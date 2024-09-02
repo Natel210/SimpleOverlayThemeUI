@@ -4,152 +4,253 @@
                     xmlns:theme="clr-namespace:GrayThemeUI.Theme"
                     xmlns:helper="clr-namespace:GrayThemeUI.Helper">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Resource/Resource.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/Button.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/Overlay.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/Border.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <!-- Custom Arrow ToggleButton -->
-    <Style x:Key="GrayThemeUI.Internal.ArrowToggleButton" TargetType="ToggleButton">
-        <Setter Property="FontSize" Value="{DynamicResource GrayThemeUI.Internal.FontSize.Default}"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Background}"/>
-        <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground}"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ToggleButton">
-                    <Grid>
-                        <Border x:Name="border" Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Width="{TemplateBinding Width}"
-                                Height="{TemplateBinding Height}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Border Grid.Column="0"
-                                        BorderBrush="Transparent"
-                                        BorderThickness="0"
-                                        Background="{TemplateBinding Background}"/>
-
-                                <ToggleButton x:Name="Arroow" Grid.Column="1" Visibility="Collapsed">
-                                    <ToggleButton.Style>
-                                        <StaticResource ResourceKey="GrayThemeUI.ToggleButton.ImageMask"/>
-                                    </ToggleButton.Style>
-                                    <helper:OverlayHelper.IsDefault>False</helper:OverlayHelper.IsDefault>
-                                    <helper:MaskHelper.Background_Overlay_Visibility>Collapsed</helper:MaskHelper.Background_Overlay_Visibility>
-                                    <helper:MaskHelper.Background_Overlay_Outline_Thickness>0</helper:MaskHelper.Background_Overlay_Outline_Thickness>
-                                    <helper:MaskHelper.DefaultMask>
-                                        <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/up_mask.png" Stretch="Uniform"/>
-                                    </helper:MaskHelper.DefaultMask>
-                                    <helper:MaskHelper.CheckedMask>
-                                        <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/up_mask.png" Stretch="Uniform"/>
-                                    </helper:MaskHelper.CheckedMask>
-                                </ToggleButton>
-                                
-                                
-                                <Border x:Name="Arrow" Grid.Column="1"
-                                        Background="{TemplateBinding Foreground}"
-                                        Width="{TemplateBinding ActualHeight}"
-                                        Height="{TemplateBinding ActualHeight}"
-                                        OpacityMask="{StaticResource GrayThemeUI.Mask.Down}">
-                                </Border>
-                                <Border x:Name="overlayArrow" Grid.Column="1"
-                                        Background="{StaticResource GrayThemeUI.Overlay.BorderBrush.Default}"
-                                        Width="{TemplateBinding ActualHeight}"
-                                        Height="{TemplateBinding ActualHeight}"
-                                        OpacityMask="{StaticResource GrayThemeUI.Mask.Down}">
-                                </Border>
-                            </Grid>
-                        </Border>
-                        <Border x:Name="overlay"
-                                Background="{DynamicResource GrayThemeUI.Overlay.Background.Default}"
-                                BorderBrush="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Default}"
-                                BorderThickness="{DynamicResource GrayThemeUI.Common.BorderThickness }"
-                                Width="{TemplateBinding Width}"
-                                Height="{TemplateBinding Height}"/>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="overlay" Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.MouseOver}"/>
-                            <Setter TargetName="overlay" Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.Background.MouseOver}"/>
-                            <Setter TargetName="overlayArrow" Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.MouseOver}"/>
-                        </Trigger>
-                        <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="overlay" Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Focus}"/>
-                            <Setter TargetName="overlay" Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.Background.Focus}"/>
-                            <Setter TargetName="Arrow" Property="OpacityMask" Value="{DynamicResource GrayThemeUI.Mask.Up}"/>
-                            <Setter TargetName="overlayArrow" Property="OpacityMask" Value="{DynamicResource GrayThemeUI.Mask.Up}"/>
-                            <Setter TargetName="overlayArrow" Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Focus}"/>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="overlay" Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Disable}"/>
-                            <Setter TargetName="overlay" Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.Background.Disable}"/>
-                            <Setter TargetName="overlayArrow" Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Disable}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Theme.Foreground.Disable}"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <!-- Custom ComboBox -->
     <Style x:Key="GrayThemeUI.ComboBox" TargetType="ComboBox">
-        <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Theme.Foreground}"/>
-        <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Theme.Background}"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="{DynamicResource GrayThemeUI.Common.BorderThickness}"/>
-        <Setter Property="FontSize" Value="{DynamicResource GrayThemeUI.Common.FontSize.Default}"/>
+        <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground}"/>
+        <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Background}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Outline}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource GrayThemeUI.Internal.Thickness.Default}"/>
+        <Setter Property="FontSize" Value="{DynamicResource GrayThemeUI.Internal.FontSize.Default}"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="helper:MaskHelper.DefaultMask">
+            <Setter.Value>
+                <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/downArrow.png"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="helper:MaskHelper.CheckedMask">
+            <Setter.Value>
+                <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/upArrow.png"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="helper:MaskHelper.Background_Overlay_Visibility" Value="Visible"/>
+        <Setter Property="helper:MaskHelper.Background_Overlay_Outline_Thickness" Value="0.0"/>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ComboBox">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border>
                         <Grid>
-                            <ToggleButton x:Name="toggleButton"
-                                          Style="{DynamicResource GrayThemeUI.Internal.ArrowToggleButton}"
-                                          Focusable="false"
-                                          ClickMode="Press"
-                                          Background="{TemplateBinding Background}"
-                                          Foreground="{TemplateBinding Foreground}"
-                                          Width="{TemplateBinding ActualWidth}"
-                                          Height="{TemplateBinding Height}"
-                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
-                            <ContentPresenter Name="ContentSite"
-                                              IsHitTestVisible="False"
-                                              Content="{TemplateBinding SelectionBoxItem}"
-                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                              Margin="5,3,23,3"
-                                              VerticalAlignment="Center"
-                                              HorizontalAlignment="Left"/>
+                            <!-- Background Border -->
+                            <Border x:Name="backgroundBorder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Border.Height>
+                                    <TemplateBinding Property="ActualHeight"/>
+                                </Border.Height>
+                                <Border.Width>
+                                    <TemplateBinding Property="ActualWidth"/>
+                                </Border.Width>
+                                <Border.Background>
+                                    <TemplateBinding Property="Background"/>
+                                </Border.Background>
+                                <Border.BorderThickness>
+                                    <TemplateBinding Property="BorderThickness"/>
+                                </Border.BorderThickness>
+                                <Border.BorderBrush>
+                                    <TemplateBinding Property="BorderBrush"/>
+                                </Border.BorderBrush>
+                                <Border.SnapsToDevicePixels>
+                                    <TemplateBinding Property="SnapsToDevicePixels"/>
+                                </Border.SnapsToDevicePixels>
+                            </Border>
+                            <ToggleButton>
+                                <ToggleButton.Foreground>
+                                    <TemplateBinding Property="Foreground"/>
+                                </ToggleButton.Foreground>
+                                <ToggleButton.Background>
+                                    Transparent
+                                </ToggleButton.Background>
+                                <ToggleButton.Height>
+                                    <TemplateBinding Property="ActualHeight"/>
+                                </ToggleButton.Height>
+                                <ToggleButton.Width>
+                                    <TemplateBinding Property="ActualWidth"/>
+                                </ToggleButton.Width>
+                                <ToggleButton.MaxWidth>
+                                    <TemplateBinding Property="ActualWidth"/>
+                                </ToggleButton.MaxWidth>
+                                <ToggleButton.IsChecked>
+                                    <Binding Path="IsDropDownOpen" Mode="TwoWay" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                </ToggleButton.IsChecked>
+                                <ToggleButton.HorizontalAlignment>Stretch</ToggleButton.HorizontalAlignment>
+                                <ToggleButton.VerticalAlignment>Stretch</ToggleButton.VerticalAlignment>
+                                <ToggleButton.HorizontalContentAlignment>
+                                    <TemplateBinding Property="HorizontalContentAlignment"/>
+                                </ToggleButton.HorizontalContentAlignment>
+                                <ToggleButton.VerticalContentAlignment>
+                                    <TemplateBinding Property="VerticalContentAlignment"/>
+                                </ToggleButton.VerticalContentAlignment>
+                                <ToggleButton.SnapsToDevicePixels>
+                                    <TemplateBinding Property="SnapsToDevicePixels"/>
+                                </ToggleButton.SnapsToDevicePixels>
+                                <ToggleButton.Content>
+                                    <TemplateBinding Property="SelectionBoxItem"/>
+                                </ToggleButton.Content>
+                                <ToggleButton.ContentTemplate>
+                                    <TemplateBinding Property="SelectionBoxItemTemplate"/>
+                                </ToggleButton.ContentTemplate>
+                                <ToggleButton.ContentTemplateSelector>
+                                    <TemplateBinding Property="ItemTemplateSelector"/>
+                                </ToggleButton.ContentTemplateSelector>
+                                <helper:MaskHelper.DefaultMask>
+                                    <TemplateBinding Property="helper:MaskHelper.DefaultMask"/>
+                                </helper:MaskHelper.DefaultMask>
+                                <helper:MaskHelper.CheckedMask>
+                                    <TemplateBinding Property="helper:MaskHelper.CheckedMask"/>
+                                </helper:MaskHelper.CheckedMask>
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Grid>
+                                            <Grid.MaxWidth>
+                                                <TemplateBinding Property="ActualWidth"/>
+                                            </Grid.MaxWidth>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <ContentPresenter Grid.Column="0" Grid.ColumnSpan="2">
+                                                <ContentPresenter.Height>
+                                                    <TemplateBinding Property="ActualHeight"/>
+                                                </ContentPresenter.Height>
+                                                <ContentPresenter.HorizontalAlignment>Stretch</ContentPresenter.HorizontalAlignment>
+                                                <ContentPresenter.VerticalAlignment>Stretch</ContentPresenter.VerticalAlignment>
+                                                <ContentPresenter.SnapsToDevicePixels>
+                                                    <TemplateBinding Property="SnapsToDevicePixels"/>
+                                                </ContentPresenter.SnapsToDevicePixels>
+                                                <ContentPresenter.Content>
+                                                    <TemplateBinding Property="Content"/>
+                                                </ContentPresenter.Content>
+                                                <ContentPresenter.ContentTemplate>
+                                                    <TemplateBinding Property="ContentTemplate"/>
+                                                </ContentPresenter.ContentTemplate>
+                                                <ContentPresenter.ContentTemplateSelector>
+                                                    <TemplateBinding Property="ContentTemplateSelector"/>
+                                                </ContentPresenter.ContentTemplateSelector>
+                                            </ContentPresenter>
+                                            <!-- Mask Border -->
+                                            <Border x:Name="imageMask" Grid.Column="1">
+                                                <Border.HorizontalAlignment>Stretch</Border.HorizontalAlignment>
+                                                <Border.VerticalAlignment>Stretch</Border.VerticalAlignment>
+                                                <Border.Width>
+                                                    <TemplateBinding Property="ActualHeight"/>
+                                                </Border.Width>
+                                                <Border.Height>
+                                                    <TemplateBinding Property="ActualHeight"/>
+                                                </Border.Height>
+                                                <Border.Background>
+                                                    <DynamicResource ResourceKey="GrayThemeUI.Internal.DefaultBrush.Mask"/>
+                                                </Border.Background>
+                                                <Border.BorderThickness>
+                                                    <DynamicResource ResourceKey="GrayThemeUI.Internal.Thickness.Zero"/>
+                                                </Border.BorderThickness>
+                                                <Border.SnapsToDevicePixels>
+                                                    <TemplateBinding Property="SnapsToDevicePixels"/>
+                                                </Border.SnapsToDevicePixels>
+                                                <Border.OpacityMask>
+                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(helper:MaskHelper.DefaultMask)"/>
+                                                </Border.OpacityMask>
+                                                <Border.Style>
+                                                    <StaticResource ResourceKey="GrayThemeUI.Border.Default"/>
+                                                </Border.Style>
+                                            </Border>
+                                            <!-- Overlay Mask -->
+                                            <Border x:Name="overlayMask" Grid.Column="1" Style="{StaticResource GrayThemeUI.Overlay.MaskBorder}">
+                                                <Border.OpacityMask>
+                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(helper:MaskHelper.DefaultMask)"/>
+                                                </Border.OpacityMask>
+                                                <Border.SnapsToDevicePixels>
+                                                    <TemplateBinding Property="SnapsToDevicePixels"/>
+                                                </Border.SnapsToDevicePixels>
+                                            </Border>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="overlayMask" Property="helper:OverlayHelper.IsMouseOver" Value="True"/>
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter TargetName="overlayMask" Property="helper:OverlayHelper.IsActive" Value="True"/>
+                                            </Trigger>
+                                            <Trigger Property="IsChecked" Value="True">
+                                                <Setter TargetName="imageMask" Property="OpacityMask">
+                                                    <Setter.Value>
+                                                        <Binding Path="(helper:MaskHelper.CheckedMask)" RelativeSource="{RelativeSource Mode='TemplatedParent'}"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter TargetName="overlayMask" Property="OpacityMask">
+                                                    <Setter.Value>
+                                                        <Binding Path="(helper:MaskHelper.CheckedMask)" RelativeSource="{RelativeSource Mode='TemplatedParent'}"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsChecked" Value="False">
+                                                <Setter TargetName="imageMask" Property="OpacityMask">
+                                                    <Setter.Value>
+                                                        <Binding Path="(helper:MaskHelper.DefaultMask)" RelativeSource="{RelativeSource Mode='TemplatedParent'}"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter TargetName="overlayMask" Property="OpacityMask">
+                                                    <Setter.Value>
+                                                        <Binding Path="(helper:MaskHelper.DefaultMask)" RelativeSource="{RelativeSource Mode='TemplatedParent'}"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            
+                             <!-- Overlay -->
+                            <Border x:Name="overlay" Style="{StaticResource GrayThemeUI.Overlay.Border}">
+                                <Border.Height>
+                                    <TemplateBinding Property="ActualHeight"/>
+                                </Border.Height>
+                                <Border.Width>
+                                    <TemplateBinding Property="ActualWidth"/>
+                                </Border.Width>
+                                <Border.BorderThickness>
+                                    <TemplateBinding Property="helper:MaskHelper.Background_Overlay_Outline_Thickness"/>
+                                </Border.BorderThickness>
+                                <Border.SnapsToDevicePixels>
+                                    <TemplateBinding Property="SnapsToDevicePixels"/>
+                                </Border.SnapsToDevicePixels>
+                                <Border.Visibility>
+                                    <TemplateBinding Property="helper:MaskHelper.Background_Overlay_Visibility"/>
+                                </Border.Visibility>
+                                <helper:OverlayHelper.IsDefault>
+                                    <TemplateBinding Property="helper:OverlayHelper.IsDefault"/>
+                                </helper:OverlayHelper.IsDefault>
+                            </Border>
+                            <!-- Drop Down -->
                             <Popup Name="Popup"
-                                   Placement="Bottom"
-                                   IsOpen="{TemplateBinding IsDropDownOpen}"
-                                   AllowsTransparency="True"
-                                   Focusable="False"
-                                   PopupAnimation="Slide">
+                               Placement="Bottom"
+                               IsOpen="{TemplateBinding IsDropDownOpen}"
+                               AllowsTransparency="True"
+                               Focusable="False"
+                               PopupAnimation="Slide">
+                                <Popup.Width>
+                                    <TemplateBinding Property="ActualWidth"/>
+                                </Popup.Width>
+                                <Popup.MinWidth>
+                                    <TemplateBinding Property="ActualWidth"/>
+                                </Popup.MinWidth>
+                                <Popup.MaxWidth>
+                                    <TemplateBinding Property="ActualWidth"/>
+                                </Popup.MaxWidth>
                                 <Grid Name="DropDown"
-                                      SnapsToDevicePixels="True"
-                                      Background="Transparent"
-                                      Width="{Binding ActualWidth, ElementName=toggleButton}"
-                                      MinWidth="{Binding Width, ElementName=toggleButton}"
-                                      MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                  SnapsToDevicePixels="True"
+                                  Background="Transparent"
+                                  MaxHeight="{TemplateBinding MaxDropDownHeight}">
+
                                     <Border x:Name="DropDownBorder"
-                                            Background="{TemplateBinding Background}"
-                                            BorderThickness="1"
-                                            BorderBrush="{DynamicResource GrayThemeUI.Overlay.BorderBrush.Default}"/>
+                                        Background="{TemplateBinding Background}"
+                                        BorderThickness="1"
+                                        BorderBrush="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Outline}"/>
                                     <ScrollViewer SnapsToDevicePixels="True">
                                         <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
                                     </ScrollViewer>
@@ -157,6 +258,17 @@
                             </Popup>
                         </Grid>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="overlay" Property="helper:OverlayHelper.IsMouseOver" Value="True"/>
+                        </Trigger>
+                        <Trigger Property="IsDropDownOpen" Value="True">
+                            <Setter TargetName="overlay" Property="helper:OverlayHelper.IsActive" Value="True"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="overlay" Property="helper:OverlayHelper.IsDisable" Value="True"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -171,25 +283,25 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="ComboBoxItem">
                                 <Border x:Name="border" Background="{TemplateBinding Background}"
-                                        BorderBrush="Transparent"
-                                        Margin="2,0,0,0"
-                                        BorderThickness="0">
+                                    BorderBrush="Transparent"
+                                    Margin="0,0,0,0"
+                                    BorderThickness="0">
                                     <ContentPresenter HorizontalAlignment="Stretch"
-                                                      VerticalAlignment="Center"
-                                                      Margin="3"
-                                                      Content="{TemplateBinding Content}"
-                                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                      ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
+                                                  VerticalAlignment="Center"
+                                                  Margin="0"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsHighlighted" Value="True">
-                                        <Setter TargetName="border" Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.Background.MouseOver}"/>
+                                        <Setter TargetName="border" Property="Background" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.MouseOver}"/>
                                     </Trigger>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="border" Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.Background.Focus}"/>
+                                        <Setter TargetName="border" Property="Background" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.Focus}"/>
                                     </Trigger>
                                     <Trigger Property="IsEnabled" Value="False">
-                                        <Setter TargetName="border" Property="Background" Value="{DynamicResource GrayThemeUI.Overlay.Background.Disable}"/>
+                                        <Setter TargetName="border" Property="Background" Value="{DynamicResource GrayThemeUI.Internal.OverlayBoader.Background.Disable}"/>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
@@ -200,7 +312,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Theme.Foreground.Disable}"/>
+                <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Disable}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

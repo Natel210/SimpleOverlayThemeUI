@@ -13,10 +13,10 @@
     <!-- Custom GroupBox -->
     <Style x:Key="GrayThemeUI.GroupBox" TargetType="GroupBox">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Theme.Foreground}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Theme.Foreground.Disable}"/>
-        <Setter Property="BorderThickness" Value="{DynamicResource GrayThemeUI.Common.BorderThickness}"/>
-        <Setter Property="FontSize" Value="{DynamicResource GrayThemeUI.Common.FontSize.Default}"/>
+        <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Foreground.Disable}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource GrayThemeUI.Internal.Thickness.Default}"/>
+        <Setter Property="FontSize" Value="{DynamicResource GrayThemeUI.Internal.FontSize.Default}"/>
         <Setter Property="Padding" Value="5"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -45,14 +45,14 @@
                                     </Label.Content>
                                 </Label>
                             </Border>
-                            <ContentControl Grid.Row="1" FontSize="{DynamicResource GrayThemeUI.Common.FontSize.Default}" Background="Transparent">
+                            <ContentControl Grid.Row="1" FontSize="{DynamicResource GrayThemeUI.Internal.FontSize.Default}" Background="Transparent">
                                 <ContentPresenter Margin="{TemplateBinding Padding}"/>
                             </ContentControl>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="rootBorder" Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Theme.Foreground.Disable}"/>
+                            <Setter TargetName="rootBorder" Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Disable}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

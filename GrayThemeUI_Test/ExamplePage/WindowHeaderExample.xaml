@@ -1,0 +1,46 @@
+﻿<Page x:Class="GrayThemeUI_Test.ExamplePage.WindowHeaderExample"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GrayThemeUI_Test.ExamplePage"
+      mc:Ignorable="d" 
+      xmlns:control="clr-namespace:GrayThemeUI.CustomControl;assembly=GrayThemeUI"
+      xmlns:helper="clr-namespace:GrayThemeUI.Helper;assembly=GrayThemeUI"
+      Title="WindowHeaderExample">
+
+    <StackPanel Orientation="Vertical">
+        <control:WindowHeader x:Name="Item1" FontSize="28" Margin="0,0,0,5" TitleContent="Title Item1"
+                              ShowMinimize="Visible" ShowToggleMaximizeRestore="Visible" ShowClose="Visible"/>
+        <control:WindowHeader x:Name="Item2" Background="#A0FF4040" ShowMinimize="Visible" ShowToggleMaximizeRestore="Visible"
+                              ShowClose="Visible" FontSize="28" Margin="0,0,0,5">
+            <control:WindowHeader.TitleContent>
+                <StackPanel x:Name="titleContentBorder" Orientation="Horizontal">
+                    <Button Style="{StaticResource GrayThemeUI.Button.ImageMask}" Width="120" Background="Transparent">
+                        <helper:OverlayHelper.IsDefault>
+                            False
+                        </helper:OverlayHelper.IsDefault>
+                        <helper:MaskHelper.Background_Overlay_Visibility>
+                            Collapsed
+                        </helper:MaskHelper.Background_Overlay_Visibility>
+                        <helper:MaskHelper.DefaultMask>
+                            <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI_Test;component/Resource/TitleTestImage.png"/>
+                        </helper:MaskHelper.DefaultMask>
+                    </Button>
+                    <TextBlock Text=" Item2" Margin="5,0" VerticalAlignment="Center"/>
+                </StackPanel>
+            </control:WindowHeader.TitleContent>
+            <control:WindowHeader.SideContent>
+                <StackPanel x:Name="sideContentBorder" Orientation="Horizontal">
+                    <TextBlock Text="I1" VerticalAlignment="Center" Margin="5,0"/>
+                    <TextBlock Text="I2" VerticalAlignment="Center"  Margin="5,0"/>
+                    <Button VerticalContentAlignment="Center" Margin="5,0" Background="Transparent" Style="{StaticResource GrayThemeUI.Button.Square}">
+                        <Button.Content>
+                            <TextBlock Text="Setting" Margin="5,0" FontSize="12"/>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </control:WindowHeader.SideContent>
+        </control:WindowHeader>
+    </StackPanel>
+</Page>

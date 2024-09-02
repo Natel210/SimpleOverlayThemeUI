@@ -45,7 +45,19 @@ namespace GrayThemeUI_Test.ExamplePage
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            GrayThemeUI.Theme.ThemeSettingDataManager.OverlayBoaderBackground_Active = new SolidColorBrush(Color.FromArgb(255, 255, 255, 0));
+            //GrayThemeUI.Theme.ThemeSettingDataManager.OverlayBoaderBackground_Active = new SolidColorBrush(Color.FromArgb(255, 255, 255, 0));
+        }
+
+        private void DefaultTitleOff(object sender, RoutedEventArgs e)
+        {
+            var parentWindow = Window.GetWindow(this);
+            parentWindow.WindowStyle = WindowStyle.None;
+        }
+
+        private void DefaultTitleOn(object sender, RoutedEventArgs e)
+        {
+            var parentWindow = Window.GetWindow(this);
+            parentWindow.WindowStyle = WindowStyle.SingleBorderWindow;
         }
     }
 }

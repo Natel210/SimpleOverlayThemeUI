@@ -279,7 +279,8 @@
     <!-- ImageMask ToggleButton  -->
     <Style x:Key="GrayThemeUI.ToggleButton.ImageMask" TargetType="ToggleButton">
         <Setter Property="FontSize" Value="{DynamicResource GrayThemeUI.Internal.FontSize.Default}"/>
-        <Setter Property="BorderThickness" Value="{DynamicResource GrayThemeUI.Internal.Thickness.Default}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource GrayThemeUI.Internal.Thickness.Zero}"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="BorderBrush" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Outline}"/>
         <Setter Property="Foreground" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Mask}"/>
         <Setter Property="Background" Value="{DynamicResource GrayThemeUI.Internal.DefaultBrush.Background}"/>
@@ -313,6 +314,48 @@
                         <Grid.Background>
                             <TemplateBinding Property="Background"/>
                         </Grid.Background>
+                        <!-- Background Border -->
+                        <Border x:Name="backgroundBorder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Border.Height>
+                                <TemplateBinding Property="ActualHeight"/>
+                            </Border.Height>
+                            <Border.Width>
+                                <TemplateBinding Property="ActualWidth"/>
+                            </Border.Width>
+                            <Border.Background>
+                                <TemplateBinding Property="Background"/>
+                            </Border.Background>
+                            <Border.BorderThickness>
+                                <TemplateBinding Property="BorderThickness"/>
+                            </Border.BorderThickness>
+                            <Border.BorderBrush>
+                                <TemplateBinding Property="BorderBrush"/>
+                            </Border.BorderBrush>
+                            <Border.SnapsToDevicePixels>
+                                <TemplateBinding Property="SnapsToDevicePixels"/>
+                            </Border.SnapsToDevicePixels>
+                        </Border>
+                        <!-- Overlay -->
+                        <Border x:Name="overlay" Style="{StaticResource GrayThemeUI.Overlay.Border}">
+                            <Border.Height>
+                                <TemplateBinding Property="ActualHeight"/>
+                            </Border.Height>
+                            <Border.Width>
+                                <TemplateBinding Property="ActualWidth"/>
+                            </Border.Width>
+                            <Border.BorderThickness>
+                                <TemplateBinding Property="helper:MaskHelper.Background_Overlay_Outline_Thickness"/>
+                            </Border.BorderThickness>
+                            <Border.SnapsToDevicePixels>
+                                <TemplateBinding Property="SnapsToDevicePixels"/>
+                            </Border.SnapsToDevicePixels>
+                            <Border.Visibility>
+                                <TemplateBinding Property="helper:MaskHelper.Background_Overlay_Visibility"/>
+                            </Border.Visibility>
+                            <helper:OverlayHelper.IsDefault>
+                                <TemplateBinding Property="helper:OverlayHelper.IsDefault"/>
+                            </helper:OverlayHelper.IsDefault>
+                        </Border>
                         <!-- Mask Border -->
                         <Border x:Name="border" BorderBrush="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <Border.Background>
@@ -337,21 +380,6 @@
                                 <TemplateBinding Property="SnapsToDevicePixels"/>
                             </Border.SnapsToDevicePixels>
                         </Border>
-                        <!-- Overlay -->
-                        <Border x:Name="overlay" Style="{StaticResource GrayThemeUI.Overlay.Border}">
-                            <Border.BorderThickness>
-                                <TemplateBinding Property="helper:MaskHelper.Background_Overlay_Outline_Thickness"/>
-                            </Border.BorderThickness>
-                            <Border.SnapsToDevicePixels>
-                                <TemplateBinding Property="SnapsToDevicePixels"/>
-                            </Border.SnapsToDevicePixels>
-                            <Border.Visibility>
-                                <TemplateBinding Property="helper:MaskHelper.Background_Overlay_Visibility"/>
-                            </Border.Visibility>
-                            <helper:OverlayHelper.IsDefault>
-                                <TemplateBinding Property="helper:OverlayHelper.IsDefault"/>
-                            </helper:OverlayHelper.IsDefault>
-                        </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -365,52 +393,24 @@
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="border" Property="OpacityMask">
                                 <Setter.Value>
-                                    <Binding>
-                                        <Binding.Path>
-                                            (helper:MaskHelper.CheckedMask)
-                                        </Binding.Path>
-                                        <Binding.RelativeSource>
-                                            <RelativeSource Mode="TemplatedParent"/>
-                                        </Binding.RelativeSource>
-                                    </Binding>
+                                    <Binding Path="(helper:MaskHelper.CheckedMask)" RelativeSource="{RelativeSource Mode='TemplatedParent'}"/>
                                 </Setter.Value>
                             </Setter>
                             <Setter TargetName="overlayMask" Property="OpacityMask">
                                 <Setter.Value>
-                                    <Binding>
-                                        <Binding.Path>
-                                            (helper:MaskHelper.CheckedMask)
-                                        </Binding.Path>
-                                        <Binding.RelativeSource>
-                                            <RelativeSource Mode="TemplatedParent"/>
-                                        </Binding.RelativeSource>
-                                    </Binding>
+                                    <Binding Path="(helper:MaskHelper.CheckedMask)" RelativeSource="{RelativeSource Mode='TemplatedParent'}"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsChecked" Value="False">
                             <Setter TargetName="border" Property="OpacityMask">
                                 <Setter.Value>
-                                    <Binding>
-                                        <Binding.Path>
-                                            (helper:MaskHelper.DefaultMask)
-                                        </Binding.Path>
-                                        <Binding.RelativeSource>
-                                            <RelativeSource Mode="TemplatedParent"/>
-                                        </Binding.RelativeSource>
-                                    </Binding>
+                                    <Binding Path="(helper:MaskHelper.DefaultMask)" RelativeSource="{RelativeSource Mode='TemplatedParent'}"/>
                                 </Setter.Value>
                             </Setter>
                             <Setter TargetName="overlayMask" Property="OpacityMask">
                                 <Setter.Value>
-                                    <Binding>
-                                        <Binding.Path>
-                                            (helper:MaskHelper.DefaultMask)
-                                        </Binding.Path>
-                                        <Binding.RelativeSource>
-                                            <RelativeSource Mode="TemplatedParent"/>
-                                        </Binding.RelativeSource>
-                                    </Binding>
+                                    <Binding Path="(helper:MaskHelper.DefaultMask)" RelativeSource="{RelativeSource Mode='TemplatedParent'}"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>

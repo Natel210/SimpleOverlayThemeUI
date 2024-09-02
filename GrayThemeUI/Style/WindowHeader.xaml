@@ -1,17 +1,15 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:control="clr-namespace:GrayThemeUI.CustomControl"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:GrayThemeUI"
-                    xmlns:theme="clr-namespace:GrayThemeUI.Theme"
+                    xmlns:control="clr-namespace:GrayThemeUI.CustomControl"
                     xmlns:helper="clr-namespace:GrayThemeUI.Helper">
     <ResourceDictionary.MergedDictionaries>
-        <!--<ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Theme/Common.xaml" />-->
-        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Resource/Resource.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/TextBlock.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/TextBlock.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/GrayThemeUI;component/Style/Button.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <Style TargetType="{x:Type control:WindowHeader}">
+        <Setter Property="WindowControlForeground" Value="#20808080"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type control:WindowHeader}">
@@ -32,44 +30,23 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Border Grid.Column="0">
-                                <TextBlock x:Name="TitleTextBlock">
-                                    <TextBlock.Text>
-                                        <TemplateBinding Property="Title"/>
-                                    </TextBlock.Text>
-                                    <TextBlock.FontSize>
-                                        <TemplateBinding Property="FontSize"/>
-                                    </TextBlock.FontSize>
-                                    <TextBlock.FontWeight>
-                                        <TemplateBinding Property="FontWeight"/>
-                                    </TextBlock.FontWeight>
-                                    <TextBlock.FontFamily>
-                                        <TemplateBinding Property="FontFamily"/>
-                                    </TextBlock.FontFamily>
-                                    <TextBlock.FontStyle>
-                                        <TemplateBinding Property="FontStyle"/>
-                                    </TextBlock.FontStyle>
-                                    <TextBlock.FontStretch>
-                                        <TemplateBinding Property="FontStretch"/>
-                                    </TextBlock.FontStretch>
-                                    <TextBlock.Foreground>
-                                        <TemplateBinding Property="Foreground"/>
-                                    </TextBlock.Foreground>
-                                    <TextBlock.VerticalAlignment>
-                                        Center
-                                    </TextBlock.VerticalAlignment>
-                                    <TextBlock.Style>
-                                        <StaticResource ResourceKey="GrayThemeUI.TextBlock.Default"/>
-                                    </TextBlock.Style>
-                                </TextBlock>
+                                <ContentControl Background="Transparent">
+                                    <ContentControl.Content>
+                                        <Binding Path="TitleContent" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                    </ContentControl.Content>
+                                </ContentControl>
                             </Border>
                             <Border Grid.Column="1">
-                                <ContentPresenter x:Name="ContentPresenterInstance">
-                                    <ContentPresenter.Content>
-                                        <Binding Path="AddOnItem" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                    </ContentPresenter.Content>
-                                </ContentPresenter>
+                                <ContentControl>
+                                    <ContentControl.Content>
+                                        <Binding Path="SideContent" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                    </ContentControl.Content>
+                                </ContentControl>
                             </Border>
-                            <Button x:Name="minimizeButton" Grid.Column="2">
+                            <Button x:Name="minimizeButton" Grid.Column="2" Background="Transparent">
+                                <Button.Foreground>
+                                    <Binding Path="WindowControlForeground" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                </Button.Foreground>
                                 <Button.Width>
                                     <Binding Path="ActualHeight" ElementName="MainGrid"/>
                                 </Button.Width>
@@ -89,7 +66,10 @@
                                     <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/minimize.png"/>
                                 </helper:MaskHelper.DefaultMask>
                             </Button>
-                            <ToggleButton x:Name="fullScreen" Grid.Column="3">
+                            <ToggleButton x:Name="fullScreen" Grid.Column="3" Background="Transparent">
+                                <ToggleButton.Foreground>
+                                    <Binding Path="WindowControlForeground" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                </ToggleButton.Foreground>
                                 <ToggleButton.Width>
                                     <Binding Path="ActualHeight" ElementName="MainGrid"/>
                                 </ToggleButton.Width>
@@ -112,7 +92,10 @@
                                     <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI;component/Resource/Mask/maximize.png"/>
                                 </helper:MaskHelper.CheckedMask>
                             </ToggleButton>
-                            <Button x:Name="closeButton" Grid.Column="4">
+                            <Button x:Name="closeButton" Grid.Column="4" Background="Transparent">
+                                <Button.Foreground>
+                                    <Binding Path="WindowControlForeground" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                </Button.Foreground>
                                 <Button.Width>
                                     <Binding Path="ActualHeight" ElementName="MainGrid"/>
                                 </Button.Width>
@@ -135,7 +118,7 @@
                         </Grid>
                         <Grid Grid.Row="1">
                             <Grid.Background>
-                                <DynamicResource ResourceKey="GrayThemeUI.Common.LineColor"/>
+                                <DynamicResource ResourceKey="GrayThemeUI.Internal.DefaultBrush.Line"/>
                             </Grid.Background>
                         </Grid>
                     </Grid>

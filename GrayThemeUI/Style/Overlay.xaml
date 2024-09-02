@@ -9,6 +9,8 @@
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="IsHitTestVisible" Value="False"/>
+        <Setter Property="Focusable" Value="False"/>
         <Setter Property="helper:OverlayHelper.IsDisable" Value="False"/>
         <Setter Property="helper:OverlayHelper.IsDefault" Value="False"/>
         <Setter Property="helper:OverlayHelper.IsMouseOver" Value="False"/>
@@ -53,6 +55,8 @@
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="IsHitTestVisible" Value="False"/>
+        <Setter Property="Focusable" Value="False"/>
         <Setter Property="helper:OverlayHelper.IsDisable" Value="False"/>
         <Setter Property="helper:OverlayHelper.IsDefault" Value="False"/>
         <Setter Property="helper:OverlayHelper.IsMouseOver" Value="False"/>

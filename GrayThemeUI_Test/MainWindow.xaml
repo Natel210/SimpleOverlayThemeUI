@@ -9,23 +9,90 @@
         xmlns:example="clr-namespace:GrayThemeUI_Test.ExamplePage"
         Style="{StaticResource GrayThemeUI.Window}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" d:Height="800" Width="600">
+        Title="MainWindow" Height="800" d:Height="800" Width="600">
     <ScrollViewer>
         <StackPanel>
-            <Frame x:Name="buttonExample"/>
-            <CheckBox Content=" CheckBox" Style="{StaticResource GrayThemeUI.CheckBox}" Width="120" Height="30"/>
+
+
+            <Frame x:Name="windowHeaderExample"/>
+            <Frame x:Name="labelTextsExample" Margin="5"/>
+            <Frame x:Name="buttonExample" Margin="5"/>
+            <Border HorizontalAlignment="Left" Margin="5">
+                <CheckBox Content=" CheckBox" Style="{StaticResource GrayThemeUI.CheckBox}" Width="120" Height="30"/>
+            </Border>
+            <Border HorizontalAlignment="Left" Margin="5">
+                <ComboBox x:Name="grayThemeUIComboBox" SelectedIndex="0" Style="{StaticResource GrayThemeUI.ComboBox}" Width="300" >
+                    <ComboBoxItem>
+                        <ComboBoxItem.Content>
+                            <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                <TextBlock Text="ComboBox1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ComboBoxItem.Content>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <ComboBoxItem.Content>
+                            <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                <TextBlock Text="ComboBox2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ComboBoxItem.Content>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <ComboBoxItem.Content>
+                            <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                <TextBlock Text="ComboBox3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ComboBoxItem.Content>
+                    </ComboBoxItem>
+                    <ComboBoxItem Width="{Binding ActualWidth, ElementName=grayThemeUIComboBox}" IsSelected="False">
+                        <ComboBoxItem.Content>
+                            <Button Content=" Button " Style="{StaticResource GrayThemeUI.Button.Square}"/>
+                        </ComboBoxItem.Content>
+                    </ComboBoxItem>
+                </ComboBox>
+            </Border>
+
+            <Border HorizontalAlignment="Left" Margin="5">
+                <DataGrid Name="dataGrid" FontSize="16" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeColumns="False" Style="{StaticResource GrayThemeUI.DataGrid}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Id}" Width="*">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text=" ID " FontSize="30"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header=" Name " Binding="{Binding Name}" Width="*"/>
+                        <DataGridTextColumn Header=" Age " Binding="{Binding Age}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+            
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="5">
+                <GroupBox Header=" GroupBox " Margin="10" Style="{StaticResource GrayThemeUI.GroupBox}">
+                    <ComboBox x:Name="grayThemeUIComboBox2" SelectedIndex="0" Style="{StaticResource GrayThemeUI.ComboBox}" Background="#5000FF00">
+                        <ComboBoxItem Content=" ComboBox1 "/>
+                        <ComboBoxItem Content=" ComboBox2 "/>
+                        <ComboBoxItem Content=" ComboBox3 "/>
+                    </ComboBox>
+                </GroupBox>
+                <GroupBox Header=" none stlye " Margin="10" Style="{StaticResource GrayThemeUI.GroupBox}">
+                    <ComboBox x:Name="grayThemeUIComboBox3" SelectedIndex="0" Background="#5000FF00">
+                        <ComboBoxItem Content=" ComboBox1 "/>
+                        <ComboBoxItem Content=" ComboBox2 "/>
+                        <ComboBoxItem Content=" ComboBox3 "/>
+                    </ComboBox>
+                </GroupBox>
+            </StackPanel>
+
+            <Border HorizontalAlignment="Left" Margin="5">
+
+            </Border>
+            
+            <Border HorizontalAlignment="Left" Margin="5">
+
+            </Border>
+
             <!--<control:WindowHeader Title="MY WINDOW"/>-->
 
-            <!--<ComboBox x:Name="grayThemeUIComboBox" SelectedIndex="0" Style="{StaticResource GrayThemeUI.ComboBox}" Background="Magenta" Foreground="Black">
-                <ComboBoxItem Content=" ComboBox1 "/>
-                <ComboBoxItem Content=" ComboBox2 "/>
-                <ComboBoxItem Content=" ComboBox3 "/>
-                <ComboBoxItem Width="{Binding ActualWidth, ElementName=grayThemeUIComboBox}" IsSelected="False">
-                    <ComboBoxItem.Content>
-                        <Button Content=" Button " Style="{StaticResource GrayThemeUI.Button.Square}"/>
-                    </ComboBoxItem.Content>
-                </ComboBoxItem>
-            </ComboBox>-->
+
             <!--<GroupBox Header=" GroupBox " Margin="10" Style="{StaticResource GrayThemeUI.GroupBox}" Background="Yellow" Foreground="Cyan">
                 <ComboBox x:Name="grayThemeUIComboBox" SelectedIndex="0" Style="{StaticResource GrayThemeUI.ComboBox}" Background="Magenta" Foreground="Black">
                     <ComboBoxItem Content=" ComboBox1 "/>
@@ -73,9 +140,9 @@
                 <Button Content=" Button2 " Grid.Row="0" Style="{StaticResource GrayThemeUI.Button.Square}"/>
                 <Button Content=" Button3 " Grid.Row="1" Style="{StaticResource GrayThemeUI.Button.Square}"/>
             </Grid>-->
-            
 
-            <!--<grayTheme:WindowHeader Title="123" ShowMinimize="Visible" ShowToggleMaximizeRestore="Visible" ShowClose="Visible"/>-->
+
+
 
         </StackPanel>
     </ScrollViewer>
