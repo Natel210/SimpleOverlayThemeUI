@@ -24,8 +24,6 @@ namespace GrayThemeUI.Helper
 
         [Category("GrayThemeUI.Overlay.Helper")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
-        [AttachedPropertyBrowsableForType(typeof(Button))]
-        [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
         public static bool GetIsDisable(UIElement element)
         {
             return (bool)element.GetValue(IsDisableProperty);
@@ -33,8 +31,6 @@ namespace GrayThemeUI.Helper
 
         [Category("GrayThemeUI.Overlay.Helper")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
-        [AttachedPropertyBrowsableForType(typeof(Button))]
-        [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
         public static void SetIsDisable(UIElement element, bool value)
         {
             element.SetValue(IsDisableProperty, value);
@@ -62,6 +58,9 @@ namespace GrayThemeUI.Helper
         [AttachedPropertyBrowsableForType(typeof(Border))]
         [AttachedPropertyBrowsableForType(typeof(Button))]
         [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
+        [AttachedPropertyBrowsableForType(typeof(RepeatButton))]
+        [AttachedPropertyBrowsableForType(typeof(CheckBox))]
+        [AttachedPropertyBrowsableForType(typeof(ComboBox))]
         public static bool GetIsDefault(UIElement element)
         {
             return (bool)element.GetValue(IsDefaultProperty);
@@ -71,6 +70,9 @@ namespace GrayThemeUI.Helper
         [AttachedPropertyBrowsableForType(typeof(Border))]
         [AttachedPropertyBrowsableForType(typeof(Button))]
         [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
+        [AttachedPropertyBrowsableForType(typeof(RepeatButton))]
+        [AttachedPropertyBrowsableForType(typeof(CheckBox))]
+        [AttachedPropertyBrowsableForType(typeof(ComboBox))]
         public static void SetIsDefault(UIElement element, bool value)
         {
             element.SetValue(IsDefaultProperty, value);
@@ -97,8 +99,6 @@ namespace GrayThemeUI.Helper
 
         [Category("GrayThemeUI.Overlay.Helper")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
-        [AttachedPropertyBrowsableForType(typeof(Button))]
-        [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
         public static bool GetIsMouseOver(UIElement element)
         {
             return (bool)element.GetValue(IsMouseOverProperty);
@@ -106,8 +106,6 @@ namespace GrayThemeUI.Helper
 
         [Category("GrayThemeUI.Overlay.Helper")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
-        [AttachedPropertyBrowsableForType(typeof(Button))]
-        [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
         public static void SetIsMouseOver(UIElement element, bool value)
         {
             element.SetValue(IsMouseOverProperty, value);
@@ -133,8 +131,6 @@ namespace GrayThemeUI.Helper
 
         [Category("GrayThemeUI.Overlay.Helper")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
-        [AttachedPropertyBrowsableForType(typeof(Button))]
-        [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
         public static bool GetIsActive(UIElement element)
         {
             return (bool)element.GetValue(IsActiveProperty);
@@ -142,8 +138,6 @@ namespace GrayThemeUI.Helper
 
         [Category("GrayThemeUI.Overlay.Helper")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
-        [AttachedPropertyBrowsableForType(typeof(Button))]
-        [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
         public static void SetIsActive(UIElement element, bool value)
         {
             element.SetValue(IsActiveProperty, value);

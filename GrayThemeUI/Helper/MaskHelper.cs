@@ -24,6 +24,8 @@ namespace GrayThemeUI.Helper
         [AttachedPropertyBrowsableForType(typeof(Border))]
         [AttachedPropertyBrowsableForType(typeof(Button))]
         [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
+        [AttachedPropertyBrowsableForType(typeof(RepeatButton))]
+        [AttachedPropertyBrowsableForType(typeof(CheckBox))]
         public static ImageBrush GetDefaultMask(UIElement element)
         {
             return (ImageBrush)element.GetValue(DefaultMaskProperty);
@@ -33,6 +35,8 @@ namespace GrayThemeUI.Helper
         [AttachedPropertyBrowsableForType(typeof(Border))]
         [AttachedPropertyBrowsableForType(typeof(Button))]
         [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
+        [AttachedPropertyBrowsableForType(typeof(RepeatButton))]
+        [AttachedPropertyBrowsableForType(typeof(CheckBox))]
         public static void SetDefaultMask(UIElement element, ImageBrush value)
         {
             element.SetValue(DefaultMaskProperty, value);
@@ -46,6 +50,8 @@ namespace GrayThemeUI.Helper
         [AttachedPropertyBrowsableForType(typeof(Border))]
         [AttachedPropertyBrowsableForType(typeof(Button))]
         [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
+        [AttachedPropertyBrowsableForType(typeof(RepeatButton))]
+        [AttachedPropertyBrowsableForType(typeof(CheckBox))]
         public static ImageBrush GetCheckedMask(UIElement element)
         {
             return (ImageBrush)element.GetValue(CheckedMaskProperty);
@@ -55,6 +61,8 @@ namespace GrayThemeUI.Helper
         [AttachedPropertyBrowsableForType(typeof(Border))]
         [AttachedPropertyBrowsableForType(typeof(Button))]
         [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
+        [AttachedPropertyBrowsableForType(typeof(RepeatButton))]
+        [AttachedPropertyBrowsableForType(typeof(CheckBox))]
         public static void SetCheckedMask(UIElement element, ImageBrush value)
         {
             element.SetValue(CheckedMaskProperty, value);
@@ -68,6 +76,9 @@ namespace GrayThemeUI.Helper
         [AttachedPropertyBrowsableForType(typeof(Border))]
         [AttachedPropertyBrowsableForType(typeof(Button))]
         [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
+        [AttachedPropertyBrowsableForType(typeof(RepeatButton))]
+        [AttachedPropertyBrowsableForType(typeof(CheckBox))]
+        [AttachedPropertyBrowsableForType(typeof(ComboBox))]
         public static Visibility GetBackground_Overlay_Visibility(UIElement element)
         {
             return (Visibility)element.GetValue(Background_Overlay_VisibilityProperty);
@@ -77,6 +88,9 @@ namespace GrayThemeUI.Helper
         [AttachedPropertyBrowsableForType(typeof(Border))]
         [AttachedPropertyBrowsableForType(typeof(Button))]
         [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
+        [AttachedPropertyBrowsableForType(typeof(RepeatButton))]
+        [AttachedPropertyBrowsableForType(typeof(CheckBox))]
+        [AttachedPropertyBrowsableForType(typeof(ComboBox))]
         public static void SetBackground_Overlay_Visibility(UIElement element, Visibility value)
         {
             element.SetValue(Background_Overlay_VisibilityProperty, value);
@@ -90,6 +104,9 @@ namespace GrayThemeUI.Helper
         [AttachedPropertyBrowsableForType(typeof(Border))]
         [AttachedPropertyBrowsableForType(typeof(Button))]
         [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
+        [AttachedPropertyBrowsableForType(typeof(RepeatButton))]
+        [AttachedPropertyBrowsableForType(typeof(CheckBox))]
+        [AttachedPropertyBrowsableForType(typeof(ComboBox))]
         public static Thickness GetBackground_Overlay_Outline_Thickness(UIElement element)
         {
             return (Thickness)element.GetValue(Background_Overlay_Outline_ThicknessProperty);
@@ -99,6 +116,9 @@ namespace GrayThemeUI.Helper
         [AttachedPropertyBrowsableForType(typeof(Border))]
         [AttachedPropertyBrowsableForType(typeof(Button))]
         [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
+        [AttachedPropertyBrowsableForType(typeof(RepeatButton))]
+        [AttachedPropertyBrowsableForType(typeof(CheckBox))]
+        [AttachedPropertyBrowsableForType(typeof(ComboBox))]
         public static void SetBackground_Overlay_Outline_Thickness(UIElement element, Thickness value)
         {
             element.SetValue(Background_Overlay_Outline_ThicknessProperty, value);

@@ -59,5 +59,44 @@ namespace GrayThemeUI_Test.ExamplePage
             var parentWindow = Window.GetWindow(this);
             parentWindow.WindowStyle = WindowStyle.SingleBorderWindow;
         }
+
+        private int _repeatButtonCheckCount = 0;
+        private void RepeatButton_Click(object sender, RoutedEventArgs e)
+        {
+            var repeatButton = sender as RepeatButton;
+            if (repeatButton is not null)
+                repeatButton.Content = $" RepeatButton {++_repeatButtonCheckCount} ";
+        }
+
+        private void RepeatButton_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            var repeatButton = sender as RepeatButton;
+            if (repeatButton is not null)
+            {
+                _repeatButtonCheckCount = 0;
+                repeatButton.Content = $" RepeatButton 0 ";
+            }
+        }
+
+        private int _repeatImageButtonCheckCount = 0;
+        private Int128 _repeatImageButtonValue = 0;
+        private void RepeatImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            ++_repeatImageButtonCheckCount;
+            double calPow = (double)(_repeatImageButtonCheckCount / 50);
+            if (5.0 <= calPow)
+                calPow = 5.0;
+
+
+            _repeatImageButtonValue += (Int128)Math.Pow(10.0, calPow);
+
+            imageButtonCount.Text = $" Count:{_repeatImageButtonValue} ";
+        }
+
+        private void RepeatImageButton_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            _repeatImageButtonCheckCount = 0;
+            //imageButtonCount.Text = $" RepeatImageButton 0 ";
+        }
     }
 }

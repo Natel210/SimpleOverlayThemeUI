@@ -13,7 +13,7 @@
             <Button
                 Content=" Button "
                 Width="120" Margin="0,0,2.5,0"
-                Style="{StaticResource GrayThemeUI.Button.Square}"
+                Style="{StaticResource GrayThemeUI.Button.Default}"
                 helper:OverlayHelper.IsDefault="True"
                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <Button Width="25" Margin="2.5,0" Click="Button_Click">
@@ -40,7 +40,7 @@
         <StackPanel Orientation="Horizontal" Margin="0,2.5" Height="25">
             <ToggleButton Content=" To Dark (ToggleButton) "
                           Width="300" Margin="0,0,2.5,0" FontSize="12"
-                          Style="{StaticResource GrayThemeUI.ToggleButton.Square}"
+                          Style="{StaticResource GrayThemeUI.ToggleButton.Default}"
                           HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                           Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked"/>
             <ToggleButton  Width="25" Margin="2.5,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
@@ -71,7 +71,28 @@
                     <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI_Test;component/Resource/Default_Title_Off.png"/>
                 </helper:MaskHelper.CheckedMask>
             </ToggleButton>
-
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,2.5" Height="25">
+            <RepeatButton
+                Content=" RepeatButton 0 "
+                Width="160" Margin="0,0,2.5,0"
+                Style="{StaticResource GrayThemeUI.RepeatButton.Default}"
+                Click="RepeatButton_Click"
+                PreviewMouseUp="RepeatButton_PreviewMouseUp"
+                helper:OverlayHelper.IsDefault="True"
+                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <RepeatButton x:Name="repeatImageButton"
+                          Width="25" Margin="0,0,2.5,0"
+                          Style="{StaticResource GrayThemeUI.RepeatButton.ImageMask}"
+                          Click="RepeatImageButton_Click"
+                          PreviewMouseUp="RepeatImageButton_PreviewMouseUp"
+                          helper:OverlayHelper.IsDefault="True"
+                          HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                <helper:MaskHelper.DefaultMask>
+                    <ImageBrush ImageSource="pack://application:,,,/GrayThemeUI_Test;component/Resource/Test1.png"/>
+                </helper:MaskHelper.DefaultMask>
+            </RepeatButton>
+            <TextBlock x:Name="imageButtonCount" Text=" Count:0 "/>
         </StackPanel>
     </StackPanel>
 </Page>

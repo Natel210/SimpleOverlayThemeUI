@@ -34,7 +34,7 @@
                 <StackPanel x:Name="sideContentBorder" Orientation="Horizontal">
                     <TextBlock Text="I1" VerticalAlignment="Center" Margin="5,0"/>
                     <TextBlock Text="I2" VerticalAlignment="Center"  Margin="5,0"/>
-                    <Button VerticalContentAlignment="Center" Margin="5,0" Background="Transparent" Style="{StaticResource GrayThemeUI.Button.Square}">
+                    <Button VerticalContentAlignment="Center" Margin="5,0" Background="Transparent" Style="{StaticResource GrayThemeUI.Button.Default}">
                         <Button.Content>
                             <TextBlock Text="Setting" Margin="5,0" FontSize="12"/>
                         </Button.Content>
