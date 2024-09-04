@@ -23,7 +23,7 @@
 
 
             <Border HorizontalAlignment="Left" Margin="5">
-
+                <control:NumericUpDown FontSize="32"/>
             </Border>
 
             <Border HorizontalAlignment="Left" Margin="5">

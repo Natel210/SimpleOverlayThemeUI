@@ -8,17 +8,15 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows;
-using GrayThemeUI.CustomControl;
 
 namespace GrayThemeUI.Helper
 {
-    public class MaskHelper
+    public class MaskBorderHelper
     {
-        
+        private static readonly FrameworkPropertyMetadataOptions _frameworkPropertyMetadataOptions = FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure;
+        private const string _category = "GrayThemeUI.MaskBorder.Helper";
 
-        public static readonly DependencyProperty Background_Overlay_VisibilityProperty
-            = DependencyProperty.RegisterAttached("Background_Overlay_Visibility", typeof(Visibility), typeof(MaskHelper),
-                new FrameworkPropertyMetadata(Visibility.Collapsed, _frameworkPropertyMetadataOptions));
+        public static readonly DependencyProperty Mask1Property = DependencyProperty.RegisterAttached("DefaultMask", typeof(ImageBrush), typeof(MaskHelper), new FrameworkPropertyMetadata(null, _frameworkPropertyMetadataOptions));
 
         [Category("GrayThemeUI.Mask.Helper")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
@@ -26,10 +24,9 @@ namespace GrayThemeUI.Helper
         [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
         [AttachedPropertyBrowsableForType(typeof(RepeatButton))]
         [AttachedPropertyBrowsableForType(typeof(CheckBox))]
-        [AttachedPropertyBrowsableForType(typeof(ComboBox))]
-        public static Visibility GetBackground_Overlay_Visibility(UIElement element)
+        public static ImageBrush GetDefaultMask(UIElement element)
         {
-            return (Visibility)element.GetValue(Background_Overlay_VisibilityProperty);
+            return (ImageBrush)element.GetValue(DefaultMaskProperty);
         }
 
         [Category("GrayThemeUI.Mask.Helper")]
@@ -38,15 +35,14 @@ namespace GrayThemeUI.Helper
         [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
         [AttachedPropertyBrowsableForType(typeof(RepeatButton))]
         [AttachedPropertyBrowsableForType(typeof(CheckBox))]
-        [AttachedPropertyBrowsableForType(typeof(ComboBox))]
-        public static void SetBackground_Overlay_Visibility(UIElement element, Visibility value)
+        public static void SetDefaultMask(UIElement element, ImageBrush value)
         {
-            element.SetValue(Background_Overlay_VisibilityProperty, value);
+            element.SetValue(DefaultMaskProperty, value);
         }
 
-        public static readonly DependencyProperty Background_Overlay_Outline_ThicknessProperty
-            = DependencyProperty.RegisterAttached("Background_Overlay_Outline_Thickness", typeof(Thickness), typeof(MaskHelper),
-                new FrameworkPropertyMetadata(new Thickness(0.0), _frameworkPropertyMetadataOptions));
+        public static readonly DependencyProperty CheckedMaskProperty
+            = DependencyProperty.RegisterAttached("CheckedMask", typeof(ImageBrush), typeof(MaskHelper),
+                new FrameworkPropertyMetadata(null, _frameworkPropertyMetadataOptions));
 
         [Category("GrayThemeUI.Mask.Helper")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
@@ -54,10 +50,9 @@ namespace GrayThemeUI.Helper
         [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
         [AttachedPropertyBrowsableForType(typeof(RepeatButton))]
         [AttachedPropertyBrowsableForType(typeof(CheckBox))]
-        [AttachedPropertyBrowsableForType(typeof(ComboBox))]
-        public static Thickness GetBackground_Overlay_Outline_Thickness(UIElement element)
+        public static ImageBrush GetCheckedMask(UIElement element)
         {
-            return (Thickness)element.GetValue(Background_Overlay_Outline_ThicknessProperty);
+            return (ImageBrush)element.GetValue(CheckedMaskProperty);
         }
 
         [Category("GrayThemeUI.Mask.Helper")]
@@ -66,12 +61,9 @@ namespace GrayThemeUI.Helper
         [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
         [AttachedPropertyBrowsableForType(typeof(RepeatButton))]
         [AttachedPropertyBrowsableForType(typeof(CheckBox))]
-        [AttachedPropertyBrowsableForType(typeof(ComboBox))]
-        public static void SetBackground_Overlay_Outline_Thickness(UIElement element, Thickness value)
+        public static void SetCheckedMask(UIElement element, ImageBrush value)
         {
-            element.SetValue(Background_Overlay_Outline_ThicknessProperty, value);
+            element.SetValue(CheckedMaskProperty, value);
         }
-
-
     }
 }

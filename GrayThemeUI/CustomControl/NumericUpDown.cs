@@ -3,6 +3,7 @@ using System.ComponentModel.Design;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace GrayThemeUI.CustomControl
 {
@@ -112,12 +113,48 @@ namespace GrayThemeUI.CustomControl
             set { SetValue(DecimalPlacesProperty, value); }
         }
 
+        public static readonly DependencyProperty PlusImageBrushProperty
+            = DependencyProperty.Register(
+                nameof(PlusImageBrush),
+                typeof(ImageBrush),
+                typeof(NumericUpDown),
+                new FrameworkPropertyMetadata(null, _frameworkPropertyMetadataOptions));
 
+        [Category("GrayThemeUI.NumericUpDown.Image")]
+        public ImageBrush PlusImageBrush
+        {
+            get { return (ImageBrush)GetValue(PlusImageBrushProperty); }
+            set { SetValue(PlusImageBrushProperty, value); }
+        }
+
+        public static readonly DependencyProperty MinusImageBrushProperty
+            = DependencyProperty.Register(
+                nameof(MinusImageBrush),
+                typeof(ImageBrush),
+                typeof(NumericUpDown),
+                new FrameworkPropertyMetadata(null, _frameworkPropertyMetadataOptions));
+
+        [Category("GrayThemeUI.NumericUpDown.Image")]
+        public ImageBrush MinusImageBrush
+        {
+            get { return (ImageBrush)GetValue(MinusImageBrushProperty); }
+            set { SetValue(MinusImageBrushProperty, value); }
+        }
 
     }
 
     public partial class NumericUpDown
     {
+
+        /// <summary>
+        /// Based on [Increase/Decrease's PushingCount],
+        /// the index increases for each specific number of counts.
+        /// </summary>
+        private readonly int _exponentialLevelUpCount = 50;
+        private readonly int _exponentialMaxLevel = 5;
+        private int _increasePushingCount = 0;
+        private int _decreasePushingCount = 0;
+
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -134,11 +171,14 @@ namespace GrayThemeUI.CustomControl
             if (GetTemplateChild("decreaseButton") is RepeatButton decreaseButton)
             {
                 decreaseButton.Click += DecreaseButton_Click;
-                decreaseButton.PreviewMouseUp += IncreaseButton_PreviewMouseUp;
+                decreaseButton.PreviewMouseUp += DecreaseButton_PreviewMouseUp;
             }
-
+            
             if (GetTemplateChild("valueTextBox") is TextBox valueTextBox)
             {
+                valueTextBox.MouseWheel += ValueTextBox_MouseWheel;
+                valueTextBox.LostFocus += ValueTextBox_LostFocus;
+                valueTextBox.TextChanged += ValueTextBox_TextChanged;
             }
 
             
@@ -146,32 +186,83 @@ namespace GrayThemeUI.CustomControl
         }
 
 
-        private int _increasePusingCount = 0;
         private void IncreaseButton_Click(object sender, RoutedEventArgs e)
         {
-            ++_increasePusingCount;
-
-            Value += (Interval * Math.Pow(10, _increasePusingCount / 10));
+            ++_increasePushingCount;
+            double currentExponentialLevel = Convert.ToDouble(_increasePushingCount / _exponentialLevelUpCount);
+            if (_exponentialMaxLevel < currentExponentialLevel)
+                currentExponentialLevel = _exponentialMaxLevel;
+            Value += (Interval * Convert.ToInt32(Math.Pow(10.0, currentExponentialLevel)));
             if (Value > Maximum)
                 Value = Maximum;
         }
         private void IncreaseButton_PreviewMouseUp(object sender, RoutedEventArgs e)
         {
-            _increasePusingCount = 0;
+            _increasePushingCount = 0;
         }
-
-        private int _dncreasePusingCount = 0;
         private void DecreaseButton_Click(object sender, RoutedEventArgs e)
         {
-            ++_dncreasePusingCount;
-
-            Value -= (Interval * Math.Pow(10, _increasePusingCount / 10));
-            if (Value > Maximum)
-                Value = Maximum;
+            ++_decreasePushingCount;
+            double currentExponentialLevel = Convert.ToDouble(_decreasePushingCount / _exponentialLevelUpCount);
+            if (_exponentialMaxLevel < currentExponentialLevel)
+                currentExponentialLevel = _exponentialMaxLevel;
+            Value -= (Interval * Convert.ToInt32(Math.Pow(10.0, currentExponentialLevel)));
+            if (Value < Minimum)
+                Value = Minimum;
         }
         private void DecreaseButton_PreviewMouseUp(object sender, RoutedEventArgs e)
         {
-            _dncreasePusingCount = 0;
+            _decreasePushingCount = 0;
+        }
+        private void ValueTextBox_MouseWheel(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void ValueTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is null)
+                return;
+            TextBox? valueTextBox = sender as TextBox;
+            if (valueTextBox is null)
+                return;
+            int curCursor = valueTextBox.SelectionStart; // save current cursor pos.
+
+            if (double.TryParse(valueTextBox.Text, out double newValue))
+            {
+                if (UseInteger)
+                    newValue = Math.Round(newValue);
+                else
+                    newValue = Math.Round(newValue, DecimalPlaces);
+
+                if (newValue != Value)
+                    Value = newValue;
+            }
+            if (Value > Maximum)
+                Value = Maximum;
+            else if (Value < Minimum)
+                Value = Minimum;
+            UpdateText(); // update text.
+            curCursor = Math.Min(curCursor, valueTextBox.Text.Length);
+            valueTextBox.SelectionStart = curCursor; // recovery cursor pos.
+        }
+        private void ValueTextBox_TextChanged(object sender, RoutedEventArgs e)
+        {
+            // Limit Increase Button
+            if (GetTemplateChild("increaseButton") is RepeatButton increaseButton)
+            {
+                if (Value >= Maximum)
+                    increaseButton.IsEnabled = false;
+                else
+                    increaseButton.IsEnabled = true;
+            }
+            // Limit Decrease Button
+            if (GetTemplateChild("decreaseButton") is RepeatButton decreaseButton)
+            {
+                if (Value <= Minimum)
+                    decreaseButton.IsEnabled = false;
+                else
+                    decreaseButton.IsEnabled = true;
+            }
         }
     }
 
@@ -182,24 +273,28 @@ namespace GrayThemeUI.CustomControl
 
         private void UpdateText()
         {
-            //if (UseInteger)
-            //{
-            //    int integerValue = Convert.ToInt32(Math.Round(Value));
-            //    if (integerValue >= Maximum)
-            //        integerValue = Convert.ToInt32(Maximum);
-            //    if (integerValue <= Minimum)
-            //        integerValue = Convert.ToInt32(Minimum);
-            //    //textBox.Text = integerValue.ToString();
-            //}
-            //else
-            //{
-            //    double roundedValue = Math.Round(Value, DecimalPlaces);
-            //    if (roundedValue >= Maximum)
-            //        roundedValue = Maximum;
-            //    if (roundedValue <= Minimum)
-            //        roundedValue = Minimum;
-            //    //textBox.Text = roundedValue.ToString();
-            //}
+            var valueTextBox = GetTemplateChild("valueTextBox") as TextBox;
+            if (valueTextBox is null)
+                return;
+            
+            if (UseInteger)
+            {
+                int integerValue = Convert.ToInt32(Math.Round(Value));
+                if (integerValue >= Maximum)
+                    integerValue = Convert.ToInt32(Maximum);
+                if (integerValue <= Minimum)
+                    integerValue = Convert.ToInt32(Minimum);
+                valueTextBox.Text = integerValue.ToString();
+            }
+            else
+            {
+                double roundedValue = Math.Round(Value, DecimalPlaces);
+                if (roundedValue >= Maximum)
+                    roundedValue = Maximum;
+                if (roundedValue <= Minimum)
+                    roundedValue = Minimum;
+                valueTextBox.Text = roundedValue.ToString();
+            }
         }
     }
 }

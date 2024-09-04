@@ -31,8 +31,8 @@
     <None Remove="Resource\Mask\empty.png" />
     <None Remove="Resource\Mask\maximize.png" />
     <None Remove="Resource\Mask\minimize.png" />
-    <None Remove="Resource\Mask\minus_mask.png" />
-    <None Remove="Resource\Mask\plus_mask.png" />
+    <None Remove="Resource\Mask\minus.png" />
+    <None Remove="Resource\Mask\plus.png" />
     <None Remove="Resource\Mask\restore.png" />
     <None Remove="Resource\Mask\upArrow.png" />
   </ItemGroup>
@@ -44,8 +44,8 @@
     <Resource Include="Resource\Mask\empty.png" />
     <Resource Include="Resource\Mask\maximize.png" />
     <Resource Include="Resource\Mask\minimize.png" />
-    <Resource Include="Resource\Mask\minus_mask.png" />
-    <Resource Include="Resource\Mask\plus_mask.png" />
+    <Resource Include="Resource\Mask\minus.png" />
+    <Resource Include="Resource\Mask\plus.png" />
     <Resource Include="Resource\Mask\restore.png" />
     <Resource Include="Resource\Mask\upArrow.png" />
   </ItemGroup>
