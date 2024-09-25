@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="SimpleOverlayThemeExample.Example.WindowHeaderObjectExample"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimpleOverlayThemeExample.Example"
+             xmlns:buttonHelper="clr-namespace:SimpleOverlayTheme.Object.ButtonObject.Helper;assembly=SimpleOverlayTheme"
+             xmlns:customControl="clr-namespace:SimpleOverlayTheme.CustomControl;assembly=SimpleOverlayTheme"
+             mc:Ignorable="d" 
+             Style="{StaticResource SimpleOverlayTheme.UserControl.Default}"
+             d:Height="{StaticResource exampleHeight}" d:DesignWidth="800">
+    <StackPanel Orientation="Vertical">
+        <customControl:WindowHeader x:Name="Item1" FontSize="28" Margin="0,0,0,5" TitleContent="Title Item1"
+                              ShowMinimize="Visible" ShowToggleMaximizeRestore="Visible" ShowClose="Visible"/>
+        <customControl:WindowHeader x:Name="Item2" Background="#A0FF4040" ShowMinimize="Visible" ShowToggleMaximizeRestore="Visible"
+                              ShowClose="Visible" FontSize="28" Margin="0,0,0,5">
+            <customControl:WindowHeader.TitleContent>
+                <StackPanel x:Name="titleContentBorder" Orientation="Horizontal">
+                    <Button Style="{StaticResource SimpleOverlayTheme.Button.ImageMask}" Width="120" Background="Transparent">
+                        <buttonHelper:OverlayMask.SetDefaultVisible>
+                            False
+                        </buttonHelper:OverlayMask.SetDefaultVisible>
+                        <buttonHelper:OverlayBackground.SetBackgroundVisible>
+                            False
+                        </buttonHelper:OverlayBackground.SetBackgroundVisible>
+                        <buttonHelper:Mask.MaskBrushDefault>
+                            <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayThemeExample;component/Resource/Mask/plus.png"/>
+                        </buttonHelper:Mask.MaskBrushDefault>
+                    </Button>
+                    <TextBlock Text=" Item2" Margin="5,0" VerticalAlignment="Center"/>
+                </StackPanel>
+            </customControl:WindowHeader.TitleContent>
+            <customControl:WindowHeader.SideContent>
+                <StackPanel x:Name="sideContentBorder" Orientation="Horizontal">
+                    <TextBlock Text="I1" VerticalAlignment="Center" Margin="5,0"/>
+                    <TextBlock Text="I2" VerticalAlignment="Center"  Margin="5,0"/>
+                    <Button VerticalContentAlignment="Center" Margin="5,0" Background="Transparent" Style="{StaticResource SimpleOverlayTheme.Button.ImageMask}">
+                        <Button.Content>
+                            <TextBlock Text="Setting" Margin="5,0" FontSize="12"/>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </customControl:WindowHeader.SideContent>
+        </customControl:WindowHeader>
+    </StackPanel>
+</UserControl>

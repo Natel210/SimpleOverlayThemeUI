@@ -1,0 +1,60 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/BorderObject/Style.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/LabelObject/Style.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <Style x:Key="SimpleOverlayTheme.GroupBox.Default" TargetType="GroupBox">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Outline}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.DefaultThickness.Default}"/>
+        <Setter Property="FontSize" Value="{DynamicResource SimpleOverlayTheme.FontSize.Default}"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupBox">
+                    <Border x:Name="rootBorder"
+                        Background="Transparent"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" Background="{TemplateBinding Background}">
+                                <Label Style="{DynamicResource SimpleOverlayTheme.Label.Separator}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   Background="Transparent"
+                                   BorderBrush="Transparent"
+                                   Padding="0"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   BorderThickness="0">
+                                    <Label.Content>
+                                        <ContentPresenter ContentSource="Header"
+                                                      HorizontalAlignment="Left"
+                                                      VerticalAlignment="Top"/>
+                                    </Label.Content>
+                                </Label>
+                            </Border>
+                            <ContentControl Grid.Row="1" FontSize="{DynamicResource SimpleOverlayTheme.FontSize.Default}" Background="Transparent">
+                                <ContentPresenter Margin="{TemplateBinding Padding}"/>
+                            </ContentControl>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="rootBorder" Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Disable}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground_Disable}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

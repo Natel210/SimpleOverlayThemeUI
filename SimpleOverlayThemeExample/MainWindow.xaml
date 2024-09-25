@@ -1,0 +1,57 @@
+﻿<Window x:Class="SimpleOverlayThemeExample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimpleOverlayThemeExample"
+        xmlns:example="clr-namespace:SimpleOverlayThemeExample.Example"
+        xmlns:borderHelper="clr-namespace:SimpleOverlayTheme.Object.BorderObject.Helper;assembly=SimpleOverlayTheme"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
+        mc:Ignorable="d"
+        Style="{StaticResource SimpleOverlayTheme.Window.Default}"
+        Title="MainWindow">
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical" Height="800">
+            <TabControl Height="Auto">
+                <TabItem Header="Border" >
+                    <example:BorderExample/>
+                </TabItem>
+                <TabItem Header="Button">
+                    <example:ButtonExample Focusable="True" IsHitTestVisible="True"/>
+                </TabItem>
+                <TabItem Header="CheckBox">
+                    <example:CheckBoxExample/>
+                </TabItem>
+                <TabItem Header="ComboBox">
+                    <example:ComboBoxExample/>
+                </TabItem>
+                <TabItem Header="DataGrid">
+                    <example:DataGridExample/>
+                </TabItem>
+                <TabItem Header="GroupBox">
+                    <example:GroupBoxExample/>
+                </TabItem>
+                <TabItem Header="Label">
+                    <example:LabelExample/>
+                </TabItem>
+                <TabItem Header="ListBox">
+                    <example:ListBoxExample/>
+                </TabItem>
+                <TabItem Header="NumericUpDown">
+                    <example:NumericUpDownExample/>
+                </TabItem>
+                <TabItem Header="TextBlock">
+                    <example:TextBlockExample/>
+                </TabItem>
+                <TabItem Header="TextBox">
+                    <example:TextBoxExample/>
+                </TabItem>
+                <TabItem Header="WindowHeaderObject">
+                    <example:WindowHeaderObjectExample/>
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+        <Button Content="ThemeChange" Click="Button_Click"/>
+    </StackPanel>
+</Window>

@@ -1,0 +1,178 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:borderHelper="clr-namespace:SimpleOverlayTheme.Object.BorderObject.Helper"
+                    xmlns:checkBoxHelper="clr-namespace:SimpleOverlayTheme.Object.CheckBoxObject.Helper"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/BorderObject/Style.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <Style x:Key="SimpleOverlayTheme.CheckBox.Default" TargetType="CheckBox">
+        <Setter Property="FontSize" Value="{DynamicResource SimpleOverlayTheme.FontSize.Default}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground}"/>
+        <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Background}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.DefaultThickness.Default}"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="checkBoxHelper:Mask.MaskBrushDefault">
+            <Setter.Value>
+                <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme;component/Resource/Mask/check.png"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="checkBoxHelper:OverlayBackground.SetDefaultVisible" Value="False"/>
+        <Setter Property="checkBoxHelper:OverlayBackground.SetBackgroundVisible" Value="False"/>
+        <Setter Property="checkBoxHelper:OverlayBackground.SetOutlineVisible" Value="False"/>
+        <Setter Property="checkBoxHelper:OverlayMask.SetDefaultVisible" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="backgroundBorder" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Border.Style>
+                                <StaticResource ResourceKey="SimpleOverlayTheme.Border.Empty"/>
+                            </Border.Style>
+                            <Border.Background>
+                                <TemplateBinding Property="Background"/>
+                            </Border.Background>
+                            <Border.BorderThickness>
+                                <TemplateBinding Property="BorderThickness"/>
+                            </Border.BorderThickness>
+                            <Border.BorderBrush>
+                                <TemplateBinding Property="BorderBrush"/>
+                            </Border.BorderBrush>
+                            <Border.SnapsToDevicePixels>
+                                <TemplateBinding Property="SnapsToDevicePixels"/>
+                            </Border.SnapsToDevicePixels>
+                        </Border>
+                        <Border x:Name="overlayBackground" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Border.Style>
+                                <StaticResource ResourceKey="SimpleOverlayTheme.Border.Overlay.Default"/>
+                            </Border.Style>
+                            <Border.BorderThickness>
+                                <TemplateBinding Property="BorderThickness"/>
+                            </Border.BorderThickness>
+                            <Border.SnapsToDevicePixels>
+                                <TemplateBinding Property="SnapsToDevicePixels"/>
+                            </Border.SnapsToDevicePixels>
+                            <borderHelper:Overlay.IsDefault>
+                                <TemplateBinding Property="checkBoxHelper:OverlayBackground.SetDefaultVisible"/>
+                            </borderHelper:Overlay.IsDefault>
+                            <borderHelper:Overlay.BackgroundVisible>
+                                <TemplateBinding Property="checkBoxHelper:OverlayBackground.SetBackgroundVisible"/>
+                            </borderHelper:Overlay.BackgroundVisible>
+                            <borderHelper:Overlay.OutlineVisible>
+                                <TemplateBinding Property="checkBoxHelper:OverlayBackground.SetOutlineVisible"/>
+                            </borderHelper:Overlay.OutlineVisible>
+                        </Border>
+                        <Border x:Name="checkBoxImage" Grid.Column="0">
+                            <Border.Height>
+                                <TemplateBinding Property="ActualHeight"/>
+                            </Border.Height>
+                            <Border.Width>
+                                <TemplateBinding Property="ActualHeight"/>
+                            </Border.Width>
+                            <Border.Style>
+                                <StaticResource ResourceKey="SimpleOverlayTheme.Border.Empty"/>
+                            </Border.Style>
+                            <Border.SnapsToDevicePixels>
+                                <TemplateBinding Property="SnapsToDevicePixels"/>
+                            </Border.SnapsToDevicePixels>
+                            <Grid>
+                                <Border x:Name="checkBoxImageOverlayBackground">
+                                    <Border.Style>
+                                        <StaticResource ResourceKey="SimpleOverlayTheme.Border.Overlay.Default"/>
+                                    </Border.Style>
+                                    <Border.BorderThickness>
+                                        <TemplateBinding Property="BorderThickness"/>
+                                    </Border.BorderThickness>
+                                    <Border.SnapsToDevicePixels>
+                                        <TemplateBinding Property="SnapsToDevicePixels"/>
+                                    </Border.SnapsToDevicePixels>
+                                    <borderHelper:Overlay.IsDefault>True</borderHelper:Overlay.IsDefault>
+                                    <borderHelper:Overlay.BackgroundVisible>False</borderHelper:Overlay.BackgroundVisible>
+                                    <borderHelper:Overlay.OutlineVisible>True</borderHelper:Overlay.OutlineVisible>
+                                </Border>
+                                <Border x:Name="imageMask">
+                                    <Border.Style>
+                                        <StaticResource ResourceKey="SimpleOverlayTheme.Border.Empty"/>
+                                    </Border.Style>
+                                    <Border.Background>
+                                        <DynamicResource ResourceKey="SimpleOverlayTheme.DefaultBrush.Mask"/>
+                                    </Border.Background>
+                                    <Border.BorderThickness>
+                                        <DynamicResource ResourceKey="SimpleOverlayTheme.DefaultThickness.Zero"/>
+                                    </Border.BorderThickness>
+                                    <Border.SnapsToDevicePixels>
+                                        <TemplateBinding Property="SnapsToDevicePixels"/>
+                                    </Border.SnapsToDevicePixels>
+                                    <Border.OpacityMask>
+                                        <TemplateBinding Property="checkBoxHelper:Mask.MaskBrushDefault"/>
+                                    </Border.OpacityMask>
+                                </Border>
+                                <Border x:Name="overlayMask">
+                                    <Border.Style>
+                                        <StaticResource ResourceKey="SimpleOverlayTheme.Border.Overlay.Mask"/>
+                                    </Border.Style>
+                                    <Border.BorderThickness>
+                                        <DynamicResource ResourceKey="SimpleOverlayTheme.DefaultThickness.Zero"/>
+                                    </Border.BorderThickness>
+                                    <Border.SnapsToDevicePixels>
+                                        <TemplateBinding Property="SnapsToDevicePixels"/>
+                                    </Border.SnapsToDevicePixels>
+                                    <borderHelper:Overlay.IsDefault>
+                                        <TemplateBinding Property="checkBoxHelper:OverlayMask.SetDefaultVisible"/>
+                                    </borderHelper:Overlay.IsDefault>
+                                    <Border.OpacityMask>
+                                        <TemplateBinding Property="checkBoxHelper:Mask.MaskBrushDefault"/>
+                                    </Border.OpacityMask>
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <ContentPresenter Grid.Column="1">
+                            <ContentPresenter.HorizontalAlignment>
+                                <TemplateBinding Property="HorizontalContentAlignment"/>
+                            </ContentPresenter.HorizontalAlignment>
+                            <ContentPresenter.VerticalAlignment>
+                                <TemplateBinding Property="VerticalContentAlignment"/>
+                            </ContentPresenter.VerticalAlignment>
+                            <ContentPresenter.SnapsToDevicePixels>
+                                <TemplateBinding Property="SnapsToDevicePixels"/>
+                            </ContentPresenter.SnapsToDevicePixels>
+                            <ContentPresenter.Content>
+                                <TemplateBinding Property="Content"/>
+                            </ContentPresenter.Content>
+                        </ContentPresenter>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="overlayBackground" Property="borderHelper:Overlay.IsMouseOver" Value="True"/>
+                            <Setter TargetName="overlayMask" Property="borderHelper:Overlay.IsMouseOver" Value="True"/>
+                            <Setter TargetName="checkBoxImageOverlayBackground" Property="borderHelper:Overlay.IsMouseOver" Value="True"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="overlayBackground" Property="borderHelper:Overlay.IsActive" Value="True"/>
+                            <Setter TargetName="overlayMask" Property="borderHelper:Overlay.IsActive" Value="True"/>
+                            <Setter TargetName="checkBoxImageOverlayBackground" Property="borderHelper:Overlay.IsActive" Value="True"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter TargetName="imageMask" Property="Visibility" Value="Hidden"/>
+                            <Setter TargetName="overlayMask" Property="Visibility" Value="Hidden"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="overlayBackground" Property="borderHelper:Overlay.IsDisable" Value="True"/>
+                            <Setter TargetName="overlayMask" Property="borderHelper:Overlay.IsDisable" Value="True"/>
+                            <Setter TargetName="checkBoxImageOverlayBackground" Property="borderHelper:Overlay.IsDisable" Value="True"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground_Disable}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="SimpleOverlayThemeExample.Example.ListBoxExample"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimpleOverlayThemeExample.Example"
+             mc:Ignorable="d" 
+             Style="{StaticResource SimpleOverlayTheme.UserControl.Default}"
+             d:DesignWidth="800">
+    <Grid>
+        <ListBox Style="{StaticResource SimpleOverlayTheme.ListBox.Default}" Height="200">
+            <ListBoxItem Content="List1"/>
+            <ListBoxItem Content="List2"/>
+            <ListBoxItem Content="List3"/>
+            <ListBoxItem Content="List4"/>
+            <ListBoxItem Content="List5"/>
+            <ListBoxItem Content="List6"/>
+            <ListBoxItem Content="List7"/>
+            <ListBoxItem Content="List8"/>
+            <ListBoxItem Content="List9"/>
+            <ListBoxItem Content="List10"/>
+            <ListBoxItem Content="List11"/>
+            <ListBoxItem Content="List12"/>
+            <ListBoxItem Content="List13"/>
+            <ListBoxItem Content="List14"/>
+            <ListBoxItem Content="List15"/>
+            <ListBoxItem Content="List16"/>
+            <ListBoxItem Content="List17"/>
+            <ListBoxItem Content="List18"/>
+            <ListBoxItem Content="List19"/>
+            <ListBoxItem Content="List20"/>
+        </ListBox>
+    </Grid>
+</UserControl>

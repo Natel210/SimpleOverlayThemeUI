@@ -1,0 +1,118 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:borderHelper="clr-namespace:SimpleOverlayTheme.Object.BorderObject.Helper"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/BorderObject/Style.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+
+    <Style x:Key="SimpleOverlayTheme.ListBoxItem.Default" TargetType="ListBoxItem">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground}"/>
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Grid>
+                        <Border x:Name="backgroundBorder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Border.Style>
+                                <StaticResource ResourceKey="SimpleOverlayTheme.Border.Empty"/>
+                            </Border.Style>
+                            <Border.Background>
+                                <TemplateBinding Property="Background"/>
+                            </Border.Background>
+                            <Border.BorderThickness>
+                                <TemplateBinding Property="BorderThickness"/>
+                            </Border.BorderThickness>
+                            <Border.BorderBrush>
+                                <TemplateBinding Property="BorderBrush"/>
+                            </Border.BorderBrush>
+                            <Border.SnapsToDevicePixels>
+                                <TemplateBinding Property="SnapsToDevicePixels"/>
+                            </Border.SnapsToDevicePixels>
+                            <Border.Padding>
+                                <TemplateBinding Property="Padding"/>
+                            </Border.Padding>
+                        </Border>
+                        <Border x:Name="overlayBackground">
+                            <Border.Padding>
+                                <TemplateBinding Property="Padding"/>
+                            </Border.Padding>
+                            <Border.Style>
+                                <StaticResource ResourceKey="SimpleOverlayTheme.Border.Overlay.Default"/>
+                            </Border.Style>
+                        </Border>
+                        <Border>
+                            <Border.Padding>
+                                <TemplateBinding Property="Padding"/>
+                            </Border.Padding>
+                            <Border.Style>
+                                <StaticResource ResourceKey="SimpleOverlayTheme.Border.Empty"/>
+                            </Border.Style>
+                            <ContentPresenter 
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                Content="{TemplateBinding Content}" 
+                                ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" 
+                                Margin="{TemplateBinding Padding}" 
+                                RecognizesAccessKey="True"/>
+                        </Border>
+                    </Grid>
+                        
+                    
+
+                    
+                    
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="overlayBackground" Property="borderHelper:Overlay.IsActive" Value="True"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="overlayBackground" Property="borderHelper:Overlay.IsMouseOver" Value="True"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="overlayBackground" Property="borderHelper:Overlay.IsDisable" Value="True"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground_Disable}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+
+
+    <Style x:Key="SimpleOverlayTheme.ListBox.Default" TargetType="ListBox">
+        <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Background}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Outline}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.DefaultThickness.Default}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground}"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBox">
+                    <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                        <ScrollViewer Focusable="False">
+                            <ItemsPresenter/>
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <StaticResource ResourceKey="SimpleOverlayTheme.ListBoxItem.Default"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,336 @@
+﻿<UserControl x:Class="SimpleOverlayThemeExample.Example.ButtonExample"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimpleOverlayThemeExample.Example"
+             xmlns:buttonHelper="clr-namespace:SimpleOverlayTheme.Object.ButtonObject.Helper;assembly=SimpleOverlayTheme"
+             mc:Ignorable="d" 
+             Style="{StaticResource SimpleOverlayTheme.UserControl.Default}"
+             d:Height="{StaticResource exampleHeight}" d:DesignWidth="1600">
+    <UserControl.Resources>
+        <ImageBrush x:Key="maskImageBrush" ImageSource="pack://application:,,,/SimpleOverlayThemeExample;component/Resource/Mask/check.png"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Border Style="{StaticResource SimpleOverlayTheme.Border.Default}" Margin="5" Grid.Row="0" Grid.Column="0">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Default Button" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Separator/>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="Normal" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Normal" Style="{StaticResource SimpleOverlayTheme.Button.Default}" Width="120" Height="50" Margin="5"/>
+                            <Button Content="Disable" Style="{StaticResource SimpleOverlayTheme.Button.Default}" Width="120" Height="50" Margin="5" IsEnabled="False"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="No overlay background default" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="No Back Def" Style="{StaticResource SimpleOverlayTheme.Button.Default}" Width="120" Height="50" Margin="5">
+                                <buttonHelper:OverlayBackground.SetDefaultVisible>False</buttonHelper:OverlayBackground.SetDefaultVisible>
+                            </Button>
+                            <Button Content="Disable" Style="{StaticResource SimpleOverlayTheme.Button.Default}" Width="120" Height="50" Margin="5" IsEnabled="False">
+                                <buttonHelper:OverlayBackground.SetDefaultVisible>False</buttonHelper:OverlayBackground.SetDefaultVisible>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="No overlay background" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="No Back" Style="{StaticResource SimpleOverlayTheme.Button.Default}" Width="120" Height="50" Margin="5">
+                                <buttonHelper:OverlayBackground.SetBackgroundVisible>False</buttonHelper:OverlayBackground.SetBackgroundVisible>
+                            </Button>
+                            <Button Content="Disable" Style="{StaticResource SimpleOverlayTheme.Button.Default}" Width="120" Height="50" Margin="5" IsEnabled="False">
+                                <buttonHelper:OverlayBackground.SetBackgroundVisible>False</buttonHelper:OverlayBackground.SetBackgroundVisible>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="No overlay outline" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="No Outline" Style="{StaticResource SimpleOverlayTheme.Button.Default}" Width="120" Height="50" Margin="5">
+                                <buttonHelper:OverlayBackground.SetOutlineVisible>False</buttonHelper:OverlayBackground.SetOutlineVisible>
+                            </Button>
+                            <Button Content="Disable" Style="{StaticResource SimpleOverlayTheme.Button.Default}" Width="120" Height="50" Margin="5" IsEnabled="False">
+                                <buttonHelper:OverlayBackground.SetOutlineVisible>False</buttonHelper:OverlayBackground.SetOutlineVisible>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource SimpleOverlayTheme.Border.Default}" Margin="5" Grid.Row="1" Grid.Column="0">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Toggle Button" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Separator/>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="Normal" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <ToggleButton x:Name="ToggleButtonNormal" Content="Normal" Style="{StaticResource SimpleOverlayTheme.ToggleButton.Default}" Width="120" Height="50" Margin="5"/>
+                            <ToggleButton Content="Disable" Style="{StaticResource SimpleOverlayTheme.ToggleButton.Default}" Width="120" Height="50" Margin="5" IsEnabled="False" IsChecked="{Binding Path=IsChecked, ElementName=ToggleButtonNormal}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="No overlay background default" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <ToggleButton x:Name="ToggleButtonNoBackDef" Content="No Back Def" Style="{StaticResource SimpleOverlayTheme.ToggleButton.Default}" Width="120" Height="50" Margin="5">
+                                <buttonHelper:OverlayBackground.SetDefaultVisible>False</buttonHelper:OverlayBackground.SetDefaultVisible>
+                            </ToggleButton>
+                            <ToggleButton Content="Disable" Style="{StaticResource SimpleOverlayTheme.ToggleButton.Default}" Width="120" Height="50" Margin="5" IsEnabled="False" IsChecked="{Binding Path=IsChecked, ElementName=ToggleButtonNoBackDef}">
+                                <buttonHelper:OverlayBackground.SetDefaultVisible>False</buttonHelper:OverlayBackground.SetDefaultVisible>
+                            </ToggleButton>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="No overlay background" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <ToggleButton x:Name="ToggleButtonNoBack" Content="No Back" Style="{StaticResource SimpleOverlayTheme.ToggleButton.Default}" Width="120" Height="50" Margin="5">
+                                <buttonHelper:OverlayBackground.SetBackgroundVisible>False</buttonHelper:OverlayBackground.SetBackgroundVisible>
+                            </ToggleButton>
+                            <ToggleButton Content="Disable" Style="{StaticResource SimpleOverlayTheme.ToggleButton.Default}" Width="120" Height="50" Margin="5" IsEnabled="False" IsChecked="{Binding Path=IsChecked, ElementName=ToggleButtonNoBack}">
+                                <buttonHelper:OverlayBackground.SetBackgroundVisible>False</buttonHelper:OverlayBackground.SetBackgroundVisible>
+                            </ToggleButton>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="No overlay outline" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <ToggleButton x:Name="ToggleButtonNoOutline" Content="No Outline" Style="{StaticResource SimpleOverlayTheme.ToggleButton.Default}" Width="120" Height="50" Margin="5">
+                                <buttonHelper:OverlayBackground.SetOutlineVisible>False</buttonHelper:OverlayBackground.SetOutlineVisible>
+                            </ToggleButton>
+                            <ToggleButton Content="Disable" Style="{StaticResource SimpleOverlayTheme.ToggleButton.Default}" Width="120" Height="50" Margin="5" IsEnabled="False" IsChecked="{Binding Path=IsChecked, ElementName=ToggleButtonNoOutline}">
+                                <buttonHelper:OverlayBackground.SetOutlineVisible>False</buttonHelper:OverlayBackground.SetOutlineVisible>
+                            </ToggleButton>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="Checked overlay background" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <ToggleButton x:Name="ToggleButtonCheckedOverlayBack" Content="No Back" Style="{StaticResource SimpleOverlayTheme.ToggleButton.Default}" Width="120" Height="50" Margin="5" IsChecked="True">
+                                <buttonHelper:OverlayCheckedBackground.Background>#40A0A000</buttonHelper:OverlayCheckedBackground.Background>
+                            </ToggleButton>
+                            <ToggleButton Content="Disable" Style="{StaticResource SimpleOverlayTheme.ToggleButton.Default}" Width="120" Height="50" Margin="5" IsEnabled="False" IsChecked="{Binding Path=IsChecked, ElementName=ToggleButtonCheckedOverlayBack}">
+                                <buttonHelper:OverlayCheckedBackground.Background>#40A0A000</buttonHelper:OverlayCheckedBackground.Background>
+                            </ToggleButton>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="Checked overlay outline" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <ToggleButton x:Name="ToggleButtonCheckedOverlayOutline" Content="No Outline" Style="{StaticResource SimpleOverlayTheme.ToggleButton.Default}" Width="120" Height="50" Margin="5" IsChecked="True">
+                                <buttonHelper:OverlayCheckedBackground.Thickness>5.0</buttonHelper:OverlayCheckedBackground.Thickness>
+                                <buttonHelper:OverlayCheckedBackground.Outline>#60FF0000</buttonHelper:OverlayCheckedBackground.Outline>
+                            </ToggleButton>
+                            <ToggleButton Content="Disable" Style="{StaticResource SimpleOverlayTheme.ToggleButton.Default}" Width="120" Height="50" Margin="5" IsEnabled="False" IsChecked="{Binding Path=IsChecked, ElementName=ToggleButtonCheckedOverlayOutline}">
+                                <buttonHelper:OverlayCheckedBackground.Thickness>5.0</buttonHelper:OverlayCheckedBackground.Thickness>
+                                <buttonHelper:OverlayCheckedBackground.Outline>#60FF0000</buttonHelper:OverlayCheckedBackground.Outline>
+                            </ToggleButton>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource SimpleOverlayTheme.Border.Default}" Margin="5" Grid.Row="2" Grid.Column="0">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Repeat Button" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Separator/>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="Normal" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <RepeatButton Content="Normal" Style="{StaticResource SimpleOverlayTheme.RepeatButton.Default}" Width="120" Height="50" Margin="5" Click="NormalClick" PreviewMouseUp="NormalPreviewMouseUp"/>
+                            <RepeatButton x:Name="NormalRepeatButtonDis" Content="Disable(0)" Style="{StaticResource SimpleOverlayTheme.RepeatButton.Default}" Width="120" Height="50" Margin="5" IsEnabled="False"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="No overlay background default" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <RepeatButton Content="No Back Def" Style="{StaticResource SimpleOverlayTheme.RepeatButton.Default}" Width="120" Height="50" Margin="5" Click="NoBackDefClick" PreviewMouseUp="NoBackDefPreviewMouseUp">
+                                <buttonHelper:OverlayBackground.SetDefaultVisible>False</buttonHelper:OverlayBackground.SetDefaultVisible>
+                            </RepeatButton>
+                            <RepeatButton x:Name="NoBackDefRepeatButtonDis" Content="Disable(0)" Style="{StaticResource SimpleOverlayTheme.RepeatButton.Default}" Width="120" Height="50" Margin="5" IsEnabled="False">
+                                <buttonHelper:OverlayBackground.SetDefaultVisible>False</buttonHelper:OverlayBackground.SetDefaultVisible>
+                            </RepeatButton>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="No overlay background" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <RepeatButton Content="No Back" Style="{StaticResource SimpleOverlayTheme.RepeatButton.Default}" Width="120" Height="50" Margin="5" Click="NoBackClick" PreviewMouseUp="NoBackPreviewMouseUp">
+                                <buttonHelper:OverlayBackground.SetBackgroundVisible>False</buttonHelper:OverlayBackground.SetBackgroundVisible>
+                            </RepeatButton>
+                            <RepeatButton x:Name="NoBackRepeatButtonDis" Content="Disable(0)" Style="{StaticResource SimpleOverlayTheme.RepeatButton.Default}" Width="120" Height="50" Margin="5" IsEnabled="False">
+                                <buttonHelper:OverlayBackground.SetBackgroundVisible>False</buttonHelper:OverlayBackground.SetBackgroundVisible>
+                            </RepeatButton>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="No overlay outline" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <RepeatButton Content="No Outline" Style="{StaticResource SimpleOverlayTheme.RepeatButton.Default}" Width="120" Height="50" Margin="5" Click="NoOutlineClick" PreviewMouseUp="NoOutlinePreviewMouseUp">
+                                <buttonHelper:OverlayBackground.SetOutlineVisible>False</buttonHelper:OverlayBackground.SetOutlineVisible>
+                            </RepeatButton>
+                            <RepeatButton x:Name="NoOutlineRepeatButtonDis" Content="Disable(0)" Style="{StaticResource SimpleOverlayTheme.RepeatButton.Default}" Width="120" Height="50" Margin="5" IsEnabled="False">
+                                <buttonHelper:OverlayBackground.SetOutlineVisible>False</buttonHelper:OverlayBackground.SetOutlineVisible>
+                            </RepeatButton>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource SimpleOverlayTheme.Border.Default}" Margin="5" Grid.Row="0" Grid.Column="1">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Image Mask Button" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Separator/>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="Normal" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Normal" Style="{StaticResource SimpleOverlayTheme.Button.ImageMask}" Width="80" Height="80" Margin="5">
+                                <buttonHelper:Mask.MaskBrushDefault>
+                                    <StaticResource ResourceKey="maskImageBrush"/>
+                                </buttonHelper:Mask.MaskBrushDefault>
+                            </Button>
+                            <Button Content="Normal" Style="{StaticResource SimpleOverlayTheme.Button.ImageMask}" Width="80" Height="80" Margin="5" IsEnabled="False">
+                                <buttonHelper:Mask.MaskBrushDefault>
+                                    <StaticResource ResourceKey="maskImageBrush"/>
+                                </buttonHelper:Mask.MaskBrushDefault>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="Use overlay mask default" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Style="{StaticResource SimpleOverlayTheme.Button.ImageMask}" Width="80" Height="80" Margin="5">
+                                <buttonHelper:OverlayMask.SetDefaultVisible>True</buttonHelper:OverlayMask.SetDefaultVisible>
+                                <buttonHelper:Mask.MaskBrushDefault>
+                                    <StaticResource ResourceKey="maskImageBrush"/>
+                                </buttonHelper:Mask.MaskBrushDefault>
+                            </Button>
+                            <Button Content="Disable" Style="{StaticResource SimpleOverlayTheme.Button.ImageMask}" Width="80" Height="80" Margin="5" IsEnabled="False">
+                                <buttonHelper:OverlayMask.SetDefaultVisible>True</buttonHelper:OverlayMask.SetDefaultVisible>
+                                <buttonHelper:Mask.MaskBrushDefault>
+                                    <StaticResource ResourceKey="maskImageBrush"/>
+                                </buttonHelper:Mask.MaskBrushDefault>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource SimpleOverlayTheme.Border.Default}" Margin="5" Grid.Row="1" Grid.Column="1">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Image Mask Toggle Button" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Separator/>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="Normal" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <ToggleButton x:Name="NormalToggleBox" Content="Normal" Style="{StaticResource SimpleOverlayTheme.ToggleButton.ImageMask}" Width="80" Height="80" Margin="5">
+                                <buttonHelper:Mask.MaskBrushDefault>
+                                    <StaticResource ResourceKey="maskImageBrush"/>
+                                </buttonHelper:Mask.MaskBrushDefault>
+                                <buttonHelper:Mask.MaskBrushChecked>
+                                    <StaticResource ResourceKey="maskImageBrush"/>
+                                </buttonHelper:Mask.MaskBrushChecked>
+                            </ToggleButton>
+                            <ToggleButton Content="Normal" Style="{StaticResource SimpleOverlayTheme.ToggleButton.ImageMask}" Width="80" Height="80" Margin="5" IsEnabled="False" IsChecked="{Binding Path=IsChecked, ElementName=NormalToggleBox}">
+                                <buttonHelper:Mask.MaskBrushDefault>
+                                    <StaticResource ResourceKey="maskImageBrush"/>
+                                </buttonHelper:Mask.MaskBrushDefault>
+                                <buttonHelper:Mask.MaskBrushChecked>
+                                    <StaticResource ResourceKey="maskImageBrush"/>
+                                </buttonHelper:Mask.MaskBrushChecked>
+                            </ToggleButton>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="Use overlay mask default" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <ToggleButton x:Name="UseOverlayMaskDefaultToggleBox" Style="{StaticResource SimpleOverlayTheme.ToggleButton.ImageMask}" Width="80" Height="80" Margin="5">
+                                <buttonHelper:OverlayMask.SetDefaultVisible>True</buttonHelper:OverlayMask.SetDefaultVisible>
+                                <buttonHelper:Mask.MaskBrushDefault>
+                                    <StaticResource ResourceKey="maskImageBrush"/>
+                                </buttonHelper:Mask.MaskBrushDefault>
+                                <buttonHelper:Mask.MaskBrushChecked>
+                                    <StaticResource ResourceKey="maskImageBrush"/>
+                                </buttonHelper:Mask.MaskBrushChecked>
+                            </ToggleButton>
+                            <ToggleButton Content="Disable" Style="{StaticResource SimpleOverlayTheme.ToggleButton.ImageMask}" Width="80" Height="80" Margin="5" IsEnabled="False" IsChecked="{Binding Path=IsChecked, ElementName=UseOverlayMaskDefaultToggleBox}">
+                                <buttonHelper:OverlayMask.SetDefaultVisible>True</buttonHelper:OverlayMask.SetDefaultVisible>
+                                <buttonHelper:Mask.MaskBrushDefault>
+                                    <StaticResource ResourceKey="maskImageBrush"/>
+                                </buttonHelper:Mask.MaskBrushDefault>
+                                <buttonHelper:Mask.MaskBrushChecked>
+                                    <StaticResource ResourceKey="maskImageBrush"/>
+                                </buttonHelper:Mask.MaskBrushChecked>
+                            </ToggleButton>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource SimpleOverlayTheme.Border.Default}" Margin="5" Grid.Row="2" Grid.Column="1">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Image Mask Toggle Button" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Separator/>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="Normal" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <RepeatButton Content="Normal" Style="{StaticResource SimpleOverlayTheme.RepeatButton.ImageMask}" Width="80" Height="80" Margin="5" Click="ImageNormalClick" PreviewMouseUp="ImageNormalPreviewMouseUp">
+                                <buttonHelper:Mask.MaskBrushDefault>
+                                    <StaticResource ResourceKey="maskImageBrush"/>
+                                </buttonHelper:Mask.MaskBrushDefault>
+                            </RepeatButton>
+                            <RepeatButton Content="Normal" Style="{StaticResource SimpleOverlayTheme.RepeatButton.ImageMask}" Width="80" Height="80" Margin="5" IsEnabled="False">
+                                <buttonHelper:Mask.MaskBrushDefault>
+                                    <StaticResource ResourceKey="maskImageBrush"/>
+                                </buttonHelper:Mask.MaskBrushDefault>
+                            </RepeatButton>
+                        </StackPanel>
+                        <TextBlock x:Name="ImageNormalCounter" Text="(0)" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="5,0">
+                        <TextBlock Text="Use overlay mask default" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <RepeatButton Style="{StaticResource SimpleOverlayTheme.RepeatButton.ImageMask}" Width="80" Height="80" Margin="5" Click="ImageUseDefClick" PreviewMouseUp="ImageUseDefPreviewMouseUp">
+                                <buttonHelper:OverlayMask.SetDefaultVisible>True</buttonHelper:OverlayMask.SetDefaultVisible>
+                                <buttonHelper:Mask.MaskBrushDefault>
+                                    <StaticResource ResourceKey="maskImageBrush"/>
+                                </buttonHelper:Mask.MaskBrushDefault>
+                            </RepeatButton>
+                            <RepeatButton Content="Disable" Style="{StaticResource SimpleOverlayTheme.RepeatButton.ImageMask}" Width="80" Height="80" Margin="5" IsEnabled="False">
+                                <buttonHelper:OverlayMask.SetDefaultVisible>True</buttonHelper:OverlayMask.SetDefaultVisible>
+                                <buttonHelper:Mask.MaskBrushDefault>
+                                    <StaticResource ResourceKey="maskImageBrush"/>
+                                </buttonHelper:Mask.MaskBrushDefault>
+                            </RepeatButton>
+                        </StackPanel>
+                        <TextBlock x:Name="ImageUseDefCounter" Text="(0)" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

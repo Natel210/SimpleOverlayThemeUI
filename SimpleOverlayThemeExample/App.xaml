@@ -1,0 +1,22 @@
+﻿<Application x:Class="SimpleOverlayThemeExample.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:SimpleOverlayThemeExample"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d"
+             Startup="Application_Startup"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary d:IsDesignTimeCreatable="True" Source="pack://application:,,,/Dummy/LightModeDummy.xaml"/>
+                <!--<ResourceDictionary d:IsDesignTimeCreatable="True" Source="pack://application:,,,/Dummy/DarkModeDummy.xaml"/>-->
+
+                <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Entry.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <system:Double x:Key="exampleHeight">800</system:Double>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

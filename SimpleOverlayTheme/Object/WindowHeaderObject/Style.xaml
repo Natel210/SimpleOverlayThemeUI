@@ -1,0 +1,138 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:borderHelper="clr-namespace:SimpleOverlayTheme.Object.BorderObject.Helper"
+                    xmlns:buttonHelper="clr-namespace:SimpleOverlayTheme.Object.ButtonObject.Helper"
+                    xmlns:customControl="clr-namespace:SimpleOverlayTheme.CustomControl"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/BorderObject/Style.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/ButtonObject/Style.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/TextBoxObject/Style.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <Style TargetType="{x:Type customControl:WindowHeader}">
+        <Setter Property="WindowControlForeground" Value="#20808080"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type customControl:WindowHeader}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="1"/>
+                        </Grid.RowDefinitions>
+                        <Grid x:Name="MainGrid" Grid.Row="0">
+                            <Grid.Background>
+                                <TemplateBinding Property="Background"/>
+                            </Grid.Background>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0">
+                                <ContentControl Background="Transparent">
+                                    <ContentControl.Content>
+                                        <Binding Path="TitleContent" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                    </ContentControl.Content>
+                                </ContentControl>
+                            </Border>
+                            <Border Grid.Column="1">
+                                <ContentControl>
+                                    <ContentControl.Content>
+                                        <Binding Path="SideContent" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                    </ContentControl.Content>
+                                </ContentControl>
+                            </Border>
+                            <Button x:Name="PART_MinimizeButton" Grid.Column="2" Background="Transparent">
+                                <Button.Foreground>
+                                    <Binding Path="WindowControlForeground" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                </Button.Foreground>
+                                <Button.Width>
+                                    <Binding Path="ActualHeight" ElementName="MainGrid"/>
+                                </Button.Width>
+                                <Button.Height>
+                                    <Binding Path="ActualHeight" ElementName="MainGrid"/>
+                                </Button.Height>
+                                <Button.IsEnabled>
+                                    <Binding Path="WindowUnlocked" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                </Button.IsEnabled>
+                                <Button.Visibility>
+                                    <Binding Path="ShowMinimize" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                </Button.Visibility>
+                                <Button.BorderThickness>
+                                    <StaticResource ResourceKey="SimpleOverlayTheme.DefaultThickness.Zero"/>
+                                </Button.BorderThickness>
+                                <Button.Style>
+                                    <StaticResource ResourceKey="SimpleOverlayTheme.Button.ImageMask"/>
+                                </Button.Style>
+                                <buttonHelper:Mask.MaskBrushDefault>
+                                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme;component/Resource/Mask/minimize.png"/>
+                                </buttonHelper:Mask.MaskBrushDefault>
+                            </Button>
+                            <ToggleButton x:Name="PART_FullScreen" Grid.Column="3" Background="Transparent">
+                                <ToggleButton.Foreground>
+                                    <Binding Path="WindowControlForeground" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                </ToggleButton.Foreground>
+                                <ToggleButton.Width>
+                                    <Binding Path="ActualHeight" ElementName="MainGrid"/>
+                                </ToggleButton.Width>
+                                <ToggleButton.Height>
+                                    <Binding Path="ActualHeight" ElementName="MainGrid"/>
+                                </ToggleButton.Height>
+                                <ToggleButton.IsEnabled>
+                                    <Binding Path="WindowUnlocked" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                </ToggleButton.IsEnabled>
+                                <ToggleButton.Visibility>
+                                    <Binding Path="ShowToggleMaximizeRestore" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                </ToggleButton.Visibility>
+                                <ToggleButton.BorderThickness>
+                                    <StaticResource ResourceKey="SimpleOverlayTheme.DefaultThickness.Zero"/>
+                                </ToggleButton.BorderThickness>
+                                <ToggleButton.Style>
+                                    <StaticResource ResourceKey="SimpleOverlayTheme.ToggleButton.ImageMask"/>
+                                </ToggleButton.Style>
+                                <buttonHelper:Mask.MaskBrushDefault>
+                                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme;component/Resource/Mask/maximize.png"/>
+                                </buttonHelper:Mask.MaskBrushDefault>
+                                <buttonHelper:Mask.MaskBrushChecked>
+                                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme;component/Resource/Mask/maximize.png"/>
+                                </buttonHelper:Mask.MaskBrushChecked>
+                            </ToggleButton>
+                            <Button x:Name="PART_CloseButton" Grid.Column="4" Background="Transparent">
+                                <Button.Foreground>
+                                    <Binding Path="WindowControlForeground" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                </Button.Foreground>
+                                <Button.Width>
+                                    <Binding Path="ActualHeight" ElementName="MainGrid"/>
+                                </Button.Width>
+                                <Button.Height>
+                                    <Binding Path="ActualHeight" ElementName="MainGrid"/>
+                                </Button.Height>
+                                <Button.IsEnabled>
+                                    <Binding Path="WindowUnlocked" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                </Button.IsEnabled>
+                                <Button.Visibility>
+                                    <Binding Path="ShowClose" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                </Button.Visibility>
+                                <Button.BorderThickness>
+                                    <StaticResource ResourceKey="SimpleOverlayTheme.DefaultThickness.Zero"/>
+                                </Button.BorderThickness>
+                                <Button.Style>
+                                    <StaticResource ResourceKey="SimpleOverlayTheme.Button.ImageMask"/>
+                                </Button.Style>
+                                <buttonHelper:Mask.MaskBrushDefault>
+                                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme;component/Resource/Mask/close.png"/>
+                                </buttonHelper:Mask.MaskBrushDefault>
+                            </Button>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.Background>
+                                <DynamicResource ResourceKey="SimpleOverlayTheme.DefaultBrush.Line"/>
+                            </Grid.Background>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,10 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,22 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Object\NumericUpDownObject\CustomControl\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="WpfAnalyzers" Version="4.1.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="XAMLTools.MSBuild" Version="1.0.0-alpha0167">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SimpleIniController\SimpleIniController.csproj" />
+    <ProjectReference Include="..\SimpleOverlayTheme\SimpleOverlayTheme.csproj" />
   </ItemGroup>
 
   <ItemGroup>

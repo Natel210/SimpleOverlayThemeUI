@@ -1,0 +1,137 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:borderHelper="clr-namespace:SimpleOverlayTheme.Object.BorderObject.Helper"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Default Border -->
+    <Style x:Key="SimpleOverlayTheme.Border.Default" TargetType="Border" >
+        <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Background}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.DefaultThickness.Default}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Outline}"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <!--<Setter Property="IsHitTestVisible" Value="False"/>-->
+        <!--<Setter Property="Focusable" Value="False"/>-->
+    </Style>
+    <!-- Empty Border -->
+    <Style x:Key="SimpleOverlayTheme.Border.Empty" TargetType="Border" >
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.DefaultThickness.Zero}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+    </Style>
+    <!-- Overlay Default Border -->
+    <Style x:Key="SimpleOverlayTheme.Border.Overlay.Default" TargetType="Border">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.DefaultThickness.Default}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="IsHitTestVisible" Value="False"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="IsEnabled" Value="False"/>
+        <Setter Property="borderHelper:Overlay.IsDisable" Value="False"/>
+        <Setter Property="borderHelper:Overlay.IsDefault" Value="False"/>
+        <Setter Property="borderHelper:Overlay.IsMouseOver" Value="False"/>
+        <Setter Property="borderHelper:Overlay.IsActive" Value="False"/>
+        <Setter Property="borderHelper:Overlay.BackgroundVisible" Value="True"/>
+        <Setter Property="borderHelper:Overlay.OutlineVisible" Value="True"/>
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="borderHelper:Overlay.BackgroundVisible" Value="True"/>
+                    <Condition Property="borderHelper:Overlay.IsDisable" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.OverlayBoader.Background.Disable}"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="borderHelper:Overlay.BackgroundVisible" Value="True"/>
+                    <Condition Property="borderHelper:Overlay.IsDefault" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.OverlayBoader.Background.Default}"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="borderHelper:Overlay.BackgroundVisible" Value="True"/>
+                    <Condition Property="borderHelper:Overlay.IsMouseOver" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.OverlayBoader.Background.MouseOver}"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="borderHelper:Overlay.BackgroundVisible" Value="True"/>
+                    <Condition Property="borderHelper:Overlay.IsActive" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.OverlayBoader.Background.Active}"/>
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="borderHelper:Overlay.OutlineVisible" Value="True"/>
+                    <Condition Property="borderHelper:Overlay.IsDisable" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.OverlayBoader.Outline.Disable}"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="borderHelper:Overlay.OutlineVisible" Value="True"/>
+                    <Condition Property="borderHelper:Overlay.IsDefault" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.OverlayBoader.Outline.Default}"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="borderHelper:Overlay.OutlineVisible" Value="True"/>
+                    <Condition Property="borderHelper:Overlay.IsMouseOver" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.OverlayBoader.Outline.MouseOver}"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="borderHelper:Overlay.OutlineVisible" Value="True"/>
+                    <Condition Property="borderHelper:Overlay.IsActive" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.OverlayBoader.Outline.Active}"/>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+    <!-- Overlay Mask Border -->
+    <Style x:Key="SimpleOverlayTheme.Border.Overlay.Mask" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.OverlayMask.Foreground.Default}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.DefaultThickness.Zero}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.OverlayBoader.Outline.Default}"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="IsHitTestVisible" Value="False"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="IsEnabled" Value="False"/>
+        <Setter Property="OpacityMask">
+            <Setter.Value>
+                <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme;component/Resource/Mask/empty.png"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="borderHelper:Overlay.IsDisable" Value="False"/>
+        <Setter Property="borderHelper:Overlay.IsDefault" Value="False"/>
+        <Setter Property="borderHelper:Overlay.IsMouseOver" Value="False"/>
+        <Setter Property="borderHelper:Overlay.IsActive" Value="False"/>
+        <Style.Triggers>
+            <Trigger Property="borderHelper:Overlay.IsDisable" Value="True">
+                <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.OverlayMask.Foreground.Disable}"/>
+            </Trigger>
+            <Trigger Property="borderHelper:Overlay.IsDefault" Value="True">
+                <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.OverlayMask.Foreground.Default}"/>
+            </Trigger>
+            <Trigger Property="borderHelper:Overlay.IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.OverlayMask.Foreground.MouseOver}"/>
+            </Trigger>
+            <Trigger Property="borderHelper:Overlay.IsActive" Value="True">
+                <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.OverlayMask.Foreground.Active}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>
+    
