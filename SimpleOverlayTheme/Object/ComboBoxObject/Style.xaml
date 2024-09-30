@@ -185,7 +185,7 @@
                                     <StaticResource ResourceKey="SimpleOverlayTheme.Border.Overlay.Mask"/>
                                 </Border.Style>
                                 <Border.BorderThickness>
-                                    <DynamicResource ResourceKey="SimpleOverlayTheme.Internal.Thickness.Zero"/>
+                                    <DynamicResource ResourceKey="SimpleOverlayTheme.DefaultThickness.Zero"/>
                                 </Border.BorderThickness>
                                 <Border.SnapsToDevicePixels>
                                     <TemplateBinding Property="SnapsToDevicePixels"/>

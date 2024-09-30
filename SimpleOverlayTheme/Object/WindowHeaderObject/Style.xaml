@@ -9,19 +9,53 @@
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/TextBoxObject/Style.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <Style TargetType="{x:Type customControl:WindowHeader}">
+        <Setter Property="Background" Value="#60808080"/>
+        <Setter Property="TitleContent" Value=""/>
+        <Setter Property="SideContent" Value=""/>
+        <Setter Property="WindowUnlocked" Value="True"/>
         <Setter Property="WindowControlForeground" Value="#20808080"/>
+        <Setter Property="ShowMinimize" Value="Visible"/>
+        <Setter Property="ShowToggleMaximizeRestore" Value="Visible"/>
+        <Setter Property="ShowClose" Value="Visible"/>
+        <Setter Property="UnderbarSpace" Value="1.0"/>
+        <Setter Property="UnderbarHeight" Value="1.0"/>
+        <Setter Property="UnderbarBrush" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Line}"/>
+        <Setter Property="FocusLostOverlayBrush" Value="#50808080"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type customControl:WindowHeader}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="1"/>
+                            <RowDefinition Height="{Binding UnderbarSpace, RelativeSource='{RelativeSource TemplatedParent}', FallbackValue='0.0'}"/>
+                            <RowDefinition Height="{Binding UnderbarHeight, RelativeSource='{RelativeSource TemplatedParent}', FallbackValue='0.0'}"/>
                         </Grid.RowDefinitions>
-                        <Grid x:Name="MainGrid" Grid.Row="0">
-                            <Grid.Background>
+                        <Border x:Name="PART_Background" Grid.Row="0" Grid.RowSpan="2">
+                            <Border.Background>
                                 <TemplateBinding Property="Background"/>
-                            </Grid.Background>
+                            </Border.Background>
+                            <Border.IsHitTestVisible>False
+                            </Border.IsHitTestVisible>
+                            <Border.Focusable>False
+                            </Border.Focusable>
+                            <Border.IsEnabled>False
+                            </Border.IsEnabled>
+                        </Border>
+                        <Border x:Name="PART_FocusLostOverlay" Grid.Row="0" Grid.RowSpan="2">
+                            <Border.Background>
+                                <Binding Path="FocusLostOverlayBrush" RelativeSource="{RelativeSource TemplatedParent}" FallbackValue="#50808080"/>
+                            </Border.Background>
+                            <Border.IsHitTestVisible>False
+                            </Border.IsHitTestVisible>
+                            <Border.Focusable>False
+                            </Border.Focusable>
+                            <Border.IsEnabled>False
+                            </Border.IsEnabled>
+                            <Border.Style>
+                                <StaticResource  ResourceKey="SimpleOverlayTheme.Border.Empty"/>
+                            </Border.Style>
+                        </Border>
+                        <Grid x:Name="MainGrid" Grid.Row="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
@@ -30,22 +64,28 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Border Grid.Column="0">
+                                <Border.Style>
+                                    <StaticResource  ResourceKey="SimpleOverlayTheme.Border.Empty"/>
+                                </Border.Style>
                                 <ContentControl Background="Transparent">
                                     <ContentControl.Content>
-                                        <Binding Path="TitleContent" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                        <Binding Path="TitleContent" RelativeSource="{RelativeSource TemplatedParent}" FallbackValue=""/>
                                     </ContentControl.Content>
                                 </ContentControl>
                             </Border>
                             <Border Grid.Column="1">
+                                <Border.Style>
+                                    <StaticResource  ResourceKey="SimpleOverlayTheme.Border.Empty"/>
+                                </Border.Style>
                                 <ContentControl>
                                     <ContentControl.Content>
-                                        <Binding Path="SideContent" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                        <Binding Path="SideContent" RelativeSource="{RelativeSource TemplatedParent}" FallbackValue=""/>
                                     </ContentControl.Content>
                                 </ContentControl>
                             </Border>
                             <Button x:Name="PART_MinimizeButton" Grid.Column="2" Background="Transparent">
                                 <Button.Foreground>
-                                    <Binding Path="WindowControlForeground" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                    <Binding Path="WindowControlForeground" RelativeSource="{RelativeSource TemplatedParent}" FallbackValue="Transparent"/>
                                 </Button.Foreground>
                                 <Button.Width>
                                     <Binding Path="ActualHeight" ElementName="MainGrid"/>
@@ -54,10 +94,10 @@
                                     <Binding Path="ActualHeight" ElementName="MainGrid"/>
                                 </Button.Height>
                                 <Button.IsEnabled>
-                                    <Binding Path="WindowUnlocked" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                    <Binding Path="WindowUnlocked" RelativeSource="{RelativeSource TemplatedParent}" FallbackValue="True"/>
                                 </Button.IsEnabled>
                                 <Button.Visibility>
-                                    <Binding Path="ShowMinimize" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                    <Binding Path="ShowMinimize" RelativeSource="{RelativeSource TemplatedParent}" FallbackValue="Visible"/>
                                 </Button.Visibility>
                                 <Button.BorderThickness>
                                     <StaticResource ResourceKey="SimpleOverlayTheme.DefaultThickness.Zero"/>
@@ -68,10 +108,18 @@
                                 <buttonHelper:Mask.MaskBrushDefault>
                                     <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme;component/Resource/Mask/minimize.png"/>
                                 </buttonHelper:Mask.MaskBrushDefault>
+                                <buttonHelper:OverlayCheckedBackground.Background>Transparent
+                                </buttonHelper:OverlayCheckedBackground.Background>
+                                <buttonHelper:OverlayBackground.SetDefaultVisible>False
+                                </buttonHelper:OverlayBackground.SetDefaultVisible>
+                                <buttonHelper:OverlayBackground.SetOutlineVisible>False
+                                </buttonHelper:OverlayBackground.SetOutlineVisible>
+                                <buttonHelper:OverlayBackground.SetBackgroundVisible>False
+                                </buttonHelper:OverlayBackground.SetBackgroundVisible>
                             </Button>
                             <ToggleButton x:Name="PART_FullScreen" Grid.Column="3" Background="Transparent">
                                 <ToggleButton.Foreground>
-                                    <Binding Path="WindowControlForeground" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                    <Binding Path="WindowControlForeground" RelativeSource="{RelativeSource TemplatedParent}" FallbackValue="Transparent"/>
                                 </ToggleButton.Foreground>
                                 <ToggleButton.Width>
                                     <Binding Path="ActualHeight" ElementName="MainGrid"/>
@@ -80,10 +128,10 @@
                                     <Binding Path="ActualHeight" ElementName="MainGrid"/>
                                 </ToggleButton.Height>
                                 <ToggleButton.IsEnabled>
-                                    <Binding Path="WindowUnlocked" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                    <Binding Path="WindowUnlocked" RelativeSource="{RelativeSource TemplatedParent}" FallbackValue="True"/>
                                 </ToggleButton.IsEnabled>
                                 <ToggleButton.Visibility>
-                                    <Binding Path="ShowToggleMaximizeRestore" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                    <Binding Path="ShowToggleMaximizeRestore" RelativeSource="{RelativeSource TemplatedParent}" FallbackValue="Visible"/>
                                 </ToggleButton.Visibility>
                                 <ToggleButton.BorderThickness>
                                     <StaticResource ResourceKey="SimpleOverlayTheme.DefaultThickness.Zero"/>
@@ -95,12 +143,20 @@
                                     <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme;component/Resource/Mask/maximize.png"/>
                                 </buttonHelper:Mask.MaskBrushDefault>
                                 <buttonHelper:Mask.MaskBrushChecked>
-                                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme;component/Resource/Mask/maximize.png"/>
+                                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme;component/Resource/Mask/restore.png"/>
                                 </buttonHelper:Mask.MaskBrushChecked>
+                                <buttonHelper:OverlayCheckedBackground.Background>Transparent
+                                </buttonHelper:OverlayCheckedBackground.Background>
+                                <buttonHelper:OverlayBackground.SetDefaultVisible>False
+                                </buttonHelper:OverlayBackground.SetDefaultVisible>
+                                <buttonHelper:OverlayBackground.SetOutlineVisible>False
+                                </buttonHelper:OverlayBackground.SetOutlineVisible>
+                                <buttonHelper:OverlayBackground.SetBackgroundVisible>False
+                                </buttonHelper:OverlayBackground.SetBackgroundVisible>
                             </ToggleButton>
                             <Button x:Name="PART_CloseButton" Grid.Column="4" Background="Transparent">
                                 <Button.Foreground>
-                                    <Binding Path="WindowControlForeground" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                    <Binding Path="WindowControlForeground" RelativeSource="{RelativeSource TemplatedParent}" FallbackValue="Transparent"/>
                                 </Button.Foreground>
                                 <Button.Width>
                                     <Binding Path="ActualHeight" ElementName="MainGrid"/>
@@ -109,10 +165,10 @@
                                     <Binding Path="ActualHeight" ElementName="MainGrid"/>
                                 </Button.Height>
                                 <Button.IsEnabled>
-                                    <Binding Path="WindowUnlocked" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                    <Binding Path="WindowUnlocked" RelativeSource="{RelativeSource TemplatedParent}" FallbackValue="True"/>
                                 </Button.IsEnabled>
                                 <Button.Visibility>
-                                    <Binding Path="ShowClose" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                    <Binding Path="ShowClose" RelativeSource="{RelativeSource TemplatedParent}" FallbackValue="Visible"/>
                                 </Button.Visibility>
                                 <Button.BorderThickness>
                                     <StaticResource ResourceKey="SimpleOverlayTheme.DefaultThickness.Zero"/>
@@ -123,11 +179,15 @@
                                 <buttonHelper:Mask.MaskBrushDefault>
                                     <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme;component/Resource/Mask/close.png"/>
                                 </buttonHelper:Mask.MaskBrushDefault>
+                                <buttonHelper:OverlayBackground.SetOutlineVisible>False
+                                </buttonHelper:OverlayBackground.SetOutlineVisible>
+                                <buttonHelper:OverlayBackground.SetBackgroundVisible>False
+                                </buttonHelper:OverlayBackground.SetBackgroundVisible>
                             </Button>
                         </Grid>
-                        <Grid Grid.Row="1">
+                        <Grid Grid.Row="2">
                             <Grid.Background>
-                                <DynamicResource ResourceKey="SimpleOverlayTheme.DefaultBrush.Line"/>
+                                <Binding Path="UnderbarBrush" RelativeSource="{RelativeSource TemplatedParent}" FallbackValue="{StaticResource SimpleOverlayTheme.DefaultBrush.Line}"/>
                             </Grid.Background>
                         </Grid>
                     </Grid>

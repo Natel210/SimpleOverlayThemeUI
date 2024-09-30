@@ -119,6 +119,7 @@
         <Setter Property="buttonHelper:OverlayBackground.SetBackgroundVisible" Value="True"/>
         <Setter Property="buttonHelper:OverlayBackground.SetOutlineVisible" Value="True"/>
         <Setter Property="buttonHelper:OverlayMask.SetDefaultVisible" Value="False"/>
+        <Setter Property="buttonHelper:OverlayMask.OverlayMaskVisible" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -182,7 +183,7 @@
                                 <StaticResource ResourceKey="SimpleOverlayTheme.Border.Overlay.Mask"/>
                             </Border.Style>
                             <Border.BorderThickness>
-                                <DynamicResource ResourceKey="SimpleOverlayTheme.Internal.Thickness.Zero"/>
+                                <DynamicResource ResourceKey="SimpleOverlayTheme.DefaultThickness.Zero"/>
                             </Border.BorderThickness>
                             <Border.SnapsToDevicePixels>
                                 <TemplateBinding Property="SnapsToDevicePixels"/>
@@ -207,6 +208,12 @@
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="overlayBackground" Property="borderHelper:Overlay.IsDisable" Value="True"/>
                             <Setter TargetName="overlayMask" Property="borderHelper:Overlay.IsDisable" Value="True"/>
+                        </Trigger>
+                        <Trigger Property="buttonHelper:OverlayMask.OverlayMaskVisible" Value="True">
+                            <Setter TargetName="overlayMask" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="buttonHelper:OverlayMask.OverlayMaskVisible" Value="False">
+                            <Setter TargetName="overlayMask" Property="Visibility" Value="Hidden"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -357,14 +364,12 @@
         <Setter Property="buttonHelper:OverlayCheckedBackground.Background" Value="#50808080"/>
         <Setter Property="buttonHelper:OverlayCheckedBackground.Thickness" Value="0.0"/>
         <Setter Property="buttonHelper:OverlayCheckedBackground.Outline" Value="#A0808080"/>
+        <Setter Property="buttonHelper:OverlayMask.OverlayMaskVisible" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
                     <Grid>
                         <Border x:Name="backgroundBorder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <Border.Style>
-                                <StaticResource ResourceKey="SimpleOverlayTheme.Border.Empty"/>
-                            </Border.Style>
                             <Border.Background>
                                 <TemplateBinding Property="Background"/>
                             </Border.Background>
@@ -377,6 +382,9 @@
                             <Border.SnapsToDevicePixels>
                                 <TemplateBinding Property="SnapsToDevicePixels"/>
                             </Border.SnapsToDevicePixels>
+                            <Border.Style>
+                                <StaticResource ResourceKey="SimpleOverlayTheme.Border.Empty"/>
+                            </Border.Style>
                         </Border>
                         <Border x:Name="overlayChecked" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Collapsed">
                             <Border.Background>
@@ -393,15 +401,15 @@
                             </Border.SnapsToDevicePixels>
                         </Border>
                         <Border x:Name="overlayBackground" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <Border.Style>
-                                <StaticResource ResourceKey="SimpleOverlayTheme.Border.Overlay.Default"/>
-                            </Border.Style>
                             <Border.BorderThickness>
                                 <TemplateBinding Property="BorderThickness"/>
                             </Border.BorderThickness>
                             <Border.SnapsToDevicePixels>
                                 <TemplateBinding Property="SnapsToDevicePixels"/>
                             </Border.SnapsToDevicePixels>
+                            <Border.Style>
+                                <StaticResource ResourceKey="SimpleOverlayTheme.Border.Overlay.Default"/>
+                            </Border.Style>
                             <borderHelper:Overlay.IsDefault>
                                 <TemplateBinding Property="buttonHelper:OverlayBackground.SetDefaultVisible"/>
                             </borderHelper:Overlay.IsDefault>
@@ -413,9 +421,6 @@
                             </borderHelper:Overlay.OutlineVisible>
                         </Border>
                         <Border x:Name="imageMask"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <Border.Style>
-                                <StaticResource ResourceKey="SimpleOverlayTheme.Border.Empty"/>
-                            </Border.Style>
                             <Border.Background>
                                 <TemplateBinding Property="Foreground"/>
                             </Border.Background>
@@ -428,20 +433,29 @@
                             <Border.OpacityMask>
                                 <TemplateBinding Property="buttonHelper:Mask.MaskBrushDefault"/>
                             </Border.OpacityMask>
+                            <Border.Style>
+                                <StaticResource ResourceKey="SimpleOverlayTheme.Border.Empty"/>
+                            </Border.Style>
                         </Border>
                         <Border x:Name="overlayMask" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <Border.Style>
-                                <StaticResource ResourceKey="SimpleOverlayTheme.Border.Overlay.Mask"/>
-                            </Border.Style>
                             <Border.BorderThickness>
-                                <DynamicResource ResourceKey="SimpleOverlayTheme.Internal.Thickness.Zero"/>
+                                <DynamicResource ResourceKey="SimpleOverlayTheme.DefaultThickness.Zero"/>
                             </Border.BorderThickness>
                             <Border.SnapsToDevicePixels>
                                 <TemplateBinding Property="SnapsToDevicePixels"/>
                             </Border.SnapsToDevicePixels>
+                            <Border.Style>
+                                <StaticResource ResourceKey="SimpleOverlayTheme.Border.Overlay.Mask"/>
+                            </Border.Style>
                             <borderHelper:Overlay.IsDefault>
                                 <TemplateBinding Property="buttonHelper:OverlayMask.SetDefaultVisible"/>
                             </borderHelper:Overlay.IsDefault>
+                            <borderHelper:Overlay.BackgroundVisible>
+                                <TemplateBinding Property="buttonHelper:OverlayBackground.SetBackgroundVisible"/>
+                            </borderHelper:Overlay.BackgroundVisible>
+                            <borderHelper:Overlay.OutlineVisible>
+                                <TemplateBinding Property="buttonHelper:OverlayBackground.SetOutlineVisible"/>
+                            </borderHelper:Overlay.OutlineVisible>
                             <Border.OpacityMask>
                                 <TemplateBinding Property="buttonHelper:Mask.MaskBrushDefault"/>
                             </Border.OpacityMask>
@@ -472,6 +486,12 @@
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="overlayBackground" Property="borderHelper:Overlay.IsDisable" Value="True"/>
                             <Setter TargetName="overlayMask" Property="borderHelper:Overlay.IsDisable" Value="True"/>
+                        </Trigger>
+                        <Trigger Property="buttonHelper:OverlayMask.OverlayMaskVisible" Value="True">
+                            <Setter TargetName="overlayMask" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="buttonHelper:OverlayMask.OverlayMaskVisible" Value="False">
+                            <Setter TargetName="overlayMask" Property="Visibility" Value="Hidden"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -657,7 +677,7 @@
                                 <StaticResource ResourceKey="SimpleOverlayTheme.Border.Overlay.Mask"/>
                             </Border.Style>
                             <Border.BorderThickness>
-                                <DynamicResource ResourceKey="SimpleOverlayTheme.Internal.Thickness.Zero"/>
+                                <DynamicResource ResourceKey="SimpleOverlayTheme.DefaultThickness.Zero"/>
                             </Border.BorderThickness>
                             <Border.SnapsToDevicePixels>
                                 <TemplateBinding Property="SnapsToDevicePixels"/>
@@ -682,6 +702,12 @@
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="overlayBackground" Property="borderHelper:Overlay.IsDisable" Value="True"/>
                             <Setter TargetName="overlayMask" Property="borderHelper:Overlay.IsDisable" Value="True"/>
+                        </Trigger>
+                        <Trigger Property="buttonHelper:OverlayMask.OverlayMaskVisible" Value="True">
+                            <Setter TargetName="overlayMask" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="buttonHelper:OverlayMask.OverlayMaskVisible" Value="False">
+                            <Setter TargetName="overlayMask" Property="Visibility" Value="Hidden"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
