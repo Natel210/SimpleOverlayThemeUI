@@ -110,53 +110,6 @@ namespace SimpleOverlayTheme.CustomControl
             set { SetValue(ShowCloseProperty, value); }
         }
 
-        public static readonly DependencyProperty UnderbarSpaceProperty
-            = DependencyProperty.Register(
-                nameof(UnderbarSpace),
-                typeof(GridLength),
-                typeof(WindowHeader),
-                new FrameworkPropertyMetadata(new GridLength(1.0), _frameworkPropertyMetadataOptions));
-        public GridLength UnderbarSpace
-        {
-            get { return (GridLength)GetValue(UnderbarSpaceProperty); }
-            set { SetValue(UnderbarSpaceProperty, value); }
-        }
-
-        public static readonly DependencyProperty UnderbarHeightProperty
-            = DependencyProperty.Register(
-                nameof(UnderbarHeight),
-                typeof(GridLength),
-                typeof(WindowHeader),
-                new FrameworkPropertyMetadata(new GridLength(1.0), _frameworkPropertyMetadataOptions));
-        public GridLength UnderbarHeight
-        {
-            get { return (GridLength)GetValue(UnderbarHeightProperty); }
-            set { SetValue(UnderbarHeightProperty, value); }
-        }
-
-        public static readonly DependencyProperty UnderbarBrushProperty
-            = DependencyProperty.Register(
-                nameof(UnderbarBrush),
-                typeof(SolidColorBrush),
-                typeof(WindowHeader),
-                new FrameworkPropertyMetadata(null, _frameworkPropertyMetadataOptions));
-        public SolidColorBrush? UnderbarBrush
-        {
-            get { return (SolidColorBrush?)GetValue(UnderbarBrushProperty); }
-            set { SetValue(UnderbarBrushProperty, value); }
-        }
-
-        public static readonly DependencyProperty FocusLostOverlayBrushProperty
-            = DependencyProperty.Register(
-                nameof(FocusLostOverlayBrush),
-                typeof(SolidColorBrush),
-                typeof(WindowHeader),
-                new FrameworkPropertyMetadata(null, _frameworkPropertyMetadataOptions));
-        public SolidColorBrush? FocusLostOverlayBrush
-        {
-            get { return (SolidColorBrush?)GetValue(FocusLostOverlayBrushProperty); }
-            set { SetValue(FocusLostOverlayBrushProperty, value); }
-        }
     }
 
 
@@ -216,11 +169,8 @@ namespace SimpleOverlayTheme.CustomControl
 
     public partial class WindowHeader : Control
     {
-
         public override void OnApplyTemplate()
         {
-
-
             base.OnApplyTemplate();
 
             Button? minimizeButton = GetTemplateChild("PART_MinimizeButton") as Button;
@@ -238,23 +188,22 @@ namespace SimpleOverlayTheme.CustomControl
             if (closeButton != null)
                 closeButton.Click += Exit_Click;
 
-            //windows
-            //Setting
             Window parentWindow = Window.GetWindow(this);
-            parentWindow.Activated += (object? sender, EventArgs e) => {
+
+            parentWindow.Activated += (object? sender, EventArgs e) =>
+            {
                 Border? focusOverlay = GetTemplateChild("PART_FocusLostOverlay") as Border;
                 if (focusOverlay != null)
                     focusOverlay.Visibility = Visibility.Hidden;
             };
 
-            parentWindow.Deactivated += (object? sender, EventArgs e) => {
+            parentWindow.Deactivated += (object? sender, EventArgs e) =>
+            {
                 Border? focusOverlay = GetTemplateChild("PART_FocusLostOverlay") as Border;
                 if (focusOverlay != null)
                     focusOverlay.Visibility = Visibility.Visible;
             };
-
         }
-
 
         private void Minimize_Click(object sender, RoutedEventArgs e)
         {

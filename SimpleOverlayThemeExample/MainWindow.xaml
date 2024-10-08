@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:SimpleOverlayThemeExample"
         xmlns:example="clr-namespace:SimpleOverlayThemeExample.Example"
         xmlns:borderHelper="clr-namespace:SimpleOverlayTheme.Object.BorderObject.Helper;assembly=SimpleOverlayTheme"
-        SizeToContent="WidthAndHeight"
-        ResizeMode="NoResize"
+        
+        
         mc:Ignorable="d"
         Style="{StaticResource SimpleOverlayTheme.Window.Default}"
         Title="MainWindow">
