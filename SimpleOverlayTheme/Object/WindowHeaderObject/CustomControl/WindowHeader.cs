@@ -6,9 +6,6 @@ using System.Windows;
 
 namespace SimpleOverlayTheme.CustomControl
 {
-    [TemplatePart(Name = "PART_MinimizeButton", Type = typeof(Button))]
-    [TemplatePart(Name = "PART_FullScreen", Type = typeof(ToggleButton))]
-    [TemplatePart(Name = "PART_CloseButton", Type = typeof(Button))]
     [TemplatePart(Name = "PART_FocusLostOverlay", Type = typeof(Border))]
     public partial class WindowHeader : Control
     {
@@ -128,6 +125,11 @@ namespace SimpleOverlayTheme.CustomControl
 
         private void MainWindowHeader_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            var parentWindow = Window.GetWindow(this);
+            if (parentWindow is null)
+                return;
+            if (parentWindow.WindowState is not WindowState.Normal)
+                return;
             isDragging = true;
             startPoint = e.GetPosition(this);
             this.CaptureMouse();
@@ -140,6 +142,7 @@ namespace SimpleOverlayTheme.CustomControl
             var parentWindow = Window.GetWindow(this);
             if (parentWindow is null)
                 return;
+
             if (isDragging)
             {
                 Point currentPoint = e.GetPosition(this);
@@ -173,21 +176,6 @@ namespace SimpleOverlayTheme.CustomControl
         {
             base.OnApplyTemplate();
 
-            Button? minimizeButton = GetTemplateChild("PART_MinimizeButton") as Button;
-            if (minimizeButton != null)
-                minimizeButton.Click += Minimize_Click;
-
-            ToggleButton? fullScreen = GetTemplateChild("PART_FullScreen") as ToggleButton;
-            if (fullScreen != null)
-            {
-                fullScreen.Checked += ToMaximized;
-                fullScreen.Unchecked += ToRestore;
-            }
-
-            Button? closeButton = GetTemplateChild("PART_CloseButton") as Button;
-            if (closeButton != null)
-                closeButton.Click += Exit_Click;
-
             Window parentWindow = Window.GetWindow(this);
 
             parentWindow.Activated += (object? sender, EventArgs e) =>
@@ -203,38 +191,6 @@ namespace SimpleOverlayTheme.CustomControl
                 if (focusOverlay != null)
                     focusOverlay.Visibility = Visibility.Visible;
             };
-        }
-
-        private void Minimize_Click(object sender, RoutedEventArgs e)
-        {
-            Window parentWindow = Window.GetWindow(this);
-            if (parentWindow is null)
-                return;
-            parentWindow.WindowState = WindowState.Minimized;
-        }
-
-        private void ToMaximized(object sender, RoutedEventArgs e)
-        {
-            Window parentWindow = Window.GetWindow(this);
-            if (parentWindow is null)
-                return;
-            if (parentWindow.WindowState is not WindowState.Maximized)
-                parentWindow.WindowState = WindowState.Maximized;
-        }
-
-        private void ToRestore(object sender, RoutedEventArgs e)
-        {
-            Window parentWindow = Window.GetWindow(this);
-            if (parentWindow is null)
-                return;
-            if (parentWindow.WindowState is not WindowState.Normal)
-                parentWindow.WindowState = WindowState.Normal;
-        }
-
-        private void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            Window parentWindow = Window.GetWindow(this);
-            parentWindow?.Close();
         }
     }
 }
