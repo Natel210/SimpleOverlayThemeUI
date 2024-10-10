@@ -32,6 +32,11 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Grid.ColumnSpan="5" Background="#30808080">
+                                <i:Interaction.Behaviors>
+                                    <windowHeaderBehavior:LostFocusBehavior />
+                                </i:Interaction.Behaviors>
+                            </Border>
                             <Border Grid.Column="0">
                                 <ContentControl Background="Transparent">
                                     <ContentControl.Content>
@@ -144,6 +149,7 @@
                                 <DynamicResource ResourceKey="SimpleOverlayTheme.DefaultBrush.Line"/>
                             </Grid.Background>
                         </Grid>
+
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
