@@ -7,7 +7,7 @@
         <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.DefaultThickness.Default}"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
     </Style>
-    <Style x:Key="SimpleOverlayTheme.Window.Chrome" TargetType="Window">
+    <!--<Style x:Key="SimpleOverlayTheme.Window.Chrome" TargetType="Window">
         <Setter Property="FontSize" Value="{DynamicResource SimpleOverlayTheme.FontSize.Default}"/>
         <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground}"/>
         <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Background}"/>
@@ -22,6 +22,6 @@
                 </WindowChrome>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
 </ResourceDictionary>
