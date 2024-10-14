@@ -13,6 +13,11 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground}"/>
         <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.DefaultThickness.Zero}"/>
+        <Setter Property="comboBoxHelper:Items.ItemPadding">
+            <Setter.Value>
+                <Binding Path="(comboBoxHelper:Items.ItemPadding)" RelativeSource="{RelativeSource AncestorType=ComboBox}" FallbackValue="0"/>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ComboBoxItem">
@@ -29,6 +34,9 @@
                             <StaticResource ResourceKey="SimpleOverlayTheme.Border.Overlay.Default"/>
                         </Border.Style>
                         <ContentPresenter>
+                            <ContentPresenter.Margin>
+                                <TemplateBinding Property="comboBoxHelper:Items.ItemPadding"/>
+                            </ContentPresenter.Margin>
                             <ContentPresenter.HorizontalAlignment>
                                 <TemplateBinding Property="HorizontalContentAlignment"/>
                             </ContentPresenter.HorizontalAlignment>
@@ -66,13 +74,19 @@
         <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground}"/>
         <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Background}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Outline}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.DefaultThickness.Default}"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.Thickness.Default}"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
-                <StaticResource ResourceKey="SimpleOverlayTheme.ComboBoxItem.Default"/>
+                <Style TargetType="ComboBoxItem" BasedOn="{StaticResource SimpleOverlayTheme.ComboBoxItem.Default}">
+                    <Setter Property="comboBoxHelper:Items.ItemPadding">
+                        <Setter.Value>
+                            <Binding RelativeSource="{RelativeSource AncestorType=ComboBox}" Path="(comboBoxHelper:Items.ItemPadding)" FallbackValue="0"/>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
             </Setter.Value>
         </Setter>
         <Setter Property="comboBoxHelper:Mask.MaskBrushDefault">
@@ -89,6 +103,7 @@
         <Setter Property="comboBoxHelper:OverlayBackground.SetBackgroundVisible" Value="True"/>
         <Setter Property="comboBoxHelper:OverlayBackground.SetOutlineVisible" Value="True"/>
         <Setter Property="comboBoxHelper:OverlayMask.SetDefaultVisible" Value="False"/>
+        <Setter Property="comboBoxHelper:Items.ItemPadding" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ComboBox">
@@ -131,6 +146,9 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <ContentPresenter Grid.Column="0">
+                                <ContentPresenter.Margin>
+                                    <TemplateBinding Property="comboBoxHelper:Items.ItemPadding"/>
+                                </ContentPresenter.Margin>
                                 <ContentPresenter.VerticalAlignment>
                                     <TemplateBinding Property="VerticalContentAlignment"/>
                                 </ContentPresenter.VerticalAlignment>
@@ -240,7 +258,12 @@
                                     <ScrollViewer.SnapsToDevicePixels>
                                         <TemplateBinding Property="SnapsToDevicePixels"/>
                                     </ScrollViewer.SnapsToDevicePixels>
-                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                    <StackPanel>
+                                        <StackPanel.IsItemsHost>True
+                                        </StackPanel.IsItemsHost>
+                                        <KeyboardNavigation.DirectionalNavigation>Contained
+                                        </KeyboardNavigation.DirectionalNavigation>
+                                    </StackPanel>
                                 </ScrollViewer>
                             </Grid>
                         </Popup>

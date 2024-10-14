@@ -12,6 +12,7 @@
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/TextBoxObject/Style.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <Style TargetType="{x:Type customControl:WindowHeader}">
+        <Setter Property="Background" Value="#60808080"/>
         <Setter Property="WindowControlForeground" Value="#20808080"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -32,6 +33,11 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseDown">
+                                    <i:InvokeCommandAction Command="{Binding DragMoveCommand, RelativeSource={RelativeSource AncestorType=customControl:WindowHeader}}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Border Grid.Column="0" Grid.ColumnSpan="5" Background="#30808080">
                                 <i:Interaction.Behaviors>
                                     <windowHeaderBehavior:LostFocusBehavior />

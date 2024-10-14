@@ -4,6 +4,7 @@
         <Setter Property="FontSize" Value="{DynamicResource SimpleOverlayTheme.FontSize.Default}"/>
         <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground}"/>
         <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Background}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.DefaultThickness.Default}"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
     </Style>
     <Style x:Key="SimpleOverlayTheme.Window.Chrome" TargetType="Window">
@@ -11,10 +12,14 @@
         <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground}"/>
         <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Background}"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="ResizeMode" Value="NoResize"/>
+        <Setter Property="WindowStyle" Value="None"/>
+        <Setter Property="AllowsTransparency" Value="True"/>
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
                 <WindowChrome ResizeBorderThickness="5" CornerRadius="0" CaptionHeight="0"
-                              GlassFrameThickness="0" />
+                              GlassFrameThickness="0" UseAeroCaptionButtons="False">
+                </WindowChrome>
             </Setter.Value>
         </Setter>
     </Style>

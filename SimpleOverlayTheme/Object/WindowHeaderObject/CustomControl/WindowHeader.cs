@@ -116,88 +116,18 @@ namespace SimpleOverlayTheme.CustomControl
 
         public ICommand DragMoveCommand => new RelayCommand(() =>
         {
+            if (WindowUnlocked is false)
+                return;
             var window = Window.GetWindow(this);
-            var windowChrome = WindowChrome.GetWindowChrome(window);
-            windowChrome.CaptionHeight = this.ActualHeight;
+            //var windowChrome = WindowChrome.GetWindowChrome(window);
+            //windowChrome.CaptionHeight = this.ActualHeight;
             //if (window.WindowState == WindowState.Maximized)
             //{
             //    window.WindowState = WindowState.Normal;
                 
             //}
-            //window?.DragMove();
+            window?.DragMove();
         });
-        public ICommand DragUpCommand => new RelayCommand(() =>
-        {
-            var window = Window.GetWindow(this);
-            var windowChrome = WindowChrome.GetWindowChrome(window);
-            windowChrome.CaptionHeight = 0;
-            //if (window.WindowState == WindowState.Maximized)
-            //{
-            //    window.WindowState = WindowState.Normal;
 
-            //}
-            //window?.DragMove();
-        });
     }
-
-
-    //public partial class WindowHeader : Control
-    //{
-    //    private bool isDragging = false;
-    //    private Point startPoint;
-
-    //    private void MouseInit()
-    //    {
-    //        this.MouseLeftButtonDown += MainWindowHeader_MouseLeftButtonDown;
-    //        this.MouseMove += MainWindowHeader_MouseMove;
-    //        this.MouseLeftButtonUp += MainWindowHeader_MouseLeftButtonUp;
-    //        //this.MouseDoubleClick += MainWindowHeader_MouseLeftButtonUp;
-    //    }
-
-    //    private void MainWindowHeader_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-    //    {
-    //        var parentWindow = Window.GetWindow(this);
-    //        if (parentWindow is null)
-    //            return;
-    //        if (parentWindow.WindowState is not WindowState.Normal)
-    //            return;
-    //        isDragging = true;
-    //        startPoint = e.GetPosition(this);
-    //        this.CaptureMouse();
-    //    }
-
-    //    private void MainWindowHeader_MouseMove(object sender, MouseEventArgs e)
-    //    {
-    //        if (WindowUnlocked is false)
-    //            return;
-    //        var parentWindow = Window.GetWindow(this);
-    //        if (parentWindow is null)
-    //            return;
-
-    //        if (isDragging)
-    //        {
-    //            Point currentPoint = e.GetPosition(this);
-    //            double offsetX = currentPoint.X - startPoint.X;
-    //            double offsetY = currentPoint.Y - startPoint.Y;
-
-    //            parentWindow.Left += offsetX;
-    //            parentWindow.Top += offsetY;
-
-    //            // 상태 값에 대한 추가 보정
-    //            ToggleButton? fullScreen = GetTemplateChild("PART_FullScreen") as ToggleButton;
-    //            if (fullScreen is null)
-    //                return;
-    //            if (!fullScreen.IsChecked is false)
-    //                return;
-    //            if (offsetX is not 0.0 || offsetY is not 0.0)
-    //                fullScreen.IsChecked = false;
-    //        }
-    //    }
-
-    //    private void MainWindowHeader_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-    //    {
-    //        isDragging = false;
-    //        this.ReleaseMouseCapture();
-    //    }
-    //}
 }
