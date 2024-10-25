@@ -1,4 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:dataGridHelper="clr-namespace:SimpleOverlayTheme.Object.DataGridObject.Helper"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/BorderObject/Style.xaml"/>
@@ -10,6 +11,7 @@
         <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Outline}"/>
         <Setter Property="BorderThickness" Value="0,0,1,1"/>
+        <Setter Property="dataGridHelper:Header.ContentPadding" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DataGridColumnHeader">
@@ -30,6 +32,15 @@
                             <ContentPresenter.ContentTemplate>
                                 <TemplateBinding Property="ContentTemplate"/>
                             </ContentPresenter.ContentTemplate>
+                            <ContentPresenter.VerticalAlignment>
+                                <TemplateBinding Property="VerticalContentAlignment"/>
+                            </ContentPresenter.VerticalAlignment>
+                            <ContentPresenter.HorizontalAlignment>
+                                <TemplateBinding Property="HorizontalContentAlignment"/>
+                            </ContentPresenter.HorizontalAlignment>
+                            <ContentPresenter.Margin>
+                                <Binding Path="(dataGridHelper:Header.ContentPadding)" RelativeSource="{RelativeSource AncestorType=DataGridColumnHeader}"/>
+                            </ContentPresenter.Margin>
                         </ContentPresenter>
                     </Border>
                 </ControlTemplate>
@@ -89,11 +100,7 @@
                 <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.OverlayBoader.Background.MouseOver}"/>
                 <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.OverlayBoader.Outline.MouseOver}"/>
             </Trigger>
-            <Trigger Property="IsKeyboardFocused" Value="True">
-                <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.OverlayBoader.Background.Active}"/>
-                <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.OverlayBoader.Outline.Active}"/>
-            </Trigger>
-            <Trigger Property="IsKeyboardFocused" Value="True">
+            <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.OverlayBoader.Background.Active}"/>
                 <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.OverlayBoader.Outline.Active}"/>
             </Trigger>
