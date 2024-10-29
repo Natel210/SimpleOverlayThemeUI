@@ -59,7 +59,7 @@ namespace SimpleOverlayTheme.Object.WindowHeaderObject.Behavior
             {
                 if (window.WindowState == WindowState.Maximized)
                 {
-                    window.Margin = new Thickness(10); // 윈도우 크기 조정 시 추가할 패딩
+                    window.Margin = new Thickness(15); // 윈도우 크기 조정 시 추가할 패딩
                                                        //window.Margin = new Thickness(8);  // 기본 마진으로 조정
                 }
                 else
