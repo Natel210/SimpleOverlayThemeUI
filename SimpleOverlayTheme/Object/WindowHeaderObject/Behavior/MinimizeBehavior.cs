@@ -4,8 +4,9 @@ using Microsoft.Xaml.Behaviors;
 
 namespace SimpleOverlayTheme.Object.WindowHeaderObject.Behavior
 {
-    public class MinimizeBehavior : Behavior<Button>
+    public partial class MinimizeBehavior : Behavior<Button>
     {
+
         protected override void OnAttached()
         {
             base.OnAttached();
@@ -17,7 +18,12 @@ namespace SimpleOverlayTheme.Object.WindowHeaderObject.Behavior
             base.OnDetaching();
             AssociatedObject.Click -= OnButtonClick;
         }
+        
+    }
 
+    // evnet
+    public partial class MinimizeBehavior
+    {
         private void OnButtonClick(object sender, RoutedEventArgs e)
         {
             if (Window.GetWindow(AssociatedObject) is Window window)

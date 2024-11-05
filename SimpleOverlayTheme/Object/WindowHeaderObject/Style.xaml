@@ -18,6 +18,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type customControl:WindowHeader}">
                     <Grid>
+
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="1"/>
@@ -33,11 +34,6 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseDown">
-                                    <i:InvokeCommandAction Command="{Binding DragMoveCommand, RelativeSource={RelativeSource AncestorType=customControl:WindowHeader}}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
                             <Border Grid.Column="0" Grid.ColumnSpan="5" Background="#30808080">
                                 <i:Interaction.Behaviors>
                                     <windowHeaderBehavior:LostFocusBehavior />
@@ -49,6 +45,9 @@
                                         <Binding Path="TitleContent" RelativeSource="{RelativeSource TemplatedParent}"/>
                                     </ContentControl.Content>
                                 </ContentControl>
+                                <i:Interaction.Behaviors>
+                                    <windowHeaderBehavior:WindowMovementBehavior/>
+                                </i:Interaction.Behaviors>
                             </Border>
                             <Border Grid.Column="1">
                                 <ContentControl>

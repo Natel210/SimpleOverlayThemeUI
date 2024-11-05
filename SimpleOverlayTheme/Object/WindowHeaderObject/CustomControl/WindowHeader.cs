@@ -20,7 +20,6 @@ namespace SimpleOverlayTheme.CustomControl
 
         public WindowHeader()
         {
-            //MouseInit();
         }
 
         public static readonly DependencyProperty TitleContentProperty
@@ -113,21 +112,5 @@ namespace SimpleOverlayTheme.CustomControl
             get { return (Visibility)GetValue(ShowCloseProperty); }
             set { SetValue(ShowCloseProperty, value); }
         }
-
-        public ICommand DragMoveCommand => new RelayCommand(() =>
-        {
-            if (WindowUnlocked is false)
-                return;
-            var window = Window.GetWindow(this);
-            //var windowChrome = WindowChrome.GetWindowChrome(window);
-            //windowChrome.CaptionHeight = this.ActualHeight;
-            //if (window.WindowState == WindowState.Maximized)
-            //{
-            //    window.WindowState = WindowState.Normal;
-                
-            //}
-            window?.DragMove();
-        });
-
     }
 }
