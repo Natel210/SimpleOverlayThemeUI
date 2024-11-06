@@ -152,7 +152,7 @@ namespace SimpleOverlayTheme.CustomControl
     public partial class NumericUpDown : Control
     {
         /// <summary>
-        /// Based on [Increase/Decrease's PushingCount],
+        /// Based on <see cref="_increasePushingCount"/>, <see cref="_decreasePushingCount"/>
         /// the index increases for each specific number of counts.
         /// </summary>
         private readonly int _exponentialLevelUpCount = 50;

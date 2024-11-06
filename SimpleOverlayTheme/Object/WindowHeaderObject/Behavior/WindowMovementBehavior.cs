@@ -47,19 +47,8 @@ namespace SimpleOverlayTheme.Object.WindowHeaderObject.Behavior
                 return;
 
             // exist window header
-            try
-            {
-                if (VisualTreeHelper.GetParent(AssociatedObject) is WindowHeader windowHeader)
-                {
-                    // check window lock
-                    if (windowHeader.WindowUnlocked is false)
-                        return;
-                    // not visible
-                    if (windowHeader.ShowToggleMaximizeRestore is not Visibility.Visible)
-                        return;
-                }
-            }
-            catch (Exception) {}
+            if (IsWindowUnlock() is false)
+                return;
             
             if (e.ClickCount == 2) // bar double click
                 MouseLeftDoubleClick();
@@ -121,6 +110,66 @@ namespace SimpleOverlayTheme.Object.WindowHeaderObject.Behavior
     // inner func
     public partial class WindowMovementBehavior
     {
+        /// <summary>
+        /// find <see cref="WindowHeader"/> and check for WindowUnlocked.
+        /// </summary>
+        /// <returns>false => unlock or unfind <see cref="WindowHeader"/></returns>
+        private bool IsWindowUnlock()
+        {
+            // exist window header
+            try
+            {
+                WindowHeader? findWindowHeader = null;
+                DependencyObject tempObject = AssociatedObject;
+                // depth 10
+                for (int i = 0; i < 10; ++i)
+                {
+                    tempObject = VisualTreeHelper.GetParent(tempObject);
+                    if (tempObject is WindowHeader windowHeader)
+                    {
+                        findWindowHeader = windowHeader;
+                        break;
+                    }
+                }
+
+                if (findWindowHeader is not null)
+                    return findWindowHeader.WindowUnlocked;
+
+            }
+            catch { }
+            return true; // unactive
+        }
+
+        /// <summary>
+        /// find <see cref="WindowHeader"/> and check for UseDoubleClickMaximizeRestore.
+        /// </summary>
+        /// <returns>false => not use or unfind <see cref="WindowHeader"/></returns>
+        private bool IsDoubleClickMaximizeRestore()
+        {
+            // exist window header
+            try
+            {
+                WindowHeader? findWindowHeader = null;
+                DependencyObject tempObject = AssociatedObject;
+                // depth 10
+                for (int i = 0; i < 10; ++i)
+                {
+                    tempObject = VisualTreeHelper.GetParent(tempObject);
+                    if (tempObject is WindowHeader windowHeader)
+                    {
+                        findWindowHeader = windowHeader;
+                        break;
+                    }
+                }
+
+                if (findWindowHeader is not null)
+                    return findWindowHeader.UseDoubleClickMaximizeRestore;
+
+            }
+            catch { }
+            return true; // unactive
+        }
+
 
         /// <summary>
         /// double click
@@ -132,6 +181,24 @@ namespace SimpleOverlayTheme.Object.WindowHeaderObject.Behavior
             if (window is null)
                 return;
 
+            if (IsWindowUnlock() is false)
+                return;
+
+            // exist window header
+            try
+            {
+                if (VisualTreeHelper.GetParent(AssociatedObject) is WindowHeader windowHeader)
+                {
+                    // check window lock
+                    if (windowHeader.WindowUnlocked is false)
+                        return;
+                    // not visible
+                    if (windowHeader.ShowToggleMaximizeRestore is not Visibility.Visible)
+                        return;
+                }
+            }
+            catch (Exception) { }
+
             // check interval timer
             if (_changeWindowStateDelay_FromDoubleClick.IsRunning is false)
             {
@@ -141,6 +208,9 @@ namespace SimpleOverlayTheme.Object.WindowHeaderObject.Behavior
 
             // limit 0.1s over, avoid duplicate changes
             if (_changeWindowStateDelay_FromDoubleClick.ElapsedMilliseconds <= _changeWindowStateDelayTime)
+                return;
+            // use mode
+            else if(IsDoubleClickMaximizeRestore() is false)
                 return;
             // max to normal
             else if (window.WindowState == WindowState.Maximized)
@@ -178,6 +248,13 @@ namespace SimpleOverlayTheme.Object.WindowHeaderObject.Behavior
         /// </summary>
         private void MouseLeftDrag(MouseEventArgs e)
         {
+            // is lock mode
+            if (IsWindowUnlock() is false)
+            {
+                MouseLeftDragEnd();
+                return;
+            }
+
             // check mouse pressed
             if (e.LeftButton is not MouseButtonState.Pressed)
             {

@@ -100,7 +100,7 @@ namespace SimpleOverlayTheme.Object.WindowHeaderObject.Behavior
         }
 
         /// <summary>
-        /// Is [ChromeWindow]
+        /// Is <see cref="WindowChrome"/>
         /// </summary>
         private bool IsChromeWindow()
         {

@@ -16,23 +16,26 @@ namespace SimpleOverlayTheme.Object.WindowObject.Helper
 
         #region WindowTitleHeader
 
+        /// <summary>
+        /// <see cref="WindowHeader"/> or replaceable object
+        /// </summary>
         public static readonly DependencyProperty WindowTitleHeaderProperty
             = DependencyProperty.RegisterAttached(
                 "WindowTitleHeader",
-                typeof(WindowHeader),
+                typeof(object),
                 typeof(Items),
                 new FrameworkPropertyMetadata(null, _frameworkPropertyMetadataOptions));
 
         [Category($"{KeywordDictionary.CategoryKey.Items}")]
         [AttachedPropertyBrowsableForType(typeof(Window))]
-        public static WindowHeader? GetWindowTitleHeader(UIElement element)
+        public static object? GetWindowTitleHeader(UIElement element)
         {
-            return (WindowHeader)element.GetValue(WindowTitleHeaderProperty);
+            return element.GetValue(WindowTitleHeaderProperty);
         }
 
         [Category($"{KeywordDictionary.CategoryKey.Items}")]
         [AttachedPropertyBrowsableForType(typeof(Window))]
-        public static void SetWindowTitleHeader(UIElement element, WindowHeader? value)
+        public static void SetWindowTitleHeader(UIElement element, object? value)
         {
             element.SetValue(WindowTitleHeaderProperty, value);
         }

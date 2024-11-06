@@ -61,6 +61,19 @@ namespace SimpleOverlayTheme.CustomControl
             set { SetValue(WindowUnlockedProperty, value); }
         }
 
+        public static readonly DependencyProperty UseDoubleClickMaximizeRestoreProperty
+            = DependencyProperty.Register(
+                nameof(UseDoubleClickMaximizeRestore),
+                typeof(bool),
+                typeof(WindowHeader),
+                new FrameworkPropertyMetadata(true, _frameworkPropertyMetadataOptions));
+
+        public bool UseDoubleClickMaximizeRestore
+        {
+            get { return (bool)GetValue(UseDoubleClickMaximizeRestoreProperty); }
+            set { SetValue(UseDoubleClickMaximizeRestoreProperty, value); }
+        }
+
         public static readonly DependencyProperty WindowControlForegroundProperty
             = DependencyProperty.Register(
                 nameof(WindowControlForeground),
