@@ -89,6 +89,7 @@ namespace SimpleOverlayTheme
             internal const string Func = $"{App}.{nameof(Func)}";
             internal const string Items = $"{App}.{nameof(Items)}";
             internal const string Header = $"{App}.{nameof(Header)}";
+            internal const string Cell = $"{App}.{nameof(Cell)}";
         }
 
     }

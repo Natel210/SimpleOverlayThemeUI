@@ -4,12 +4,15 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/BorderObject/Style.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    
     <!-- DataGridColumnHeader -->
     <Style x:Key="SimpleOverlayTheme.DataGridColumnHeader.Default" TargetType="DataGridColumnHeader">
-        <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.OverlayBoader.Background.Default}"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Outline}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="Margin" Value="0" />
         <Setter Property="BorderThickness" Value="0,0,1,1"/>
         <Setter Property="dataGridHelper:Header.ContentPadding" Value="0"/>
         <Setter Property="Template">
@@ -25,23 +28,31 @@
                         <Border.BorderThickness>
                             <TemplateBinding Property="BorderThickness"/>
                         </Border.BorderThickness>
-                        <ContentPresenter>
-                            <ContentPresenter.Content>
-                                <TemplateBinding Property="Content"/>
-                            </ContentPresenter.Content>
-                            <ContentPresenter.ContentTemplate>
-                                <TemplateBinding Property="ContentTemplate"/>
-                            </ContentPresenter.ContentTemplate>
-                            <ContentPresenter.VerticalAlignment>
-                                <TemplateBinding Property="VerticalContentAlignment"/>
-                            </ContentPresenter.VerticalAlignment>
-                            <ContentPresenter.HorizontalAlignment>
-                                <TemplateBinding Property="HorizontalContentAlignment"/>
-                            </ContentPresenter.HorizontalAlignment>
-                            <ContentPresenter.Margin>
-                                <Binding Path="(dataGridHelper:Header.ContentPadding)" RelativeSource="{RelativeSource AncestorType=DataGridColumnHeader}"/>
-                            </ContentPresenter.Margin>
-                        </ContentPresenter>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter>
+                                <ContentPresenter.Content>
+                                    <TemplateBinding Property="Content"/>
+                                </ContentPresenter.Content>
+                                <ContentPresenter.ContentTemplate>
+                                    <TemplateBinding Property="ContentTemplate"/>
+                                </ContentPresenter.ContentTemplate>
+                                <!--<ContentPresenter.VerticalAlignment>
+                                    <TemplateBinding Property="VerticalContentAlignment"/>
+                                </ContentPresenter.VerticalAlignment>-->
+                                <ContentPresenter.HorizontalAlignment>
+                                    <TemplateBinding Property="HorizontalContentAlignment"/>
+                                </ContentPresenter.HorizontalAlignment>
+                                <ContentPresenter.Margin>
+                                    <Binding Path="(dataGridHelper:Header.ContentPadding)" RelativeSource="{RelativeSource AncestorType=DataGridColumnHeader}"/>
+                                </ContentPresenter.Margin>
+                            </ContentPresenter>
+                            <Thumb x:Name="PART_RightHeaderGripper" Grid.Column="0"
+                                    Background="Transparent" HorizontalAlignment="Right" Cursor="SizeWE" BorderBrush="Transparent" BorderThickness="1" Width="5" Style="{x:Null}" Opacity="0"/>
+                        </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -95,6 +106,41 @@
         <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Line}"/>
         <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="dataGridHelper:Cell.ContentPadding" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <ContentPresenter>
+                            <ContentPresenter.SnapsToDevicePixels>
+                                <TemplateBinding Property="SnapsToDevicePixels"/>
+                            </ContentPresenter.SnapsToDevicePixels>
+                            <ContentPresenter.ContentStringFormat>
+                                <TemplateBinding Property="ContentStringFormat"/>
+                            </ContentPresenter.ContentStringFormat>
+                            <ContentPresenter.Content>
+                                <TemplateBinding Property="Content"/>
+                            </ContentPresenter.Content>
+                            <ContentPresenter.ContentTemplate>
+                                <TemplateBinding Property="ContentTemplate"/>
+                            </ContentPresenter.ContentTemplate>
+                            <ContentPresenter.VerticalAlignment>
+                                <TemplateBinding Property="VerticalContentAlignment"/>
+                            </ContentPresenter.VerticalAlignment>
+                            <ContentPresenter.HorizontalAlignment>
+                                <TemplateBinding Property="HorizontalContentAlignment"/>
+                            </ContentPresenter.HorizontalAlignment>
+                            <ContentPresenter.Margin>
+                                <Binding Path="(dataGridHelper:Cell.ContentPadding)" RelativeSource="{RelativeSource AncestorType=DataGridCell}"/>
+                            </ContentPresenter.Margin>
+                        </ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.OverlayBoader.Background.MouseOver}"/>
@@ -115,6 +161,8 @@
         <Setter Property="AlternatingRowBackground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Background}"/>
         <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Outline}"/>
         <Setter Property="VerticalGridLinesBrush" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Outline}"/>
+        <Setter Property="AutoGenerateColumns" Value="True"/>
+        <Setter Property="CanUserResizeColumns" Value="True"/>
         <Setter Property="GridLinesVisibility" Value="All"/>
         <Setter Property="ColumnHeaderStyle">
             <Setter.Value>
