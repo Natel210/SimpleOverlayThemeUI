@@ -179,7 +179,7 @@
                                     <StaticResource ResourceKey="SimpleOverlayTheme.Border.Empty"/>
                                 </Border.Style>
                                 <Border.Background>
-                                    <StaticResource ResourceKey="SimpleOverlayTheme.DefaultBrush.Mask"/>
+                                    <DynamicResource ResourceKey="SimpleOverlayTheme.DefaultBrush.Mask"/>
                                     <!--<TemplateBinding Property="Foreground"/>-->
                                 </Border.Background>
                                 <Border.BorderThickness>

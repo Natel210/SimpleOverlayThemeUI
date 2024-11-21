@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SimpleIniController\SimpleIniController.csproj" />
+    <ProjectReference Include="..\..\SimpleLogger\SimpleFileIO.csproj" />
   </ItemGroup>
 
   <ItemGroup>

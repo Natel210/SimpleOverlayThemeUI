@@ -76,7 +76,7 @@
                                     <Binding Path="ShowMinimize" RelativeSource="{RelativeSource TemplatedParent}"/>
                                 </Button.Visibility>
                                 <Button.BorderThickness>
-                                    <StaticResource ResourceKey="SimpleOverlayTheme.DefaultThickness.Zero"/>
+                                    <DynamicResource ResourceKey="SimpleOverlayTheme.DefaultThickness.Zero"/>
                                 </Button.BorderThickness>
                                 <Button.Style>
                                     <StaticResource ResourceKey="SimpleOverlayTheme.Button.ImageMask"/>
@@ -105,7 +105,7 @@
                                     <Binding Path="ShowToggleMaximizeRestore" RelativeSource="{RelativeSource TemplatedParent}"/>
                                 </ToggleButton.Visibility>
                                 <ToggleButton.BorderThickness>
-                                    <StaticResource ResourceKey="SimpleOverlayTheme.DefaultThickness.Zero"/>
+                                    <DynamicResource ResourceKey="SimpleOverlayTheme.DefaultThickness.Zero"/>
                                 </ToggleButton.BorderThickness>
                                 <ToggleButton.Style>
                                     <StaticResource ResourceKey="SimpleOverlayTheme.ToggleButton.ImageMask"/>
@@ -139,7 +139,7 @@
                                     <Binding Path="ShowClose" RelativeSource="{RelativeSource TemplatedParent}"/>
                                 </Button.Visibility>
                                 <Button.BorderThickness>
-                                    <StaticResource ResourceKey="SimpleOverlayTheme.DefaultThickness.Zero"/>
+                                    <DynamicResource ResourceKey="SimpleOverlayTheme.DefaultThickness.Zero"/>
                                 </Button.BorderThickness>
                                 <Button.Style>
                                     <StaticResource ResourceKey="SimpleOverlayTheme.Button.ImageMask"/>

@@ -4,7 +4,7 @@ using System.Windows.Media;
 
 namespace SimpleIniController
 {
-    public partial class IniFile
+    public partial class IINIState
     {
         private string _filePath = "";
         private readonly Dictionary<string, Dictionary<string, string>> _sections = new();
@@ -24,7 +24,7 @@ namespace SimpleIniController
             }
         }
 
-        public IniFile(string path)
+        public IINIState(string path)
         {
             FilePath = path ?? throw new ArgumentNullException(nameof(path));
         }
@@ -117,7 +117,7 @@ namespace SimpleIniController
 
     #region Extension
 
-    public partial class IniFile
+    public partial class IINIState
     {
         public string GetValue(IniItem<string> item)
         {

@@ -1,14 +1,17 @@
-﻿using SimpleIniController;
+﻿using SimpleFileIO.State.Ini;
+using SimpleFileIO.Utility;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Windows.Shapes;
 
 namespace SimpleOverlayTheme.ThemeSystem
 {
     public class Data
     {
 
-        private readonly IniFile _iniFile;
+        private readonly IINIState _iniFile;
 
         private string _name;
 
@@ -23,10 +26,10 @@ namespace SimpleOverlayTheme.ThemeSystem
 
         public Specific.OverlayMaskForeground OverlayMaskForeground { get; } = new();
 
-        public string INI_PATH
+        public PathProperty IniPathProperty
         {
-            get => _iniFile.FilePath;
-            set => _iniFile.FilePath = value;
+            get => _iniFile.Properties;
+            set => _iniFile.Properties = value;
         }
 
         public string Name
@@ -34,10 +37,12 @@ namespace SimpleOverlayTheme.ThemeSystem
             get => _name;
         }
 
-        internal Data(string name, string iniPath)
+        internal Data(string name, PathProperty properties)
         {
             _name = name;
-            _iniFile = new(iniPath);
+            
+            SimpleFileIO.Manager.CreateIniState($"{name}_ini", properties);
+            _iniFile = SimpleFileIO.Manager.GetIniState($"{name}_ini") ?? throw new ArgumentNullException($"not make {name}_ini...");
             /*bool*/
             Load();
         }
@@ -64,9 +69,9 @@ namespace SimpleOverlayTheme.ThemeSystem
             bool result = false;
             result |= !FontSize.GetValue_Form(_iniFile);
             result |= !DefaultBrush.GetValue_Form(_iniFile);
-            result |= !OverlayBoaderBackground.SetValue_Form(_iniFile);
-            result |= !OverlayBoaderOutline.SetValue_Form(_iniFile);
-            result |= !OverlayMaskForeground.SetValue_Form(_iniFile);
+            result |= !OverlayBoaderBackground.GetValue_Form(_iniFile);
+            result |= !OverlayBoaderOutline.GetValue_Form(_iniFile);
+            result |= !OverlayMaskForeground.GetValue_Form(_iniFile);
             return !result;
         }
 
@@ -107,13 +112,13 @@ namespace SimpleOverlayTheme.ThemeSystem
 
             xamlBuilder.AppendLine("");
             xamlBuilder.AppendLine("<!-- Font Sizes -->");
-            xamlBuilder.AppendLine(string.Format(doubleForm, KeywordDictionary.ThemeSystemKey.FontSize.Header1, FontSize.Header1.Value));
-            xamlBuilder.AppendLine(string.Format(doubleForm, KeywordDictionary.ThemeSystemKey.FontSize.Header2, FontSize.Header2.Value));
-            xamlBuilder.AppendLine(string.Format(doubleForm, KeywordDictionary.ThemeSystemKey.FontSize.Header3, FontSize.Header3.Value));
-            xamlBuilder.AppendLine(string.Format(doubleForm, KeywordDictionary.ThemeSystemKey.FontSize.Header4, FontSize.Header4.Value));
-            xamlBuilder.AppendLine(string.Format(doubleForm, KeywordDictionary.ThemeSystemKey.FontSize.Header5, FontSize.Header5.Value));
-            xamlBuilder.AppendLine(string.Format(doubleForm, KeywordDictionary.ThemeSystemKey.FontSize.Header6, FontSize.Header6.Value));
-            xamlBuilder.AppendLine(string.Format(doubleForm, KeywordDictionary.ThemeSystemKey.FontSize.Default, FontSize.Default.Value));
+            xamlBuilder.AppendLine(string.Format(doubleForm, KeywordDictionary.ThemeSystemKey.FontSize.Header1, FontSize.Header1));
+            xamlBuilder.AppendLine(string.Format(doubleForm, KeywordDictionary.ThemeSystemKey.FontSize.Header2, FontSize.Header2));
+            xamlBuilder.AppendLine(string.Format(doubleForm, KeywordDictionary.ThemeSystemKey.FontSize.Header3, FontSize.Header3));
+            xamlBuilder.AppendLine(string.Format(doubleForm, KeywordDictionary.ThemeSystemKey.FontSize.Header4, FontSize.Header4));
+            xamlBuilder.AppendLine(string.Format(doubleForm, KeywordDictionary.ThemeSystemKey.FontSize.Header5, FontSize.Header5));
+            xamlBuilder.AppendLine(string.Format(doubleForm, KeywordDictionary.ThemeSystemKey.FontSize.Header6, FontSize.Header6));
+            xamlBuilder.AppendLine(string.Format(doubleForm, KeywordDictionary.ThemeSystemKey.FontSize.Default, FontSize.Default));
 
             xamlBuilder.AppendLine("");
             xamlBuilder.AppendLine("<!-- Thickness -->");
@@ -176,7 +181,7 @@ namespace SimpleOverlayTheme.ThemeSystem
             xamlBuilder.AppendLine("</ResourceDictionary>");
             if (superDirectoryInfo.Exists is false)
                 superDirectoryInfo.Create();
-            var getPath = Path.Combine(superDirectoryInfo.FullName, $"{Name}ModeDummy.xaml");
+            var getPath = System.IO.Path.Combine(superDirectoryInfo.FullName, $"{Name}ModeDummy.xaml");
             File.WriteAllText(getPath, xamlBuilder.ToString());
         }
     }

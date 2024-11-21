@@ -1,5 +1,6 @@
 ﻿using System.Windows.Media;
-using SimpleIniController;
+using SimpleFileIO.State.Ini;
+using SimpleFileIO.Utility;
 using SimpleOverlayTheme.ThemeSystem.Interface;
 
 namespace SimpleOverlayTheme.ThemeSystem.Specific
@@ -34,7 +35,7 @@ namespace SimpleOverlayTheme.ThemeSystem.Specific
         private IniItem<Color> _foregroundItem = new()
         {
             Section = BaceValue.Section,
-            Key = "Disable",
+            Key = "Foreground.Default",
             Value = BaceValue.Foreground,
             DefaultValue = BaceValue.Foreground
         };
@@ -199,7 +200,7 @@ namespace SimpleOverlayTheme.ThemeSystem.Specific
             }
         }
 
-        public bool SetValue_Form(IniFile? iniFile)
+        public bool SetValue_Form(IINIState? iniFile)
         {
             if (iniFile is null)
                 return false;
@@ -212,29 +213,29 @@ namespace SimpleOverlayTheme.ThemeSystem.Specific
             _selectionItem.DefaultValue = _selectionItem.Value;
             _maskItem.DefaultValue = _maskItem.Value;
             bool result = false;
-            result |= !iniFile.SetValue(_foregroundItem);
-            result |= !iniFile.SetValue(_foreground_DisableItem);
-            result |= !iniFile.SetValue(_backgroundItem);
-            result |= !iniFile.SetValue(_outlineItem);
-            result |= !iniFile.SetValue(_lineItem);
-            result |= !iniFile.SetValue(_highlightItem);
-            result |= !iniFile.SetValue(_selectionItem);
-            result |= !iniFile.SetValue(_maskItem);
+            result |= !iniFile.SetValue_UseParser(_foregroundItem);
+            result |= !iniFile.SetValue_UseParser(_foreground_DisableItem);
+            result |= !iniFile.SetValue_UseParser(_backgroundItem);
+            result |= !iniFile.SetValue_UseParser(_outlineItem);
+            result |= !iniFile.SetValue_UseParser(_lineItem);
+            result |= !iniFile.SetValue_UseParser(_highlightItem);
+            result |= !iniFile.SetValue_UseParser(_selectionItem);
+            result |= !iniFile.SetValue_UseParser(_maskItem);
             return !result;
         }
 
-        public bool GetValue_Form(IniFile? iniFile)
+        public bool GetValue_Form(IINIState? iniFile)
         {
             if (iniFile is null)
                 return false;
-            _foregroundItem.DefaultValue = iniFile.GetValue(_foregroundItem);
-            _foreground_DisableItem.DefaultValue = iniFile.GetValue(_foreground_DisableItem);
-            _backgroundItem.DefaultValue = iniFile.GetValue(_backgroundItem);
-            _lineItem.DefaultValue = iniFile.GetValue(_outlineItem);
-            _lineItem.DefaultValue = iniFile.GetValue(_lineItem);
-            _highlightItem.DefaultValue = iniFile.GetValue(_highlightItem);
-            _selectionItem.DefaultValue = iniFile.GetValue(_selectionItem);
-            _maskItem.DefaultValue = iniFile.GetValue(_maskItem);
+            _foregroundItem.DefaultValue = iniFile.GetValue_UseParser(ref _foregroundItem);
+            _foreground_DisableItem.DefaultValue = iniFile.GetValue_UseParser(ref _foreground_DisableItem);
+            _backgroundItem.DefaultValue = iniFile.GetValue_UseParser(ref _backgroundItem);
+            _lineItem.DefaultValue = iniFile.GetValue_UseParser(ref _outlineItem);
+            _lineItem.DefaultValue = iniFile.GetValue_UseParser(ref _lineItem);
+            _highlightItem.DefaultValue = iniFile.GetValue_UseParser(ref _highlightItem);
+            _selectionItem.DefaultValue = iniFile.GetValue_UseParser(ref _selectionItem);
+            _maskItem.DefaultValue = iniFile.GetValue_UseParser(ref _maskItem);
             ResetDefault();
             return true;
         }

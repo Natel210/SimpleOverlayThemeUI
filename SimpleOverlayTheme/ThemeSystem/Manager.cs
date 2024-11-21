@@ -1,41 +1,39 @@
-﻿using SimpleIniController;
+﻿using SimpleFileIO.State.Ini;
+using SimpleFileIO.Utility;
 using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Media3D;
+using System.Windows.Shapes;
 
 namespace SimpleOverlayTheme.ThemeSystem
 {
     public static partial class Manager
     {
-        private static readonly IniFile _iniFile = new($"./{Assembly.GetExecutingAssembly().GetName().Name}/ThemeData.ini");
-
-
-
+        private static readonly IINIState _iniFile;
         public static Dictionary<string, Data> DataDictionary { get; } = new Dictionary<string, Data>();
 
-
-
-        public static void CreateThemeSettingData(string name, string iniPath)
+        public static void CreateThemeSettingData(string name, PathProperty properties)
         {
-            Data tempData = new(name, iniPath);
+            Data tempData = new(name, properties);
             DataDictionary[name] = tempData;
             tempData.Save();
         }
 
-        public static void CreateThemeSettingData_FromCurrentValue(string name, string iniPath)
+        public static void CreateThemeSettingData_FromCurrentValue(string name, PathProperty properties)
         {
-            Data tempData = new(name, iniPath);
+            Data tempData = new(name, properties);
 
-            tempData.FontSize.Header1.Value = FontSize_Header1;
-            tempData.FontSize.Header2.Value = FontSize_Header2;
-            tempData.FontSize.Header3.Value = FontSize_Header3;
-            tempData.FontSize.Header4.Value = FontSize_Header4;
-            tempData.FontSize.Header5.Value = FontSize_Header5;
-            tempData.FontSize.Header6.Value = FontSize_Header6;
-            tempData.FontSize.Default.Value = FontSize_Default;
+            tempData.FontSize.Header1 = FontSize_Header1;
+            tempData.FontSize.Header2 = FontSize_Header2;
+            tempData.FontSize.Header3 = FontSize_Header3;
+            tempData.FontSize.Header4 = FontSize_Header4;
+            tempData.FontSize.Header5 = FontSize_Header5;
+            tempData.FontSize.Header6 = FontSize_Header6;
+            tempData.FontSize.Default = FontSize_Default;
 
             tempData.DefaultBrush.Foreground = DefaultBrush_Foreground;
             tempData.DefaultBrush.Foreground_Disable = DefaultBrush_Foreground_Disable;
@@ -81,15 +79,20 @@ namespace SimpleOverlayTheme.ThemeSystem
         public static void InitializeModule()
         {
             Load();
-            MakeDefaultTheme();
+            //MakeDefaultTheme();
             Application.Current.Resources.MergedDictionaries.Add(new UserResourceDictionary());
         }
 
         static Manager()
         {
-            //Load();
-            //MakeDefaultTheme();
-            //Application.Current.Resources.MergedDictionaries.Add(new UserResourceDictionary() );
+            SimpleFileIO.Manager.CreateIniState("ThemeData",
+                new()
+                {
+                    RootDirectory = new($"./{Assembly.GetExecutingAssembly().GetName().Name}/"),
+                    FileName = "ThemeData",
+                    Extension = "ini"
+                });
+            _iniFile = SimpleFileIO.Manager.GetIniState("ThemeData") ?? throw new ArgumentNullException("Not Make ThemeData.ini");
         }
 
 
@@ -104,7 +107,7 @@ namespace SimpleOverlayTheme.ThemeSystem
             if (string.IsNullOrEmpty(currentThemeName) is true)
                 return false;
 
-            string[] themeNameList = _iniFile.GetValue("Common", "ThemeNameList", []);
+            string[] themeNameList = _iniFile.GetValue_UseParser<string[]>("Common", "ThemeNameList", []);
             if (themeNameList.Length is 0)
                 return false;
 
@@ -112,9 +115,17 @@ namespace SimpleOverlayTheme.ThemeSystem
             foreach (var item in themeNameList)
             {
                 string tempPath = _iniFile.GetValue(item, "Path", "");
-                if (string.IsNullOrEmpty(tempPath) is false)
-                    DataDictionary[item] = new(item, tempPath);
+
+                PathProperty pathProperty = new PathProperty();
+                if (string.IsNullOrEmpty(tempPath) is false && File.Exists(tempPath) is false)
+                    continue;
+                pathProperty.RootDirectory = new(System.IO.Path.GetDirectoryName(tempPath) ?? string.Empty);
+                pathProperty.FileName = System.IO.Path.GetFileNameWithoutExtension(tempPath);
+                pathProperty.Extension = System.IO.Path.GetExtension(tempPath);
+                DataDictionary[item] = new(item, pathProperty);
             }
+
+            MakeDefaultTheme();
 
             bool result = false;
             foreach (var item in DataDictionary)
@@ -129,17 +140,20 @@ namespace SimpleOverlayTheme.ThemeSystem
         {
             if (_iniFile is null)
                 return false;
-            _iniFile.SetValue("Common", "CurrentThemeName", CurrentThemeName);
-            _iniFile.SetValue("Common", "ThemeNameList", DataDictionary.Keys.ToArray());
+            if (string.IsNullOrEmpty(CurrentThemeName))
+            {
+                CurrentThemeName = "Light";
+            }
+            _iniFile.SetValue_UseParser("Common", "CurrentThemeName", CurrentThemeName);
+            _iniFile.SetValue_UseParser("Common", "ThemeNameList", DataDictionary.Keys.ToArray());
             foreach (var item in DataDictionary)
-                _iniFile.SetValue(item.Key, "Path", item.Value.INI_PATH);
+                _iniFile.SetValue_UseParser(item.Key, "Path", item.Value.IniPathProperty);
             _iniFile.Save();
             bool result = false;
             foreach (var item in DataDictionary)
             {
                 result |= !item.Value.Save();
-                var rootPath = Path.GetDirectoryName(_iniFile.FilePath) ?? $"./{Assembly.GetExecutingAssembly().GetName().Name}/";
-                item.Value.MakeDummyXaml(new DirectoryInfo(Path.Combine(rootPath, "ThemeDummy")));
+                item.Value.MakeDummyXaml(new DirectoryInfo(System.IO.Path.Combine(_iniFile.Properties.RootDirectory.FullName, "ThemeDummy")));
             }
 
             //Make Dummy Data
@@ -149,90 +163,107 @@ namespace SimpleOverlayTheme.ThemeSystem
         private static void MakeDefaultTheme()
         {
             #region Make Light Theme
-            CreateThemeSettingData("Light", $"./{Assembly.GetExecutingAssembly().GetName().Name}/ThemeDataItem/Light.data");
-            if (GetThemeSettingData("Light") is Data lightTheme)
+            string lightName = "Light";
+            if (DataDictionary.ContainsKey(lightName) is false)
             {
-                lightTheme.FontSize.Header1.Value = Specific.FontSize.BaceValue.Header1;
-                lightTheme.FontSize.Header2.Value = Specific.FontSize.BaceValue.Header2;
-                lightTheme.FontSize.Header3.Value = Specific.FontSize.BaceValue.Header3;
-                lightTheme.FontSize.Header4.Value = Specific.FontSize.BaceValue.Header4;
-                lightTheme.FontSize.Header5.Value = Specific.FontSize.BaceValue.Header5;
-                lightTheme.FontSize.Header6.Value = Specific.FontSize.BaceValue.Header6;
-                lightTheme.FontSize.Default.Value = Specific.FontSize.BaceValue.Default;
+                CreateThemeSettingData(lightName, new() {
+                    RootDirectory = new($"./{Assembly.GetExecutingAssembly().GetName().Name}/ThemeDataItem"),
+                    FileName = lightName,
+                    Extension = "data" });
 
-                lightTheme.DefaultBrush.Foreground = new(Specific.DefaultBrush.BaceValue.Foreground);
-                lightTheme.DefaultBrush.Foreground_Disable = new(Specific.DefaultBrush.BaceValue.Foreground_Disable);
-                lightTheme.DefaultBrush.Background = new(Specific.DefaultBrush.BaceValue.Background);
-                lightTheme.DefaultBrush.Outline = new(Specific.DefaultBrush.BaceValue.Outline);
-                lightTheme.DefaultBrush.Line = new(Specific.DefaultBrush.BaceValue.Line);
-                lightTheme.DefaultBrush.Highlight = new(Specific.DefaultBrush.BaceValue.Highlight);
-                lightTheme.DefaultBrush.Selection = new(Specific.DefaultBrush.BaceValue.Selection);
-                lightTheme.DefaultBrush.Mask = new(Specific.DefaultBrush.BaceValue.Mask);
+                if (GetThemeSettingData(lightName) is Data lightTheme)
+                {
+                    lightTheme.FontSize.Header1 = Specific.FontSize.BaceValue.Header1;
+                    lightTheme.FontSize.Header2 = Specific.FontSize.BaceValue.Header2;
+                    lightTheme.FontSize.Header3 = Specific.FontSize.BaceValue.Header3;
+                    lightTheme.FontSize.Header4 = Specific.FontSize.BaceValue.Header4;
+                    lightTheme.FontSize.Header5 = Specific.FontSize.BaceValue.Header5;
+                    lightTheme.FontSize.Header6 = Specific.FontSize.BaceValue.Header6;
+                    lightTheme.FontSize.Default = Specific.FontSize.BaceValue.Default;
 
-                lightTheme.OverlayBoaderBackground.Disable = new(Specific.OverlayBoaderBackground.BaceValue.Disable);
-                lightTheme.OverlayBoaderBackground.Default = new(Specific.OverlayBoaderBackground.BaceValue.Default);
-                lightTheme.OverlayBoaderBackground.MouseOver = new(Specific.OverlayBoaderBackground.BaceValue.MouseOver);
-                lightTheme.OverlayBoaderBackground.Active = new(Specific.OverlayBoaderBackground.BaceValue.Active);
+                    lightTheme.DefaultBrush.Foreground = new(Specific.DefaultBrush.BaceValue.Foreground);
+                    lightTheme.DefaultBrush.Foreground_Disable = new(Specific.DefaultBrush.BaceValue.Foreground_Disable);
+                    lightTheme.DefaultBrush.Background = new(Specific.DefaultBrush.BaceValue.Background);
+                    lightTheme.DefaultBrush.Outline = new(Specific.DefaultBrush.BaceValue.Outline);
+                    lightTheme.DefaultBrush.Line = new(Specific.DefaultBrush.BaceValue.Line);
+                    lightTheme.DefaultBrush.Highlight = new(Specific.DefaultBrush.BaceValue.Highlight);
+                    lightTheme.DefaultBrush.Selection = new(Specific.DefaultBrush.BaceValue.Selection);
+                    lightTheme.DefaultBrush.Mask = new(Specific.DefaultBrush.BaceValue.Mask);
 
-                lightTheme.OverlayBoaderOutline.Disable = new(Specific.OverlayBoaderOutline.BaceValue.Disable);
-                lightTheme.OverlayBoaderOutline.Default = new(Specific.OverlayBoaderOutline.BaceValue.Default);
-                lightTheme.OverlayBoaderOutline.MouseOver = new(Specific.OverlayBoaderOutline.BaceValue.MouseOver);
-                lightTheme.OverlayBoaderOutline.Active = new(Specific.OverlayBoaderOutline.BaceValue.Active);
+                    lightTheme.OverlayBoaderBackground.Disable = new(Specific.OverlayBoaderBackground.BaceValue.Disable);
+                    lightTheme.OverlayBoaderBackground.Default = new(Specific.OverlayBoaderBackground.BaceValue.Default);
+                    lightTheme.OverlayBoaderBackground.MouseOver = new(Specific.OverlayBoaderBackground.BaceValue.MouseOver);
+                    lightTheme.OverlayBoaderBackground.Active = new(Specific.OverlayBoaderBackground.BaceValue.Active);
 
-                lightTheme.OverlayMaskForeground.Disable = new(Specific.OverlayMaskForeground.BaceValue.Disable);
-                lightTheme.OverlayMaskForeground.Default = new(Specific.OverlayMaskForeground.BaceValue.Default);
-                lightTheme.OverlayMaskForeground.MouseOver = new(Specific.OverlayMaskForeground.BaceValue.MouseOver);
-                lightTheme.OverlayMaskForeground.Active = new(Specific.OverlayMaskForeground.BaceValue.Active);
+                    lightTheme.OverlayBoaderOutline.Disable = new(Specific.OverlayBoaderOutline.BaceValue.Disable);
+                    lightTheme.OverlayBoaderOutline.Default = new(Specific.OverlayBoaderOutline.BaceValue.Default);
+                    lightTheme.OverlayBoaderOutline.MouseOver = new(Specific.OverlayBoaderOutline.BaceValue.MouseOver);
+                    lightTheme.OverlayBoaderOutline.Active = new(Specific.OverlayBoaderOutline.BaceValue.Active);
 
-                //lightTheme.ResetDefault();
+                    lightTheme.OverlayMaskForeground.Disable = new(Specific.OverlayMaskForeground.BaceValue.Disable);
+                    lightTheme.OverlayMaskForeground.Default = new(Specific.OverlayMaskForeground.BaceValue.Default);
+                    lightTheme.OverlayMaskForeground.MouseOver = new(Specific.OverlayMaskForeground.BaceValue.MouseOver);
+                    lightTheme.OverlayMaskForeground.Active = new(Specific.OverlayMaskForeground.BaceValue.Active);
+                    lightTheme.Save();
+                    //lightTheme.ResetDefault();
+                }
+                else
+                    throw new Exception($"no making theme [{lightName}].");
             }
-            else
-                throw new Exception("no making theme [Light].");
             #endregion
             #region Make Dark Theme
-            CreateThemeSettingData("Dark", $"./{Assembly.GetExecutingAssembly().GetName().Name}/ThemeDataItem/Dark.data");
-
-            if (GetThemeSettingData("Dark") is Data darkTheme)
+            string darkName = "Dark";
+            if (DataDictionary.ContainsKey(darkName) is false)
             {
-                darkTheme.FontSize.Header1.Value = Specific.FontSize.BaceValue.Header1;
-                darkTheme.FontSize.Header2.Value = Specific.FontSize.BaceValue.Header2;
-                darkTheme.FontSize.Header3.Value = Specific.FontSize.BaceValue.Header3;
-                darkTheme.FontSize.Header4.Value = Specific.FontSize.BaceValue.Header4;
-                darkTheme.FontSize.Header5.Value = Specific.FontSize.BaceValue.Header5;
-                darkTheme.FontSize.Header6.Value = Specific.FontSize.BaceValue.Header6;
-                darkTheme.FontSize.Default.Value = Specific.FontSize.BaceValue.Default;
+                CreateThemeSettingData(darkName, new() {
+                    RootDirectory = new($"./{Assembly.GetExecutingAssembly().GetName().Name}/ThemeDataItem"),
+                    FileName = darkName,
+                    Extension = "data"
+                });
+                if (GetThemeSettingData(darkName) is Data darkTheme)
+                {
+                    darkTheme.FontSize.Header1 = Specific.FontSize.BaceValue.Header1;
+                    darkTheme.FontSize.Header2 = Specific.FontSize.BaceValue.Header2;
+                    darkTheme.FontSize.Header3 = Specific.FontSize.BaceValue.Header3;
+                    darkTheme.FontSize.Header4 = Specific.FontSize.BaceValue.Header4;
+                    darkTheme.FontSize.Header5 = Specific.FontSize.BaceValue.Header5;
+                    darkTheme.FontSize.Header6 = Specific.FontSize.BaceValue.Header6;
+                    darkTheme.FontSize.Default = Specific.FontSize.BaceValue.Default;
 
-                darkTheme.DefaultBrush.Foreground = new(Specific.DefaultBrush.BaceValueDark.Foreground);
-                darkTheme.DefaultBrush.Foreground_Disable = new(Specific.DefaultBrush.BaceValueDark.Foreground_Disable);
-                darkTheme.DefaultBrush.Background = new(Specific.DefaultBrush.BaceValueDark.Background);
-                darkTheme.DefaultBrush.Outline = new(Specific.DefaultBrush.BaceValueDark.Outline);
-                darkTheme.DefaultBrush.Line = new(Specific.DefaultBrush.BaceValueDark.Line);
-                darkTheme.DefaultBrush.Highlight = new(Specific.DefaultBrush.BaceValueDark.Highlight);
-                darkTheme.DefaultBrush.Selection = new(Specific.DefaultBrush.BaceValueDark.Selection);
-                darkTheme.DefaultBrush.Mask = new(Specific.DefaultBrush.BaceValueDark.Mask);
+                    darkTheme.DefaultBrush.Foreground = new(Specific.DefaultBrush.BaceValueDark.Foreground);
+                    darkTheme.DefaultBrush.Foreground_Disable = new(Specific.DefaultBrush.BaceValueDark.Foreground_Disable);
+                    darkTheme.DefaultBrush.Background = new(Specific.DefaultBrush.BaceValueDark.Background);
+                    darkTheme.DefaultBrush.Outline = new(Specific.DefaultBrush.BaceValueDark.Outline);
+                    darkTheme.DefaultBrush.Line = new(Specific.DefaultBrush.BaceValueDark.Line);
+                    darkTheme.DefaultBrush.Highlight = new(Specific.DefaultBrush.BaceValueDark.Highlight);
+                    darkTheme.DefaultBrush.Selection = new(Specific.DefaultBrush.BaceValueDark.Selection);
+                    darkTheme.DefaultBrush.Mask = new(Specific.DefaultBrush.BaceValueDark.Mask);
 
-                darkTheme.OverlayBoaderBackground.Disable = new(Specific.OverlayBoaderBackground.BaceValueDark.Disable);
-                darkTheme.OverlayBoaderBackground.Default = new(Specific.OverlayBoaderBackground.BaceValueDark.Default);
-                darkTheme.OverlayBoaderBackground.MouseOver = new(Specific.OverlayBoaderBackground.BaceValueDark.MouseOver);
-                darkTheme.OverlayBoaderBackground.Active = new(Specific.OverlayBoaderBackground.BaceValueDark.Active);
+                    darkTheme.OverlayBoaderBackground.Disable = new(Specific.OverlayBoaderBackground.BaceValueDark.Disable);
+                    darkTheme.OverlayBoaderBackground.Default = new(Specific.OverlayBoaderBackground.BaceValueDark.Default);
+                    darkTheme.OverlayBoaderBackground.MouseOver = new(Specific.OverlayBoaderBackground.BaceValueDark.MouseOver);
+                    darkTheme.OverlayBoaderBackground.Active = new(Specific.OverlayBoaderBackground.BaceValueDark.Active);
 
-                darkTheme.OverlayBoaderOutline.Disable = new(Specific.OverlayBoaderOutline.BaceValueDark.Disable);
-                darkTheme.OverlayBoaderOutline.Default = new(Specific.OverlayBoaderOutline.BaceValueDark.Default);
-                darkTheme.OverlayBoaderOutline.MouseOver = new(Specific.OverlayBoaderOutline.BaceValueDark.MouseOver);
-                darkTheme.OverlayBoaderOutline.Active = new(Specific.OverlayBoaderOutline.BaceValueDark.Active);
+                    darkTheme.OverlayBoaderOutline.Disable = new(Specific.OverlayBoaderOutline.BaceValueDark.Disable);
+                    darkTheme.OverlayBoaderOutline.Default = new(Specific.OverlayBoaderOutline.BaceValueDark.Default);
+                    darkTheme.OverlayBoaderOutline.MouseOver = new(Specific.OverlayBoaderOutline.BaceValueDark.MouseOver);
+                    darkTheme.OverlayBoaderOutline.Active = new(Specific.OverlayBoaderOutline.BaceValueDark.Active);
 
-                darkTheme.OverlayMaskForeground.Disable = new(Specific.OverlayMaskForeground.BaceValueDark.Disable);
-                darkTheme.OverlayMaskForeground.Default = new(Specific.OverlayMaskForeground.BaceValueDark.Default);
-                darkTheme.OverlayMaskForeground.MouseOver = new(Specific.OverlayMaskForeground.BaceValueDark.MouseOver);
-                darkTheme.OverlayMaskForeground.Active = new(Specific.OverlayMaskForeground.BaceValueDark.Active);
-
-                //darkTheme.ResetDefault();
+                    darkTheme.OverlayMaskForeground.Disable = new(Specific.OverlayMaskForeground.BaceValueDark.Disable);
+                    darkTheme.OverlayMaskForeground.Default = new(Specific.OverlayMaskForeground.BaceValueDark.Default);
+                    darkTheme.OverlayMaskForeground.MouseOver = new(Specific.OverlayMaskForeground.BaceValueDark.MouseOver);
+                    darkTheme.OverlayMaskForeground.Active = new(Specific.OverlayMaskForeground.BaceValueDark.Active);
+                    darkTheme.Save();
+                    //darkTheme.ResetDefault();
+                }
+                else
+                    throw new Exception($"no making theme [{darkName}].");
             }
-            else
-                throw new Exception("no making theme [Dark].");
+
+
             #endregion
-            CurrentThemeName = "Light";
-            Save();
+            //CurrentThemeName = "Light";
+            //Save();
         }
 
     }
@@ -264,13 +295,13 @@ namespace SimpleOverlayTheme.ThemeSystem
                 {
                     _currentThemeName = value;
 
-                    FontSize_Header1 = getTheme.FontSize.Header1.Value;
-                    FontSize_Header2 = getTheme.FontSize.Header2.Value;
-                    FontSize_Header3 = getTheme.FontSize.Header3.Value;
-                    FontSize_Header4 = getTheme.FontSize.Header4.Value;
-                    FontSize_Header5 = getTheme.FontSize.Header5.Value;
-                    FontSize_Header6 = getTheme.FontSize.Header6.Value;
-                    FontSize_Default = getTheme.FontSize.Default.Value;
+                    FontSize_Header1 = getTheme.FontSize.Header1;
+                    FontSize_Header2 = getTheme.FontSize.Header2;
+                    FontSize_Header3 = getTheme.FontSize.Header3;
+                    FontSize_Header4 = getTheme.FontSize.Header4;
+                    FontSize_Header5 = getTheme.FontSize.Header5;
+                    FontSize_Header6 = getTheme.FontSize.Header6;
+                    FontSize_Default = getTheme.FontSize.Default;
 
                     DefaultBrush_Foreground = new(getTheme.DefaultBrush.Foreground.Color);
                     DefaultBrush_Foreground_Disable = new(getTheme.DefaultBrush.Foreground_Disable.Color);
@@ -314,7 +345,9 @@ namespace SimpleOverlayTheme.ThemeSystem
                         dictionaries.Add(new UserResourceDictionary());
                     }
 
-                    Application.Current.Resources.MergedDictionaries.Add(new UserResourceDictionary());
+                    //Application.Current.Resources.MergedDictionaries.Add(new UserResourceDictionary());
+                    _iniFile.SetValue("Common", "CurrentThemeName", CurrentThemeName);
+                    _iniFile.Save();
                 }
             }
         }
@@ -728,10 +761,6 @@ namespace SimpleOverlayTheme.ThemeSystem
 
             return "";
         }
-
-
-
-
 
         #region Private Property Source
         //Theme

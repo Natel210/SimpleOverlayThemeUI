@@ -1,4 +1,5 @@
-﻿using SimpleIniController;
+﻿using SimpleFileIO.State.Ini;
+using SimpleFileIO.Utility;
 using SimpleOverlayTheme.ThemeSystem.Interface;
 using System.Windows.Media;
 
@@ -108,7 +109,7 @@ namespace SimpleOverlayTheme.ThemeSystem.Specific
             }
         }
 
-        public bool SetValue_Form(IniFile? iniFile)
+        public bool SetValue_Form(IINIState? iniFile)
         {
             if (iniFile is null)
                 return false;
@@ -117,21 +118,21 @@ namespace SimpleOverlayTheme.ThemeSystem.Specific
             _mouseOverItem.DefaultValue = _mouseOverItem.Value;
             _activeItem.DefaultValue = _activeItem.Value;
             bool result = false;
-            result |= !iniFile.SetValue(_disableItem);
-            result |= !iniFile.SetValue(_defaultItem);
-            result |= !iniFile.SetValue(_mouseOverItem);
-            result |= !iniFile.SetValue(_activeItem);
+            result |= !iniFile.SetValue_UseParser(_disableItem);
+            result |= !iniFile.SetValue_UseParser(_defaultItem);
+            result |= !iniFile.SetValue_UseParser(_mouseOverItem);
+            result |= !iniFile.SetValue_UseParser(_activeItem);
             return !result;
         }
 
-        public bool GetValue_Form(IniFile? iniFile)
+        public bool GetValue_Form(IINIState? iniFile)
         {
             if (iniFile is null)
                 return false;
-            _disableItem.DefaultValue = iniFile.GetValue(_disableItem);
-            _defaultItem.DefaultValue = iniFile.GetValue(_defaultItem);
-            _mouseOverItem.DefaultValue = iniFile.GetValue(_mouseOverItem);
-            _activeItem.DefaultValue = iniFile.GetValue(_activeItem);
+            _disableItem.DefaultValue = iniFile.GetValue_UseParser(ref _disableItem);
+            _defaultItem.DefaultValue = iniFile.GetValue_UseParser(ref _defaultItem);
+            _mouseOverItem.DefaultValue = iniFile.GetValue_UseParser(ref _mouseOverItem);
+            _activeItem.DefaultValue = iniFile.GetValue_UseParser(ref _activeItem);
             ResetDefault();
             return true;
         }

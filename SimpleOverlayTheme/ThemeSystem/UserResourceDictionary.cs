@@ -68,6 +68,11 @@ namespace SimpleOverlayTheme.ThemeSystem
                 && string.IsNullOrEmpty(dictionaryKey) is false)
             {
                 // Update the ResourceDictionary with the new value
+                if (dictionaryKey == KeywordDictionary.ThemeSystemKey.OverlayBoader.Outline.Default)
+                {
+                    //int a = 0;
+                }
+
                 this[dictionaryKey] = newValue;
                 // Force the UI to update
                 //Application.Current.Resources[dictionaryKey] = newValue;

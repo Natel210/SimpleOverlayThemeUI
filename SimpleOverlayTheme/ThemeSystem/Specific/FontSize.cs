@@ -1,4 +1,5 @@
-﻿using SimpleIniController;
+﻿using SimpleFileIO.State.Ini;
+using SimpleFileIO.Utility;
 using SimpleOverlayTheme.ThemeSystem.Interface;
 
 namespace SimpleOverlayTheme.ThemeSystem.Specific
@@ -18,7 +19,7 @@ namespace SimpleOverlayTheme.ThemeSystem.Specific
 
         }
 
-        public IniItem<double> Header1 { get; } = new()
+        private IniItem<double> _header1 = new()
         {
             Section = BaceValue.Section,
             Key = "Header1",
@@ -26,7 +27,17 @@ namespace SimpleOverlayTheme.ThemeSystem.Specific
             Value = BaceValue.Header1,
         };
 
-        public IniItem<double> Header2 { get; } = new()
+        public double Header1
+        {
+            get => _header1.Value;
+            set 
+            {
+                if (_header1.Value != value)
+                    _header1.Value = value;
+            }
+        }
+
+        private IniItem<double> _header2 = new()
         {
             Section = BaceValue.Section,
             Key = "Header2",
@@ -34,7 +45,17 @@ namespace SimpleOverlayTheme.ThemeSystem.Specific
             Value = BaceValue.Header2,
         };
 
-        public IniItem<double> Header3 { get; } = new()
+        public double Header2
+        {
+            get => _header2.Value;
+            set
+            {
+                if (_header2.Value != value)
+                    _header2.Value = value;
+            }
+        }
+
+        private IniItem<double> _header3 = new()
         {
             Section = BaceValue.Section,
             Key = "Header3",
@@ -42,7 +63,17 @@ namespace SimpleOverlayTheme.ThemeSystem.Specific
             Value = BaceValue.Header3,
         };
 
-        public IniItem<double> Header4 { get; } = new()
+        public double Header3
+        {
+            get => _header3.Value;
+            set
+            {
+                if (_header3.Value != value)
+                    _header3.Value = value;
+            }
+        }
+
+        private IniItem<double> _header4 = new()
         {
             Section = BaceValue.Section,
             Key = "Header4",
@@ -50,7 +81,17 @@ namespace SimpleOverlayTheme.ThemeSystem.Specific
             Value = BaceValue.Header4,
         };
 
-        public IniItem<double> Header5 { get; } = new()
+        public double Header4
+        {
+            get => _header4.Value;
+            set
+            {
+                if (_header4.Value != value)
+                    _header4.Value = value;
+            }
+        }
+
+        private IniItem<double> _header5 = new()
         {
             Section = BaceValue.Section,
             Key = "Header5",
@@ -58,7 +99,17 @@ namespace SimpleOverlayTheme.ThemeSystem.Specific
             Value = BaceValue.Header5,
         };
 
-        public IniItem<double> Header6 { get; } = new()
+        public double Header5
+        {
+            get => _header5.Value;
+            set
+            {
+                if (_header5.Value != value)
+                    _header5.Value = value;
+            }
+        }
+
+        private IniItem<double> _header6 = new()
         {
             Section = BaceValue.Section,
             Key = "Header6",
@@ -66,7 +117,17 @@ namespace SimpleOverlayTheme.ThemeSystem.Specific
             Value = BaceValue.Header6,
         };
 
-        public IniItem<double> Default { get; } = new()
+        public double Header6
+        {
+            get => _header6.Value;
+            set
+            {
+                if (_header6.Value != value)
+                    _header6.Value = value;
+            }
+        }
+
+        private IniItem<double> _default = new()
         {
             Section = BaceValue.Section,
             Key = "Default",
@@ -74,58 +135,69 @@ namespace SimpleOverlayTheme.ThemeSystem.Specific
             Value = BaceValue.Default,
         };
 
-        public bool SetValue_Form(IniFile? iniFile)
+        public double Default
+        {
+            get => _default.Value;
+            set
+            {
+                if (_default.Value != value)
+                    _default.Value = value;
+            }
+        }
+
+
+        public bool SetValue_Form(IINIState? iniFile)
         {
             if (iniFile is null)
                 return false;
             bool result = false;
-            result |= !iniFile.SetValue(Header1);
-            result |= !iniFile.SetValue(Header2);
-            result |= !iniFile.SetValue(Header3);
-            result |= !iniFile.SetValue(Header4);
-            result |= !iniFile.SetValue(Header5);
-            result |= !iniFile.SetValue(Header6);
-            result |= !iniFile.SetValue(Default);
+            result |= !iniFile.SetValue_UseParser(_header1);
+            result |= !iniFile.SetValue_UseParser(_header2);
+            result |= !iniFile.SetValue_UseParser(_header3);
+            result |= !iniFile.SetValue_UseParser(_header4);
+            result |= !iniFile.SetValue_UseParser(_header5);
+            result |= !iniFile.SetValue_UseParser(_header6);
+            result |= !iniFile.SetValue_UseParser(_default);
             return !result;
         }
 
-        public bool GetValue_Form(IniFile? iniFile)
+        public bool GetValue_Form(IINIState? iniFile)
         {
             if (iniFile is null)
                 return false;
-            Header1.DefaultValue = iniFile.GetValue(Header1);
-            Header2.DefaultValue = iniFile.GetValue(Header2);
-            Header3.DefaultValue = iniFile.GetValue(Header3);
-            Header4.DefaultValue = iniFile.GetValue(Header4);
-            Header5.DefaultValue = iniFile.GetValue(Header5);
-            Header6.DefaultValue = iniFile.GetValue(Header6);
-            Default.DefaultValue = iniFile.GetValue(Default);
+            _header1.DefaultValue = iniFile.GetValue_UseParser(ref _header1);
+            _header2.DefaultValue = iniFile.GetValue_UseParser(ref _header2);
+            _header3.DefaultValue = iniFile.GetValue_UseParser(ref _header3);
+            _header4.DefaultValue = iniFile.GetValue_UseParser(ref _header4);
+            _header5.DefaultValue = iniFile.GetValue_UseParser(ref _header5);
+            _header6.DefaultValue = iniFile.GetValue_UseParser(ref _header6);
+            _default.DefaultValue = iniFile.GetValue_UseParser(ref _default);
             ResetDefault();
             return true;
         }
 
         public void ResetDefault()
         {
-            Header1.Value = Header1.DefaultValue;
-            Header2.Value = Header2.DefaultValue;
-            Header3.Value = Header3.DefaultValue;
-            Header4.Value = Header4.DefaultValue;
-            Header5.Value = Header5.DefaultValue;
-            Header6.Value = Header6.DefaultValue;
-            Default.Value = Default.DefaultValue;
+            _header1.Value = _header1.DefaultValue;
+            _header2.Value = _header2.DefaultValue;
+            _header3.Value = _header3.DefaultValue;
+            _header4.Value = _header4.DefaultValue;
+            _header5.Value = _header5.DefaultValue;
+            _header6.Value = _header6.DefaultValue;
+            _default.Value = _default.DefaultValue;
         }
 
         public FontSize() { }
 
         public FontSize(FontSize dest)
         {
-            Header1 = new(dest.Header1);
-            Header2 = new(dest.Header2);
-            Header3 = new(dest.Header3);
-            Header4 = new(dest.Header4);
-            Header5 = new(dest.Header5);
-            Header6 = new(dest.Header6);
-            Default = new(dest.Default);
+            Header1 = dest.Header1;
+            Header2 = dest.Header2;
+            Header3 = dest.Header3;
+            Header4 = dest.Header4;
+            Header5 = dest.Header5;
+            Header6 = dest.Header6;
+            Default = dest.Default;
         }
     }
 }
