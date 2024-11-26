@@ -13,6 +13,7 @@ namespace SimpleOverlayTheme.ThemeSystem
 {
     public static partial class Manager
     {
+        private static readonly string _rootDictionary = $"./Propertes/{Assembly.GetExecutingAssembly().GetName().Name}/";
         private static readonly IINIState _iniFile;
         public static Dictionary<string, Data> DataDictionary { get; } = new Dictionary<string, Data>();
 
@@ -78,6 +79,7 @@ namespace SimpleOverlayTheme.ThemeSystem
 
         public static void InitializeModule()
         {
+
             Load();
             //MakeDefaultTheme();
             Application.Current.Resources.MergedDictionaries.Add(new UserResourceDictionary());
@@ -88,7 +90,7 @@ namespace SimpleOverlayTheme.ThemeSystem
             SimpleFileIO.Manager.CreateIniState("ThemeData",
                 new()
                 {
-                    RootDirectory = new($"./{Assembly.GetExecutingAssembly().GetName().Name}/"),
+                    RootDirectory = new(_rootDictionary),
                     FileName = "ThemeData",
                     Extension = "ini"
                 });
@@ -101,13 +103,18 @@ namespace SimpleOverlayTheme.ThemeSystem
             if (_iniFile is null)
                 return false;
             if (_iniFile.Load() is false)
-                return false;
+            {
+                MakeDefaultTheme();
+                Save();
+                if (_iniFile.Load() is false)
+                    return false;
+            }
 
             string currentThemeName = _iniFile.GetValue("Common", "CurrentThemeName", "Light");
             if (string.IsNullOrEmpty(currentThemeName) is true)
                 return false;
 
-            string[] themeNameList = _iniFile.GetValue_UseParser<string[]>("Common", "ThemeNameList", []);
+            string[] themeNameList = _iniFile.GetValue_UseParser<string[]>("Common", "ThemeNameList", ["Light","Dark"]);
             if (themeNameList.Length is 0)
                 return false;
 
@@ -121,10 +128,10 @@ namespace SimpleOverlayTheme.ThemeSystem
                     continue;
                 pathProperty.RootDirectory = new(System.IO.Path.GetDirectoryName(tempPath) ?? string.Empty);
                 pathProperty.FileName = System.IO.Path.GetFileNameWithoutExtension(tempPath);
-                pathProperty.Extension = System.IO.Path.GetExtension(tempPath);
+                pathProperty.Extension = System.IO.Path.GetExtension(tempPath).TrimStart('.');
                 DataDictionary[item] = new(item, pathProperty);
             }
-
+            // after DataDictionary appending
             MakeDefaultTheme();
 
             bool result = false;
@@ -147,7 +154,7 @@ namespace SimpleOverlayTheme.ThemeSystem
             _iniFile.SetValue_UseParser("Common", "CurrentThemeName", CurrentThemeName);
             _iniFile.SetValue_UseParser("Common", "ThemeNameList", DataDictionary.Keys.ToArray());
             foreach (var item in DataDictionary)
-                _iniFile.SetValue_UseParser(item.Key, "Path", item.Value.IniPathProperty);
+                _iniFile.SetValue_UseParser(item.Key, "Path", $"{item.Value.IniPathProperty.RootDirectory}/{item.Value.IniPathProperty.FileName}.{item.Value.IniPathProperty.Extension}");
             _iniFile.Save();
             bool result = false;
             foreach (var item in DataDictionary)
@@ -162,12 +169,13 @@ namespace SimpleOverlayTheme.ThemeSystem
 
         private static void MakeDefaultTheme()
         {
+            bool isChange = false;
             #region Make Light Theme
             string lightName = "Light";
             if (DataDictionary.ContainsKey(lightName) is false)
             {
                 CreateThemeSettingData(lightName, new() {
-                    RootDirectory = new($"./{Assembly.GetExecutingAssembly().GetName().Name}/ThemeDataItem"),
+                    RootDirectory = new($"{_rootDictionary}/ThemeDataItem"),
                     FileName = lightName,
                     Extension = "data" });
 
@@ -205,7 +213,8 @@ namespace SimpleOverlayTheme.ThemeSystem
                     lightTheme.OverlayMaskForeground.MouseOver = new(Specific.OverlayMaskForeground.BaceValue.MouseOver);
                     lightTheme.OverlayMaskForeground.Active = new(Specific.OverlayMaskForeground.BaceValue.Active);
                     lightTheme.Save();
-                    //lightTheme.ResetDefault();
+                    lightTheme.ResetDefault();
+                    isChange = true;
                 }
                 else
                     throw new Exception($"no making theme [{lightName}].");
@@ -216,7 +225,7 @@ namespace SimpleOverlayTheme.ThemeSystem
             if (DataDictionary.ContainsKey(darkName) is false)
             {
                 CreateThemeSettingData(darkName, new() {
-                    RootDirectory = new($"./{Assembly.GetExecutingAssembly().GetName().Name}/ThemeDataItem"),
+                    RootDirectory = new($"{_rootDictionary}/ThemeDataItem"),
                     FileName = darkName,
                     Extension = "data"
                 });
@@ -254,7 +263,8 @@ namespace SimpleOverlayTheme.ThemeSystem
                     darkTheme.OverlayMaskForeground.MouseOver = new(Specific.OverlayMaskForeground.BaceValueDark.MouseOver);
                     darkTheme.OverlayMaskForeground.Active = new(Specific.OverlayMaskForeground.BaceValueDark.Active);
                     darkTheme.Save();
-                    //darkTheme.ResetDefault();
+                    darkTheme.ResetDefault();
+                    isChange = true;
                 }
                 else
                     throw new Exception($"no making theme [{darkName}].");
@@ -262,8 +272,13 @@ namespace SimpleOverlayTheme.ThemeSystem
 
 
             #endregion
-            //CurrentThemeName = "Light";
-            //Save();
+
+
+            if (isChange is true)
+            {
+                Save();
+                _iniFile.Load();
+            }
         }
 
     }

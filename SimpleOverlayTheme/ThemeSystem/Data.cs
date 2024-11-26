@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace SimpleOverlayTheme.ThemeSystem
@@ -43,7 +44,31 @@ namespace SimpleOverlayTheme.ThemeSystem
             
             SimpleFileIO.Manager.CreateIniState($"{name}_ini", properties);
             _iniFile = SimpleFileIO.Manager.GetIniState($"{name}_ini") ?? throw new ArgumentNullException($"not make {name}_ini...");
-            /*bool*/
+            _iniFile.AddParser(typeof(Color), new()
+            {
+                TargetType = typeof(Color),
+
+                // Converts a Color object to a string in the format "A,R,G,B".
+                ObjectToString = (obj) => obj is Color color ? $"{color.A},{color.R},{color.G},{color.B}" : "0,0,0,0",
+
+                // Converts a string in the format "A,R,G,B" or "R,G,B" to a Color object.
+                // 1. If length is not 3 or 4, return null (invalid input).
+                // 2. If length is 3, default Alpha (A) to 255.
+                // 3. If length is 4, use the first value as Alpha (A).
+                StringToObject = (str) =>
+                {
+                    var strArray = str.Split(',', StringSplitOptions.RemoveEmptyEntries);
+                    return (strArray.Length is 3 or 4)
+                        ? Color.FromArgb(
+                            strArray.Length == 4 ? byte.Parse(strArray[0]) : (byte)255, // Alpha
+                            byte.Parse(strArray[^3]), // Red
+                            byte.Parse(strArray[^2]), // Green
+                            byte.Parse(strArray[^1])  // Blue
+                        )
+                        : null;
+                }
+            });
+
             Load();
         }
 
