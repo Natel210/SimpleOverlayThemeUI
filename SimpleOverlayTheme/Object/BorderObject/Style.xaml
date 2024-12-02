@@ -100,7 +100,7 @@
     </Style>
     <!-- Overlay Mask Border -->
     <Style x:Key="SimpleOverlayTheme.Border.Overlay.Mask" TargetType="Border">
-        <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.OverlayMask.Foreground.Default}"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.DefaultThickness.Zero}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.OverlayBoader.Outline.Default}"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -131,6 +131,19 @@
             <Trigger Property="borderHelper:Overlay.IsActive" Value="True">
                 <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.OverlayMask.Foreground.Active}"/>
             </Trigger>
+            <!--<Trigger Property="borderHelper:Overlay.IsDisable" Value="True">
+                <Setter Property="Background" Value="Purple"/>
+            </Trigger>
+            <Trigger Property="borderHelper:Overlay.IsDefault" Value="True">
+                <Setter Property="Background" Value="Red"/>
+            </Trigger>
+            <Trigger Property="borderHelper:Overlay.IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Green"/>
+            </Trigger>
+            <Trigger Property="borderHelper:Overlay.IsActive" Value="True">
+                <Setter Property="Background" Value="Blue"/>
+            </Trigger>-->            
+            
         </Style.Triggers>
     </Style>
 </ResourceDictionary>

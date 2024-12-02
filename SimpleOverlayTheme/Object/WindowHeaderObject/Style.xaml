@@ -147,6 +147,10 @@
                                 <buttonHelper:Mask.MaskBrushDefault>
                                     <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme;component/Resource/Mask/close.png"/>
                                 </buttonHelper:Mask.MaskBrushDefault>
+                                <buttonHelper:OverlayBackground.SetDefaultVisible>False
+                                </buttonHelper:OverlayBackground.SetDefaultVisible>
+                                <buttonHelper:OverlayBackground.SetBackgroundVisible>False
+                                </buttonHelper:OverlayBackground.SetBackgroundVisible>
                             </Button>
                         </Grid>
                         <Grid Grid.Row="1">
