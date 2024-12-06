@@ -115,6 +115,12 @@
                 <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme;component/Resource/Mask/empty.png"/>
             </Setter.Value>
         </Setter>
+        <Setter Property="buttonHelper:Mask.IsMaskMouseOver" Value="False"/>
+        <Setter Property="buttonHelper:Mask.MaskBrushMouseOver">
+            <Setter.Value>
+                <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme;component/Resource/Mask/empty.png"/>
+            </Setter.Value>
+        </Setter>
         <Setter Property="buttonHelper:OverlayBackground.SetDefaultVisible" Value="False"/>
         <Setter Property="buttonHelper:OverlayBackground.SetBackgroundVisible" Value="True"/>
         <Setter Property="buttonHelper:OverlayBackground.SetOutlineVisible" Value="True"/>
@@ -197,9 +203,43 @@
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="buttonHelper:Mask.IsMaskMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="imageMask" Property="OpacityMask">
+                                <Setter.Value>
+                                    <Binding Path="(buttonHelper:Mask.MaskBrushMouseOver)" RelativeSource="{RelativeSource Mode='TemplatedParent'}"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="overlayMask" Property="OpacityMask">
+                                <Setter.Value>
+                                    <Binding Path="(buttonHelper:Mask.MaskBrushMouseOver)" RelativeSource="{RelativeSource Mode='TemplatedParent'}"/>
+                                </Setter.Value>
+                            </Setter>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsPressed" Value="True"/>
+                                <Condition Property="buttonHelper:Mask.IsMaskMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="imageMask" Property="OpacityMask">
+                                <Setter.Value>
+                                    <Binding Path="(buttonHelper:Mask.MaskBrushMouseOver)" RelativeSource="{RelativeSource Mode='TemplatedParent'}"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="overlayMask" Property="OpacityMask">
+                                <Setter.Value>
+                                    <Binding Path="(buttonHelper:Mask.MaskBrushMouseOver)" RelativeSource="{RelativeSource Mode='TemplatedParent'}"/>
+                                </Setter.Value>
+                            </Setter>
+                        </MultiTrigger>
+
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="overlayBackground" Property="borderHelper:Overlay.IsMouseOver" Value="True"/>
                             <Setter TargetName="overlayMask" Property="borderHelper:Overlay.IsMouseOver" Value="True"/>
+
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="overlayBackground" Property="borderHelper:Overlay.IsActive" Value="True"/>

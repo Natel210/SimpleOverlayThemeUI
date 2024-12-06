@@ -39,7 +39,53 @@ namespace SimpleOverlayTheme.Object.ButtonObject.Helper
 
         #endregion
 
+        #region IsMaskMouseOver
 
+        public static readonly DependencyProperty IsMaskMouseOverProperty = DependencyProperty.RegisterAttached("IsMaskMouseOver", typeof(bool), typeof(Mask), new FrameworkPropertyMetadata(false, _frameworkPropertyMetadataOptions));
+
+        [Category($"{KeywordDictionary.CategoryKey.Mask}")]
+        [AttachedPropertyBrowsableForType(typeof(Button))]
+        [AttachedPropertyBrowsableForType(typeof(RepeatButton))]
+        [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
+        public static bool GetIsMaskMouseOver(UIElement element)
+        {
+            return (bool)element.GetValue(IsMaskMouseOverProperty);
+        }
+
+        [Category($"{KeywordDictionary.CategoryKey.Mask}")]
+        [AttachedPropertyBrowsableForType(typeof(Button))]
+        [AttachedPropertyBrowsableForType(typeof(RepeatButton))]
+        [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
+        public static void SetIsMaskMouseOver(UIElement element, bool value)
+        {
+            element.SetValue(IsMaskMouseOverProperty, value);
+        }
+
+        #endregion
+
+        #region MaskBrushMouseOver
+
+        public static readonly DependencyProperty MaskBrushMouseOverProperty = DependencyProperty.RegisterAttached("MaskBrushMouseOver", typeof(ImageBrush), typeof(Mask), new FrameworkPropertyMetadata(null, _frameworkPropertyMetadataOptions));
+
+        [Category($"{KeywordDictionary.CategoryKey.Mask}")]
+        [AttachedPropertyBrowsableForType(typeof(Button))]
+        [AttachedPropertyBrowsableForType(typeof(RepeatButton))]
+        [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
+        public static ImageBrush? GetMaskBrushMouseOver(UIElement element)
+        {
+            return (ImageBrush)element.GetValue(MaskBrushMouseOverProperty);
+        }
+
+        [Category($"{KeywordDictionary.CategoryKey.Mask}")]
+        [AttachedPropertyBrowsableForType(typeof(Button))]
+        [AttachedPropertyBrowsableForType(typeof(RepeatButton))]
+        [AttachedPropertyBrowsableForType(typeof(ToggleButton))]
+        public static void SetMaskBrushMouseOver(UIElement element, ImageBrush? value)
+        {
+            element.SetValue(MaskBrushMouseOverProperty, value);
+        }
+
+        #endregion
 
         #region MaskBrushChecked
 
