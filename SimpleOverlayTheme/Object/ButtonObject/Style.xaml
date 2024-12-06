@@ -124,7 +124,7 @@
         <Setter Property="buttonHelper:OverlayBackground.SetDefaultVisible" Value="False"/>
         <Setter Property="buttonHelper:OverlayBackground.SetBackgroundVisible" Value="True"/>
         <Setter Property="buttonHelper:OverlayBackground.SetOutlineVisible" Value="True"/>
-        <Setter Property="buttonHelper:OverlayMask.SetDefaultVisible" Value="False"/>
+        <Setter Property="buttonHelper:OverlayMask.SetDefaultVisible" Value="True"/>
         <Setter Property="buttonHelper:OverlayMask.OverlayMaskVisible" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -400,7 +400,7 @@
         <Setter Property="buttonHelper:OverlayBackground.SetDefaultVisible" Value="False"/>
         <Setter Property="buttonHelper:OverlayBackground.SetBackgroundVisible" Value="True"/>
         <Setter Property="buttonHelper:OverlayBackground.SetOutlineVisible" Value="True"/>
-        <Setter Property="buttonHelper:OverlayMask.SetDefaultVisible" Value="False"/>
+        <Setter Property="buttonHelper:OverlayMask.SetDefaultVisible" Value="True"/>
         <Setter Property="buttonHelper:OverlayCheckedBackground.Background" Value="#50808080"/>
         <Setter Property="buttonHelper:OverlayCheckedBackground.Thickness" Value="0.0"/>
         <Setter Property="buttonHelper:OverlayCheckedBackground.Outline" Value="#A0808080"/>

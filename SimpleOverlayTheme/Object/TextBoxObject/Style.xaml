@@ -13,6 +13,7 @@
         <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Background}"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="Padding" Value="0,0,0,0"/>
         <Setter Property="textBoxHelper:OverlayBackground.SetDefaultVisible" Value="False"/>
         <Setter Property="textBoxHelper:OverlayBackground.SetBackgroundVisible" Value="True"/>
         <Setter Property="textBoxHelper:OverlayBackground.SetOutlineVisible" Value="True"/>
@@ -60,6 +61,7 @@
                         <ScrollViewer x:Name="PART_ContentHost"
                                   HorizontalScrollBarVisibility="Hidden"
                                   VerticalScrollBarVisibility="Hidden"
+                                    Margin="{TemplateBinding Padding}"
                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
