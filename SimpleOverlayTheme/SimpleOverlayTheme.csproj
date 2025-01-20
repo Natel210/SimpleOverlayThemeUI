@@ -1,47 +1,33 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ImplicitUsings>enable</ImplicitUsings>
-    <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion>10.0.22621.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
+   <!--nuget assets-->
   <ItemGroup>
-    <None Remove="Resource\Mask\check.png" />
-    <None Remove="Resource\Mask\close.png" />
-    <None Remove="Resource\Mask\downArrow.png" />
-    <None Remove="Resource\Mask\empty.png" />
-    <None Remove="Resource\Mask\maximize.png" />
-    <None Remove="Resource\Mask\minimize.png" />
-    <None Remove="Resource\Mask\minus.png" />
-    <None Remove="Resource\Mask\plus.png" />
-    <None Remove="Resource\Mask\restore.png" />
-    <None Remove="Resource\Mask\upArrow.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Object\NumericUpDownObject\CustomControl\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+    <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.34.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="WpfAnalyzers" Version="4.1.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="XAMLTools.MSBuild" Version="1.0.0-alpha0167">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
   </ItemGroup>
 
+  <!--dll assets-->
   <ItemGroup>
-    <ProjectReference Include="..\..\SimpleFileIO\SimpleFileIO.csproj" />
+    <Reference Include="SimpleFileIO">
+      <HintPath>..\Library\SimpleFileIO\SimpleFileIO\net8.0\SimpleFileIO.dll</HintPath>
+            </Reference>
   </ItemGroup>
 
+  <!--resource assets-->
   <ItemGroup>
     <Resource Include="Resource\Mask\check.png" />
     <Resource Include="Resource\Mask\close.png" />
