@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xaml.Behaviors;
 using SimpleOverlayTheme.CustomControl;
+using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
