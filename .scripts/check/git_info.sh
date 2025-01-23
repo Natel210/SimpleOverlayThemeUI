@@ -5,10 +5,10 @@ event_name="${1}"
 ref="${2:-unknown_ref}"
 head_ref="${3:-unknown_head_ref}"
 base_ref="${4:-unknown_base_ref}"
-result_file="$5"
 
 if [ "$#" -lt 1 ]; then
-  echo "\033[38;5;196mNo arguments.\n\033[38;5;196mUsage: $0 '<Git Event Name>'\033[0m"
+  echo "::Error::No arguments."
+  echo "Usage: $0 '<Git Event Name>'"
   exit 1
 fi
 
@@ -66,26 +66,16 @@ case "$event_name" in
     summary+="\n"
     ;;
   *)
-    output=" \033[0mEvent : \033[38;5;196m$event_name\033[0m\n"
-    output+="\033[38;5;196mUnknown Event Type\033[0m"
-    summary="\033[38;5;196mUnknown Event Type ($base_ref)\033[0m"
+    output="Event : $event_name\n"
+    output+="Unknown Event Type"
+    summary="::Error::Unknown Event Type ($base_ref)"
     is_error=1
     ;;
 esac
 
 
 result="$summary$output"
-
-if [ -z "$result_file" ]; then
-  echo -e "$result"
-else
-  # Ensure result file directory exists
-  result_dir=$(dirname "$result_file")
-  if [ ! -d "$result_dir" ]; then
-      mkdir -p "$result_dir"
-  fi
-  echo -e "$result" > "$result_file"
-fi
+echo "$result"
 
 if [ $is_error != 0 ]; then
   exit 1

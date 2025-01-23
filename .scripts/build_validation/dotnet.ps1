@@ -1,7 +1,6 @@
 param (
     [string]$ProjectFilePath,
-    [string]$BuildConfiguration,
-    [string]$ResultFile = $null
+    [string]$BuildConfiguration
 )
 
 if (-not $ProjectFilePath -or -not $BuildConfiguration)
@@ -48,22 +47,7 @@ else
 
 # Combine summary and output
 $result = "$output`n$summary"
-
-# Output or save result
-if ([string]::IsNullOrEmpty($ResultFile))
-{
-    Write-Host $result
-}
-else
-{
-    # Ensure directory for result file exists
-    $resultDirectory = Split-Path -Path $ResultFile
-    if (-not (Test-Path -Path $resultDirectory))
-    {
-        New-Item -ItemType Directory -Path $resultDirectory -Force | Out-Null
-    }
-    $result | Set-Content -Path $ResultFile -Encoding UTF8
-}
+Write-Host $result
 
 # Exit with error if build failed
 if ($isError)

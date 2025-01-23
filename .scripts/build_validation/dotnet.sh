@@ -2,7 +2,6 @@
 
 project_file_path=$1
 build_configuration=$2
-result_file="$3"
 
 if [ -z "$project_file_path" ] || [ -z "$build_configuration" ]; then
     echo "::Error::No arguments."
@@ -34,18 +33,7 @@ else
 fi
 
 result="$output$summary"
-
-if [ -n "$result_file" ]; then
-    # Ensure result file directory exists
-    result_dir=$(dirname "$result_file")
-    if [ ! -d "$result_dir" ]; then
-        mkdir -p "$result_dir"
-    fi
-    touch $result_file
-    echo -e "$result" > "$result_file"
-else
-    echo -e "$result"
-fi
+echo -e "$result"
 
 if [ $is_error -ne 0 ]; then
     exit 1
