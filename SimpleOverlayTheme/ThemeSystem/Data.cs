@@ -1,11 +1,8 @@
 ﻿using SimpleFileIO.State.Ini;
 using SimpleFileIO.Utility;
-using System;
 using System.IO;
-using System.Reflection;
 using System.Text;
 using System.Windows.Media;
-using System.Windows.Shapes;
 
 namespace SimpleOverlayTheme.ThemeSystem
 {
