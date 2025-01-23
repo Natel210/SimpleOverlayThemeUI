@@ -6,14 +6,14 @@ param (
 
 if (-not $ProjectFilePath -or -not $BuildConfiguration)
 {
-    Write-Host "`e[38;5;196mNo arguments.`e[0m"
-    Write-Host "`e[38;5;196mUsage: .\dotnet-build.ps1 -ProjectFilePath <ProjectFilePath> -BuildConfiguration <BuildConfiguration> -ResultFile <ResultFile>`e[0m"
+    Write-Host "::Error::No arguments."
+    Write-Host "Usage: .\dotnet-build.ps1 -ProjectFilePath <ProjectFilePath> -BuildConfiguration <BuildConfiguration> -ResultFile <ResultFile>"
     exit 1
 }
 
 # Initialize variables
 $isError = $false
-$output = "`e[0mBuilding project: $ProjectFilePath with configuration: $BuildConfiguration os:Windows `e[0m `n"
+$output = "Building project: $ProjectFilePath with configuration: $BuildConfiguration os:Windows `n"
 
 # Execute build command and capture output
 $buildOutput = & dotnet build $ProjectFilePath -c $BuildConfiguration 2>&1
@@ -22,27 +22,27 @@ $buildExitCode = $LASTEXITCODE
 if ($buildExitCode -ne 0)
 {
     # Handle build failure
-    $output += "`e[38;5;196mBuild failed.`e[0m`n"
-    $output += "`e[38;5;196mError Output:`e[0m`n"
+    $output += "Build failed.`n"
+    $output += "Error Output:`n"
 
     # Process each line in build output
     foreach ($line in $buildOutput -split "`n")
     {
-        $output += "`e[38;5;245m - $line`e[0m`n"
+        $output += "  > $line`n"
     }
 
-    $summary = "`e[38;5;196mBuild failed.`e[0m"
+    $summary = "::Error::Build failed."
     $isError = $true
 }
 else
 {
     # Handle build success
-    $summary = "`e[38;5;46mBuild Test Completed Successfully.`e[0m"
+    $summary = "::Notice::Build Test Completed Successfully."
 
     # Process each line in build output
     foreach ($line in $buildOutput -split "`n")
     {
-        $output += "`e[38;5;245m - $line`e[0m`n"
+        $output += "  > $line`n"
     }
 }
 
