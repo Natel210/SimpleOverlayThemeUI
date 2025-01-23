@@ -9,252 +9,377 @@ permissions:
   contents: write
   statuses: write
 
-env:
-  SOLUTION_FILE: "SimpleOverlayTheme.sln"
-  DLL_FILE: "SimpleOverlayTheme/SimpleOverlayTheme.csproj"
-  TESTER_FILE: "SimpleOverlayThemeExample/SimpleOverlayThemeExample.csproj"
-  BUILD_PATH: "./build"
-  RESULT_ZIP_NAME: "Produced Dll"
+concurrency:
+  group: main-push
+  cancel-in-progress: false
 
 jobs:
 
-  info:
-    name: Info
+  info-and-check:
+    name: Info And Check
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          
-      - name: Check ENV Value
-        uses: ./.github/actions/info/env-check
-        with:
-          config: |
-            {
-              "Event Name": "${{ github.event_name }}",
-              "Ref": "${{ github.ref }}",
-              "Head Ref": "${{ github.head_ref }}",
-              "Base Ref": "${{ github.base_ref }}",
-              "Solution File": "${{ env.SOLUTION_FILE }}",
-              "Dll File": "${{ env.DLL_FILE }}",
-              "Tester file": "${{ env.TESTER_FILE }}"
-            }
-      - name: Git Info
-        uses: ./.github/actions/info/git
-        with:
-          event_name: ${{ github.event_name }}
-          ref: ${{ github.ref }}
-          head_ref: ${{ github.head_ref }}
-          base_ref: ${{ github.base_ref }}
-      - name: Exist Files
-        uses: ./.github/actions/info/exist-files
-        with:
-          files: ${{ env.SOLUTION_FILE }} ${{ env.DLL_FILE }} ${{ env.TESTER_FILE }}
-          
-  windows-debug-ci:
-    name: Windows Debug CI
-    runs-on: windows-latest
-    needs: info
+    outputs:
+      path_value_result: ${{ steps.info-and-check.outputs.path_value_result }}
+      git_value_result: ${{ steps.info-and-check.outputs.git_value_result }}
+      else_value_result: ${{ steps.info-and-check.outputs.else_value_result }}
+      exist_files_result: ${{ steps.info-and-check.outputs.exist_files_result }}
+      git_info_result: ${{ steps.info-and-check.outputs.git_info_result }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Build and Test
-        uses: ./.github/actions/build/windows/dotnet/dll
+      - name: Info And Check
+        id: info-and-check
+        uses: ./.github/actions/info
         with:
-          solution_file: ${{ env.SOLUTION_FILE }}
-          dll_file: ${{ env.DLL_FILE }}
-          tester_file: ${{ env.TESTER_FILE }}
-          build_path: ${{ env.BUILD_PATH }}
-          configuration: "Debug"
-          dotnet_version: "8.0.x"
+          git_event_name: "${{ github.event_name }}"
+          git_ref: "${{ github.ref }}"
+          head_ref: "${{ github.head_ref }}"
+          base_ref: "${{ github.base_ref }}"
+          path_values: >
+            [
+              {
+                "key": "Solution File Path",
+                "value": "${{ vars.SOLUTION_FILE_PATH }}"
+              },
+              {
+                "key": "Dll File Path",
+                "value": "${{ vars.DLL_PROJECT_FILE_PATH }}"
+              },
+              {
+                "key": "Tester File Path",
+                "value": "${{ vars.TESTER_PROJECT_FILE_PATH }}"
+              },
+              {
+                "key": "Tester Executable File Name",
+                "value": "${{ vars.TESTER_EXECUTABLE_FILE_NAME }}"
+              }
+            ]
+          else_values: >
+            [
+              {
+                "key": "Result Zip Name",
+                "value": "${{ vars.RESULT_ZIP_NAME }}"
+              },
+              {
+                "key": "Tag Prefix",
+                "value": "${{ vars.TAG_PREFIX }}"
+              }
+            ]
 
-  windows-release-ci:
-    name: Windows Release CI
-    runs-on: windows-latest
-    needs: info
+      - name: Check Output
+        run: |
+          # Check Output
+          echo -e "\033[38;5;245m┌──────────────────────────────────────────────────────────────────────────────┐\033[0m"
+          printf "\033[38;5;245m|\033[38;5;15m  %-76s\033[38;5;245m│\033[0m\n" "Path Value"
+          echo -e "\033[38;5;245m└──────────────────────────────────────────────────────────────────────────────┘\033[0m"
+          echo -e "${{ steps.info-and-check.outputs.path_value_result }}" || echo "::Warning::⚠️ Invalid Path Value Result"
+          echo -e "\033[38;5;245m┌──────────────────────────────────────────────────────────────────────────────┐\033[0m"
+          printf "\033[38;5;245m|\033[38;5;15m  %-76s\033[38;5;245m│\033[0m\n" "Git Value"
+          echo -e "\033[38;5;245m└──────────────────────────────────────────────────────────────────────────────┘\033[0m"
+          echo -e "${{ steps.info-and-check.outputs.git_value_result }}" || echo "::Warning::⚠️ Invalid Git Value Result"
+          echo -e "\033[38;5;245m┌──────────────────────────────────────────────────────────────────────────────┐\033[0m"
+          printf "\033[38;5;245m|\033[38;5;15m  %-76s\033[38;5;245m│\033[0m\n" "Else Value"
+          echo -e "\033[38;5;245m└──────────────────────────────────────────────────────────────────────────────┘\033[0m"
+          echo -e "${{ steps.info-and-check.outputs.else_value_result }}" || echo "::Warning::⚠️ Invalid Else Value Result"
+          echo -e "\033[38;5;245m┌──────────────────────────────────────────────────────────────────────────────┐\033[0m"
+          printf "\033[38;5;245m|\033[38;5;15m  %-76s\033[38;5;245m│\033[0m\n" "Exist Files"
+          echo -e "\033[38;5;245m└──────────────────────────────────────────────────────────────────────────────┘\033[0m"
+          echo -e "${{ steps.info-and-check.outputs.exist_files_result }}" || echo "::Warning::⚠️ Invalid Exist Files Result"
+          echo -e "\033[38;5;245m┌──────────────────────────────────────────────────────────────────────────────┐\033[0m"
+          printf "\033[38;5;245m|\033[38;5;15m  %-76s\033[38;5;245m│\033[0m\n" "Git Info"
+          echo -e "\033[38;5;245m└──────────────────────────────────────────────────────────────────────────────┘\033[0m"
+          echo -e "${{ steps.info-and-check.outputs.git_info_result }}" || echo "::Warning::⚠️ Invalid Git Info Result"
+
+  build-validation:
+    name: Build Validation
+    needs: info-and-check
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
+        configuration: [Debug, Release]
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Build and Test
-        uses: ./.github/actions/build/windows/dotnet/dll
+      - name: Dll Build Test
+        id: dll-build-test
+        uses: ./.github/actions/build-validation/dotnet
         with:
-          solution_file: ${{ env.SOLUTION_FILE }}
-          dll_file: ${{ env.DLL_FILE }}
-          tester_file: ${{ env.TESTER_FILE }}
-          build_path: ${{ env.BUILD_PATH }}
-          configuration: "Release"
-          dotnet_version: "8.0.x"
+          project_file_path: "${{vars.DLL_PROJECT_FILE_PATH}}"
+          build_configuration: "${{matrix.configuration}}"
+          dotnet_version: "${{ vars.DOTNET_VERSION }}"
 
-  linux-debug-ci:
-    name: Linux Debug CI
-    runs-on: ubuntu-latest
-    needs: info
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-  
-      - name: Build and Test
-        uses: ./.github/actions/build/linux/dotnet/dll
-        with:
-          solution_file: ${{ env.SOLUTION_FILE }}
-          dll_file: ${{ env.DLL_FILE }}
-          tester_file: ${{ env.TESTER_FILE }}
-          build_path: ${{ env.BUILD_PATH }}
-          configuration: "Debug"
-          dotnet_version: "8.0.x"
-  
-  linux-release-ci:
-    name: Linux Release CI
-    runs-on: ubuntu-latest
-    needs: info
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-  
-      - name: Build and Test
-        uses: ./.github/actions/build/linux/dotnet/dll
-        with:
-          solution_file: ${{ env.SOLUTION_FILE }}
-          dll_file: ${{ env.DLL_FILE }}
-          tester_file: ${{ env.TESTER_FILE }}
-          build_path: ${{ env.BUILD_PATH }}
-          configuration: "Release"
-          dotnet_version: "8.0.x"
+      - name: Check Output
+        run: |
+          # Check Output
+          echo -e "\033[38;5;245m┌──────────────────────────────────────────────────────────────────────────────┐\033[0m"
+          printf "\033[38;5;245m|\033[38;5;15m  %-76s\033[38;5;245m│\033[0m\n" "Build Validation"
+          echo -e "\033[38;5;245m└──────────────────────────────────────────────────────────────────────────────┘\033[0m"
+          echo "${{ steps.dll-build-test.outputs.result }}" || echo "::Warning::⚠️ Invalid Build Validation Result"
+        shell: bash
 
-  check-event:
-    name: Check Event
-    needs: [windows-debug-ci, windows-release-ci, linux-debug-ci, linux-release-ci]
-    runs-on: ubuntu-latest
-    if: ${{github.event_name == 'push'}}
-    steps:
-      - uses: actions/checkout@v4
+      - name: To File Output
+        run: |
+          # To File Output
+
+          # Check Directory
+          if [ ! -d "./${{ runner.os }}/${{ matrix.configuration }}" ]; then
+            mkdir -p ./${{ runner.os }}/${{ matrix.configuration }}
+          fi
+          # Logging Result
+          if [ -z "${{ steps.dll-build-test.outputs.result }}" ]; then
+            echo "::Warning::⚠️ Invalid Build Validation Result" > "./${{ runner.os }}/${{ matrix.configuration }}/build_validation.result"
+          else
+            echo "${{ steps.dll-build-test.outputs.result }}" > "./${{ runner.os }}/${{ matrix.configuration }}/build_validation.result"
+          fi
+        shell: bash
+
+      - uses: actions/upload-artifact@v4
         with:
-          fetch-depth: 0
+            name: Build_Validation_${{ runner.os }}_${{ matrix.configuration }}
+            path: ./${{ runner.os }}/${{ matrix.configuration }}/build_validation.result
+            if-no-files-found: warn
 
-      - name: Is Push Event
-        run: echo -e "\033[32mPush Ok...\033[0m Continue to Create Tag..."
+      - name: Clear Others
+        run: |
+          # Clear Others
+          rm -rf ./${{ runner.os }}/${{ matrix.configuration }}
+        shell: bash
 
-  create-tag:
-    name: Create Tag
-    needs: check-event
+  auto-update-tag:
+    name: Auto Update Tag
+    needs: build-validation
     runs-on: ubuntu-latest
     concurrency:
       group: tag-creation
       cancel-in-progress: false
+    env:
+      NEW_VERSION: ""
     outputs:
-      create_new_versuion: ${{ env.NEW_VERSION  }}
+      new_version: ${{ env.NEW_VERSION }}
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-
-      - name: Before Check Tags
-        uses: ./.github/actions/tag/version/check
-        with:
-          prefix: "v"
+         fetch-depth: 0
 
       - name: Create Tag
         id: create-tag
-        uses: ./.github/actions/tag/version/create
+        uses: ./.github/actions/create-tag
         with:
-          prefix: "v"
+          prefix: ${{ vars.TAG_PREFIX }}
 
-      - name: After Check Tags
-        uses: ./.github/actions/tag/version/check
-        with:
-          prefix: "v"
-
-  cd:
-    name: CD
-    needs: create-tag
+  github-release:
+    name: Github Release
+    needs: auto-update-tag
     runs-on: ubuntu-latest
-    env:
-      CREATE_NEW_VERSION: ${{ needs.create-tag.outputs.create_new_versuion }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+         fetch-depth: 0
+      - run: echo making...
 
-      - name: Show Current Tag
+  results:
+    name: Results
+    needs: [info-and-check, build-validation, auto-update-tag, github-release]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+         fetch-depth: 0
+
+      - name: Check Result Directory
         run: |
-          echo "Current VERSION: ${{ env.CREATE_NEW_VERSION }}"
+          # Check Result Directory
+          if [ ! -d "./results/" ]; then
+            mkdir -p "./results/"
+          fi
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+      - uses: actions/download-artifact@v4
         with:
-          dotnet-version: '8.0.x'
+            name: Build_Validation_Windows_Debug
+            path: ./results/build_validation/windows/debug
+        continue-on-error: true
 
-      - name: Restore dependencies
-        run: dotnet restore "${{ env.SOLUTION_FILE }}" --no-cache
-
-      - name: Build Debug
-        uses: ./.github/actions/build/linux/dotnet/dll
+      - uses: actions/download-artifact@v4
         with:
-          solution_file: ${{ env.SOLUTION_FILE }}
-          dll_file: ${{ env.DLL_FILE }}
-          build_path: ${{ env.BUILD_PATH }}/debug
-          configuration: "Debug"
-          dotnet_version: "8.0.x"
+            name: Build_Validation_Windows_Release
+            path: ./results/build_validation/windows/release
+        continue-on-error: true
 
-      - name: Build Release
-        uses: ./.github/actions/build/linux/dotnet/dll
+      - name: Job Process Format
+        id: job-process-format
+        uses: ./.github/actions/format-string/job-process
         with:
-          solution_file: ${{ env.SOLUTION_FILE }}
-          dll_file: ${{ env.DLL_FILE }}
-          tester_file: ${{ env.TESTER_FILE }}
-          build_path: ${{ env.BUILD_PATH }}/release
-          configuration: "Release"
-          dotnet_version: "8.0.x"
+          jobs_and_results: >
+            [
+              {
+                "job_name": "Info And Check",
+                "result": "${{ needs.info-and-check.result }}"
+              },
+              {
+                "job_name": "Build Validation",
+                "result": "${{ needs.build-validation.result }}"
+              },
+              {
+                "job_name": "Auto Update Tag",
+                "result": "${{ needs.auto-update-tag.result }}"
+              },
+              {
+                "job_name": "Github Release",
+                "result": "${{ needs.github-release.result }}"
+              }
+            ]
+        continue-on-error: true
 
-      - name: Zip Build File
-        uses: ./.github/actions/deploy/build-result-as-zip
+      - name: Value Info Format
+        id:  value-info-format
+        uses: ./.github/actions/format-string/values-info
         with:
-          build_path: ${{ env.BUILD_PATH }}
-          result_zip_name: ${{ env.RESULT_ZIP_NAME }}
+          path_value_result: ${{ needs.info-and-check.outputs.path_value_result }}
+          git_value_result: ${{ needs.info-and-check.outputs.git_value_result }}
+          else_value_result: ${{ needs.info-and-check.outputs.else_value_result }}
+        continue-on-error: true
 
-      - name: Generate Changelog
-        id: generate_changelog
+      - name: Temp Save To File
         run: |
-          git fetch --all
-      
-          base_ref=${{ github.base_ref }}
-          head_sha=${{ github.sha }}
-      
-          if [ -z "$base_ref" ]; then
-            # If base_ref is not provided, fallback to the previous commit
-            base_ref=$(git rev-parse HEAD^)
+          # Temp Save To File
+          if [ ! -d "./results/info/" ]; then
+            mkdir -p "./results/info/"
           fi
-      
-          # Generate the changelog with commit title, hyperlinked hash, and body
-          changelog=$(git log $base_ref..$head_sha --pretty=format:"%s [#%h](https://github.com/${{ github.repository }}/commit/%H)%n------------------------%n%b" --no-merges)
-      
-          if [ -z "$changelog" ]; then
-            echo "No changes to log."
-            changelog="No changes available for this release."
-          fi
-      
-          echo "CHANGELOG<<EOF" >> $GITHUB_ENV
-          echo "$changelog" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+          echo -e "${{ needs.info-and-check.outputs.git_info_result }}" > ./results/info/git_info.result
+          echo -e "${{ steps.job-process-format.outputs.output_result }}" > ./results/info/job_process.result
+          echo -e "${{ needs.info-and-check.outputs.exist_files_result }}" > ./results/info/exist_files.result
+          echo -e "${{ steps.value-info-format.outputs.output_result }}" > ./results/info/value.result
+        continue-on-error: true
+
+      - name: Make Result
+        id: make-result
+        uses: ./.github/actions/result
         with:
-          tag_name: ${{ env.CREATE_NEW_VERSION }}
-          name: Release ${{ env.CREATE_NEW_VERSION }}
-          body: ${{ env.CHANGELOG }}
-          files: ${{ env.BUILD_PATH }}/${{ env.RESULT_ZIP_NAME }}.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CHANGELOG: ${{ env.CHANGELOG }}
+          info_valuse: >
+            [
+              {
+                "header": "  Git Info",
+                "path": "./results/info/git_info.result"
+              },
+              {
+                "header": "  Job Process",
+                "path": "./results/info/job_process.result"
+              },
+              {
+                "header": "  File Exist",
+                "path": "./results/info/exist_files.result"
+              },
+              {
+                "header": "  Values",
+                "path": "./results/info/value.result"
+              }
+            ]
+          build_validation_valuse: >
+            [
+              {
+                "header": "  Build Validation Widnows Debug",
+                "path": "./results/build_validation/windows/debug/build_validation.result"
+              },
+              {
+                "header": "  Build Validation Widnows Release",
+                "path": "./results/build_validation/windows/release/build_validation.result"
+              }
+            ]
+        continue-on-error: true
+      
+      - name: output Result
+        run: |
+          echo -e "${{ steps.make-result.outputs.output_result }}"
+        continue-on-error: true
+
+  # cd:
+  #   name: CD
+  #   needs: [create-tag]
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     NEW_VERSION: ${{ needs.create-tag.outputs.new_version }}
+  #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #   steps:
+
+  #     - name: Checkout Repository
+  #       uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+
+  #     - name: Show Current Tag
+  #       run: |
+  #         echo "Current VERSION: ${{ vars.TAG_PREFIX }}${{ env.NEW_VERSION }}"
+
+  #     - name: Build Debug
+  #       uses: ./.github/actions/build/linux/dotnet/dll
+  #       with:
+  #         solution_file_path: ${{ vars.SOLUTION_FILE_PATH }}
+  #         dll_project_file_path: ${{ vars.DLL_PROJECT_FILE_PATH }}
+  #         build_directory_path: ${{ vars.BUILD_DIRECTORY_PATH }}
+  #         configuration: "Debug"
+  #         dotnet_version: ${{ vars.DOTNET_VERSION }}
+  #         assembly_version: ${{ vars.NEW_VERSION }}
+  #         file_version: ${{ vars.NEW_VERSION }}
+  #         informational_version: ${{ vars.NEW_VERSION }}
+
+  #     - name: Build Release
+  #       uses: ./.github/actions/build/linux/dotnet/dll
+  #       with:
+  #         solution_file_path: ${{ vars.SOLUTION_FILE_PATH }}
+  #         dll_project_file_path: ${{ vars.DLL_PROJECT_FILE_PATH }}
+  #         build_directory_path: ${{ vars.BUILD_DIRECTORY_PATH }}
+  #         configuration: "Release"
+  #         dotnet_version: ${{ vars.DOTNET_VERSION }}
+  #         assembly_version: ${{ env.NEW_VERSION }}
+  #         file_version: ${{ env.NEW_VERSION }}
+  #         informational_version: ${{ env.NEW_VERSION }}
+
+  #     - name: Zip Build File
+  #       uses: ./.github/actions/deploy/build-result-as-zip
+  #       with:
+  #         build_directory_path: ${{ vars.BUILD_DIRECTORY_PATH }}
+  #         result_zip_name: ${{ vars.RESULT_ZIP_NAME }}
+
+  #     - name: Generate Changelog
+  #       id: generate_changelog
+  #       run: |
+  #         git fetch --all
+      
+  #         base_ref=${{ github.base_ref }}
+  #         head_sha=${{ github.sha }}
+      
+  #         if [ -z "$base_ref" ]; then
+  #           # If base_ref is not provided, fallback to the previous commit
+  #           base_ref=$(git rev-parse HEAD^)
+  #         fi
+      
+  #         # Generate the changelog with commit title, hyperlinked hash, and body
+  #         changelog=$(git log $base_ref..$head_sha --pretty=format:"%s [#%h](https://github.com/${{ github.repository }}/commit/%H)%n------------------------%n%b" --no-merges)
+      
+  #         if [ -z "$changelog" ]; then
+  #           echo "No changes to log."
+  #           changelog="No changes available for this release."
+  #         fi
+      
+  #         echo "CHANGELOG<<EOF" >> $GITHUB_ENV
+  #         echo "$changelog" >> $GITHUB_ENV
+  #         echo "EOF" >> $GITHUB_ENV
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+  #     - name: Create GitHub Release
+  #       uses: softprops/action-gh-release@v1
+  #       with:
+  #         tag_name: ${{ vars.TAG_PREFIX }}${{ env.NEW_VERSION }}
+  #         name: Release ${{ vars.TAG_PREFIX }}${{ env.NEW_VERSION }}
+  #         body: ${{ env.CHANGELOG }}
+  #         files: ${{ vars.BUILD_DIRECTORY_PATH }}/${{ vars.RESULT_ZIP_NAME }}.zip
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         CHANGELOG: ${{ env.CHANGELOG }}
