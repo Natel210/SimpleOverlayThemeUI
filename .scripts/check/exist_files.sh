@@ -1,8 +1,7 @@
 #!/bin/bash
 
 json_data="$1"
-script_comment="$2"
-
+result_file="$2"
 
 if [ -z "$json_data" ]; then
   echo "::Error::No JSON data provided.\n"
@@ -20,18 +19,28 @@ while read -r pair; do
   key=$(echo "$pair" | jq -r '.key')
   value=$(echo "$pair" | jq -r '.value')
   if [ -f "$value" ] || [ -d "$value" ]; then
-    output+="\n● $key\n  - Value : [$value]\n  - Exist"
+    output+="\n● $key\n  - $value : Exist"
   else
     missing_count=$((missing_count + 1))
-    output+="\n● $key\n  - Value : [$value]\n  - Not Exist"
+    output+="\n● $key\n  - $value : \033[38;5;196mNot Exist\033[0m"
   fi
 done <<< $(echo $json_data | jq -c '.[]')
 
 if [ "$missing_count" -eq 0 ]; then
-  summary="::Notice::$3 - Check Files All OK.. ($total_count/$total_count)"
+  summary="\033[38;5;46mAll OK.. ($total_count/$total_count)\033[0m"
 else
-  summary="::Warning::$3 - Check Files Not Exist File Count $missing_count.. ($((total_count - missing_count))/$total_count)"
+  summary="\033[38;5;196mNot Exist File Count $missing_count.. ($((total_count - missing_count))/$total_count)\033[0m"
 fi
 
 result="$summary$output"
-echo -e "$result"
+
+if [ -z "$result_file" ]; then
+  echo -e "$result"
+else
+  # Ensure result file directory exists
+  result_dir=$(dirname "$result_file")
+  if [ ! -d "$result_dir" ]; then
+      mkdir -p "$result_dir"
+  fi
+  echo -e "$result" > "$result_file"
+fi

@@ -190,7 +190,7 @@ runs:
         temp_file=$(mktemp)
 
         # To Work
-        ./.scripts/check/exist_files.sh '${{ inputs.path_values }}' "Solution & Project" > "$temp_file"
+        ./.scripts/check/exist_files.sh '${{ inputs.path_values }}' "$temp_file"
 
         # Multi Line
         multi_line_output=$(cat $temp_file)
