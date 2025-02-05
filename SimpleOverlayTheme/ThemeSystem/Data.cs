@@ -29,8 +29,8 @@ namespace SimpleOverlayTheme.ThemeSystem
 
         public PathProperty IniPathProperty
         {
-            get => _iniFile.Properties;
-            set => _iniFile.Properties = value;
+            get => _iniFile.PathProperty;
+            set => _iniFile.PathProperty = value;
         }
 
         public string Name

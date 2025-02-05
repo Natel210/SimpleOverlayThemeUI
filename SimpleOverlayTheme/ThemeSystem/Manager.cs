@@ -160,7 +160,7 @@ namespace SimpleOverlayTheme.ThemeSystem
             foreach (var item in DataDictionary)
             {
                 result |= !item.Value.Save();
-                item.Value.MakeDummyXaml(new DirectoryInfo(System.IO.Path.Combine(_iniFile.Properties.RootDirectory.FullName, "ThemeDummy")));
+                item.Value.MakeDummyXaml(new DirectoryInfo(System.IO.Path.Combine(_iniFile.PathProperty.RootDirectory.FullName, "ThemeDummy")));
             }
 
             //Make Dummy Data
