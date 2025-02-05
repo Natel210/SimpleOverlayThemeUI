@@ -28,9 +28,9 @@ while read -r pair; do
 done <<< $(echo $json_data | jq -c '.[]')
 
 if [ "$missing_count" -eq 0 ]; then
-  summary="::Notice::$script_comment - Check Files All OK.. ($total_count/$total_count)"
+  summary="::Notice::$3 - Check Files All OK.. ($total_count/$total_count)"
 else
-  summary="::Warning::$script_comment - Check Files Not Exist File Count $missing_count.. ($((total_count - missing_count))/$total_count)"
+  summary="::Warning::$3 - Check Files Not Exist File Count $missing_count.. ($((total_count - missing_count))/$total_count)"
 fi
 
 result="$summary$output"
