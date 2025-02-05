@@ -2,13 +2,13 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:buttonHelper="clr-namespace:SimpleOverlayTheme.Object.ButtonObject.Helper"
                     xmlns:groupBoxHelper="clr-namespace:SimpleOverlayTheme.Object.GroupBoxObject.Helper">
-    
+
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/ThemeSystem/LastTheme.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/BorderObject/Style.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/LabelObject/Style.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/ButtonObject/Style.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-
     <Style x:Key="SimpleOverlayTheme.GroupBox.Default" TargetType="GroupBox">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground}"/>

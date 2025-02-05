@@ -3,6 +3,7 @@
                     xmlns:textBoxHelper="clr-namespace:SimpleOverlayTheme.Object.TextBoxObject.Helper"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/ThemeSystem/LastTheme.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/BorderObject/Style.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <Style x:Key="SimpleOverlayTheme.TextBox.Default" TargetType="TextBox">

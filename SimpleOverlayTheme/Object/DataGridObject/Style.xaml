@@ -2,10 +2,10 @@
                     xmlns:dataGridHelper="clr-namespace:SimpleOverlayTheme.Object.DataGridObject.Helper"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/ThemeSystem/LastTheme.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/BorderObject/Style.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-    
     <!-- DataGridColumnHeader -->
     <Style x:Key="SimpleOverlayTheme.DataGridColumnHeader.Default" TargetType="DataGridColumnHeader">
         <Setter Property="Background" Value="Transparent"/>

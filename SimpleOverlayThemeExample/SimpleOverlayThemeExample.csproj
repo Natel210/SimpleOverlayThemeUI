@@ -9,6 +9,10 @@
     <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
+
+  <ItemGroup>
+    <PackageReference Include="SimpleOverlayTheme" Version="0.0.4" />
+  </ItemGroup>
   <ItemGroup>
     <None Remove="Resource\Mask\check.png" />
     <None Remove="Resource\Mask\close.png" />
@@ -20,10 +24,6 @@
     <None Remove="Resource\Mask\plus.png" />
     <None Remove="Resource\Mask\restore.png" />
     <None Remove="Resource\Mask\upArrow.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SimpleOverlayTheme\SimpleOverlayTheme.csproj" />
   </ItemGroup>
 
   <ItemGroup>

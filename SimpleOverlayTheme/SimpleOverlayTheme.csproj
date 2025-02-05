@@ -6,6 +6,29 @@
     <UseWPF>true</UseWPF>
     <ImplicitUsings>enable</ImplicitUsings>
     <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+    <BaseOutputPath>Bin\</BaseOutputPath>
+    <Copyright>MIT</Copyright>
+
+    <!-- Local Test -->
+    <VersionPrefix>0.0.4</VersionPrefix>
+  </PropertyGroup>
+
+  <!-- NuGet -->
+  <PropertyGroup>
+      <Authors>Natel210</Authors>
+      <PackageLicenseExpression>$(Copyright)</PackageLicenseExpression>
+      <PackageProjectUrl>https://github.com/Natel210/SimpleOverlayThemeUI</PackageProjectUrl>
+      <!--<PackageIcon>none.png</PackageIcon>-->
+      <PackageTags>Simple;ThemeUI;OverlayTheme;SimpleTheme;SimpleOverlayThemeUI;</PackageTags>
+      <!--<PackageReleaseNotes>https://github.com/Natel210/SimpleOverlayThemeUI/releases</PackageReleaseNotes>-->
+      <RepositoryUrl>https://github.com/Natel210/SimpleOverlayThemeUI.git</RepositoryUrl>
+      <RepositoryType>git</RepositoryType>
+      <GenerateDocumentationFile>true</GenerateDocumentationFile>
+      <DocumentationFile>Bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+      <PackageReadmeFile>README.md</PackageReadmeFile>
+      <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+      <Title>$(AssemblyName)</Title>
+      <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,7 +45,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Object\NumericUpDownObject\CustomControl\" />
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

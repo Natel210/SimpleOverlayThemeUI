@@ -1,6 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:borderHelper="clr-namespace:SimpleOverlayTheme.Object.BorderObject.Helper"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/ThemeSystem/LastTheme.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
     <!-- Default Border -->
     <Style x:Key="SimpleOverlayTheme.Border.Default" TargetType="Border" >
         <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Background}"/>
