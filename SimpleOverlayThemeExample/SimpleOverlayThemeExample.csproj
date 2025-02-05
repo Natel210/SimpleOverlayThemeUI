@@ -2,11 +2,10 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,12 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="SimpleFileIO">
-      <HintPath>..\Library\SimpleFileIO\SimpleFileIO\net8.0\SimpleFileIO.dll</HintPath>
-    </Reference>
-    <Reference Include="SimpleOverlayTheme">
-      <HintPath>..\SimpleOverlayTheme\Bin\Release\net8.0-windows10.0.19041.0\SimpleOverlayTheme.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\SimpleOverlayTheme\SimpleOverlayTheme.csproj" />
   </ItemGroup>
 
   <ItemGroup>

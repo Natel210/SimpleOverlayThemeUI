@@ -2,17 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
-    <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
+    <!-- 최신 Windows 기능을 사용하려면 OS 버전 지정 -->
+      <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
+    <!-- Windows 11 22H2 -->
     <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+    <!-- Windows 10 20H1 -->
     <Nullable>enable</Nullable>
-    <Copyright>MIT</Copyright>
     <UseWPF>true</UseWPF>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <RestorePackagesPath>$(MSBuildProjectDirectory)\Packages</RestorePackagesPath>
+
+    <Copyright>MIT</Copyright>
     <BaseOutputPath>Bin\</BaseOutputPath>
-    <ILRepackUsed>True</ILRepackUsed>
-    <ILRepackTargetsFile>$(MSBuildProjectDirectory)\ILRepack.targets</ILRepackTargetsFile>
+    <ILRepackTargetsEnabled>false</ILRepackTargetsEnabled>
   </PropertyGroup>
 
    <!--nuget assets-->
@@ -30,6 +31,11 @@
   </ItemGroup>
 
   <!--dll assets-->
+  <ItemGroup>
+    <Reference Include="SimpleFileIO">
+      <HintPath>..\Library\SimpleFileIO\SimpleFileIO\net8.0\SimpleFileIO.dll</HintPath>
+            </Reference>
+  </ItemGroup>
 
   <!--resource assets-->
   <ItemGroup>
@@ -43,14 +49,6 @@
     <Resource Include="Resource\Mask\plus.png" />
     <Resource Include="Resource\Mask\restore.png" />
     <Resource Include="Resource\Mask\upArrow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="SimpleFileIO">
-      <HintPath>..\Library\SimpleFileIO\net8.0\SimpleFileIO.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
