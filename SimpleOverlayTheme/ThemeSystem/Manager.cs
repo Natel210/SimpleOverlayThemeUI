@@ -163,6 +163,9 @@ namespace SimpleOverlayTheme.ThemeSystem
                 item.Value.MakeDummyXaml(new DirectoryInfo(System.IO.Path.Combine(_iniFile.PathProperty.RootDirectory.FullName, "ThemeDummy")));
             }
 
+
+
+
             //Make Dummy Data
             return !result;
         }
