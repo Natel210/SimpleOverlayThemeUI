@@ -8,27 +8,27 @@
     <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
     <BaseOutputPath>Bin\</BaseOutputPath>
     <Copyright>MIT</Copyright>
-
+    <PublishDir>$(BaseOutputPath)Publish</PublishDir>      
     <!-- Local Test -->
-    <VersionPrefix>0.0.4</VersionPrefix>
+    <!--<VersionPrefix>0.0.4</VersionPrefix>-->
   </PropertyGroup>
 
   <!-- NuGet -->
   <PropertyGroup>
-      <Authors>Natel210</Authors>
-      <PackageLicenseExpression>$(Copyright)</PackageLicenseExpression>
-      <PackageProjectUrl>https://github.com/Natel210/SimpleOverlayThemeUI</PackageProjectUrl>
-      <!--<PackageIcon>none.png</PackageIcon>-->
-      <PackageTags>Simple;ThemeUI;OverlayTheme;SimpleTheme;SimpleOverlayThemeUI;</PackageTags>
-      <!--<PackageReleaseNotes>https://github.com/Natel210/SimpleOverlayThemeUI/releases</PackageReleaseNotes>-->
-      <RepositoryUrl>https://github.com/Natel210/SimpleOverlayThemeUI.git</RepositoryUrl>
-      <RepositoryType>git</RepositoryType>
-      <GenerateDocumentationFile>true</GenerateDocumentationFile>
-      <DocumentationFile>Bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-      <PackageReadmeFile>README.md</PackageReadmeFile>
-      <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-      <Title>$(AssemblyName)</Title>
-      <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <Authors>Natel210</Authors>
+    <PackageLicenseExpression>$(Copyright)</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Natel210/SimpleOverlayThemeUI</PackageProjectUrl>
+    <!--<PackageIcon>none.png</PackageIcon>-->
+    <PackageTags>Simple;Theme;OverlayTheme;SimpleTheme;SimpleOverlayThemeUI</PackageTags>
+    <!--<PackageReleaseNotes>https://github.com/Natel210/SimpleOverlayThemeUI/releases</PackageReleaseNotes>-->
+    <RepositoryUrl>https://github.com/Natel210/SimpleOverlayThemeUI.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>$(BaseOutputPath)/$(Configuration)/$(TargetFramework)/$(AssemblyName).xml</DocumentationFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>$(AssemblyName)</Title>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
@@ -44,17 +44,11 @@
     <None Remove="Resource\Mask\upArrow.png" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
-
+  <!-- Package Add -->
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
-    <PackageReference Include="SimpleFileIO" Version="0.0.3" />
+    <PackageReference Include="SimpleFileIO" Version="0.1.4" />
     <PackageReference Include="WpfAnalyzers" Version="4.1.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -65,6 +59,15 @@
     </PackageReference>
   </ItemGroup>
 
+  <!-- Add PackageIn -->
+  <ItemGroup>
+      <None Include="..\README.md">
+          <Pack>True</Pack>
+          <PackagePath>\</PackagePath>
+      </None>
+  </ItemGroup>    
+    
+    
   <ItemGroup>
     <Resource Include="Resource\Mask\check.png" />
     <Resource Include="Resource\Mask\close.png" />
