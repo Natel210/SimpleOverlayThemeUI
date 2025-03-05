@@ -1,0 +1,61 @@
+name: Main Pull Request CI
+description: Main Pull Request
+
+on:
+  pull_request:
+    branches:
+      - 'main'
+
+permissions:
+  contents: write
+  statuses: write
+
+concurrency:
+  group: main-pull-request
+  cancel-in-progress: false
+
+jobs:
+  build-test:
+    name: Build Test
+    runs-on: windows-latest
+    steps:
+      - name: Git Check Out
+        uses: actions/checkout@v4
+
+      # Used .Net
+      - name: Setup .NET 8.0
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.X"
+      
+      # Only Target Projects
+      - name: Remove Test Project from Solution
+        run: dotnet sln SimpleOverlayTheme.sln remove SimpleOverlayThemeExample/SimpleOverlayThemeExample.csproj
+
+      # Only Target Projects
+      - name: Clear NuGet Cache
+        run: dotnet nuget locals all --clear
+
+      # Only Target Projects
+      - name: Restore Only Main Project
+        run: dotnet restore SimpleOverlayTheme/SimpleOverlayTheme.csproj
+
+      # Only Target Projects
+      - name: Build Test In Window Release
+        id: build-test-in-window-release
+        run: dotnet build SimpleOverlayTheme/SimpleOverlayTheme.csproj -c Release --no-restore
+        shell: pwsh
+        continue-on-error: true
+
+      # Project Build Failed After Debug Build
+      - name: Build Test In Window Debug
+        id: build-test-in-window-debug
+        if: steps.build-test-in-window-release.outcome == 'failure'
+        run: dotnet build SimpleOverlayTheme/SimpleOverlayTheme.csproj -c Debug --no-restore
+        shell: pwsh
+        continue-on-error: true
+
+      # Last Failed Check
+      - name: Fail if both builds fail
+        if: steps.build-test-in-window-release.outcome == 'failure' || steps.build-test-in-window-debug.outcome == 'failure'
+        run: exit 1
