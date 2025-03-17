@@ -35,7 +35,7 @@ jobs:
           SKIP=false
           
           if [[ "${{ github.actor }}" == "web-flow" ]]; then
-        echo "Detected [web-flow]  P;- P;     UY   commit, skipping..."
+            echo "Detected [web-flow] commit, skipping..."
             SKIP=true
           fi
 
