@@ -12,7 +12,7 @@
         Style="{StaticResource SimpleOverlayTheme.Window.Default}"
         Title="MainWindow">
     <StackPanel Orientation="Vertical">
-        <StackPanel Orientation="Vertical" Height="800">
+        <StackPanel Orientation="Vertical" Height="500">
             <TabControl Height="Auto">
                 <TabItem Header="Border" >
                     <example:BorderExample/>
