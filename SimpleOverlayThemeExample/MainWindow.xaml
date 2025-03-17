@@ -11,6 +11,7 @@
         mc:Ignorable="d"
         Style="{StaticResource SimpleOverlayTheme.Window.Default}"
         Title="MainWindow">
+    <!--TEST-->
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Vertical" Height="500">
             <TabControl Height="Auto">

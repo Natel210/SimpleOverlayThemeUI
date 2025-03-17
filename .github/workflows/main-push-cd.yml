@@ -48,6 +48,7 @@ jobs:
           echo "skip=$SKIP" >> $GITHUB_OUTPUT
           
   versioning:
+    # TEST
     needs: check-skip
     if: needs.check-skip.outputs.skip == 'false'
     runs-on: ubuntu-latest
