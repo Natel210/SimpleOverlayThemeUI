@@ -35,7 +35,7 @@ jobs:
           SKIP=false
           
           if [[ "${{ github.actor }}" == "web-flow" ]]; then
-            echo "Detected [web-flow] commit, skipping..."
+        echo "Detected [web-flow]  P;- P;     UY   commit, skipping..."
             SKIP=true
           fi
 
@@ -48,6 +48,7 @@ jobs:
           echo "skip=$SKIP" >> $GITHUB_OUTPUT
           
   versioning:
+    # TEST
     needs: check-skip
     if: needs.check-skip.outputs.skip == 'false'
     runs-on: ubuntu-latest
