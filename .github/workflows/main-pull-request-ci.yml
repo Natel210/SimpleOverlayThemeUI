@@ -43,19 +43,31 @@ jobs:
       # Only Target Projects
       - name: Build Test In Window Release
         id: build-test-in-window-release
-        run: dotnet build SimpleOverlayTheme/SimpleOverlayTheme.csproj -c Release --no-restore
+        run: |
+          # Build Test In Window Release
+          dotnet build SimpleOverlayTheme/SimpleOverlayTheme.csproj -c Release --no-restore
         shell: pwsh
         continue-on-error: true
 
       # Project Build Failed After Debug Build
       - name: Build Test In Window Debug
         id: build-test-in-window-debug
-        if: steps.build-test-in-window-release.outcome == 'failure'
-        run: dotnet build SimpleOverlayTheme/SimpleOverlayTheme.csproj -c Debug --no-restore
+        run: |
+          # Build Test In Window Debug
+          dotnet build SimpleOverlayTheme/SimpleOverlayTheme.csproj -c Debug --no-restore
         shell: pwsh
         continue-on-error: true
 
+      - name: Fail if both builds fail
+        if: steps.build-test-in-window-debug.outcome == 'failure'
+        run: |
+          # Report Debug Bulid
+          echo ::warning:: Debug Bulid Fail...
+
       # Last Failed Check
       - name: Fail if both builds fail
-        if: steps.build-test-in-window-release.outcome == 'failure' || steps.build-test-in-window-debug.outcome == 'failure'
-        run: exit 1
+        if: steps.build-test-in-window-release.outcome == 'failure'
+        run: |
+          # Report Release Bulid
+          echo ::error:: Release Bulid Fail...
+          exit 1
