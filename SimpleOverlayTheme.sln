@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleOverlayTheme", "Simpl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleOverlayThemeExample", "SimpleOverlayThemeExample\SimpleOverlayThemeExample.csproj", "{2E78DAE7-7AD4-47C6-8E46-8B30EC357287}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleOverlayThemeGenerateXamlTool", "SimpleOverlayThemeGenerateXamlTool\SimpleOverlayThemeGenerateXamlTool.csproj", "{254AF158-46BB-4E1C-8A64-FCEA81982188}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleOverlayCurrentThemeGenerateXamlTool", "SimpleOverlayCurrentThemeGenerateXamlTool\SimpleOverlayCurrentThemeGenerateXamlTool.csproj", "{59171E49-C0C2-4409-9983-FD26C35F9DBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{2E78DAE7-7AD4-47C6-8E46-8B30EC357287}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E78DAE7-7AD4-47C6-8E46-8B30EC357287}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E78DAE7-7AD4-47C6-8E46-8B30EC357287}.Release|Any CPU.Build.0 = Release|Any CPU
+		{254AF158-46BB-4E1C-8A64-FCEA81982188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{254AF158-46BB-4E1C-8A64-FCEA81982188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{254AF158-46BB-4E1C-8A64-FCEA81982188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{254AF158-46BB-4E1C-8A64-FCEA81982188}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59171E49-C0C2-4409-9983-FD26C35F9DBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59171E49-C0C2-4409-9983-FD26C35F9DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59171E49-C0C2-4409-9983-FD26C35F9DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59171E49-C0C2-4409-9983-FD26C35F9DBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

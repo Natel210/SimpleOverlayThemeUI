@@ -79,6 +79,32 @@
     <Resource Include="Resource\Mask\plus.png" />
     <Resource Include="Resource\Mask\restore.png" />
     <Resource Include="Resource\Mask\upArrow.png" />
+  </ItemGroup>    
+    
+    
+  <ItemGroup>
+    <Compile Update="ErrorCode\ErrorMessage.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ErrorMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Theme\ThemeDictionary\ThemeDictionaryKey.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ThemeDictionaryKey.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>    
+    
+    
+  <ItemGroup>
+    <EmbeddedResource Update="ErrorCode\ErrorMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Theme\ThemeDictionary\ThemeDictionaryKey.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ThemeDictionaryKey.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
