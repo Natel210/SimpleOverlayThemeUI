@@ -111,7 +111,7 @@ namespace SimpleOverlayTheme.Theme.Interface
         ////////////////////////////////////////////////////////////////////////////////
         //                                                                            //
         ////////////////////////////////////////////////////////////////////////////////
-        #region ========== Interface - Border Outline ==========
+        #region ========== Overlay - Border Outline ==========
 
         /// <summary>Overlay border outline when disabled.</summary>
         Color OverlayBorderOutline_Disable { get; set; }
@@ -147,51 +147,6 @@ namespace SimpleOverlayTheme.Theme.Interface
         ////////////////////////////////////////////////////////////////////////////////
         //                                                                            //
         ////////////////////////////////////////////////////////////////////////////////
-        #region ========== INI File Interaction ==========
 
-        /// <summary>
-        /// Saves the current theme settings to the associated INI file.
-        /// </summary>
-        /// <returns>True if save operation was successful; otherwise, false.</returns>
-        bool SaveToFile();
-
-        /// <summary>
-        /// Loads theme settings from the associated INI file and applies them to the current object.
-        /// </summary>
-        /// <returns>True if loading and application were successful; otherwise, false.</returns>
-        bool LoadFromFile();
-
-        /// <summary>
-        /// Deletes the INI file associated with this theme instance.
-        /// </summary>
-        /// <returns>True if the file was deleted successfully; otherwise, false.</returns>
-        bool DeleteFile();
-
-        #endregion
-        ////////////////////////////////////////////////////////////////////////////////
-        //                                                                            //
-        ////////////////////////////////////////////////////////////////////////////////
-        #region ========== INI State Interaction ==========
-
-        /// <summary>
-        /// Applies values from a preloaded INI state to the in-memory properties.<br/>
-        /// This does not involve file access and assumes the INI was already loaded.
-        /// </summary>
-        /// <returns>True if apply succeeded; otherwise, false.</returns>
-        bool Apply();
-
-        /// <summary>
-        /// Restores current values into a temporary INI memory structure.<br/>
-        /// This is used for preparing save operations, but does not write to file.
-        /// </summary>
-        /// <returns>True if restore succeeded; otherwise, false.</returns>
-        bool Restore();
-
-        /// <summary>
-        /// Resets all values in this theme to their predefined default values.
-        /// </summary>
-        void ResetValueToDefault();
-
-        #endregion
     }
 }

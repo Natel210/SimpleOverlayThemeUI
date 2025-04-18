@@ -3,7 +3,7 @@
 namespace SimpleOverlayTheme.Theme.Interface
 {
     /// <summary>
-    /// Represents a group of theme-related properties that can be synchronized with an INI file. <br/
+    /// Represents a group of theme-related properties that can be synchronized with an INI file. <br/>
     /// Used to manage multiple property values together for loading, saving, or resetting.
     /// </summary>
     internal interface IThemeProperty

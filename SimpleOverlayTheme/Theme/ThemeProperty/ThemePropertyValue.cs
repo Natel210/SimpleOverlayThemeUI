@@ -63,6 +63,11 @@ namespace SimpleOverlayTheme.Theme.ThemeProperty
             }
         }
 
+        internal ThemePropertyValue<T> Clone()
+        {
+            return new ThemePropertyValue<T>(this._iniItem.Section, this._iniItem.Key, this.DefaultValue) { Value = this.Value };
+        }
+
         /// <summary>
         /// Gets or sets the current value.<br/>
         /// A defensive deep copy is returned if supported by type.

@@ -10,7 +10,7 @@
     <Copyright>MIT</Copyright>
     <PublishDir>$(BaseOutputPath)Publish</PublishDir>      
     <!-- Local Test -->
-    <!--<VersionPrefix>0.0.4</VersionPrefix>-->
+    <VersionPrefix>999.0.4</VersionPrefix>
   </PropertyGroup>
 
   <!-- NuGet -->
@@ -65,6 +65,10 @@
           <Pack>True</Pack>
           <PackagePath>\</PackagePath>
       </None>
+      <Content Include="Build\CurrentThemeGeneraterToXaml.targets">
+          <Pack>True</Pack>
+          <PackagePath>Build\</PackagePath>
+      </Content>
   </ItemGroup>    
     
     
@@ -83,7 +87,7 @@
     
     
   <ItemGroup>
-    <Compile Update="ErrorCode\ErrorMessage.Designer.cs">
+    <Compile Update="Resource\ErrorCodeDictionary\ErrorMessage.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ErrorMessage.resx</DependentUpon>
@@ -97,7 +101,7 @@
     
     
   <ItemGroup>
-    <EmbeddedResource Update="ErrorCode\ErrorMessage.resx">
+    <EmbeddedResource Update="Resource\ErrorCodeDictionary\ErrorMessage.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMessage.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -105,6 +109,28 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ThemeDictionaryKey.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>    
+    
+    
+  <ItemGroup>
+    <Folder Include="Controls\Borders\Helper\" />
+    <Folder Include="Controls\Buttons\Helper\" />
+    <Folder Include="Controls\CheckBoxes\Helper\" />
+    <Folder Include="Controls\ComboBoxes\Helper\" />
+    <Folder Include="Controls\DataGrids\Helper\" />
+    <Folder Include="Controls\Labels\" />
+    <Folder Include="Controls\ListBoxes\" />
+    <Folder Include="Controls\NumericUpDowns\Helper\" />
+    <Folder Include="Controls\NumericUpDowns\CustomControl\" />
+    <Folder Include="Controls\Shared\Helper\" />
+    <Folder Include="Controls\TextBoxes\Helper\" />
+    <Folder Include="Controls\UserControls\" />
+    <Folder Include="Controls\TextBlocks\" />
+    <Folder Include="Controls\Pages\" />
+    <Folder Include="Controls\WindowTitleBars\Behavior\" />
+    <Folder Include="Controls\Windows\Helper\" />
+    <Folder Include="Controls\WindowTitleBars\CustomControl\" />
+    <Folder Include="Object\StyleDictionary\" />
   </ItemGroup>
 
 </Project>

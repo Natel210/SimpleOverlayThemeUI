@@ -4,7 +4,7 @@
                     xmlns:groupBoxHelper="clr-namespace:SimpleOverlayTheme.Object.GroupBoxObject.Helper">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/ThemeSystem/LastTheme.xaml"/>
+        <!--<ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/ThemeSystem/LastTheme.xaml"/>-->
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/BorderObject/Style.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/LabelObject/Style.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/ButtonObject/Style.xaml"/>
