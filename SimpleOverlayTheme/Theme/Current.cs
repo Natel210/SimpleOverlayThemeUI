@@ -1,13 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using SimpleOverlayTheme.Theme.ThemeDictionary;
 using System.Windows.Media;
 using System.Windows;
 using SimpleOverlayTheme.Theme.Interface;
 using SimpleFileIO.State.Ini;
 using SimpleOverlayTheme.Theme.ThemeProperty;
 using SimpleFileIO.Utility;
-using static System.Net.Mime.MediaTypeNames;
+using SimpleOverlayTheme.Resource.StringDictionary.Theme;
 
 namespace SimpleOverlayTheme.Theme
 {
@@ -316,33 +315,33 @@ namespace SimpleOverlayTheme.Theme
                 nameof(OverlayBorderOutline_Disable),
             };
             var changedDictionary = new Dictionary<string, object>() {
-                { ThemeDictionaryKey.ThemeName, ThemeName },
-                { ThemeDictionaryKey.FontSize_Header1, FontSize_Header1 }, { ThemeDictionaryKey.FontSize_Header2, FontSize_Header2 },
-                { ThemeDictionaryKey.FontSize_Header3, FontSize_Header3 }, { ThemeDictionaryKey.FontSize_Header4, FontSize_Header4 },
-                { ThemeDictionaryKey.FontSize_Header5, FontSize_Header5 }, { ThemeDictionaryKey.FontSize_Header6, FontSize_Header6 },
-                { ThemeDictionaryKey.FontSize_Default, FontSize_Default },
-                { ThemeDictionaryKey.Thickness_Default, Thickness_Default }, { ThemeDictionaryKey.Thickness_Zero, Thickness_Zero },
-                { ThemeDictionaryKey.ColorPalette_Foreground, makeBrush(ColorPalette_Foreground) },
-                { ThemeDictionaryKey.ColorPalette_Foreground_Disable, makeBrush(ColorPalette_Foreground_Disable) },
-                { ThemeDictionaryKey.ColorPalette_Background, makeBrush(ColorPalette_Background) },
-                { ThemeDictionaryKey.ColorPalette_Outline, makeBrush(ColorPalette_Outline) },
-                { ThemeDictionaryKey.ColorPalette_Line, makeBrush(ColorPalette_Line) },
-                { ThemeDictionaryKey.ColorPalette_Highlight, makeBrush(ColorPalette_Highlight) },
-                { ThemeDictionaryKey.ColorPalette_Selection, makeBrush(ColorPalette_Selection) },
-                { ThemeDictionaryKey.ColorPalette_Mask, makeBrush(ColorPalette_Mask) },
-                { ThemeDictionaryKey.OverlayBorderBackground_Disable, makeBrush(OverlayBorderBackground_Disable) },
-                { ThemeDictionaryKey.OverlayBorderBackground_Default, makeBrush(OverlayBorderBackground_Default) },
-                { ThemeDictionaryKey.OverlayBorderBackground_MouseOver, makeBrush(OverlayBorderBackground_MouseOver) },
-                { ThemeDictionaryKey.OverlayBorderBackground_Active, makeBrush(OverlayBorderBackground_Active) },
-                { ThemeDictionaryKey.OverlayBorderOutline_Disable, makeBrush(OverlayBorderOutline_Disable) },
-                { ThemeDictionaryKey.OverlayBorderOutline_Default, makeBrush(OverlayBorderOutline_Default) },
-                { ThemeDictionaryKey.OverlayBorderOutline_MouseOver, makeBrush(OverlayBorderOutline_MouseOver) },
-                { ThemeDictionaryKey.OverlayBorderOutline_Active, makeBrush(OverlayBorderOutline_Active) },
+                { ThemeKey.ThemeName, ThemeName },
+                { ThemeKey.FontSize_Header1, FontSize_Header1 }, { ThemeKey.FontSize_Header2, FontSize_Header2 },
+                { ThemeKey.FontSize_Header3, FontSize_Header3 }, { ThemeKey.FontSize_Header4, FontSize_Header4 },
+                { ThemeKey.FontSize_Header5, FontSize_Header5 }, { ThemeKey.FontSize_Header6, FontSize_Header6 },
+                { ThemeKey.FontSize_Default, FontSize_Default },
+                { ThemeKey.Thickness_Default, Thickness_Default }, { ThemeKey.Thickness_Zero, Thickness_Zero },
+                { ThemeKey.ColorPalette_Foreground, makeBrush(ColorPalette_Foreground) },
+                { ThemeKey.ColorPalette_Foreground_Disable, makeBrush(ColorPalette_Foreground_Disable) },
+                { ThemeKey.ColorPalette_Background, makeBrush(ColorPalette_Background) },
+                { ThemeKey.ColorPalette_Outline, makeBrush(ColorPalette_Outline) },
+                { ThemeKey.ColorPalette_Line, makeBrush(ColorPalette_Line) },
+                { ThemeKey.ColorPalette_Highlight, makeBrush(ColorPalette_Highlight) },
+                { ThemeKey.ColorPalette_Selection, makeBrush(ColorPalette_Selection) },
+                { ThemeKey.ColorPalette_Mask, makeBrush(ColorPalette_Mask) },
+                { ThemeKey.OverlayBorderBackground_Disable, makeBrush(OverlayBorderBackground_Disable) },
+                { ThemeKey.OverlayBorderBackground_Default, makeBrush(OverlayBorderBackground_Default) },
+                { ThemeKey.OverlayBorderBackground_MouseOver, makeBrush(OverlayBorderBackground_MouseOver) },
+                { ThemeKey.OverlayBorderBackground_Active, makeBrush(OverlayBorderBackground_Active) },
+                { ThemeKey.OverlayBorderOutline_Disable, makeBrush(OverlayBorderOutline_Disable) },
+                { ThemeKey.OverlayBorderOutline_Default, makeBrush(OverlayBorderOutline_Default) },
+                { ThemeKey.OverlayBorderOutline_MouseOver, makeBrush(OverlayBorderOutline_MouseOver) },
+                { ThemeKey.OverlayBorderOutline_Active, makeBrush(OverlayBorderOutline_Active) },
 
-                { ThemeDictionaryKey.OverlayMaskForeground_Disable, makeBrush(OverlayMaskForeground_Disable) },
-                { ThemeDictionaryKey.OverlayMaskForeground_Default, makeBrush(OverlayMaskForeground_Default) },
-                { ThemeDictionaryKey.OverlayMaskForeground_MouseOver, makeBrush(OverlayMaskForeground_MouseOver) },
-                { ThemeDictionaryKey.OverlayMaskForeground_Active, makeBrush(OverlayMaskForeground_Active) },
+                { ThemeKey.OverlayMaskForeground_Disable, makeBrush(OverlayMaskForeground_Disable) },
+                { ThemeKey.OverlayMaskForeground_Default, makeBrush(OverlayMaskForeground_Default) },
+                { ThemeKey.OverlayMaskForeground_MouseOver, makeBrush(OverlayMaskForeground_MouseOver) },
+                { ThemeKey.OverlayMaskForeground_Active, makeBrush(OverlayMaskForeground_Active) },
             };
 
             var dicts = GetAllDictionaries().ToList();
@@ -475,62 +474,62 @@ namespace SimpleOverlayTheme.Theme
             {
                 _common.ThemeName.Value = source.ThemeName;
                 changedProperties.Add(nameof(ThemeName));
-                changedDictionary.Add(ThemeDictionaryKey.ThemeName, ThemeName);
+                changedDictionary.Add(ThemeKey.ThemeName, ThemeName);
             }
             if (EqualityComparer<double>.Default.Equals(_common.FontSize_Header1.Value, source.FontSize_Header1))
             {
                 _common.FontSize_Header1.Value = source.FontSize_Header1;
                 changedProperties.Add(nameof(FontSize_Header1));
-                changedDictionary.Add(ThemeDictionaryKey.FontSize_Header1, FontSize_Header1);
+                changedDictionary.Add(ThemeKey.FontSize_Header1, FontSize_Header1);
             }
             if (EqualityComparer<double>.Default.Equals(_common.FontSize_Header2.Value, source.FontSize_Header2))
             {
                 _common.FontSize_Header2.Value = source.FontSize_Header2;
                 changedProperties.Add(nameof(FontSize_Header2));
-                changedDictionary.Add(ThemeDictionaryKey.FontSize_Header2, FontSize_Header2);
+                changedDictionary.Add(ThemeKey.FontSize_Header2, FontSize_Header2);
             }
             if (EqualityComparer<double>.Default.Equals(_common.FontSize_Header3.Value, source.FontSize_Header3))
             {
                 _common.FontSize_Header3.Value = source.FontSize_Header3;
                 changedProperties.Add(nameof(FontSize_Header3));
-                changedDictionary.Add(ThemeDictionaryKey.FontSize_Header3, FontSize_Header3);
+                changedDictionary.Add(ThemeKey.FontSize_Header3, FontSize_Header3);
             }
             if (EqualityComparer<double>.Default.Equals(_common.FontSize_Header4.Value, source.FontSize_Header4))
             {
                 _common.FontSize_Header4.Value = source.FontSize_Header4;
                 changedProperties.Add(nameof(FontSize_Header4));
-                changedDictionary.Add(ThemeDictionaryKey.FontSize_Header4, FontSize_Header4);
+                changedDictionary.Add(ThemeKey.FontSize_Header4, FontSize_Header4);
             }
             if (EqualityComparer<double>.Default.Equals(_common.FontSize_Header5.Value, source.FontSize_Header5))
             {
                 _common.FontSize_Header5.Value = source.FontSize_Header5;
                 changedProperties.Add(nameof(FontSize_Header5));
-                changedDictionary.Add(ThemeDictionaryKey.FontSize_Header5, FontSize_Header5);
+                changedDictionary.Add(ThemeKey.FontSize_Header5, FontSize_Header5);
             }
             if (EqualityComparer<double>.Default.Equals(_common.FontSize_Header6.Value, source.FontSize_Header6))
             {
                 _common.FontSize_Header6.Value = source.FontSize_Header6;
                 changedProperties.Add(nameof(FontSize_Header6));
-                changedDictionary.Add(ThemeDictionaryKey.FontSize_Header6, FontSize_Header6);
+                changedDictionary.Add(ThemeKey.FontSize_Header6, FontSize_Header6);
             }
             if (EqualityComparer<double>.Default.Equals(_common.FontSize_Default.Value, source.FontSize_Default))
             {
                 _common.FontSize_Default.Value = source.FontSize_Default;
                 changedProperties.Add(nameof(FontSize_Default));
-                changedDictionary.Add(ThemeDictionaryKey.FontSize_Default, FontSize_Default);
+                changedDictionary.Add(ThemeKey.FontSize_Default, FontSize_Default);
             }
 
             if (EqualityComparer<Thickness>.Default.Equals(_common.Thickness_Default.Value, source.Thickness_Default))
             {
                 _common.Thickness_Default.Value = source.Thickness_Default;
                 changedProperties.Add(nameof(Thickness_Default));
-                changedDictionary.Add(ThemeDictionaryKey.Thickness_Default, Thickness_Default);
+                changedDictionary.Add(ThemeKey.Thickness_Default, Thickness_Default);
             }
             if (EqualityComparer<Thickness>.Default.Equals(_common.Thickness_Zero.Value, source.Thickness_Zero))
             {
                 _common.Thickness_Zero.Value = source.Thickness_Zero;
                 changedProperties.Add(nameof(Thickness_Zero));
-                changedDictionary.Add(ThemeDictionaryKey.Thickness_Zero, Thickness_Zero);
+                changedDictionary.Add(ThemeKey.Thickness_Zero, Thickness_Zero);
             }
 
             if (EqualityComparer<Color>.Default.Equals(_common.ColorPalette_Foreground.Value, source.ColorPalette_Foreground))
@@ -539,124 +538,124 @@ namespace SimpleOverlayTheme.Theme
                 changedProperties.Add(nameof(ColorPalette_Foreground));
                 var brush = new SolidColorBrush(ColorPalette_Foreground);
                 brush.Freeze();
-                changedDictionary.Add(ThemeDictionaryKey.ColorPalette_Foreground, brush);
+                changedDictionary.Add(ThemeKey.ColorPalette_Foreground, brush);
             }
             if (EqualityComparer<Color>.Default.Equals(_common.ColorPalette_Foreground_Disable.Value, source.ColorPalette_Foreground_Disable))
             {
                 _common.ColorPalette_Foreground_Disable.Value = source.ColorPalette_Foreground_Disable;
                 changedProperties.Add(nameof(ColorPalette_Foreground_Disable));
-                changedDictionary.Add(ThemeDictionaryKey.ColorPalette_Foreground_Disable, makeBrush(ColorPalette_Foreground_Disable));
+                changedDictionary.Add(ThemeKey.ColorPalette_Foreground_Disable, makeBrush(ColorPalette_Foreground_Disable));
             }
             if (EqualityComparer<Color>.Default.Equals(_common.ColorPalette_Background.Value, source.ColorPalette_Background))
             {
                 _common.ColorPalette_Background.Value = source.ColorPalette_Background;
                 changedProperties.Add(nameof(ColorPalette_Background));
-                changedDictionary.Add(ThemeDictionaryKey.ColorPalette_Background, makeBrush(ColorPalette_Background));
+                changedDictionary.Add(ThemeKey.ColorPalette_Background, makeBrush(ColorPalette_Background));
             }
             if (EqualityComparer<Color>.Default.Equals(_common.ColorPalette_Outline.Value, source.ColorPalette_Outline))
             {
                 _common.ColorPalette_Outline.Value = source.ColorPalette_Outline;
                 changedProperties.Add(nameof(ColorPalette_Outline));
-                changedDictionary.Add(ThemeDictionaryKey.ColorPalette_Outline, makeBrush(ColorPalette_Outline));
+                changedDictionary.Add(ThemeKey.ColorPalette_Outline, makeBrush(ColorPalette_Outline));
             }
             if (EqualityComparer<Color>.Default.Equals(_common.ColorPalette_Line.Value, source.ColorPalette_Line))
             {
                 _common.ColorPalette_Line.Value = source.ColorPalette_Line;
                 changedProperties.Add(nameof(ColorPalette_Line));
-                changedDictionary.Add(ThemeDictionaryKey.ColorPalette_Line, makeBrush(ColorPalette_Line));
+                changedDictionary.Add(ThemeKey.ColorPalette_Line, makeBrush(ColorPalette_Line));
             }
             if (EqualityComparer<Color>.Default.Equals(_common.ColorPalette_Highlight.Value, source.ColorPalette_Highlight))
             {
                 _common.ColorPalette_Highlight.Value = source.ColorPalette_Highlight;
                 changedProperties.Add(nameof(ColorPalette_Highlight));
-                changedDictionary.Add(ThemeDictionaryKey.ColorPalette_Highlight, makeBrush(ColorPalette_Highlight));
+                changedDictionary.Add(ThemeKey.ColorPalette_Highlight, makeBrush(ColorPalette_Highlight));
             }
             if (EqualityComparer<Color>.Default.Equals(_common.ColorPalette_Selection.Value, source.ColorPalette_Selection))
             {
                 _common.ColorPalette_Selection.Value = source.ColorPalette_Selection;
                 changedProperties.Add(nameof(ColorPalette_Selection));
-                changedDictionary.Add(ThemeDictionaryKey.ColorPalette_Selection, makeBrush(ColorPalette_Selection));
+                changedDictionary.Add(ThemeKey.ColorPalette_Selection, makeBrush(ColorPalette_Selection));
             }
             if (EqualityComparer<Color>.Default.Equals(_common.ColorPalette_Mask.Value, source.ColorPalette_Mask))
             {
                 _common.ColorPalette_Mask.Value = source.ColorPalette_Mask;
                 changedProperties.Add(nameof(ColorPalette_Mask));
-                changedDictionary.Add(ThemeDictionaryKey.ColorPalette_Mask, makeBrush(ColorPalette_Mask));
+                changedDictionary.Add(ThemeKey.ColorPalette_Mask, makeBrush(ColorPalette_Mask));
             }
 
             if (EqualityComparer<Color>.Default.Equals(_overlay.BorderBackground_Disable.Value, source.OverlayBorderBackground_Disable))
             {
                 _overlay.BorderBackground_Disable.Value = source.OverlayBorderBackground_Disable;
                 changedProperties.Add(nameof(OverlayBorderBackground_Disable));
-                changedDictionary.Add(ThemeDictionaryKey.OverlayBorderBackground_Disable, makeBrush(OverlayBorderBackground_Disable));
+                changedDictionary.Add(ThemeKey.OverlayBorderBackground_Disable, makeBrush(OverlayBorderBackground_Disable));
             }
             if (EqualityComparer<Color>.Default.Equals(_overlay.BorderBackground_Default.Value, source.OverlayBorderBackground_Default))
             {
                 _overlay.BorderBackground_Default.Value = source.OverlayBorderBackground_Default;
                 changedProperties.Add(nameof(OverlayBorderBackground_Default));
-                changedDictionary.Add(ThemeDictionaryKey.OverlayBorderBackground_Default, makeBrush(OverlayBorderBackground_Default));
+                changedDictionary.Add(ThemeKey.OverlayBorderBackground_Default, makeBrush(OverlayBorderBackground_Default));
             }
             if (EqualityComparer<Color>.Default.Equals(_overlay.BorderBackground_MouseOver.Value, source.OverlayBorderBackground_MouseOver))
             {
                 _overlay.BorderBackground_MouseOver.Value = source.OverlayBorderBackground_MouseOver;
                 changedProperties.Add(nameof(OverlayBorderBackground_MouseOver));
-                changedDictionary.Add(ThemeDictionaryKey.OverlayBorderBackground_MouseOver, makeBrush(OverlayBorderBackground_MouseOver));
+                changedDictionary.Add(ThemeKey.OverlayBorderBackground_MouseOver, makeBrush(OverlayBorderBackground_MouseOver));
             }
             if (EqualityComparer<Color>.Default.Equals(_overlay.BorderBackground_Active.Value, source.OverlayBorderBackground_Active))
             {
                 _overlay.BorderBackground_Active.Value = source.OverlayBorderBackground_Active;
                 changedProperties.Add(nameof(OverlayBorderBackground_Active));
-                changedDictionary.Add(ThemeDictionaryKey.OverlayBorderBackground_Active, makeBrush(OverlayBorderBackground_Active));
+                changedDictionary.Add(ThemeKey.OverlayBorderBackground_Active, makeBrush(OverlayBorderBackground_Active));
             }
 
             if (EqualityComparer<Color>.Default.Equals(_overlay.BorderOutline_Disable.Value, source.OverlayBorderOutline_Disable))
             {
                 _overlay.BorderOutline_Disable.Value = source.OverlayBorderOutline_Disable;
                 changedProperties.Add(nameof(OverlayBorderOutline_Disable));
-                changedDictionary.Add(ThemeDictionaryKey.OverlayBorderOutline_Disable, makeBrush(OverlayBorderOutline_Disable));
+                changedDictionary.Add(ThemeKey.OverlayBorderOutline_Disable, makeBrush(OverlayBorderOutline_Disable));
             }
             if (EqualityComparer<Color>.Default.Equals(_overlay.BorderOutline_Default.Value, source.OverlayBorderOutline_Default))
             {
                 _overlay.BorderOutline_Default.Value = source.OverlayBorderOutline_Default;
                 changedProperties.Add(nameof(OverlayBorderOutline_Default));
-                changedDictionary.Add(ThemeDictionaryKey.OverlayBorderOutline_Default, makeBrush(OverlayBorderOutline_Default));
+                changedDictionary.Add(ThemeKey.OverlayBorderOutline_Default, makeBrush(OverlayBorderOutline_Default));
             }
             if (EqualityComparer<Color>.Default.Equals(_overlay.BorderOutline_MouseOver.Value, source.OverlayBorderOutline_MouseOver))
             {
                 _overlay.BorderOutline_MouseOver.Value = source.OverlayBorderOutline_MouseOver;
                 changedProperties.Add(nameof(OverlayBorderOutline_MouseOver));
-                changedDictionary.Add(ThemeDictionaryKey.OverlayBorderOutline_MouseOver, makeBrush(OverlayBorderOutline_MouseOver));
+                changedDictionary.Add(ThemeKey.OverlayBorderOutline_MouseOver, makeBrush(OverlayBorderOutline_MouseOver));
             }
             if (EqualityComparer<Color>.Default.Equals(_overlay.BorderOutline_Active.Value, source.OverlayBorderOutline_Active))
             {
                 _overlay.BorderOutline_Active.Value = source.OverlayBorderOutline_Active;
                 changedProperties.Add(nameof(OverlayBorderOutline_Active));
-                changedDictionary.Add(ThemeDictionaryKey.OverlayBorderOutline_Active, makeBrush(OverlayBorderOutline_Active));
+                changedDictionary.Add(ThemeKey.OverlayBorderOutline_Active, makeBrush(OverlayBorderOutline_Active));
             }
 
             if (EqualityComparer<Color>.Default.Equals(_overlay.MaskForeground_Disable.Value, source.OverlayMaskForeground_Disable))
             {
                 _overlay.MaskForeground_Disable.Value = source.OverlayMaskForeground_Disable;
                 changedProperties.Add(nameof(OverlayMaskForeground_Disable));
-                changedDictionary.Add(ThemeDictionaryKey.OverlayMaskForeground_Disable, makeBrush(OverlayMaskForeground_Disable));
+                changedDictionary.Add(ThemeKey.OverlayMaskForeground_Disable, makeBrush(OverlayMaskForeground_Disable));
             }
             if (EqualityComparer<Color>.Default.Equals(_overlay.MaskForeground_Default.Value, source.OverlayMaskForeground_Default))
             {
                 _overlay.MaskForeground_Default.Value = source.OverlayMaskForeground_Default;
                 changedProperties.Add(nameof(OverlayMaskForeground_Default));
-                changedDictionary.Add(ThemeDictionaryKey.OverlayMaskForeground_Default, makeBrush(OverlayMaskForeground_Default));
+                changedDictionary.Add(ThemeKey.OverlayMaskForeground_Default, makeBrush(OverlayMaskForeground_Default));
             }
             if (EqualityComparer<Color>.Default.Equals(_overlay.MaskForeground_MouseOver.Value, source.OverlayMaskForeground_MouseOver))
             {
                 _overlay.MaskForeground_MouseOver.Value = source.OverlayMaskForeground_MouseOver;
                 changedProperties.Add(nameof(OverlayMaskForeground_MouseOver));
-                changedDictionary.Add(ThemeDictionaryKey.OverlayMaskForeground_MouseOver, makeBrush(OverlayMaskForeground_MouseOver));
+                changedDictionary.Add(ThemeKey.OverlayMaskForeground_MouseOver, makeBrush(OverlayMaskForeground_MouseOver));
             }
             if (EqualityComparer<Color>.Default.Equals(_overlay.MaskForeground_Active.Value, source.OverlayMaskForeground_Active))
             {
                 _overlay.MaskForeground_Active.Value = source.OverlayMaskForeground_Active;
                 changedProperties.Add(nameof(OverlayMaskForeground_Active));
-                changedDictionary.Add(ThemeDictionaryKey.OverlayMaskForeground_Active, makeBrush(OverlayMaskForeground_Active));
+                changedDictionary.Add(ThemeKey.OverlayMaskForeground_Active, makeBrush(OverlayMaskForeground_Active));
             }
 
             // Bulk Update Dictionary
@@ -795,7 +794,7 @@ namespace SimpleOverlayTheme.Theme
         {
             if (string.IsNullOrEmpty(value))
                 return;
-            SetValue(value, _common.ThemeName.Value, ThemeDictionaryKey.ThemeName,
+            SetValue(value, _common.ThemeName.Value, ThemeKey.ThemeName,
             () => _common.ThemeName.Value = value, nameof(ThemeName));
         }
 
@@ -809,43 +808,43 @@ namespace SimpleOverlayTheme.Theme
         private double GetFontSize_Header1() => _common.FontSize_Header1.Value;
         /// <summary> Sets the font size for <see cref="FontSize_Header1"/> elements and applies changes to the resource dictionary. </summary>
         private void SetFontSize_Header1(double value) => SetValue(value, _common.FontSize_Header1.Value,
-            ThemeDictionaryKey.FontSize_Header1, () => _common.FontSize_Header1.Value = value, nameof(FontSize_Header1));
+            ThemeKey.FontSize_Header1, () => _common.FontSize_Header1.Value = value, nameof(FontSize_Header1));
 
         /// <summary> Gets the font size for <see cref="FontSize_Header2"/> elements. </summary>
         private double GetFontSize_Header2() => _common.FontSize_Header2.Value;
         /// <summary> Sets the font size for <see cref="FontSize_Header2"/> elements and applies changes to the resource dictionary. </summary>
         private void SetFontSize_Header2(double value) => SetValue(value, _common.FontSize_Header2.Value,
-            ThemeDictionaryKey.FontSize_Header2, () => _common.FontSize_Header2.Value = value, nameof(FontSize_Header2));
+            ThemeKey.FontSize_Header2, () => _common.FontSize_Header2.Value = value, nameof(FontSize_Header2));
 
         /// <summary> Gets the font size for <see cref="FontSize_Header3"/> elements. </summary>
         private double GetFontSize_Header3() => _common.FontSize_Header3.Value;
         /// <summary> Sets the font size for <see cref="FontSize_Header3"/> elements and applies changes to the resource dictionary. </summary>
         private void SetFontSize_Header3(double value) => SetValue(value, _common.FontSize_Header3.Value,
-            ThemeDictionaryKey.FontSize_Header3, () => _common.FontSize_Header3.Value = value, nameof(FontSize_Header3));
+            ThemeKey.FontSize_Header3, () => _common.FontSize_Header3.Value = value, nameof(FontSize_Header3));
 
         /// <summary> Gets the font size for <see cref="FontSize_Header4"/> elements. </summary>
         private double GetFontSize_Header4() => _common.FontSize_Header4.Value;
         /// <summary> Sets the font size for <see cref="FontSize_Header4"/> elements and applies changes to the resource dictionary. </summary>
         private void SetFontSize_Header4(double value) => SetValue(value, _common.FontSize_Header4.Value,
-            ThemeDictionaryKey.FontSize_Header4, () => _common.FontSize_Header4.Value = value, nameof(FontSize_Header4));
+            ThemeKey.FontSize_Header4, () => _common.FontSize_Header4.Value = value, nameof(FontSize_Header4));
 
         /// <summary> Gets the font size for <see cref="FontSize_Header5"/> elements. </summary>
         private double GetFontSize_Header5() => _common.FontSize_Header5.Value;
         /// <summary> Sets the font size for <see cref="FontSize_Header5"/> elements and applies changes to the resource dictionary. </summary>
         private void SetFontSize_Header5(double value) => SetValue(value, _common.FontSize_Header5.Value,
-            ThemeDictionaryKey.FontSize_Header5, () => _common.FontSize_Header5.Value = value, nameof(FontSize_Header5));
+            ThemeKey.FontSize_Header5, () => _common.FontSize_Header5.Value = value, nameof(FontSize_Header5));
 
         /// <summary> Gets the font size for <see cref="FontSize_Header6"/> elements. </summary>
         private double GetFontSize_Header6() => _common.FontSize_Header6.Value;
         /// <summary> Sets the font size for <see cref="FontSize_Header6"/> elements and applies changes to the resource dictionary. </summary>
         private void SetFontSize_Header6(double value) => SetValue(value, _common.FontSize_Header6.Value,
-            ThemeDictionaryKey.FontSize_Header6, () => _common.FontSize_Header6.Value = value, nameof(FontSize_Header6));
+            ThemeKey.FontSize_Header6, () => _common.FontSize_Header6.Value = value, nameof(FontSize_Header6));
 
         /// <summary> Gets the font size for <see cref="FontSize_Default"/> elements. </summary>
         private double GetFontSize_Default() => _common.FontSize_Default.Value;
         /// <summary> Sets the font size for <see cref="FontSize_Default"/> elements and applies changes to the resource dictionary. </summary>
         private void SetFontSize_Default(double value) => SetValue(value, _common.FontSize_Default.Value,
-            ThemeDictionaryKey.FontSize_Default, () => _common.FontSize_Default.Value = value, nameof(FontSize_Default));
+            ThemeKey.FontSize_Default, () => _common.FontSize_Default.Value = value, nameof(FontSize_Default));
 
         #endregion
         ////////////////////////////////////////////////////////////////////////////////
@@ -857,13 +856,13 @@ namespace SimpleOverlayTheme.Theme
         private Thickness GetThickness_Default() => _common.Thickness_Default.Value;
         /// <summary> Sets the default thickness value and updates the resource dictionary. </summary>
         private void SetThickness_Default(Thickness value) => SetValue(value, _common.Thickness_Default.Value,
-            ThemeDictionaryKey.Thickness_Default, () => _common.Thickness_Default.Value = value, nameof(Thickness_Default));
+            ThemeKey.Thickness_Default, () => _common.Thickness_Default.Value = value, nameof(Thickness_Default));
 
         /// <summary> Gets the zero-thickness value, typically used for borderless or padding-less elements. </summary>
         private Thickness GetThickness_Zero() => _common.Thickness_Zero.Value;
         /// <summary> Sets the zero-thickness value and updates the resource dictionary. </summary>
         private void SetThickness_Zero(Thickness value) => SetValue(value, _common.Thickness_Zero.Value,
-            ThemeDictionaryKey.Thickness_Zero, () => _common.Thickness_Zero.Value = value, nameof(Thickness_Zero));
+            ThemeKey.Thickness_Zero, () => _common.Thickness_Zero.Value = value, nameof(Thickness_Zero));
 
         #endregion
         ////////////////////////////////////////////////////////////////////////////////
@@ -875,49 +874,49 @@ namespace SimpleOverlayTheme.Theme
         private Color GetColorPalette_Foreground() => _common.ColorPalette_Foreground.Value;
         /// <summary> Sets the primary foreground color and updates related resources. </summary>
         private void SetColorPalette_Foreground(Color value) => SetBrush(value, _common.ColorPalette_Foreground.Value,
-            ThemeDictionaryKey.ColorPalette_Foreground, () => _common.ColorPalette_Foreground.Value = value, nameof(ColorPalette_Foreground));
+            ThemeKey.ColorPalette_Foreground, () => _common.ColorPalette_Foreground.Value = value, nameof(ColorPalette_Foreground));
 
         /// <summary> Gets the foreground color for disabled UI states. </summary>
         private Color GetColorPalette_Foreground_Disable() => _common.ColorPalette_Foreground_Disable.Value;
         /// <summary> Sets the disabled foreground color and applies it to the resources. </summary>
         private void SetColorPalette_Foreground_Disable(Color value) => SetBrush(value, _common.ColorPalette_Foreground_Disable.Value,
-            ThemeDictionaryKey.ColorPalette_Foreground_Disable, () => _common.ColorPalette_Foreground_Disable.Value = value, nameof(ColorPalette_Foreground_Disable));
+            ThemeKey.ColorPalette_Foreground_Disable, () => _common.ColorPalette_Foreground_Disable.Value = value, nameof(ColorPalette_Foreground_Disable));
 
         /// <summary> Gets the background color for content areas. </summary>
         private Color GetColorPalette_Background() => _common.ColorPalette_Background.Value;
         /// <summary> Sets the background color and updates the resource dictionary. </summary>
         private void SetColorPalette_Background(Color value) => SetBrush(value, _common.ColorPalette_Background.Value,
-            ThemeDictionaryKey.ColorPalette_Background, () => _common.ColorPalette_Background.Value = value, nameof(ColorPalette_Background));
+            ThemeKey.ColorPalette_Background, () => _common.ColorPalette_Background.Value = value, nameof(ColorPalette_Background));
 
         /// <summary> Gets the outline color used around themed UI components. </summary>
         private Color GetColorPalette_Outline() => _common.ColorPalette_Outline.Value;
         /// <summary> Sets the outline color and updates the resource dictionary accordingly. </summary>
         private void SetColorPalette_Outline(Color value) => SetBrush(value, _common.ColorPalette_Outline.Value,
-            ThemeDictionaryKey.ColorPalette_Outline, () => _common.ColorPalette_Outline.Value = value, nameof(ColorPalette_Outline));
+            ThemeKey.ColorPalette_Outline, () => _common.ColorPalette_Outline.Value = value, nameof(ColorPalette_Outline));
 
         /// <summary> Gets the line color typically used for separators or borders. </summary>
         private Color GetColorPalette_Line() => _common.ColorPalette_Line.Value;
         /// <summary> Sets the line color and reflects the change in the resource dictionary. </summary>
         private void SetColorPalette_Line(Color value) => SetBrush(value, _common.ColorPalette_Line.Value,
-            ThemeDictionaryKey.ColorPalette_Line, () => _common.ColorPalette_Line.Value = value, nameof(ColorPalette_Line));
+            ThemeKey.ColorPalette_Line, () => _common.ColorPalette_Line.Value = value, nameof(ColorPalette_Line));
 
         /// <summary> Gets the highlight color used to indicate focus or emphasis. </summary>
         private Color GetColorPalette_Highlight() => _common.ColorPalette_Highlight.Value;
         /// <summary> Sets the highlight color and updates resource values. </summary>
         private void SetColorPalette_Highlight(Color value) => SetBrush(value, _common.ColorPalette_Highlight.Value,
-            ThemeDictionaryKey.ColorPalette_Highlight, () => _common.ColorPalette_Highlight.Value = value, nameof(ColorPalette_Highlight));
+            ThemeKey.ColorPalette_Highlight, () => _common.ColorPalette_Highlight.Value = value, nameof(ColorPalette_Highlight));
 
         /// <summary> Gets the selection color used for selected items or highlights. </summary>
         private Color GetColorPalette_Selection() => _common.ColorPalette_Selection.Value;
         /// <summary> Sets the selection color and updates related resources. </summary>
         private void SetColorPalette_Selection(Color value) => SetBrush(value, _common.ColorPalette_Selection.Value,
-            ThemeDictionaryKey.ColorPalette_Selection, () => _common.ColorPalette_Selection.Value = value, nameof(ColorPalette_Selection));
+            ThemeKey.ColorPalette_Selection, () => _common.ColorPalette_Selection.Value = value, nameof(ColorPalette_Selection));
 
         /// <summary> Gets the mask color overlay applied to obscured content. </summary>
         private Color GetColorPalette_Mask() => _common.ColorPalette_Mask.Value;
         /// <summary> Sets the mask color overlay and updates the resource dictionary. </summary>
         private void SetColorPalette_Mask(Color value) => SetBrush(value, _common.ColorPalette_Mask.Value,
-            ThemeDictionaryKey.ColorPalette_Mask, () => _common.ColorPalette_Mask.Value = value, nameof(ColorPalette_Mask));
+            ThemeKey.ColorPalette_Mask, () => _common.ColorPalette_Mask.Value = value, nameof(ColorPalette_Mask));
 
         #endregion
         ////////////////////////////////////////////////////////////////////////////////
@@ -929,25 +928,25 @@ namespace SimpleOverlayTheme.Theme
         private Color GetOverlayBorderBackground_Disable() => _overlay.BorderBackground_Disable.Value;
         /// <summary> Sets the background color of overlay borders in the [Disabled] state. </summary>
         private void SetOverlayBorderBackground_Disable(Color value) => SetBrush(value, _overlay.BorderBackground_Disable.Value,
-            ThemeDictionaryKey.OverlayBorderBackground_Disable, () => _overlay.BorderBackground_Disable.Value = value, nameof(OverlayBorderBackground_Disable));
+            ThemeKey.OverlayBorderBackground_Disable, () => _overlay.BorderBackground_Disable.Value = value, nameof(OverlayBorderBackground_Disable));
 
         /// <summary> Gets the background color of overlay borders in the [Default] state. </summary>
         private Color GetOverlayBorderBackground_Default() => _overlay.BorderBackground_Default.Value;
         /// <summary> Sets the background color of overlay borders in the [Default] state. </summary>
         private void SetOverlayBorderBackground_Default(Color value) => SetBrush(value, _overlay.BorderBackground_Default.Value,
-            ThemeDictionaryKey.OverlayBorderBackground_Default, () => _overlay.BorderBackground_Default.Value = value, nameof(OverlayBorderBackground_Default));
+            ThemeKey.OverlayBorderBackground_Default, () => _overlay.BorderBackground_Default.Value = value, nameof(OverlayBorderBackground_Default));
 
         /// <summary> Gets the background color of overlay borders in the [Mouse-Over] state. </summary>
         private Color GetOverlayBorderBackground_MouseOver() => _overlay.BorderBackground_MouseOver.Value;
         /// <summary> Sets the background color of overlay borders in the [Mouse-Over] state. </summary>
         private void SetOverlayBorderBackground_MouseOver(Color value) => SetBrush(value, _overlay.BorderBackground_MouseOver.Value,
-            ThemeDictionaryKey.OverlayBorderBackground_MouseOver, () => _overlay.BorderBackground_MouseOver.Value = value, nameof(OverlayBorderBackground_MouseOver));
+            ThemeKey.OverlayBorderBackground_MouseOver, () => _overlay.BorderBackground_MouseOver.Value = value, nameof(OverlayBorderBackground_MouseOver));
 
         /// <summary> Gets the background color of overlay borders in the [Active] state. </summary>
         private Color GetOverlayBorderBackground_Active() => _overlay.BorderBackground_Active.Value;
         /// <summary> Sets the background color of overlay borders in the [Active] state. </summary>
         private void SetOverlayBorderBackground_Active(Color value) => SetBrush(value, _overlay.BorderBackground_Active.Value,
-            ThemeDictionaryKey.OverlayBorderBackground_Active, () => _overlay.BorderBackground_Active.Value = value, nameof(OverlayBorderBackground_Active));
+            ThemeKey.OverlayBorderBackground_Active, () => _overlay.BorderBackground_Active.Value = value, nameof(OverlayBorderBackground_Active));
 
         #endregion
         ////////////////////////////////////////////////////////////////////////////////
@@ -959,25 +958,25 @@ namespace SimpleOverlayTheme.Theme
         private Color GetOverlayBorderOutline_Disable() => _overlay.BorderOutline_Disable.Value;
         /// <summary> Sets the outline color of overlay components in the [Disabled] state. </summary>
         private void SetOverlayBorderOutline_Disable(Color value) => SetBrush(value, _overlay.BorderOutline_Disable.Value,
-            ThemeDictionaryKey.OverlayBorderOutline_Disable, () => _overlay.BorderOutline_Disable.Value = value, nameof(OverlayBorderOutline_Disable));
+            ThemeKey.OverlayBorderOutline_Disable, () => _overlay.BorderOutline_Disable.Value = value, nameof(OverlayBorderOutline_Disable));
 
         /// <summary> Gets the outline color of overlay components in the [Default] state. </summary>
         private Color GetOverlayBorderOutline_Default() => _overlay.BorderOutline_Default.Value;
         /// <summary> Sets the outline color of overlay components in the [Default] state. </summary>
         private void SetOverlayBorderOutline_Default(Color value) => SetBrush(value, _overlay.BorderOutline_Default.Value,
-            ThemeDictionaryKey.OverlayBorderOutline_Default, () => _overlay.BorderOutline_Default.Value = value, nameof(OverlayBorderOutline_Default));
+            ThemeKey.OverlayBorderOutline_Default, () => _overlay.BorderOutline_Default.Value = value, nameof(OverlayBorderOutline_Default));
 
         /// <summary> Gets the outline color of overlay components in the [Mouse-Over] state. </summary>
         private Color GetOverlayBorderOutline_MouseOver() => _overlay.BorderOutline_MouseOver.Value;
         /// <summary> Sets the outline color of overlay components in the [Mouse-Over] state. </summary>
         private void SetOverlayBorderOutline_MouseOver(Color value) => SetBrush(value, _overlay.BorderOutline_MouseOver.Value,
-            ThemeDictionaryKey.OverlayBorderOutline_MouseOver, () => _overlay.BorderOutline_MouseOver.Value = value, nameof(OverlayBorderOutline_MouseOver));
+            ThemeKey.OverlayBorderOutline_MouseOver, () => _overlay.BorderOutline_MouseOver.Value = value, nameof(OverlayBorderOutline_MouseOver));
 
         /// <summary> Gets the outline color of overlay components in the [Active] state. </summary>
         private Color GetOverlayBorderOutline_Active() => _overlay.BorderOutline_Active.Value;
         /// <summary> Sets the outline color of overlay components in the [Active] state. </summary>
         private void SetOverlayBorderOutline_Active(Color value) => SetBrush(value, _overlay.BorderOutline_Active.Value,
-            ThemeDictionaryKey.OverlayBorderOutline_Active, () => _overlay.BorderOutline_Active.Value = value, nameof(OverlayBorderOutline_Active));
+            ThemeKey.OverlayBorderOutline_Active, () => _overlay.BorderOutline_Active.Value = value, nameof(OverlayBorderOutline_Active));
 
         #endregion
         ////////////////////////////////////////////////////////////////////////////////
@@ -989,25 +988,25 @@ namespace SimpleOverlayTheme.Theme
         private Color GetOverlayMaskForeground_Disable() => _overlay.MaskForeground_Disable.Value;
         /// <summary> Sets the [Disabled] foreground mask color for overlays. </summary>
         private void SetOverlayMaskForeground_Disable(Color value) => SetBrush(value, _overlay.MaskForeground_Disable.Value,
-            ThemeDictionaryKey.OverlayMaskForeground_Disable, () => _overlay.MaskForeground_Disable.Value = value, nameof(OverlayMaskForeground_Disable));
+            ThemeKey.OverlayMaskForeground_Disable, () => _overlay.MaskForeground_Disable.Value = value, nameof(OverlayMaskForeground_Disable));
 
         /// <summary> Gets the foreground mask color of overlay content on [Default]. </summary>
         private Color GetOverlayMaskForeground_Default() => _overlay.MaskForeground_Default.Value;
         /// <summary> Sets the [Default] foreground mask color for overlays. </summary>
         private void SetOverlayMaskForeground_Default(Color value) => SetBrush(value, _overlay.MaskForeground_Default.Value,
-            ThemeDictionaryKey.OverlayMaskForeground_Default, () => _overlay.MaskForeground_Default.Value = value, nameof(OverlayMaskForeground_Default));
+            ThemeKey.OverlayMaskForeground_Default, () => _overlay.MaskForeground_Default.Value = value, nameof(OverlayMaskForeground_Default));
 
         /// <summary> Gets the foreground mask color of overlay content on [Mouse-Over]. </summary>
         private Color GetOverlayMaskForeground_MouseOver() => _overlay.MaskForeground_MouseOver.Value;
         /// <summary> Sets the [Mouse-Over] foreground mask color for overlays. </summary>
         private void SetOverlayMaskForeground_MouseOver(Color value) => SetBrush(value, _overlay.MaskForeground_MouseOver.Value,
-            ThemeDictionaryKey.OverlayMaskForeground_MouseOver, () => _overlay.MaskForeground_MouseOver.Value = value, nameof(OverlayMaskForeground_MouseOver));
+            ThemeKey.OverlayMaskForeground_MouseOver, () => _overlay.MaskForeground_MouseOver.Value = value, nameof(OverlayMaskForeground_MouseOver));
 
         /// <summary> Gets the foreground mask color of overlay content on [Active]. </summary>
         private Color GetOverlayMaskForeground_Active() => _overlay.MaskForeground_Active.Value;
         /// <summary> Sets the [Active] foreground mask color for overlays. </summary>
         private void SetOverlayMaskForeground_Active(Color value) => SetBrush(value, _overlay.MaskForeground_Active.Value,
-            ThemeDictionaryKey.OverlayMaskForeground_Active, () => _overlay.MaskForeground_Active.Value = value, nameof(OverlayMaskForeground_Active));
+            ThemeKey.OverlayMaskForeground_Active, () => _overlay.MaskForeground_Active.Value = value, nameof(OverlayMaskForeground_Active));
 
         #endregion
         ////////////////////////////////////////////////////////////////////////////////

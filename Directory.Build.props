@@ -1,0 +1,79 @@
+<Project>
+  <!-- See https://aka.ms/dotnet/msbuild/customize for more details on customizing your build -->
+  <PropertyGroup>
+    <!-- RootPath -->
+    <RootPath Condition="'$(SolutionDir)' == ''">$(MSBuildProjectDirectory)\..\</RootPath>
+    <RootPath Condition="'$(SolutionDir)' != ''">$(SolutionDir)</RootPath>
+    <!-- Project -->
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>$(BaseOutputPath)/$(Configuration)/$(TargetFramework)/$(AssemblyName).xml</DocumentationFile>
+    <!-- Metadata & License -->
+    <Company>Natel210</Company>
+    <Authors>Natel210</Authors>
+    <Title>$(AssemblyName)</Title>
+    <Copyright>MIT</Copyright>
+    <Description>
+      <![CDATA[
+        WPF resource DLL for simple themes.<br/>
+        You can use it as basic WPF.<br/>
+        Example samples are included.<br/>
+        The created environment is <code>.NET 8.0</code><br/>
+      ]]>
+    </Description>
+      
+    <!-- Repository -->
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Natel210/SimpleOverlayThemeUI.git</RepositoryUrl>
+      
+    <!-- Package -->
+    <!--<PackageIcon>none.png</PackageIcon>-->
+    <PackageLicenseExpression>$(Copyright)</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/Natel210/SimpleOverlayThemeUI</PackageProjectUrl>
+    <PackageReadmeFile>$(RootPath)Document\README.md</PackageReadmeFile>
+    <PackageLicenseFile>$(RootPath)Document\LICENSE</PackageLicenseFile>
+    <PackageTags>Simple;Theme;OverlayTheme;SimpleTheme;SimpleOverlayThemeUI</PackageTags>
+    <PackageReleaseNotes>https://github.com/Natel210/SimpleOverlayThemeUI/releases</PackageReleaseNotes>
+
+    
+
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(RootPath)Builds\**\*.*">
+        <Link>SolutionFolder\Builds\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </None>
+    <Content Include="$(RootPath)Contents\**\*.*">
+      <Pack>True</Pack>
+      <PackagePath>Contents\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <Link>SolutionFolder\Contents\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Content>
+    <Resource Include="$(RootPath)Resource\**\*.*">
+      <Link>SolutionFolder\Resource\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Resource>
+    <None Include="$(RootPath)Tools\**\*.*">
+      <Pack>True</Pack>
+      <PackagePath>Tools\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <Link>SolutionFolder\Tools\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </None>
+    <None Include="$(RootPath).gitignore">
+      <Link>SolutionFolder\.gitignore</Link>
+    </None>
+    <None Include="$(RootPath)Directory.Build.props">
+      <Link>SolutionFolder\Directory.Build.props</Link>
+    </None>
+    <None Include="$(RootPath)LICENSE">
+      <Link>SolutionFolder\LICENSE</Link>
+    </None>
+    <None Include="$(RootPath)README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <Link>SolutionFolder\README.md</Link>
+    </None>
+    <Compile Include="$(RootPath)Share\**\*.*">
+      <Link>SolutionFolder\Share\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
+      
+  </ItemGroup>
+</Project>

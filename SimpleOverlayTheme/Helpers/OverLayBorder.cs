@@ -1,10 +1,16 @@
-﻿using System.ComponentModel;
-using System.Windows;
+﻿using SimpleOverlayTheme.Object.BorderObject.Helper;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows;
 
-namespace SimpleOverlayTheme.Object.BorderObject.Helper
+namespace SimpleOverlayTheme.Helpers
 {
-    public class Overlay
+    public class OverLayBorder
     {
         private static readonly FrameworkPropertyMetadataOptions _frameworkPropertyMetadataOptions = FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure;
 

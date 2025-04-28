@@ -1,0 +1,188 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:buttonHelper="clr-namespace:SimpleOverlayTheme.Object.ButtonObject.Helper"
+                    xmlns:groupBoxHelper="clr-namespace:SimpleOverlayTheme.Object.GroupBoxObject.Helper">
+
+    <ResourceDictionary.MergedDictionaries>
+        <!--<ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/ThemeSystem/LastTheme.xaml"/>-->
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/BorderObject/Style.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/LabelObject/Style.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/ButtonObject/Style.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <Style x:Key="SimpleOverlayTheme.GroupBox.Default" TargetType="GroupBox">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Outline}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.DefaultThickness.Default}"/>
+        <Setter Property="FontSize" Value="{DynamicResource SimpleOverlayTheme.FontSize.Default}"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="groupBoxHelper:HeaderUnderline.HeaderUnderLineBrush" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Outline}"/>
+        <Setter Property="groupBoxHelper:HeaderUnderline.HeaderUnderLineHeight" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupBox">
+                    <Border
+                        x:Name="PART_RootBorder"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="Transparent">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/> <!-- Header -->
+                                <RowDefinition Height="Auto"/> <!-- Underline -->
+                                <RowDefinition Height="*"/> <!-- Content -->
+                            </Grid.RowDefinitions>
+                            <!-- Header -->
+                            <Border
+                                Grid.Row="0"
+                                Background="Transparent"
+                                Style="{StaticResource SimpleOverlayTheme.Border.Empty}">
+                                <ToggleButton
+                                    x:Name="PART_HeaderCheck"
+                                    BorderThickness="{DynamicResource SimpleOverlayTheme.DefaultThickness.Zero}"
+                                    Background="Transparent"
+                                    Style="{StaticResource SimpleOverlayTheme.ToggleButton.Default}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    HorizontalContentAlignment="Stretch"
+                                    VerticalContentAlignment="Stretch"
+                                    buttonHelper:OverlayBackground.SetDefaultVisible="False"
+                                    buttonHelper:OverlayCheckedBackground.Background="Transparent"
+                                    buttonHelper:OverlayCheckedBackground.Outline="Transparent">
+                                    <Label
+                                        BorderBrush="Transparent"
+                                        BorderThickness="{DynamicResource SimpleOverlayTheme.DefaultThickness.Zero}"
+                                        Foreground="{TemplateBinding Foreground}"
+                                        Background="Transparent"
+                                        Padding="0"
+                                        FontSize="{TemplateBinding FontSize}"
+                                        HorizontalContentAlignment="Stretch"
+                                        VerticalContentAlignment="Stretch"
+                                        Style="{DynamicResource SimpleOverlayTheme.Label.Default}">
+                                        <ContentPresenter
+                                            ContentSource="Header"
+                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </Label>
+                                </ToggleButton>
+                            </Border>
+                            <!-- Underline -->
+                            <Border
+                                Grid.Row="1"
+                                Background="{TemplateBinding groupBoxHelper:HeaderUnderline.HeaderUnderLineBrush}"
+                                Height="{TemplateBinding groupBoxHelper:HeaderUnderline.HeaderUnderLineHeight}"/>
+                            <!-- Content -->
+                            <ContentControl
+                                x:Name="PART_Content"
+                                Grid.Row="2"
+                                FontSize="{DynamicResource SimpleOverlayTheme.FontSize.Default}">
+                                <ContentPresenter Margin="{TemplateBinding Padding}"/>
+                            </ContentControl>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_RootBorder" Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Disable}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground_Disable}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="SimpleOverlayTheme.GroupBox.Fold" TargetType="GroupBox">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Outline}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.DefaultThickness.Default}"/>
+        <Setter Property="FontSize" Value="{DynamicResource SimpleOverlayTheme.FontSize.Default}"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="groupBoxHelper:HeaderUnderline.HeaderUnderLineBrush" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Outline}"/>
+        <Setter Property="groupBoxHelper:HeaderUnderline.HeaderUnderLineHeight" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupBox">
+                    <Border
+                        x:Name="PART_RootBorder"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/> <!-- Header -->
+                                <RowDefinition Height="Auto"/> <!-- Underline -->
+                                <RowDefinition Height="*"/> <!-- Content -->
+                            </Grid.RowDefinitions>
+                            <!-- Header -->
+                            <Border Grid.Row="0" Background="Transparent" Style="{StaticResource SimpleOverlayTheme.Border.Empty}">
+                                <ToggleButton
+                                    x:Name="PART_HeaderCheck"
+                                    BorderThickness="{DynamicResource SimpleOverlayTheme.DefaultThickness.Zero}"
+                                    Background="Transparent"
+                                    Style="{StaticResource SimpleOverlayTheme.ToggleButton.Default}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    HorizontalContentAlignment="Stretch"
+                                    VerticalContentAlignment="Stretch"
+                                    buttonHelper:OverlayBackground.SetDefaultVisible="False"
+                                    buttonHelper:OverlayCheckedBackground.Background="Transparent"
+                                    buttonHelper:OverlayCheckedBackground.Outline="Transparent">
+                                    <Label
+                                        BorderBrush="Transparent"
+                                        BorderThickness="{DynamicResource SimpleOverlayTheme.DefaultThickness.Zero}"
+                                        Foreground="{TemplateBinding Foreground}"
+                                        Background="Transparent"
+                                        Padding="0"
+                                        FontSize="{TemplateBinding FontSize}"
+                                        HorizontalContentAlignment="Stretch"
+                                        VerticalContentAlignment="Stretch"
+                                        Style="{DynamicResource SimpleOverlayTheme.Label.Default}">
+                                        <ContentPresenter
+                                            ContentSource="Header"
+                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </Label>
+                                </ToggleButton>
+                            </Border>
+                            
+                            <!-- Underline -->
+                            <Border
+                                Grid.Row="1"
+                                Background="{TemplateBinding groupBoxHelper:HeaderUnderline.HeaderUnderLineBrush}"
+                                Height="{TemplateBinding groupBoxHelper:HeaderUnderline.HeaderUnderLineHeight}"/>
+                            
+                            <!-- Content -->
+                            <ContentControl
+                                x:Name="PART_Content"
+                                Grid.Row="2"
+                                FontSize="{DynamicResource SimpleOverlayTheme.FontSize.Default}">
+                                <ContentPresenter Margin="{TemplateBinding Padding}"/>
+                            </ContentControl>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_RootBorder" Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Disable}"/>
+                        </Trigger>
+                        <Trigger SourceName="PART_HeaderCheck" Property="IsChecked" Value="False">
+                            <Setter TargetName="PART_Content" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger SourceName="PART_HeaderCheck" Property="IsChecked" Value="True">
+                            <Setter TargetName="PART_Content" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.DefaultBrush.Foreground_Disable}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

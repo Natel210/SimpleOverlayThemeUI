@@ -7,20 +7,18 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
     <BaseOutputPath>Bin\</BaseOutputPath>
-    <Copyright>MIT</Copyright>
-    <PublishDir>$(BaseOutputPath)Publish</PublishDir>      
     <!-- Local Test -->
     <VersionPrefix>999.0.4</VersionPrefix>
   </PropertyGroup>
 
-  <!-- NuGet -->
+  <!-- NuGet --><!--
   <PropertyGroup>
     <Authors>Natel210</Authors>
     <PackageLicenseExpression>$(Copyright)</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Natel210/SimpleOverlayThemeUI</PackageProjectUrl>
-    <!--<PackageIcon>none.png</PackageIcon>-->
+    --><!--<PackageIcon>none.png</PackageIcon>--><!--
     <PackageTags>Simple;Theme;OverlayTheme;SimpleTheme;SimpleOverlayThemeUI</PackageTags>
-    <!--<PackageReleaseNotes>https://github.com/Natel210/SimpleOverlayThemeUI/releases</PackageReleaseNotes>-->
+    --><!--<PackageReleaseNotes>https://github.com/Natel210/SimpleOverlayThemeUI/releases</PackageReleaseNotes>--><!--
     <RepositoryUrl>https://github.com/Natel210/SimpleOverlayThemeUI.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -29,20 +27,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>$(AssemblyName)</Title>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Resource\Mask\check.png" />
-    <None Remove="Resource\Mask\close.png" />
-    <None Remove="Resource\Mask\downArrow.png" />
-    <None Remove="Resource\Mask\empty.png" />
-    <None Remove="Resource\Mask\maximize.png" />
-    <None Remove="Resource\Mask\minimize.png" />
-    <None Remove="Resource\Mask\minus.png" />
-    <None Remove="Resource\Mask\plus.png" />
-    <None Remove="Resource\Mask\restore.png" />
-    <None Remove="Resource\Mask\upArrow.png" />
-  </ItemGroup>
+  </PropertyGroup>-->
 
   <!-- Package Add -->
   <ItemGroup>
@@ -61,10 +46,6 @@
 
   <!-- Add PackageIn -->
   <ItemGroup>
-      <None Include="..\README.md">
-          <Pack>True</Pack>
-          <PackagePath>\</PackagePath>
-      </None>
       <Content Include="Build\CurrentThemeGeneraterToXaml.targets">
           <Pack>True</Pack>
           <PackagePath>Build\</PackagePath>
@@ -73,64 +54,38 @@
     
     
   <ItemGroup>
-    <Resource Include="Resource\Mask\check.png" />
-    <Resource Include="Resource\Mask\close.png" />
-    <Resource Include="Resource\Mask\downArrow.png" />
-    <Resource Include="Resource\Mask\empty.png" />
-    <Resource Include="Resource\Mask\maximize.png" />
-    <Resource Include="Resource\Mask\minimize.png" />
-    <Resource Include="Resource\Mask\minus.png" />
-    <Resource Include="Resource\Mask\plus.png" />
-    <Resource Include="Resource\Mask\restore.png" />
-    <Resource Include="Resource\Mask\upArrow.png" />
-  </ItemGroup>    
-    
-    
-  <ItemGroup>
-    <Compile Update="Resource\ErrorCodeDictionary\ErrorMessage.Designer.cs">
+    <Compile Update="Resource\StringDictionary\ErrorCodes\ErrorMessage.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ErrorMessage.resx</DependentUpon>
     </Compile>
-    <Compile Update="Theme\ThemeDictionary\ThemeDictionaryKey.Designer.cs">
+    <Compile Update="Resource\StringDictionary\Helper\HelperKey.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>ThemeDictionaryKey.resx</DependentUpon>
+      <DependentUpon>HelperKey.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resource\StringDictionary\Theme\ThemeKey.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ThemeKey.resx</DependentUpon>
     </Compile>
   </ItemGroup>    
     
     
   <ItemGroup>
-    <EmbeddedResource Update="Resource\ErrorCodeDictionary\ErrorMessage.resx">
+    <EmbeddedResource Update="Resource\StringDictionary\ErrorCodes\ErrorMessage.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMessage.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Theme\ThemeDictionary\ThemeDictionaryKey.resx">
+    <EmbeddedResource Update="Resource\StringDictionary\Helper\HelperKey.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ThemeDictionaryKey.Designer.cs</LastGenOutput>
+      <LastGenOutput>HelperKey.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resource\StringDictionary\Theme\ThemeKey.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ThemeKey.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>    
-    
-    
-  <ItemGroup>
-    <Folder Include="Controls\Borders\Helper\" />
-    <Folder Include="Controls\Buttons\Helper\" />
-    <Folder Include="Controls\CheckBoxes\Helper\" />
-    <Folder Include="Controls\ComboBoxes\Helper\" />
-    <Folder Include="Controls\DataGrids\Helper\" />
-    <Folder Include="Controls\Labels\" />
-    <Folder Include="Controls\ListBoxes\" />
-    <Folder Include="Controls\NumericUpDowns\Helper\" />
-    <Folder Include="Controls\NumericUpDowns\CustomControl\" />
-    <Folder Include="Controls\Shared\Helper\" />
-    <Folder Include="Controls\TextBoxes\Helper\" />
-    <Folder Include="Controls\UserControls\" />
-    <Folder Include="Controls\TextBlocks\" />
-    <Folder Include="Controls\Pages\" />
-    <Folder Include="Controls\WindowTitleBars\Behavior\" />
-    <Folder Include="Controls\Windows\Helper\" />
-    <Folder Include="Controls\WindowTitleBars\CustomControl\" />
-    <Folder Include="Object\StyleDictionary\" />
-  </ItemGroup>
+
 
 </Project>

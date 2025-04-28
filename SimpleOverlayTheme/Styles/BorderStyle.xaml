@@ -1,5 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:borderHelper="clr-namespace:SimpleOverlayTheme.Object.BorderObject.Helper"
+                    xmlns:overlayHelper="clr-namespace:SimpleOverlayTheme.Helpers.Overlay"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <!--<ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/ThemeSystem/LastTheme.xaml"/>-->
@@ -8,7 +8,7 @@
     <!-- Default Border -->
     <Style x:Key="SimpleOverlayTheme.Border.Default" TargetType="Border" >
         <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Background}"/>
-        <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.DefaultThickness.Default}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.Thickness.Default}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Outline}"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>

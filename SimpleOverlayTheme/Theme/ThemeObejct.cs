@@ -2,7 +2,6 @@
 using SimpleFileIO.State.Ini;
 using SimpleFileIO.Utility;
 using SimpleOverlayTheme.Theme.Interface;
-using SimpleOverlayTheme.Theme.ThemeDictionary;
 using SimpleOverlayTheme.Theme.ThemeProperty;
 using System;
 using System.Collections.Generic;
