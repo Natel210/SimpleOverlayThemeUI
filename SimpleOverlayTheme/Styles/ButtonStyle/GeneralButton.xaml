@@ -1,0 +1,74 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:commonHelper="clr-namespace:SimpleOverlayTheme.Helpers.Common"
+                    xmlns:overlayHelper="clr-namespace:SimpleOverlayTheme.Helpers.Overlay"
+                    xmlns:buttonHelper="clr-namespace:SimpleOverlayTheme.Helpers.Button"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/SimpleOverlayTheme;component/Styles/BorderStyle/General.xaml"/>
+        <ResourceDictionary Source="/SimpleOverlayTheme;component/Styles/BorderStyle/Overlay.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <!-- Default button -->
+    <Style x:Key="SimpleOverlayTheme.Button.Button" TargetType="Button">
+        <Setter Property="FontSize" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.FontSize.Default}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.DefaultThickness.Default}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Outline}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground}"/>
+        <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Background}"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="commonHelper:State.State" Value="Default"/>
+        <Setter Property="overlayHelper:Display.DisplayBackground" Value="True"/>
+        <Setter Property="overlayHelper:Display.DisplayOutline" Value="True"/>
+        <Setter Property="overlayHelper:Display.DisplayDefaultBackground" Value="True"/>
+        <Setter Property="overlayHelper:Display.DisplayDefaultOutline" Value="True"/>
+        <Setter Property="buttonHelper:Border.CornerRadius" Value="0.0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border x:Name="backgroundBorder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                CornerRadius="{TemplateBinding buttonHelper:Border.CornerRadius}"
+                                Style="{StaticResource SimpleOverlayTheme.Border.EmptyBorder}"/>
+                        <Border x:Name="overlayBorder"
+                                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding buttonHelper:Border.CornerRadius}"
+                                Style="{StaticResource SimpleOverlayTheme.Border.OverlayBorder}"
+                                commonHelper:State.State="{TemplateBinding commonHelper:State.State}"
+                                overlayHelper:Display.DisplayBackground="{TemplateBinding overlayHelper:Display.DisplayBackground}"
+                                overlayHelper:Display.DisplayDefaultBackground="{TemplateBinding overlayHelper:Display.DisplayDefaultBackground}"
+                                overlayHelper:Display.DisplayDefaultOutline="{TemplateBinding overlayHelper:Display.DisplayDefaultOutline}"
+                                overlayHelper:Display.DisplayOutline="{TemplateBinding overlayHelper:Display.DisplayOutline}"/>
+                        <ContentPresenter Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="commonHelper:State.State" Value="MouseOver"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="commonHelper:State.State" Value="Active"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="commonHelper:State.State" Value="Disable"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground_Disable}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

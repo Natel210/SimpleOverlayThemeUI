@@ -1,12 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <OutputPath>$(SolutionDir)SimpleOverlayTheme\Build\CurrentThemeGeneraterToXaml\</OutputPath>
+        <BaseOutputPath>$(SolutionDir)SimpleOverlayTheme\Build\</BaseOutputPath>
+        <OutputPath>$(BaseOutputPath)CurrentThemeGeneraterToXaml\</OutputPath>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
         <OutputType>Exe</OutputType>
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <!-- not include .xml ... -->
+        <NoWarn>$(NoWarn);NU5119</NoWarn>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="SimpleFileIO" Version="0.1.6" />

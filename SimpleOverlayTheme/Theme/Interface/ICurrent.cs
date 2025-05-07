@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace SimpleOverlayTheme.Theme.Interface
 {
@@ -13,13 +8,10 @@ namespace SimpleOverlayTheme.Theme.Interface
     /// </summary>
     public interface ICurrent : ITheme, INotifyPropertyChanged
     {
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <summary> System flag to automatically save the current theme. </summary>
         bool AutoSave { get; set; }
 
         /// <summary> Saves the current theme settings to the associated INI file. </summary>
-
         bool Save();
 
         /// <summary> Loads theme values from INI file and applies them to the current theme instance and UI. </summary>

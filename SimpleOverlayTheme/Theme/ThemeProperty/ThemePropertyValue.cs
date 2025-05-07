@@ -9,36 +9,8 @@ namespace SimpleOverlayTheme.Theme.ThemeProperty
     /// Uses <see cref="IniItem{T}"/> internally to store and synchronize values<br/>
     /// with an <see cref="IINIState"/> instance.
     /// </summary>
-    internal class ThemePropertyValue<T> : IThemePropertyValue where T : notnull
+    internal partial class ThemePropertyValue<T> : IThemePropertyValue where T : notnull
     {
-        /// <inheritdoc />
-        public bool Apply(IINIState? iniState)
-        {
-            if (iniState is null)
-                return false;
-            bool result;
-            lock (_iniItemMutex)
-                result = iniState.SetValue_UseParser(_iniItem);
-            return result;
-        }
-
-        /// <inheritdoc />
-        public bool Restore(IINIState? iniState)
-        {
-            if (iniState is null)
-                return false;
-            lock (_iniItemMutex)
-                iniState.GetValue_UseParser(ref _iniItem);
-            return true;
-        }
-
-        /// <inheritdoc />
-        public void ResetValueToDefault()
-        {
-            lock (_iniItemMutex)
-                _iniItem.Value = _iniItem.DefaultValue;
-        }
-
         private IniItem<T> _iniItem;
         private readonly Mutex _iniItemMutex;
 
@@ -117,5 +89,38 @@ namespace SimpleOverlayTheme.Theme.ThemeProperty
             return value; // Fallback
         }
     }
+
+    #region ========== Interface - IThemePropertyValue ==========
+    internal partial class ThemePropertyValue<T>
+    {
+        /// <inheritdoc />
+        public bool Apply(IINIState? iniState)
+        {
+            if (iniState is null)
+                return false;
+            bool result;
+            lock (_iniItemMutex)
+                result = iniState.SetValue_UseParser(_iniItem);
+            return result;
+        }
+
+        /// <inheritdoc />
+        public bool Restore(IINIState? iniState)
+        {
+            if (iniState is null)
+                return false;
+            lock (_iniItemMutex)
+                iniState.GetValue_UseParser(ref _iniItem);
+            return true;
+        }
+
+        /// <inheritdoc />
+        public void ResetValueToDefault()
+        {
+            lock (_iniItemMutex)
+                _iniItem.Value = _iniItem.DefaultValue;
+        }
+    }
+    #endregion
 }
 

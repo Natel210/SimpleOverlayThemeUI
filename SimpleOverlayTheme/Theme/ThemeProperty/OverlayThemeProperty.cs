@@ -1,4 +1,5 @@
 ﻿using SimpleFileIO.State.Ini;
+using SimpleOverlayTheme.Share.StringTable;
 using SimpleOverlayTheme.Theme.Interface;
 using System.Windows.Media;
 
@@ -9,11 +10,56 @@ namespace SimpleOverlayTheme.Theme.ThemeProperty
     /// including background, outline, and mask foreground color settings. <br/>
     /// These values are typically used to style overlay UI components.
     /// </summary>
-    internal class OverlayThemeProperty : IThemeProperty
+    internal partial class OverlayThemeProperty : IThemeProperty
     {
-        ////////////////////////////////////////////////////////////////////////////////
-        #region ========== Interface - IThemeProperty ==========
-        
+        /// <summary> Collection of all overlay theme properties managed by this group. </summary>
+        private readonly List<IThemePropertyValue> _themePropertyValues;
+
+        /// <summary> Creates a deep copy of the current <see cref="OverlayThemeProperty"/> instance. </summary>
+        internal OverlayThemeProperty Clone()
+        {
+            return new OverlayThemeProperty()
+            {
+                Background_Active = Background_Active.Clone(),
+                Background_Default = Background_Default.Clone(),
+                Background_Disable = Background_Disable.Clone(),
+                Background_MouseOver = Background_MouseOver.Clone(),
+                Outline_Active = Outline_Active.Clone(),
+                Outline_Default = Outline_Default.Clone(),
+                Outline_Disable = Outline_Disable.Clone(),
+                Outline_MouseOver = Outline_MouseOver.Clone(),
+                MaskBackground_Active = MaskBackground_Active.Clone(),
+                MaskBackground_Default = MaskBackground_Default.Clone(),
+                MaskBackground_Disable = MaskBackground_Disable.Clone(),
+                MaskBackground_MouseOver = MaskBackground_MouseOver.Clone(),
+            };
+        }
+
+        /// <summary> Initializes the <see cref="OverlayThemeProperty"/> with all default values. </summary>
+        internal OverlayThemeProperty()
+        {
+            _themePropertyValues = new()
+            {
+                Background_Active,
+                Background_Default,
+                Background_Disable,
+                Background_MouseOver,
+                Outline_Active,
+                Outline_Default,
+                Outline_Disable,
+                Outline_MouseOver,
+                MaskBackground_Active,
+                MaskBackground_Default,
+                MaskBackground_Disable,
+                MaskBackground_MouseOver,
+            };
+        }
+    }
+
+    #region ========== Interface - IThemeProperty ==========
+    internal partial class OverlayThemeProperty
+    {
+
         /// <inheritdoc />
         public bool Apply(IINIState? iniState)
         {
@@ -44,121 +90,101 @@ namespace SimpleOverlayTheme.Theme.ThemeProperty
             foreach (var item in _themePropertyValues)
                 item.ResetValueToDefault();
         }
+    
+    }
+    #endregion
 
-        #endregion
-        ////////////////////////////////////////////////////////////////////////////////
-        //                                                                            //
-        ////////////////////////////////////////////////////////////////////////////////
-        #region ========== Overlay - Border Background ==========
+    #region ========== Overlay - Background ==========
+    internal partial class OverlayThemeProperty
+    {
+        
+        /// <summary>Overlay background when active.</summary>
+        internal ThemePropertyValue<Color> Background_Active { get; private set; }
+            = new(ThemeKey.Overlay.Background.Active.Ini.Section,
+                ThemeKey.Overlay.Background.Active.Ini.Key,
+                Color.FromArgb(64, 128, 128, 128));
 
-        /// <summary>Overlay border background when disabled.</summary>
-        internal ThemePropertyValue<Color> BorderBackground_Disable { get; private set; } = new(_sectionName, nameof(BorderBackground_Disable), Color.FromArgb(5, 128, 128, 128));
+        /// <summary>Overlay background in default state.</summary>
+        internal ThemePropertyValue<Color> Background_Default { get; private set; }
+            = new(ThemeKey.Overlay.Background.Default.Ini.Section,
+                ThemeKey.Overlay.Background.Default.Ini.Key,
+                Color.FromArgb(16, 128, 128, 128));
 
-        /// <summary>Overlay border background in default state.</summary>
-        internal ThemePropertyValue<Color> BorderBackground_Default { get; private set; } = new(_sectionName, nameof(BorderBackground_Default), Color.FromArgb(16, 128, 128, 128));
+        /// <summary>Overlay background when disabled.</summary>
+        internal ThemePropertyValue<Color> Background_Disable { get; private set; }
+            = new(ThemeKey.Overlay.Background.Disable.Ini.Section,
+                ThemeKey.Overlay.Background.Disable.Ini.Key,
+                Color.FromArgb(5, 128, 128, 128));
 
-        /// <summary>Overlay border background on mouse-over.</summary>
-        internal ThemePropertyValue<Color> BorderBackground_MouseOver { get; private set; } = new(_sectionName, nameof(BorderBackground_MouseOver), Color.FromArgb(37, 128, 128, 128));
+        /// <summary>Overlay background on mouse-over.</summary>
+        internal ThemePropertyValue<Color> Background_MouseOver { get; private set; }
+            = new(ThemeKey.Overlay.Background.MouseOver.Ini.Section,
+                ThemeKey.Overlay.Background.MouseOver.Ini.Key,
+                Color.FromArgb(37, 128, 128, 128));
 
-        /// <summary>Overlay border background when active.</summary>
-        internal ThemePropertyValue<Color> BorderBackground_Active { get; private set; } = new(_sectionName, nameof(BorderBackground_Active), Color.FromArgb(64, 128, 128, 128));
+    }
+    #endregion
 
-        #endregion
-        ////////////////////////////////////////////////////////////////////////////////
-        //                                                                            //
-        ////////////////////////////////////////////////////////////////////////////////
-        #region ========== Overlay - Border Outline ==========
+    #region ========== Overlay - Outline ==========
+    internal partial class OverlayThemeProperty
+    {
+        
+        /// <summary>Overlay outline when active.</summary>
+        internal ThemePropertyValue<Color> Outline_Active { get; private set; }
+            = new(ThemeKey.Overlay.Outline.Active.Ini.Section,
+                ThemeKey.Overlay.Outline.Active.Ini.Key,
+                Color.FromArgb(255, 21, 21, 21));
 
-        /// <summary>Overlay border outline when disabled.</summary>
-        internal ThemePropertyValue<Color> BorderOutline_Disable { get; private set; } = new(_sectionName, nameof(BorderOutline_Disable), Color.FromArgb(37, 128, 128, 128));
+        /// <summary>Overlay outline in default state.</summary>
+        internal ThemePropertyValue<Color> Outline_Default { get; private set; }
+            = new(ThemeKey.Overlay.Outline.Default.Ini.Section,
+                ThemeKey.Overlay.Outline.Default.Ini.Key,
+                Color.FromArgb(51, 21, 21, 21));
 
-        /// <summary>Overlay border outline in default state.</summary>
-        internal ThemePropertyValue<Color> BorderOutline_Default { get; private set; } = new(_sectionName, nameof(BorderOutline_Default), Color.FromArgb(51, 21, 21, 21));
+        /// <summary>Overlay outline when disabled.</summary>
+        internal ThemePropertyValue<Color> Outline_Disable { get; private set; }
+            = new(ThemeKey.Overlay.Outline.Disable.Ini.Section,
+                ThemeKey.Overlay.Outline.Disable.Ini.Key,
+                Color.FromArgb(37, 128, 128, 128));
 
-        /// <summary>Overlay border outline on mouse-over.</summary>
-        internal ThemePropertyValue<Color> BorderOutline_MouseOver { get; private set; } = new(_sectionName, nameof(BorderOutline_MouseOver), Color.FromArgb(128, 21, 21, 21));
+        /// <summary>Overlay outline on mouse-over.</summary>
+        internal ThemePropertyValue<Color> Outline_MouseOver { get; private set; }
+            = new(ThemeKey.Overlay.Outline.MouseOver.Ini.Section,
+                ThemeKey.Overlay.Outline.MouseOver.Ini.Key,
+                Color.FromArgb(128, 21, 21, 21));
 
-        /// <summary>Overlay border outline when active.</summary>
-        internal ThemePropertyValue<Color> BorderOutline_Active { get; private set; } = new(_sectionName, nameof(BorderOutline_Active), Color.FromArgb(255, 21, 21, 21));
+    }
+    #endregion
 
-        #endregion
-        ////////////////////////////////////////////////////////////////////////////////
-        //                                                                            //
-        ////////////////////////////////////////////////////////////////////////////////
-        #region ========== Overlay - Mask Foreground ==========
-
-        /// <summary>Overlay mask foreground when disabled.</summary>
-        internal ThemePropertyValue<Color> MaskForeground_Disable { get; private set; } = new(_sectionName, nameof(MaskForeground_Disable), Color.FromArgb(37, 21, 21, 21));
-
-        /// <summary>Overlay mask foreground in default state.</summary>
-        internal ThemePropertyValue<Color> MaskForeground_Default { get; private set; } = new(_sectionName, nameof(MaskForeground_Default), Color.FromArgb(80, 21, 21, 21));
-
-        /// <summary>Overlay mask foreground on mouse-over.</summary>
-        internal ThemePropertyValue<Color> MaskForeground_MouseOver { get; private set; } = new(_sectionName, nameof(MaskForeground_MouseOver), Color.FromArgb(160, 21, 21, 21));
+    #region ========== Overlay - Mask Background ==========
+    internal partial class OverlayThemeProperty
+    {
 
         /// <summary>Overlay mask foreground when active.</summary>
-        internal ThemePropertyValue<Color> MaskForeground_Active { get; private set; } = new(_sectionName, nameof(MaskForeground_Active), Color.FromArgb(240, 21, 21, 21));
+        internal ThemePropertyValue<Color> MaskBackground_Active { get; private set; }
+            = new(ThemeKey.Overlay.Mask.Background.Active.Ini.Section,
+                ThemeKey.Overlay.Mask.Background.Active.Ini.Key,
+                Color.FromArgb(240, 21, 21, 21));
 
-        #endregion
-        ////////////////////////////////////////////////////////////////////////////////
-        //                                                                            //
-        ////////////////////////////////////////////////////////////////////////////////
+        /// <summary>Overlay mask foreground in default state.</summary>
+        internal ThemePropertyValue<Color> MaskBackground_Default { get; private set; }
+            = new(ThemeKey.Overlay.Mask.Background.Default.Ini.Section,
+                ThemeKey.Overlay.Mask.Background.Default.Ini.Key,
+                Color.FromArgb(80, 21, 21, 21));
 
-        /// <summary> Section name used for all INI keys in this group. </summary>
-        private const string _sectionName = "Overlay";
+        /// <summary>Overlay mask foreground when disabled.</summary>
+        internal ThemePropertyValue<Color> MaskBackground_Disable { get; private set; }
+            = new(ThemeKey.Overlay.Mask.Background.Disable.Ini.Section,
+                ThemeKey.Overlay.Mask.Background.Disable.Ini.Key,
+                Color.FromArgb(37, 21, 21, 21));
 
-        /// <summary> Collection of all overlay theme properties managed by this group. </summary>
-        private readonly List<IThemePropertyValue> _themePropertyValues;
+        /// <summary>Overlay mask foreground on mouse-over.</summary>
+        internal ThemePropertyValue<Color> MaskBackground_MouseOver { get; private set; }
+            = new(ThemeKey.Overlay.Mask.Background.MouseOver.Ini.Section,
+                ThemeKey.Overlay.Mask.Background.MouseOver.Ini.Key,
+                Color.FromArgb(160, 21, 21, 21));
 
-        internal OverlayThemeProperty Clone()
-        {
-            return new OverlayThemeProperty()
-            {
-                BorderBackground_Disable = BorderBackground_Disable.Clone(),
-                BorderBackground_Default = BorderBackground_Default.Clone(),
-                BorderBackground_MouseOver = BorderBackground_MouseOver.Clone(),
-                BorderBackground_Active = BorderBackground_Active.Clone(),
-                BorderOutline_Disable = BorderOutline_Disable.Clone(),
-                BorderOutline_Default = BorderOutline_Default.Clone(),
-                BorderOutline_MouseOver = BorderOutline_MouseOver.Clone(),
-                BorderOutline_Active = BorderOutline_Active.Clone(),
-                MaskForeground_Disable = MaskForeground_Disable.Clone(),
-                MaskForeground_Default = MaskForeground_Default.Clone(),
-                MaskForeground_MouseOver = MaskForeground_MouseOver.Clone(),
-                MaskForeground_Active = MaskForeground_Active.Clone()
-            };
-        }
-
-        /// <summary> Initializes the <see cref="OverlayThemeProperty"/> with all default values. </summary>
-        internal OverlayThemeProperty()
-        {
-            //// Border Background
-            //BorderBackground_Disable = new(_sectionName, nameof(BorderBackground_Disable), Color.FromArgb(5, 128, 128, 128));
-            //BorderBackground_Default = new(_sectionName, nameof(BorderBackground_Default), Color.FromArgb(16, 128, 128, 128));
-            //BorderBackground_MouseOver = new(_sectionName, nameof(BorderBackground_MouseOver), Color.FromArgb(37, 128, 128, 128));
-            //BorderBackground_Active = new(_sectionName, nameof(BorderBackground_Active), Color.FromArgb(64, 128, 128, 128));
-
-            //// Border Outline
-            //BorderOutline_Disable = new(_sectionName, nameof(BorderOutline_Disable), Color.FromArgb(37, 128, 128, 128));
-            //BorderOutline_Default = new(_sectionName, nameof(BorderOutline_Default), Color.FromArgb(51, 21, 21, 21));
-            //BorderOutline_MouseOver = new(_sectionName, nameof(BorderOutline_MouseOver), Color.FromArgb(128, 21, 21, 21));
-            //BorderOutline_Active = new(_sectionName, nameof(BorderOutline_Active), Color.FromArgb(255, 21, 21, 21));
-
-            //// Mask Foreground
-            //MaskForeground_Disable = new(_sectionName, nameof(MaskForeground_Disable), Color.FromArgb(37, 21, 21, 21));
-            //MaskForeground_Default = new(_sectionName, nameof(MaskForeground_Default), Color.FromArgb(80, 21, 21, 21));
-            //MaskForeground_MouseOver = new(_sectionName, nameof(MaskForeground_MouseOver), Color.FromArgb(160, 21, 21, 21));
-            //MaskForeground_Active = new(_sectionName, nameof(MaskForeground_Active), Color.FromArgb(240, 21, 21, 21));
-
-            _themePropertyValues = new()
-            {
-                BorderBackground_Disable, BorderBackground_Default,
-                BorderBackground_MouseOver, BorderBackground_Active,
-                BorderOutline_Disable, BorderOutline_Default,
-                BorderOutline_MouseOver, BorderOutline_Active,
-                MaskForeground_Disable, MaskForeground_Default,
-                MaskForeground_MouseOver, MaskForeground_Active
-            };
-        }
     }
+    #endregion
+
 }

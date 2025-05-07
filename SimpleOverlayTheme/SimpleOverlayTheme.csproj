@@ -11,24 +11,6 @@
     <VersionPrefix>999.0.4</VersionPrefix>
   </PropertyGroup>
 
-  <!-- NuGet --><!--
-  <PropertyGroup>
-    <Authors>Natel210</Authors>
-    <PackageLicenseExpression>$(Copyright)</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/Natel210/SimpleOverlayThemeUI</PackageProjectUrl>
-    --><!--<PackageIcon>none.png</PackageIcon>--><!--
-    <PackageTags>Simple;Theme;OverlayTheme;SimpleTheme;SimpleOverlayThemeUI</PackageTags>
-    --><!--<PackageReleaseNotes>https://github.com/Natel210/SimpleOverlayThemeUI/releases</PackageReleaseNotes>--><!--
-    <RepositoryUrl>https://github.com/Natel210/SimpleOverlayThemeUI.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>$(BaseOutputPath)/$(Configuration)/$(TargetFramework)/$(AssemblyName).xml</DocumentationFile>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Title>$(AssemblyName)</Title>
-    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-  </PropertyGroup>-->
-
   <!-- Package Add -->
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
@@ -64,11 +46,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>HelperKey.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resource\StringDictionary\Theme\ThemeKey.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ThemeKey.resx</DependentUpon>
-    </Compile>
   </ItemGroup>    
     
     
@@ -81,11 +58,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>HelperKey.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resource\StringDictionary\Theme\ThemeKey.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ThemeKey.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>    
+  </ItemGroup>
 
 
 </Project>

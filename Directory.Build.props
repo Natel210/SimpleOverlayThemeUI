@@ -29,11 +29,11 @@
       
     <!-- Package -->
     <!--<PackageIcon>none.png</PackageIcon>-->
-    <PackageLicenseExpression>$(Copyright)</PackageLicenseExpression>
+    <!--<PackageLicenseExpression>$(Copyright)</PackageLicenseExpression>-->
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/Natel210/SimpleOverlayThemeUI</PackageProjectUrl>
-    <PackageReadmeFile>$(RootPath)Document\README.md</PackageReadmeFile>
-    <PackageLicenseFile>$(RootPath)Document\LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>Simple;Theme;OverlayTheme;SimpleTheme;SimpleOverlayThemeUI</PackageTags>
     <PackageReleaseNotes>https://github.com/Natel210/SimpleOverlayThemeUI/releases</PackageReleaseNotes>
 
@@ -64,7 +64,9 @@
       <Link>SolutionFolder\Directory.Build.props</Link>
     </None>
     <None Include="$(RootPath)LICENSE">
-      <Link>SolutionFolder\LICENSE</Link>
+        <Pack>True</Pack>
+        <PackagePath>/</PackagePath>
+        <Link>SolutionFolder\LICENSE</Link>
     </None>
     <None Include="$(RootPath)README.md">
       <Pack>True</Pack>

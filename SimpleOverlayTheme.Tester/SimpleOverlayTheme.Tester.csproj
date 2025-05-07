@@ -9,8 +9,6 @@
     <RootNamespace>SimpleOverlayTheme.Tester</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="SimpleOverlayTheme" Version="999.0.5" />
-  </ItemGroup>
+
 
 </Project>

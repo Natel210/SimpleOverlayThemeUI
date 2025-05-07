@@ -1,77 +1,253 @@
-﻿using System;
+﻿using SimpleOverlayTheme.Share.StringTable.Item;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SimpleOverlayTheme.Share.StringTable
 {
+    /// <summary></summary>
     static public class ThemeKey
     {
-        public const string AssemblyName = "SimpleOverlayTheme";
-
-        public const string ThemeName = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(ThemeName)}";
-
-        static public class ColorPalette
+        /// <summary></summary>
+        static public class Common
         {
-            public const string Background = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(ColorPalette)}.{nameof(Background)}";
-            public const string Foreground = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(ColorPalette)}.{nameof(Foreground)}";
-            public const string Foreground_Disable = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(ColorPalette)}.{nameof(Foreground_Disable)}";
-            public const string Highlight = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(ColorPalette)}.{nameof(Highlight)}";
-            public const string Line = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(ColorPalette)}.{nameof(Line)}";
-            public const string Mask = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(ColorPalette)}.{nameof(Mask)}";
-            public const string Outline = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(ColorPalette)}.{nameof(Outline)}";
-            public const string Selection = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(ColorPalette)}.{nameof(Selection)}";
+
+            /// <summary></summary>
+            static public readonly Item.ThemePair ThemeName
+                = new($"{NamespacePrefix}.{nameof(ThemeName)}",
+                    nameof(Common), nameof(ThemeName));
+
+            /// <summary></summary>
+            private const string NamespacePrefix
+                = $"SimpleOverlayTheme.{nameof(ThemeKey)}.{nameof(Common)}";
+
         }
 
+        /// <summary></summary>
         static public class FontSize
         {
-            public const string Default = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(FontSize)}.{nameof(Default)}";
-            public const string Header1 = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(FontSize)}.{nameof(Header1)}";
-            public const string Header2 = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(FontSize)}.{nameof(Header2)}";
-            public const string Header3 = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(FontSize)}.{nameof(Header3)}";
-            public const string Header4 = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(FontSize)}.{nameof(Header4)}";
-            public const string Header5 = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(FontSize)}.{nameof(Header5)}";
-            public const string Header6 = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(FontSize)}.{nameof(Header6)}";
+
+            /// <summary></summary>
+            static public readonly Item.ThemePair Default
+                = new($"{NamespacePrefix}.{nameof(Default)}",
+                    nameof(ColorPalette), nameof(Default));
+
+            /// <summary></summary>
+            static public readonly Item.ThemePair Header1
+                = new($"{NamespacePrefix}.{nameof(Header1)}",
+                    nameof(ColorPalette), nameof(Header1));
+
+            /// <summary></summary>
+            static public readonly Item.ThemePair Header2
+                = new($"{NamespacePrefix}.{nameof(Header2)}",
+                    nameof(ColorPalette), nameof(Header2));
+
+            /// <summary></summary>
+            static public readonly Item.ThemePair Header3
+                = new($"{NamespacePrefix}.{nameof(Header3)}",
+                    nameof(ColorPalette), nameof(Header3));
+
+            /// <summary></summary>
+            static public readonly Item.ThemePair Header4
+                = new($"{NamespacePrefix}.{nameof(Header4)}",
+                    nameof(ColorPalette), nameof(Header4));
+
+            /// <summary></summary>
+            static public readonly Item.ThemePair Header5
+                = new($"{NamespacePrefix}.{nameof(Header5)}",
+                    nameof(ColorPalette), nameof(Header5));
+
+            /// <summary></summary>
+            static public readonly Item.ThemePair Header6
+                = new($"{NamespacePrefix}.{nameof(Header6)}",
+                    nameof(ColorPalette), nameof(Header6));
+
+            /// <summary></summary>
+            private const string NamespacePrefix
+                = $"SimpleOverlayTheme.{nameof(ThemeKey)}.{nameof(FontSize)}";
+
         }
 
+        /// <summary></summary>
         static public class Tickness
         {
-            public const string Default = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(Tickness)}.{nameof(Default)}";
-            public const string Zero = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(Tickness)}.{nameof(Zero)}";
+
+            /// <summary></summary>
+            static public readonly Item.ThemePair Default
+                = new($"{NamespacePrefix}.{nameof(Default)}",
+                    nameof(ColorPalette), nameof(Default));
+
+            /// <summary></summary>
+            static public readonly Item.ThemePair Zero
+                = new($"{NamespacePrefix}.{nameof(Zero)}",
+                    nameof(ColorPalette), nameof(Zero));
+
+            /// <summary></summary>
+            private const string NamespacePrefix
+                = $"SimpleOverlayTheme.{nameof(ThemeKey)}.{nameof(Tickness)}";
+
         }
 
+        /// <summary></summary>
+        static public class ColorPalette
+        {
 
+            /// <summary></summary>
+            static public readonly Item.ThemePair Background
+                = new($"{NamespacePrefix}.{nameof(Background)}",
+                    nameof(ColorPalette), nameof(Background));
+
+            /// <summary></summary>
+            static public readonly Item.ThemePair Foreground
+                = new($"{NamespacePrefix}.{nameof(Foreground)}",
+                    nameof(ColorPalette), nameof(Foreground));
+
+            /// <summary></summary>
+            static public readonly Item.ThemePair Foreground_Disable
+                = new($"{NamespacePrefix}.{nameof(Foreground_Disable)}",
+                    nameof(ColorPalette), nameof(Foreground_Disable));
+
+            /// <summary></summary>
+            static public readonly Item.ThemePair Highlight
+                = new($"{NamespacePrefix}.{nameof(Highlight)}",
+                    nameof(ColorPalette), nameof(Highlight));
+
+            /// <summary></summary>
+            static public readonly Item.ThemePair Line
+                = new($"{NamespacePrefix}.{nameof(Line)}",
+                    nameof(ColorPalette), nameof(Line));
+
+            /// <summary></summary>
+            static public readonly Item.ThemePair Mask
+                = new($"{NamespacePrefix}.{nameof(Mask)}",
+                    nameof(ColorPalette), nameof(Mask));
+
+            /// <summary></summary>
+            static public readonly Item.ThemePair Outline
+                = new($"{NamespacePrefix}.{nameof(Outline)}",
+                    nameof(ColorPalette), nameof(Outline));
+
+            /// <summary></summary>
+            static public readonly Item.ThemePair Selection
+                = new($"{NamespacePrefix}.{nameof(Selection)}",
+                    nameof(ColorPalette), nameof(Selection));
+
+            /// <summary></summary>
+            private const string NamespacePrefix
+                = $"SimpleOverlayTheme.{nameof(ThemeKey)}.{nameof(ColorPalette)}";
+
+        }
+
+        /// <summary></summary>
         static public class Overlay
         {
-            static public class Border
+            /// <summary></summary>
+            static public class Background
             {
-                static public class Background
-                {
-                    public const string Active = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(Overlay)}.{nameof(Border)}.{nameof(Background)}.{nameof(Active)}";
-                    public const string Default = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(Overlay)}.{nameof(Border)}.{nameof(Background)}.{nameof(Default)}";
-                    public const string Disable = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(Overlay)}.{nameof(Border)}.{nameof(Background)}.{nameof(Disable)}";
-                    public const string MouseOver = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(Overlay)}.{nameof(Border)}.{nameof(Background)}.{nameof(MouseOver)}";
-                }
 
-                static public class Outline
-                {
-                    public const string Active = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(Overlay)}.{nameof(Border)}.{nameof(Outline)}.{nameof(Active)}";
-                    public const string Default = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(Overlay)}.{nameof(Border)}.{nameof(Outline)}.{nameof(Default)}";
-                    public const string Disable = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(Overlay)}.{nameof(Border)}.{nameof(Outline)}.{nameof(Disable)}";
-                    public const string MouseOver = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(Overlay)}.{nameof(Border)}.{nameof(Outline)}.{nameof(MouseOver)}";
-                }
+                /// <summary></summary>
+                static public readonly Item.ThemePair Active
+                    = new($"{NamespacePrefix}.{nameof(Active)}",
+                        Section, nameof(Active));
+
+                /// <summary></summary>
+                static public readonly Item.ThemePair Default
+                    = new($"{NamespacePrefix}.{nameof(Default)}",
+                        Section, nameof(Default));
+
+                /// <summary></summary>
+                static public readonly Item.ThemePair Disable
+                    = new($"{NamespacePrefix}.{nameof(Disable)}",
+                        Section, nameof(Disable));
+
+                /// <summary></summary>
+                static public readonly Item.ThemePair MouseOver
+                    = new($"{NamespacePrefix}.{nameof(MouseOver)}",
+                        Section, nameof(MouseOver));
+
+                /// <summary></summary>
+                private const string NamespacePrefix
+                    = $"SimpleOverlayTheme.{nameof(ThemeKey)}.{nameof(Overlay)}.{nameof(Background)}";
+
+                private const string Section
+                    = $"{nameof(Overlay)}.{nameof(Background)}";
 
             }
 
+            /// <summary></summary>
+            static public class Outline
+            {
+
+                /// <summary></summary>
+                static public readonly Item.ThemePair Active
+                    = new($"{NamespacePrefix}.{nameof(Active)}",
+                        Section, nameof(Active));
+
+                /// <summary></summary>
+                static public readonly Item.ThemePair Default
+                    = new($"{NamespacePrefix}.{nameof(Default)}",
+                        Section, nameof(Default));
+
+                /// <summary></summary>
+                static public readonly Item.ThemePair Disable
+                    = new($"{NamespacePrefix}.{nameof(Disable)}",
+                        Section, nameof(Disable));
+
+                /// <summary></summary>
+                static public readonly Item.ThemePair MouseOver
+                    = new($"{NamespacePrefix}.{nameof(MouseOver)}",
+                        Section, nameof(MouseOver));
+
+                /// <summary></summary>
+                private const string NamespacePrefix
+                    = $"SimpleOverlayTheme.{nameof(ThemeKey)}.{nameof(Overlay)}.{nameof(Outline)}";
+
+                private const string Section
+                    = $"{nameof(Overlay)}.{nameof(Outline)}";
+
+            }
+
+
+
+            /// <summary></summary>
             static public class Mask
             {
-                static public class Foreground
+
+                /// <summary></summary>
+                static public class Background
                 {
-                    public const string Active = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(Overlay)}.{nameof(Mask)}.{nameof(Foreground)}.{nameof(Active)}";
-                    public const string Default = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(Overlay)}.{nameof(Mask)}.{nameof(Foreground)}.{nameof(Default)}";
-                    public const string Disable = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(Overlay)}.{nameof(Mask)}.{nameof(Foreground)}.{nameof(Disable)}";
-                    public const string MouseOver = $"{AssemblyName}.{nameof(ThemeKey)}.{nameof(Overlay)}.{nameof(Mask)}.{nameof(Foreground)}.{nameof(MouseOver)}";
+
+                    /// <summary></summary>
+                    static public readonly Item.ThemePair Active
+                        = new($"{NamespacePrefix}.{nameof(Active)}",
+                            Section, nameof(Active));
+
+                    /// <summary></summary>
+                    static public readonly Item.ThemePair Default
+                        = new($"{NamespacePrefix}.{nameof(Default)}",
+                            Section, nameof(Default));
+
+                    /// <summary></summary>
+                    static public readonly Item.ThemePair Disable
+                        = new($"{NamespacePrefix}.{nameof(Disable)}",
+                            Section, nameof(Disable));
+
+                    /// <summary></summary>
+                    static public readonly Item.ThemePair MouseOver
+                        = new($"{NamespacePrefix}.{nameof(MouseOver)}",
+                            Section, nameof(MouseOver));
+
+                    /// <summary></summary>
+                    private const string NamespacePrefix
+                        = $"SimpleOverlayTheme.{nameof(ThemeKey)}.{nameof(Overlay)}.{nameof(Mask)}.{nameof(Background)}";
+
+                    /// <summary></summary>
+                    private const string Section
+                        = $"{nameof(Overlay)}.{nameof(Mask)}.{nameof(Background)}";
+
                 }
             }
         }

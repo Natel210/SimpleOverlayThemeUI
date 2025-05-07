@@ -1,0 +1,67 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "SimpleOverlayTheme.CurrentThemeGeneraterToXaml/1.0.0": {
+        "dependencies": {
+          "SimpleFileIO": "0.1.6"
+        },
+        "runtime": {
+          "SimpleOverlayTheme.CurrentThemeGeneraterToXaml.dll": {}
+        }
+      },
+      "CsvHelper/33.0.1": {
+        "runtime": {
+          "lib/net8.0/CsvHelper.dll": {
+            "assemblyVersion": "33.0.0.0",
+            "fileVersion": "33.0.1.24"
+          }
+        }
+      },
+      "SimpleFileIO/0.1.6": {
+        "dependencies": {
+          "CsvHelper": "33.0.1"
+        },
+        "runtime": {
+          "lib/net8.0/SimpleFileIO.dll": {
+            "assemblyVersion": "0.1.6.0",
+            "fileVersion": "0.1.6.0"
+          }
+        },
+        "resources": {
+          "lib/net8.0/en/SimpleFileIO.resources.dll": {
+            "locale": "en"
+          },
+          "lib/net8.0/ko/SimpleFileIO.resources.dll": {
+            "locale": "ko"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SimpleOverlayTheme.CurrentThemeGeneraterToXaml/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CsvHelper/33.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fev4lynklAU2A9GVMLtwarkwaanjSYB4wUqO2nOJX5hnzObORzUqVLe+bDYCUyIIRQM4o5Bsq3CcyJR89iMmEQ==",
+      "path": "csvhelper/33.0.1",
+      "hashPath": "csvhelper.33.0.1.nupkg.sha512"
+    },
+    "SimpleFileIO/0.1.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RUx/Ht0u41om6Es+tIvvPrHQyM7BvcfDc2TxEV23k9tHjH2xWHEaJbDhm+fM3kH1Xx8KEKO/bGBl+eYQ/vkkpA==",
+      "path": "simplefileio/0.1.6",
+      "hashPath": "simplefileio.0.1.6.nupkg.sha512"
+    }
+  }
+}

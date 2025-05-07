@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleOverlayTheme", "Simpl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleOverlayTheme.CurrentThemeGeneraterToXaml", "SimpleOverlayTheme.CurrentThemeGeneraterToXaml\SimpleOverlayTheme.CurrentThemeGeneraterToXaml.csproj", "{3D396492-B708-40B8-8E30-7CE52EC50E4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleOverlayTheme.Tester", "SimpleOverlayTheme.Tester\SimpleOverlayTheme.Tester.csproj", "{2E419E2C-E8D1-AEAF-0602-7549048EF73A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{3D396492-B708-40B8-8E30-7CE52EC50E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D396492-B708-40B8-8E30-7CE52EC50E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D396492-B708-40B8-8E30-7CE52EC50E4E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2E419E2C-E8D1-AEAF-0602-7549048EF73A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E419E2C-E8D1-AEAF-0602-7549048EF73A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E419E2C-E8D1-AEAF-0602-7549048EF73A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E419E2C-E8D1-AEAF-0602-7549048EF73A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
