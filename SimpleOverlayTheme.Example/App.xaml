@@ -1,0 +1,9 @@
+﻿<Application x:Class="SimpleOverlayTheme.Example.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SimpleOverlayTheme.Example"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary Source="/SimpleOverlayTheme;component/Entry.xaml"/>
+    </Application.Resources>
+</Application>

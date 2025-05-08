@@ -92,6 +92,8 @@ namespace SimpleOverlayTheme.Theme
             if (_iniState is null)
                 throw new Exception();
             if (_iniState.Load() is false)
+                _iniState.Save();
+            if (_iniState.Load() is false)
                 throw new Exception();
             if (_themeProperties is null)
                 throw new Exception();

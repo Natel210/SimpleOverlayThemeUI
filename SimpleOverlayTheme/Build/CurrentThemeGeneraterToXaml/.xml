@@ -4,6 +4,23 @@
         <name>SimpleOverlayTheme.CurrentThemeGeneraterToXaml</name>
     </assembly>
     <members>
+        <member name="T:SimpleOverlayTheme.Share.Overlay.EState">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:SimpleOverlayTheme.Share.Overlay.EState.Active">
+            <summary> </summary>
+        </member>
+        <member name="F:SimpleOverlayTheme.Share.Overlay.EState.Default">
+            <summary> </summary>
+        </member>
+        <member name="F:SimpleOverlayTheme.Share.Overlay.EState.Disable">
+            <summary> </summary>
+        </member>
+        <member name="F:SimpleOverlayTheme.Share.Overlay.EState.MouseOver">
+            <summary> </summary>
+        </member>
         <member name="T:SimpleOverlayTheme.Share.StringTable.Item.IniPair">
             <summary>
             
@@ -140,67 +157,64 @@
         <member name="T:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay">
             <summary></summary>
         </member>
-        <member name="T:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Border">
+        <member name="T:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Background">
             <summary></summary>
         </member>
-        <member name="T:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Border.Background">
+        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Background.Active">
             <summary></summary>
         </member>
-        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Border.Background.Active">
+        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Background.Default">
             <summary></summary>
         </member>
-        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Border.Background.Default">
+        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Background.Disable">
             <summary></summary>
         </member>
-        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Border.Background.Disable">
+        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Background.MouseOver">
             <summary></summary>
         </member>
-        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Border.Background.MouseOver">
+        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Background.NamespacePrefix">
             <summary></summary>
         </member>
-        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Border.Background.NamespacePrefix">
+        <member name="T:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Outline">
             <summary></summary>
         </member>
-        <member name="T:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Border.Outline">
+        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Outline.Active">
             <summary></summary>
         </member>
-        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Border.Outline.Active">
+        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Outline.Default">
             <summary></summary>
         </member>
-        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Border.Outline.Default">
+        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Outline.Disable">
             <summary></summary>
         </member>
-        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Border.Outline.Disable">
+        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Outline.MouseOver">
             <summary></summary>
         </member>
-        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Border.Outline.MouseOver">
-            <summary></summary>
-        </member>
-        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Border.Outline.NamespacePrefix">
+        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Outline.NamespacePrefix">
             <summary></summary>
         </member>
         <member name="T:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Mask">
             <summary></summary>
         </member>
-        <member name="T:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Mask.Foreground">
+        <member name="T:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Mask.Background">
             <summary></summary>
         </member>
-        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Mask.Foreground.Active">
+        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Mask.Background.Active">
             <summary></summary>
         </member>
-        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Mask.Foreground.Default">
+        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Mask.Background.Default">
             <summary></summary>
         </member>
-        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Mask.Foreground.Disable">
+        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Mask.Background.Disable">
             <summary></summary>
         </member>
-        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Mask.Foreground.MouseOver">
+        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Mask.Background.MouseOver">
             <summary></summary>
         </member>
-        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Mask.Foreground.NamespacePrefix">
+        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Mask.Background.NamespacePrefix">
             <summary></summary>
         </member>
-        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Mask.Foreground.Section">
+        <member name="F:SimpleOverlayTheme.Share.StringTable.ThemeKey.Overlay.Mask.Background.Section">
             <summary></summary>
         </member>
         <member name="T:SimpleOverlayTheme.CurrentThemeGeneraterToXaml.XamlConverter">
