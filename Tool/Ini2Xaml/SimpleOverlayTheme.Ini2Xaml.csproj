@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\Share\Props\Directory.Common.props"/>
+    <Import Project="Directory.Directory.props"/>
+  <PropertyGroup>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SimpleFileIO" Version="0.1.6" />
+  </ItemGroup>
+
+</Project>

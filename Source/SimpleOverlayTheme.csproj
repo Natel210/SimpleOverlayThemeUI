@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="$(MSBuildProjectDirectory)\..\Directory.Common.props" Condition="'$(SolutionDir)' == ''" />
-  <Import Project="$(SolutionDir)\Directory.Common.props" Condition="'$(SolutionDir)' != ''" />
+  <Import Project="$(MSBuildProjectDirectory)\..\Share\Props\Directory.Common.props" Condition="'$(SolutionDir)' == ''" />
+  <Import Project="$(SolutionDir)\Share\Props\Directory.Common.props" Condition="'$(SolutionDir)' != ''" />
   <Import Project="Directory.Directory.props" />
 
   <PropertyGroup>

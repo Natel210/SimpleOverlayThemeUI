@@ -1,0 +1,16 @@
+<Project>
+  <!-- See https://aka.ms/dotnet/msbuild/customize for more details on customizing your build -->
+  <PropertyGroup>
+      <!-- Project -->
+      <TargetFramework>net8.0</TargetFramework>
+      <Nullable>enable</Nullable>
+      <ImplicitUsings>enable</ImplicitUsings>
+      <AssemblyName>SimpleOverlayTheme.Ini2Xaml</AssemblyName>
+      <OutputType>Exe</OutputType>
+      <!-- Publish -->
+      <PublishSingleFile>true</PublishSingleFile>
+      <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+      <PublishReadyToRun>false</PublishReadyToRun>
+      <PublishDir>..\..\Share\Tools\Ini2Xaml\</PublishDir>  
+  </PropertyGroup>
+</Project>
