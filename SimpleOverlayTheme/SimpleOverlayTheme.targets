@@ -1,11 +1,10 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Target Name="GenerateOverlayThemeXaml"
-            BeforeTargets="Build"
-            >
-
-        <Message Text="🔧 [SimpleOverlayTheme] current.ini → CurrentTheme.xaml 생성 중..." Importance="High" />
-
-        <Exec Command='"$(MSBuildThisFileDirectory)..\..\tools\net8.0\SimpleOverlayTheme.CurrentThemeGeneraterToXaml.exe" "$(ProjectDir)current.ini" "$(ProjectDir)ThemeSystem\Current\CurrentTheme.xaml"' />
+    <Target Name="GenerateOverlayThemeXaml" BeforeTargets="Build" Condition="!Exists('$(ProjectDir)\SimpleOverlayTheme.targets')">
+        <Message Text="****************************************" Importance="High" />
+        <Message Text="**** [SimpleOverlayTheme] Generater Dummy Xaml From current.ini ****" Importance="High" />
+        <Exec Command='"$(MSBuildThisFileDirectory)..\..\tools\net8.0\SimpleOverlayTheme.CurrentThemeGeneraterToXaml.exe" "$(TargetDir)Theme\current.ini" "$(ProjectDir)ThemeSystem\Current\CurrentTheme.xaml"' />
+        <Message Text="**** [SimpleOverlayTheme] End ****" Importance="High" />
+        <Message Text="****************************************" Importance="High" />
     </Target>
 
 </Project>

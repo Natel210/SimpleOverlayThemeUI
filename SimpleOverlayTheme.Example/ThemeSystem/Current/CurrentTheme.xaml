@@ -21,31 +21,31 @@
     <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Thickness.Zero">0</Thickness>
 
     <!-- ColorPalette -->
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Background">#FFFFFFFF</Thickness>
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground">#FF151515</Thickness>
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground_Disable">#A0808080</Thickness>
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Highlight">#B4151515</Thickness>
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Line">#FF808080</Thickness>
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Mask">#A0808080</Thickness>
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Outline">#80808080</Thickness>
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Selection">#FF808080</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Background">255,80,80,255</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground">255,21,21,21</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground_Disable">160,128,128,128</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Highlight">180,21,21,21</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Line">255,128,128,128</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Mask">160,128,128,128</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Outline">128,128,128,128</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Selection">255,128,128,128</Thickness>
 
     <!-- Overlay.Background -->
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Background.Active">#05808080</Thickness>
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Background.Default">#10808080</Thickness>
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Background.Disable">#25808080</Thickness>
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Background.MouseOver">#40808080</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Background.Active">64,128,128,128</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Background.Default">16,128,128,128</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Background.Disable">5,128,128,128</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Background.MouseOver">37,128,128,128</Thickness>
 
     <!-- Overlay.Outline -->
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.Active">#25808080</Thickness>
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.Default">#33151515</Thickness>
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.Disable">#80151515</Thickness>
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.MouseOver">#FF151515</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.Active">255,21,21,21</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.Default">51,21,21,21</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.Disable">37,128,128,128</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.MouseOver">128,21,21,21</Thickness>
 
     <!-- Overlay.Mask.Background -->
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.Active">#25151515</Thickness>
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.Default">#50151515</Thickness>
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.Disable">#A0151515</Thickness>
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.MouseOver">#F0151515</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.Active">240,21,21,21</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.Default">80,21,21,21</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.Disable">37,21,21,21</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.MouseOver">160,21,21,21</Thickness>
 
 </ResourceDictionary>

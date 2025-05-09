@@ -10,10 +10,10 @@
     <Copyright>MIT</Copyright>
     <Description>
       <![CDATA[
-        WPF resource DLL for simple themes.<br/>
-        You can use it as basic WPF.<br/>
-        Example samples are included.<br/>
-        The created environment is <code>.NET 8.0</code><br/>
+        WPF resource DLL for simple themes.
+        You can use it as basic WPF.
+        Example samples are included.
+        The created environment is .NET 8.0
       ]]>
     </Description>
     <!-- Repository -->

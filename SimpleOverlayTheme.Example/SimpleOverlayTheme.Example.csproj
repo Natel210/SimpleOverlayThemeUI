@@ -19,7 +19,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SimpleOverlayTheme" Version="999.0.19" />
+    <PackageReference Include="SimpleOverlayTheme" Version="999.0.20" />
   </ItemGroup>
 
 </Project>

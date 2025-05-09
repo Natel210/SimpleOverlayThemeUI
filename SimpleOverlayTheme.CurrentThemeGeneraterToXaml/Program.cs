@@ -6,7 +6,7 @@ using SimpleOverlayTheme.CurrentThemeGeneraterToXaml;
 
 if (args.Length != 2)
 {
-    Console.Error.WriteLine("Usage: XamlGen <input.ini> <output.xaml>");
+    Console.Error.WriteLine("[Error] need arguments ... <input.ini> <output.xaml>");
     return 1;
 }
 
@@ -18,13 +18,19 @@ try
     XamlConverter.SetSourcePathProperty(iniPath);
     bool isLoad = XamlConverter.Execute(new FileInfo(xamlPath));
     if (isLoad is true)
-        Console.WriteLine($"✅ Conversion completed: {xamlPath}");
+    {
+        Console.WriteLine($"[Success] ini to xaml conversion.");
+        Console.WriteLine($"Xaml Path => {xamlPath}");
+    }
     else
-        Console.WriteLine($"✅ New XAML file generated: {xamlPath}");
+    {
+        Console.WriteLine($"[Success] created xaml from default.");
+        Console.WriteLine($"Xaml Path => {xamlPath}");
+    }
     return 0;
 }
 catch (Exception ex)
 {
-    Console.Error.WriteLine($"❌ Error: {ex.Message}");
+    Console.Error.WriteLine($"[Error] call message => {ex.Message}");
     return 1;
 }

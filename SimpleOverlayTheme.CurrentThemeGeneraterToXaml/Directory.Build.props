@@ -8,10 +8,7 @@
       <AssemblyName>SimpleOverlayTheme.CurrentThemeGeneraterToXaml</AssemblyName>
       <OutputType>Exe</OutputType>
       <!-- Publish -->
-      <!--<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>-->
       <PublishSingleFile>true</PublishSingleFile>
-      <!--<SelfContained>true</SelfContained>
-      <PublishTrimmed>false</PublishTrimmed>-->
       <RuntimeIdentifier>win-x64</RuntimeIdentifier>
       <PublishReadyToRun>false</PublishReadyToRun>
       <PublishDir>..\Tools\CurrentThemeGeneraterToXaml\</PublishDir>  
