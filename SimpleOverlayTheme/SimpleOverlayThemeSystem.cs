@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace SimpleOverlayTheme
 {
+    /// <summary>
+    /// 
+    /// </summary>
     static public class SimpleOverlayThemeSystem
     {
         /// <summary>

@@ -76,9 +76,9 @@ namespace SimpleOverlayTheme.CurrentThemeGeneraterToXaml
             stringBuilder.AppendLine($"    {formatDouble(ThemeKey.FontSize.Header5, 13.28)}");
             stringBuilder.AppendLine($"    {formatDouble(ThemeKey.FontSize.Header6, 10.72)}");
             stringBuilder.AppendLine($"");
-            stringBuilder.AppendLine($"    {formatSection(ThemeKey.Tickness.Default.Ini.Section)}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.Tickness.Default, "1")}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.Tickness.Zero, "0")}");
+            stringBuilder.AppendLine($"    {formatSection(ThemeKey.Thickness.Default.Ini.Section)}");
+            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.Thickness.Default, "1")}");
+            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.Thickness.Zero, "0")}");
             stringBuilder.AppendLine($"");
             stringBuilder.AppendLine($"    {formatSection(ThemeKey.ColorPalette.Background.Ini.Section)}");
             stringBuilder.AppendLine($"    {formatTickness(ThemeKey.ColorPalette.Background, toHex(255, 255, 255, 255))}");
@@ -110,6 +110,8 @@ namespace SimpleOverlayTheme.CurrentThemeGeneraterToXaml
             stringBuilder.AppendLine($"");
             stringBuilder.AppendLine($"</ResourceDictionary>");
 
+            if(Directory.Exists(outputPath.DirectoryName) is false)
+                Directory.CreateDirectory(outputPath.DirectoryName ?? string.Empty);
             File.WriteAllText(outputPath.FullName, stringBuilder.ToString());
 
             return result;

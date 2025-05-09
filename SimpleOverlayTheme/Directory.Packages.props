@@ -1,0 +1,26 @@
+<Project>
+  <PropertyGroup>
+    <!-- Enable central package management, https://learn.microsoft.com/en-us/nuget/consume-packages/Central-Package-Management -->
+      <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>  
+      <!-- Repository -->
+      <RepositoryType>git</RepositoryType>
+      <RepositoryUrl>https://github.com/Natel210/SimpleOverlayThemeUI.git</RepositoryUrl>
+      
+      <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+      <!--<GenerateDocumentationFile>true</GenerateDocumentationFile>
+      <DocumentationFile>$(BaseOutputPath)/$(Configuration)/$(TargetFramework)/$(AssemblyName).xml</DocumentationFile>-->
+      
+      
+    
+    <!-- Package -->
+    <!--<PackageIcon>none.png</PackageIcon>-->
+    <!--<PackageLicenseExpression>$(Copyright)</PackageLicenseExpression>-->
+    <PackageVersion>$(VersionPrefix)</PackageVersion>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/Natel210/SimpleOverlayThemeUI</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageTags>Simple;Theme;OverlayTheme;SimpleTheme;SimpleOverlayThemeUI</PackageTags>
+    <PackageReleaseNotes>https://github.com/Natel210/SimpleOverlayThemeUI/releases</PackageReleaseNotes>
+  </PropertyGroup>
+</Project>

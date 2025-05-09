@@ -1,0 +1,113 @@
+<Project>
+  <!-- See https://aka.ms/dotnet/msbuild/customize for more details on customizing your build -->
+  <PropertyGroup>
+    <RootPath Condition="'$(SolutionDir)' == ''">$(MSBuildProjectDirectory)\..\</RootPath>
+    <RootPath Condition="'$(SolutionDir)' != ''">$(SolutionDir)</RootPath>
+  </PropertyGroup>
+    
+  <!--Solution Link-->
+  <ItemGroup>
+    <!--Builds-->
+    <Content Include="$(RootPath)Builds\**\*.*">
+      <Link>SolutionFolder\Builds\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Content>
+      
+    <!--Content-->  
+    <!--<Content Include="$(RootPath)Contents\**\*.*">
+      <Pack>True</Pack>
+      <PackagePath>Contents\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <Link>SolutionFolder\Contents\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Content>-->
+
+    <!--Resource-->
+    <Resource Include="$(RootPath)Resource\Mask\check.png">
+      <Link>Resource\Mask\check.png</Link>
+    </Resource>
+    <Resource Include="$(RootPath)Resource\Mask\close.png">
+      <Link>Resource\Mask\close.png</Link>
+    </Resource>
+    <Resource Include="$(RootPath)Resource\Mask\downArrow.png">
+      <Link>Resource\Mask\downArrow.png</Link>
+    </Resource>
+    <Resource Include="$(RootPath)Resource\Mask\maximize.png">
+      <Link>Resource\Mask\maximize.png</Link>
+    </Resource>
+    <Resource Include="$(RootPath)Resource\Mask\minimize.png">
+      <Link>Resource\Mask\minimize.png</Link>
+    </Resource>
+    <Resource Include="$(RootPath)Resource\Mask\minus.png">
+      <Link>Resource\Mask\minus.png</Link>
+    </Resource>
+    <Resource Include="$(RootPath)Resource\Mask\plus.png">
+      <Link>Resource\Mask\plus.png</Link>
+    </Resource>
+    <Resource Include="$(RootPath)Resource\Mask\restore.png">
+      <Link>Resource\Mask\restore.png</Link>
+    </Resource>
+    <Resource Include="$(RootPath)Resource\Mask\upArrow.png">
+      <Link>Resource\Mask\upArrow.png</Link>
+    </Resource>
+
+    <!--StringTable-->
+    <Compile Include="$(RootPath)Share\StringTable\Item\ThemeKeyPair\IniPair.cs">
+      <Link>StringTable\Item\ThemeKeyPair\IniPair.cs</Link>
+    </Compile>
+    <Compile Include="$(RootPath)Share\StringTable\Item\ThemeKeyPair\ThemePair.cs">
+      <Link>StringTable\Item\ThemeKeyPair\ThemePair.cs</Link>
+    </Compile>
+    <Compile Include="$(RootPath)Share\StringTable\ThemeKey.cs">
+      <Link>StringTable\ThemeKey.cs</Link>
+    </Compile>
+
+    <!--Tools-->
+    <!--<None Include="$(RootPath)Tools\**\*.*">
+      <Pack>True</Pack>
+      <PackagePath>Tools\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <Link>SolutionFolder\Tools\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </None>-->
+      <None Include="$(RootPath)Tools\CurrentThemeGeneraterToXaml\SimpleOverlayTheme.CurrentThemeGeneraterToXaml.exe">
+          <Pack>True</Pack>
+          <PackagePath>tools\net8.0\SimpleOverlayTheme.CurrentThemeGeneraterToXaml.exe</PackagePath>
+          <Link>Tools\CurrentThemeGeneraterToXaml\SimpleOverlayTheme.CurrentThemeGeneraterToXaml.exe</Link>
+      </None>
+      
+      
+
+    <!--Props-->
+    <None Include="$(RootPath)Directory.Common.props">
+      <Link>Directory.Common.props</Link>
+    </None>
+
+    <!--Git-->  
+    <None Include="$(RootPath).gitignore">
+      <Link>Git\.gitignore</Link>
+    </None>
+
+    <None Include="$(RootPath)LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>/</PackagePath>
+      <Link>Git\LICENSE</Link>
+    </None>
+    <None Include="$(RootPath)README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <Link>Git\README.md</Link>
+    </None>
+  </ItemGroup>
+
+  <!--Output Pack--><!--
+  <ItemGroup>
+    <Content Include="Build\CurrentThemeGeneraterToXaml.targets">
+      <Pack>True</Pack>
+      <PackagePath>Build\$(TargetFramework)\</PackagePath>
+        <Visible>true</Visible>
+    </Content>
+  </ItemGroup>-->
+    <ItemGroup>
+        <Content Include="SimpleOverlayTheme.targets">
+            <Pack>True</Pack>
+            <PackagePath>build\net8.0\</PackagePath>
+            <Visible>true</Visible>
+        </Content>
+    </ItemGroup>
+</Project>

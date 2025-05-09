@@ -165,13 +165,13 @@ namespace SimpleOverlayTheme.Theme.ThemeProperty
 
         /// <summary>Gets or sets the default UI element thickness.</summary>
         internal ThemePropertyValue<Thickness> Thickness_Default { get; private set; }
-            = new(ThemeKey.Tickness.Default.Ini.Section,
-                ThemeKey.Tickness.Default.Ini.Key, new Thickness(1));
+            = new(ThemeKey.Thickness.Default.Ini.Section,
+                ThemeKey.Thickness.Default.Ini.Key, new Thickness(1));
 
         /// <summary>Gets or sets zero-thickness, often used for spacing removal.</summary>
         internal ThemePropertyValue<Thickness> Thickness_Zero { get; private set; }
-            = new(ThemeKey.Tickness.Zero.Ini.Section,
-                ThemeKey.Tickness.Zero.Ini.Key, new Thickness(0));
+            = new(ThemeKey.Thickness.Zero.Ini.Section,
+                ThemeKey.Thickness.Zero.Ini.Key, new Thickness(0));
 
     }
     #endregion

@@ -1,0 +1,51 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- ============================== -->
+    <!-- | * Current Theme Dummy (Only Design View * -->
+    <!-- ============================== -->
+    <!-- Common -->
+    <System:String x:Key="SimpleOverlayTheme.ThemeKey.Common.ThemeName">Temp</System:String>
+
+    <!-- ColorPalette -->
+    <System:Double x:Key="SimpleOverlayTheme.ThemeKey.FontSize.Default">10</System:Double>
+    <System:Double x:Key="SimpleOverlayTheme.ThemeKey.FontSize.Header1">32</System:Double>
+    <System:Double x:Key="SimpleOverlayTheme.ThemeKey.FontSize.Header2">24</System:Double>
+    <System:Double x:Key="SimpleOverlayTheme.ThemeKey.FontSize.Header3">18.72</System:Double>
+    <System:Double x:Key="SimpleOverlayTheme.ThemeKey.FontSize.Header4">16</System:Double>
+    <System:Double x:Key="SimpleOverlayTheme.ThemeKey.FontSize.Header5">13.28</System:Double>
+    <System:Double x:Key="SimpleOverlayTheme.ThemeKey.FontSize.Header6">10.72</System:Double>
+
+    <!-- Thickness -->
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Thickness.Default">1</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Thickness.Zero">0</Thickness>
+
+    <!-- ColorPalette -->
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Background">#FFFFFFFF</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground">#FF151515</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground_Disable">#A0808080</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Highlight">#B4151515</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Line">#FF808080</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Mask">#A0808080</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Outline">#80808080</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Selection">#FF808080</Thickness>
+
+    <!-- Overlay.Background -->
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Background.Active">#05808080</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Background.Default">#10808080</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Background.Disable">#25808080</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Background.MouseOver">#40808080</Thickness>
+
+    <!-- Overlay.Outline -->
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.Active">#25808080</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.Default">#33151515</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.Disable">#80151515</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.MouseOver">#FF151515</Thickness>
+
+    <!-- Overlay.Mask.Background -->
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.Active">#25151515</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.Default">#50151515</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.Disable">#A0151515</Thickness>
+    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.MouseOver">#F0151515</Thickness>
+
+</ResourceDictionary>

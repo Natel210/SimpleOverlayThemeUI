@@ -1,15 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+    <Import Project="$(MSBuildProjectDirectory)\..\Directory.Common.props" Condition="'$(SolutionDir)' == ''" />
+    <Import Project="$(SolutionDir)\Directory.Common.props" Condition="'$(SolutionDir)' != ''" />
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SimpleOverlayTheme\SimpleOverlayTheme.csproj" />
+    <Folder Include="ExampleList\Child\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ILRepack" Version="2.0.41">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="SimpleOverlayTheme" Version="999.0.19" />
   </ItemGroup>
 
 </Project>

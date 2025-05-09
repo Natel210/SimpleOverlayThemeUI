@@ -128,7 +128,7 @@ namespace SimpleOverlayTheme.Theme
                 { ThemeKey.FontSize.Header1.Xaml, FontSize_Header1 }, { ThemeKey.FontSize.Header2.Xaml, FontSize_Header2 },
                 { ThemeKey.FontSize.Header3.Xaml, FontSize_Header3 }, { ThemeKey.FontSize.Header4.Xaml, FontSize_Header4 },
                 { ThemeKey.FontSize.Header5.Xaml, FontSize_Header5 }, { ThemeKey.FontSize.Header6.Xaml, FontSize_Header6 },
-                { ThemeKey.Tickness.Default.Xaml, Thickness_Default }, { ThemeKey.Tickness.Zero.Xaml, Thickness_Zero },
+                { ThemeKey.Thickness.Default.Xaml, Thickness_Default }, { ThemeKey.Thickness.Zero.Xaml, Thickness_Zero },
                 { ThemeKey.ColorPalette.Background.Xaml, makeBrush(ColorPalette_Background) },
                 { ThemeKey.ColorPalette.Foreground.Xaml, makeBrush(ColorPalette_Foreground) },
                 { ThemeKey.ColorPalette.Foreground_Disable.Xaml, makeBrush(ColorPalette_Foreground_Disable) },
@@ -607,13 +607,13 @@ namespace SimpleOverlayTheme.Theme
             {
                 _common.Thickness_Default.Value = source.Thickness_Default;
                 changedProperties.Add(nameof(Thickness_Default));
-                changedDictionary.Add(ThemeKey.Tickness.Default.Xaml, Thickness_Default);
+                changedDictionary.Add(ThemeKey.Thickness.Default.Xaml, Thickness_Default);
             }
             if (EqualityComparer<Thickness>.Default.Equals(_common.Thickness_Zero.Value, source.Thickness_Zero))
             {
                 _common.Thickness_Zero.Value = source.Thickness_Zero;
                 changedProperties.Add(nameof(Thickness_Zero));
-                changedDictionary.Add(ThemeKey.Tickness.Zero.Xaml, Thickness_Zero);
+                changedDictionary.Add(ThemeKey.Thickness.Zero.Xaml, Thickness_Zero);
             }
             if (EqualityComparer<Color>.Default.Equals(_common.ColorPalette_Background.Value, source.ColorPalette_Background))
             {
@@ -936,13 +936,13 @@ namespace SimpleOverlayTheme.Theme
         private Thickness GetThickness_Default() => _common.Thickness_Default.Value;
         /// <summary> Sets the default thickness value and updates the resource dictionary. </summary>
         private void SetThickness_Default(Thickness value) => SetValue(value, _common.Thickness_Default.Value,
-            ThemeKey.Tickness.Default.Xaml, () => _common.Thickness_Default.Value = value, nameof(Thickness_Default));
+            ThemeKey.Thickness.Default.Xaml, () => _common.Thickness_Default.Value = value, nameof(Thickness_Default));
 
         /// <summary> Gets the zero-thickness value, typically used for borderless or padding-less elements. </summary>
         private Thickness GetThickness_Zero() => _common.Thickness_Zero.Value;
         /// <summary> Sets the zero-thickness value and updates the resource dictionary. </summary>
         private void SetThickness_Zero(Thickness value) => SetValue(value, _common.Thickness_Zero.Value,
-            ThemeKey.Tickness.Zero.Xaml, () => _common.Thickness_Zero.Value = value, nameof(Thickness_Zero));
+            ThemeKey.Thickness.Zero.Xaml, () => _common.Thickness_Zero.Value = value, nameof(Thickness_Zero));
 
     }
     #endregion

@@ -19,6 +19,7 @@ namespace SimpleOverlayTheme.Example
         public MainWindow()
         {
             InitializeComponent();
+            
         }
     }
 }

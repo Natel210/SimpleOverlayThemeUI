@@ -1,21 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <BaseOutputPath>$(SolutionDir)SimpleOverlayTheme\Build\</BaseOutputPath>
-        <OutputPath>$(BaseOutputPath)CurrentThemeGeneraterToXaml\</OutputPath>
-        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-        <OutputType>Exe</OutputType>
-        <TargetFramework>net8.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <!-- not include .xml ... -->
-        <NoWarn>$(NoWarn);NU5119</NoWarn>
-    </PropertyGroup>
-    <ItemGroup>
-        <PackageReference Include="SimpleFileIO" Version="0.1.6" />
-    </ItemGroup>
-    <!--TEST-->
-    <!--<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-      <Exec Command="dotnet &quot;$(OutDir)$(TargetName).dll&quot; &quot;$(OutDir)Current.ini&quot; &quot;$(OutDir)Current.xaml&quot;" />
-    </Target>-->
+  <Import Project="$(MSBuildProjectDirectory)\..\Directory.Common.props" Condition="'$(SolutionDir)' == ''" />
+  <Import Project="$(SolutionDir)\Directory.Common.props" Condition="'$(SolutionDir)' != ''" />
+  <Import Project="Directory.Directory.props" />
+  <PropertyGroup>
+    <Platforms>x64;AnyCPU</Platforms>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="SimpleFileIO" Version="0.1.6" />
+  </ItemGroup>
+  <!--TEST-->
+  <!--<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="dotnet &quot;$(OutDir)$(TargetName).dll&quot; &quot;$(OutDir)Current.ini&quot; &quot;$(OutDir)Current.xaml&quot;" />
+  </Target>-->
 </Project>

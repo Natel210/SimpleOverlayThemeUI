@@ -6,29 +6,32 @@
              xmlns:local="clr-namespace:SimpleOverlayTheme.Example.ExampleList"
              xmlns:helpers="clr-namespace:SimpleOverlayTheme.Helpers;assembly=SimpleOverlayTheme"
              mc:Ignorable="d" 
-             d:Background="White">
+             Background="AliceBlue">
     <UserControl.Resources>
-
         <Style x:Key="gridBorder" TargetType="Border" BasedOn="{StaticResource SimpleOverlayTheme.Style.BorderStyle.Border}">
             <Setter Property="BorderBrush" Value="#88888888"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Margin" Value="5"/>
-        </Style> <Style x:Key="borderBase" TargetType="Border" BasedOn="{StaticResource SimpleOverlayTheme.Style.BorderStyle.Border}">
+        </Style>
+        <Style x:Key="borderBase" TargetType="Border" BasedOn="{StaticResource SimpleOverlayTheme.Style.BorderStyle.Border}">
             <Setter Property="Width" Value="50"/>
             <Setter Property="Height" Value="50"/>
             <Setter Property="Background" Value="Gray"/>
             <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Margin" Value="5"/>
         </Style>
         <Style x:Key="borderEmptyBase" TargetType="Border" BasedOn="{StaticResource SimpleOverlayTheme.Style.BorderStyle.Empty}">
             <Setter Property="Width" Value="50"/>
             <Setter Property="Height" Value="50"/>
             <Setter Property="Background" Value="Gray"/>
             <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Margin" Value="5"/>
         </Style>
         <Style x:Key="borderMaskBase" TargetType="Border" BasedOn="{StaticResource SimpleOverlayTheme.Style.BorderStyle.Mask}">
             <Setter Property="Width" Value="50"/>
             <Setter Property="Height" Value="50"/>
             <Setter Property="Background" Value="Gray"/>
+            <Setter Property="Margin" Value="5"/>
             <!--Does not apply-->
             <Setter Property="BorderBrush" Value="Gray"/>
             <!--Does not apply-->
@@ -54,21 +57,15 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="borderMaskAll" TargetType="Border" BasedOn="{StaticResource borderMaskBase}">
-            <Setter Property="helpers:BorderHelper.CustomMask_Use_AtActive" Value="True"/>
-            <Setter Property="helpers:BorderHelper.CustomMask_Use_AtDisable" Value="True"/>
-            <Setter Property="helpers:BorderHelper.CustomMask_Use_AtMouseover" Value="True"/>
-        </Style>
-        <Style x:Key="borderMaskDontCustom" TargetType="Border" BasedOn="{StaticResource borderMaskBase}">
-            <Setter Property="helpers:BorderHelper.CustomMask_Use_AtActive" Value="True"/>
-        </Style>
         <Style x:Key="borderOverlayBase" TargetType="Border" BasedOn="{StaticResource SimpleOverlayTheme.Style.BorderStyle.Overlay}">
             <Setter Property="Width" Value="50"/>
             <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="5"/>
         </Style>
         <Style x:Key="borderOverlayMaskBase" TargetType="Border" BasedOn="{StaticResource SimpleOverlayTheme.Style.BorderStyle.OverlayMask}">
             <Setter Property="Width" Value="50"/>
             <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="5"/>
             <Setter Property="helpers:BorderHelper.Mask_DefaultImageBrush">
                 <Setter.Value>
                     <ImageBrush ImageSource="/SolutionFolder/Resource/Mask/check.png"/>
@@ -90,6 +87,15 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
+        <Style x:Key="borderMaskAll" TargetType="Border" BasedOn="{StaticResource borderMaskBase}">
+            <Setter Property="helpers:BorderHelper.CustomMask_Use_AtActive" Value="True"/>
+            <Setter Property="helpers:BorderHelper.CustomMask_Use_AtDisable" Value="True"/>
+            <Setter Property="helpers:BorderHelper.CustomMask_Use_AtMouseover" Value="True"/>
+        </Style>
+        <Style x:Key="borderMaskDontCustom" TargetType="Border" BasedOn="{StaticResource borderMaskBase}">
+            <Setter Property="helpers:BorderHelper.CustomMask_Use_AtActive" Value="True"/>
+        </Style>
         <Style x:Key="borderOverlayMaskAll" TargetType="Border" BasedOn="{StaticResource borderOverlayMaskBase}">
             <Setter Property="helpers:BorderHelper.CustomMask_Use_AtActive" Value="True"/>
             <Setter Property="helpers:BorderHelper.CustomMask_Use_AtDisable" Value="True"/>
@@ -99,27 +105,37 @@
             <Setter Property="helpers:BorderHelper.CustomMask_Use_AtActive" Value="True"/>
         </Style>
     </UserControl.Resources>
-    <ScrollViewer>
-        <Grid>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid MinWidth="1200">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                
-            </Grid>
-            <Grid Grid.Row="1">
-
-            </Grid>
-
-            <Border Grid.Row="2" Style="{StaticResource gridBorder}">
-                <Grid Grid.Row="2">
+            <Border Grid.Row="0" Style="{StaticResource gridBorder}">
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Label Content="OverlayMask" Grid.Row="0" HorizontalContentAlignment="Center"/>
+                    <Label Content="0000" Grid.Row="0" HorizontalContentAlignment="Center"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </Grid>
+            </Border>
+            <Border Grid.Row="1" Style="{StaticResource gridBorder}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Overlay" Grid.Row="0" HorizontalContentAlignment="Center"/>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -130,7 +146,7 @@
                         <Border Grid.Column="0" Style="{StaticResource gridBorder}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
@@ -141,28 +157,23 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Label  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                                        Content="All Custom"
-                                        HorizontalContentAlignment="Center"/>
+                                        Content="Overlay" HorizontalContentAlignment="Center"/>
                                 <Border Grid.Row="1" Grid.Column="0"
-                                        Style="{StaticResource borderOverlayMaskAll}"
-                                        helpers:BorderHelper.Overlay_State="Active"/>
+                                        Style="{StaticResource borderOverlayBase}" helpers:BorderHelper.Overlay_State="Active"/>
                                 <Label Grid.Row="1" Grid.Column="1"
-                       Content="Active State" VerticalContentAlignment="Center"/>
+                                       Content="Active State" VerticalContentAlignment="Center"/>
                                 <Border Grid.Row="2" Grid.Column="0"
-                        Style="{StaticResource borderOverlayMaskAll}"
-                        helpers:BorderHelper.Overlay_State="Default"/>
+                                        Style="{StaticResource borderOverlayBase}" helpers:BorderHelper.Overlay_State="Default"/>
                                 <Label Grid.Row="2" Grid.Column="1"
-                       Content="Default State" VerticalContentAlignment="Center"/>
+                                       Content="Default State" VerticalContentAlignment="Center"/>
                                 <Border Grid.Row="3" Grid.Column="0"
-                        Style="{StaticResource borderOverlayMaskAll}"
-                        helpers:BorderHelper.Overlay_State="Disable"/>
+                                        Style="{StaticResource borderOverlayBase}" helpers:BorderHelper.Overlay_State="Disable"/>
                                 <Label Grid.Row="3" Grid.Column="1"
-                       Content="Disable State" VerticalContentAlignment="Center"/>
+                                       Content="Disable State" VerticalContentAlignment="Center"/>
                                 <Border Grid.Row="4" Grid.Column="0"
-                        Style="{StaticResource borderOverlayMaskAll}"
-                        helpers:BorderHelper.Overlay_State="MouseOver"/>
+                                        Style="{StaticResource borderOverlayBase}" helpers:BorderHelper.Overlay_State="MouseOver"/>
                                 <Label Grid.Row="4" Grid.Column="1"
-                       Content="MouseOver State" VerticalContentAlignment="Center"/>
+                                       Content="MouseOver State" VerticalContentAlignment="Center"/>
                             </Grid>
                         </Border>
                         <Border Grid.Column="1" Style="{StaticResource gridBorder}">
@@ -179,32 +190,31 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Label  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                        Content="Custom Active Once"
-                        HorizontalContentAlignment="Center"/>
+                                        Content="Overlay Display (State:Default)" HorizontalContentAlignment="Center"/>
                                 <Border Grid.Row="1" Grid.Column="0"
-                        Style="{StaticResource borderOverlayMaskDontCustom}"
-                        helpers:BorderHelper.Overlay_State="Active"/>
+                                        Style="{StaticResource borderOverlayBase}"
+                                        helpers:BorderHelper.Overlay_State="Default"
+                                        helpers:BorderHelper.Overlay_DisplayBackground="False"/>
                                 <Label Grid.Row="1" Grid.Column="1"
-                       Content="Active State"
-                       VerticalContentAlignment="Center"/>
+                                       Content="Background False" VerticalContentAlignment="Center"/>
                                 <Border Grid.Row="2" Grid.Column="0"
-                        Style="{StaticResource borderOverlayMaskDontCustom}"
-                        helpers:BorderHelper.Overlay_State="Default"/>
+                                        Style="{StaticResource borderOverlayBase}"
+                                        helpers:BorderHelper.Overlay_State="Default"
+                                        helpers:BorderHelper.Overlay_DisplayBackground="True"/>
                                 <Label Grid.Row="2" Grid.Column="1"
-                       Content="Default State"
-                       VerticalContentAlignment="Center"/>
+                                       Content="Background True" VerticalContentAlignment="Center"/>
                                 <Border Grid.Row="3" Grid.Column="0"
-                        Style="{StaticResource borderOverlayMaskDontCustom}"
-                        helpers:BorderHelper.Overlay_State="Disable"/>
+                                        Style="{StaticResource borderOverlayBase}"
+                                        helpers:BorderHelper.Overlay_State="Default"
+                                        helpers:BorderHelper.Overlay_DisplayOutline="False"/>
                                 <Label Grid.Row="3" Grid.Column="1"
-                       Content="Disable State"
-                       VerticalContentAlignment="Center"/>
+                                       Content="Outline False" VerticalContentAlignment="Center"/>
                                 <Border Grid.Row="4" Grid.Column="0"
-                        Style="{StaticResource borderOverlayMaskDontCustom}"
-                        helpers:BorderHelper.Overlay_State="MouseOver"/>
+                                        Style="{StaticResource borderOverlayBase}"
+                                        helpers:BorderHelper.Overlay_State="Default"
+                                        helpers:BorderHelper.Overlay_DisplayOutline="True"/>
                                 <Label Grid.Row="4" Grid.Column="1"
-                       Content="MouseOver State"
-                       VerticalContentAlignment="Center"/>
+                                       Content="Outline True" VerticalContentAlignment="Center"/>
                             </Grid>
                         </Border>
                         <Border Grid.Column="2" Style="{StaticResource gridBorder}">
@@ -221,42 +231,56 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Label  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                       Content="Overlay Display (State:Default)"
-                       HorizontalContentAlignment="Center"/>
+                                        Content="Overlay Default Display" HorizontalContentAlignment="Center"/>
                                 <Border Grid.Row="1" Grid.Column="0"
-                        Style="{StaticResource borderOverlayMaskAll}"
-                        helpers:BorderHelper.Overlay_State="Default"
-                        helpers:BorderHelper.Overlay_DisplayBackground="False"/>
+                                        Style="{StaticResource borderOverlayMaskAll}"
+                                        helpers:BorderHelper.Overlay_State="Active"
+                                        helpers:BorderHelper.Overlay_DisplayBackground_AtDefault="False"/>
                                 <Label Grid.Row="1" Grid.Column="1"
-                       Content="Background False"
-                       VerticalContentAlignment="Center"/>
+                                       Content="Default Background False (Active)" VerticalContentAlignment="Center"/>
                                 <Border Grid.Row="2" Grid.Column="0"
-                        Style="{StaticResource borderOverlayMaskAll}"
-                        helpers:BorderHelper.Overlay_State="Default"
-                        helpers:BorderHelper.Overlay_DisplayBackground="True"/>
+                                        Style="{StaticResource borderOverlayMaskAll}"
+                                        helpers:BorderHelper.Overlay_State="Default"
+                                        helpers:BorderHelper.Overlay_DisplayBackground_AtDefault="False"/>
                                 <Label Grid.Row="2" Grid.Column="1"
-                       Content="Background True"
-                       VerticalContentAlignment="Center"/>
+                                       Content="Default Background False (Default)"
+                                       VerticalContentAlignment="Center"/>
                                 <Border Grid.Row="3" Grid.Column="0"
-                        Style="{StaticResource borderOverlayMaskAll}"
-                        helpers:BorderHelper.Overlay_State="Default"
-                        helpers:BorderHelper.Overlay_DisplayOutline="False"/>
+                                        Style="{StaticResource borderOverlayMaskAll}"
+                                        helpers:BorderHelper.Overlay_State="Active"
+                                        helpers:BorderHelper.Overlay_DisplayOutline_AtDefault="False"/>
                                 <Label Grid.Row="3" Grid.Column="1"
-                       Content="Outline False"
-                       VerticalContentAlignment="Center"/>
+                                       Content="Default Outline False (Active)" VerticalContentAlignment="Center"/>
                                 <Border Grid.Row="4" Grid.Column="0"
-                        Style="{StaticResource borderOverlayMaskAll}"
-                        helpers:BorderHelper.Overlay_State="Default"
-                        helpers:BorderHelper.Overlay_DisplayOutline="True"/>
+                                        Style="{StaticResource borderOverlayMaskAll}"
+                                        helpers:BorderHelper.Overlay_State="Default"
+                                        helpers:BorderHelper.Overlay_DisplayOutline_AtDefault="True"/>
                                 <Label Grid.Row="4" Grid.Column="1"
-                       Content="Outline True"
-                       VerticalContentAlignment="Center"/>
+                                       Content="Default Outline False (Default)"
+                                       VerticalContentAlignment="Center"/>
                             </Grid>
                         </Border>
-                        <Border Grid.Column="3" Style="{StaticResource gridBorder}">
+                    </Grid>
+                </Grid>
+            </Border>
+            <Border Grid.Row="2" Style="{StaticResource gridBorder}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="OverlayMask" Grid.Row="0" HorizontalContentAlignment="Center"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" Style="{StaticResource gridBorder}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
@@ -267,36 +291,140 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Label  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                        Content="Overlay Default Display"
-                        HorizontalContentAlignment="Center"/>
+                                        Content="All Custom" HorizontalContentAlignment="Center"/>
                                 <Border Grid.Row="1" Grid.Column="0"
-                        Style="{StaticResource borderOverlayMaskAll}"
-                        helpers:BorderHelper.Overlay_State="Active"
-                        helpers:BorderHelper.Overlay_DisplayBackground_AtDefault="False"/>
+                                        Style="{StaticResource borderOverlayMaskAll}" helpers:BorderHelper.Overlay_State="Active"/>
                                 <Label Grid.Row="1" Grid.Column="1"
-                       Content="Default Background False (Active)"
-                       VerticalContentAlignment="Center"/>
+                                       Content="Active State" VerticalContentAlignment="Center"/>
                                 <Border Grid.Row="2" Grid.Column="0"
-                        Style="{StaticResource borderOverlayMaskAll}"
-                        helpers:BorderHelper.Overlay_State="Default"
-                        helpers:BorderHelper.Overlay_DisplayBackground_AtDefault="False"/>
+                                        Style="{StaticResource borderOverlayMaskAll}" helpers:BorderHelper.Overlay_State="Default"/>
                                 <Label Grid.Row="2" Grid.Column="1"
-                       Content="Default Background False (Default)"
-                       VerticalContentAlignment="Center"/>
+                                       Content="Default State" VerticalContentAlignment="Center"/>
                                 <Border Grid.Row="3" Grid.Column="0"
-                        Style="{StaticResource borderOverlayMaskAll}"
-                        helpers:BorderHelper.Overlay_State="Active"
-                        helpers:BorderHelper.Overlay_DisplayOutline_AtDefault="False"/>
+                                        Style="{StaticResource borderOverlayMaskAll}" helpers:BorderHelper.Overlay_State="Disable"/>
                                 <Label Grid.Row="3" Grid.Column="1"
-                       Content="Default Outline False (Active)"
-                       VerticalContentAlignment="Center"/>
+                                       Content="Disable State" VerticalContentAlignment="Center"/>
                                 <Border Grid.Row="4" Grid.Column="0"
-                        Style="{StaticResource borderOverlayMaskAll}"
-                        helpers:BorderHelper.Overlay_State="Default"
-                        helpers:BorderHelper.Overlay_DisplayOutline_AtDefault="True"/>
+                                        Style="{StaticResource borderOverlayMaskAll}" helpers:BorderHelper.Overlay_State="MouseOver"/>
                                 <Label Grid.Row="4" Grid.Column="1"
-                       Content="Default Outline False (Default)"
-                       VerticalContentAlignment="Center"/>
+                                       Content="MouseOver State" VerticalContentAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <Border Grid.Column="1" Style="{StaticResource gridBorder}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                        Content="Custom Active Once" HorizontalContentAlignment="Center"/>
+                                <Border Grid.Row="1" Grid.Column="0"
+                                        Style="{StaticResource borderOverlayMaskDontCustom}" helpers:BorderHelper.Overlay_State="Active"/>
+                                <Label Grid.Row="1" Grid.Column="1"
+                                       Content="Active State" VerticalContentAlignment="Center"/>
+                                <Border Grid.Row="2" Grid.Column="0"
+                                        Style="{StaticResource borderOverlayMaskDontCustom}" helpers:BorderHelper.Overlay_State="Default"/>
+                                <Label Grid.Row="2" Grid.Column="1"
+                                       Content="Default State" VerticalContentAlignment="Center"/>
+                                <Border Grid.Row="3" Grid.Column="0"
+                                        Style="{StaticResource borderOverlayMaskDontCustom}" helpers:BorderHelper.Overlay_State="Disable"/>
+                                <Label Grid.Row="3" Grid.Column="1"
+                                       Content="Disable State" VerticalContentAlignment="Center"/>
+                                <Border Grid.Row="4" Grid.Column="0"
+                                        Style="{StaticResource borderOverlayMaskDontCustom}" helpers:BorderHelper.Overlay_State="MouseOver"/>
+                                <Label Grid.Row="4" Grid.Column="1"
+                                       Content="MouseOver State" VerticalContentAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <Border Grid.Column="2" Style="{StaticResource gridBorder}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                        Content="Overlay Display (State:Default)" HorizontalContentAlignment="Center"/>
+                                <Border Grid.Row="1" Grid.Column="0"
+                                        Style="{StaticResource borderOverlayMaskAll}"
+                                        helpers:BorderHelper.Overlay_State="Default"
+                                        helpers:BorderHelper.Overlay_DisplayBackground="False"/>
+                                <Label Grid.Row="1" Grid.Column="1"
+                                       Content="Background False" VerticalContentAlignment="Center"/>
+                                <Border Grid.Row="2" Grid.Column="0"
+                                        Style="{StaticResource borderOverlayMaskAll}"
+                                        helpers:BorderHelper.Overlay_State="Default"
+                                        helpers:BorderHelper.Overlay_DisplayBackground="True"/>
+                                <Label Grid.Row="2" Grid.Column="1"
+                                       Content="Background True" VerticalContentAlignment="Center"/>
+                                <Border Grid.Row="3" Grid.Column="0"
+                                        Style="{StaticResource borderOverlayMaskAll}"
+                                        helpers:BorderHelper.Overlay_State="Default"
+                                        helpers:BorderHelper.Overlay_DisplayOutline="False"/>
+                                <Label Grid.Row="3" Grid.Column="1"
+                                       Content="Outline False" VerticalContentAlignment="Center"/>
+                                <Border Grid.Row="4" Grid.Column="0"
+                                        Style="{StaticResource borderOverlayMaskAll}"
+                                        helpers:BorderHelper.Overlay_State="Default"
+                                        helpers:BorderHelper.Overlay_DisplayOutline="True"/>
+                                <Label Grid.Row="4" Grid.Column="1"
+                                       Content="Outline True" VerticalContentAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <Border Grid.Column="3" Style="{StaticResource gridBorder}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                        Content="Overlay Default Display" HorizontalContentAlignment="Center"/>
+                                <Border Grid.Row="1" Grid.Column="0"
+                                        Style="{StaticResource borderOverlayMaskAll}"
+                                        helpers:BorderHelper.Overlay_State="Active"
+                                        helpers:BorderHelper.Overlay_DisplayBackground_AtDefault="False"/>
+                                <Label Grid.Row="1" Grid.Column="1"
+                                       Content="Default Background False (Active)" VerticalContentAlignment="Center"/>
+                                <Border Grid.Row="2" Grid.Column="0"
+                                        Style="{StaticResource borderOverlayMaskAll}"
+                                        helpers:BorderHelper.Overlay_State="Default"
+                                        helpers:BorderHelper.Overlay_DisplayBackground_AtDefault="False"/>
+                                <Label Grid.Row="2" Grid.Column="1"
+                                       Content="Default Background False (Default)"
+                                       VerticalContentAlignment="Center"/>
+                                <Border Grid.Row="3" Grid.Column="0"
+                                        Style="{StaticResource borderOverlayMaskAll}"
+                                        helpers:BorderHelper.Overlay_State="Active"
+                                        helpers:BorderHelper.Overlay_DisplayOutline_AtDefault="False"/>
+                                <Label Grid.Row="3" Grid.Column="1"
+                                       Content="Default Outline False (Active)" VerticalContentAlignment="Center"/>
+                                <Border Grid.Row="4" Grid.Column="0"
+                                        Style="{StaticResource borderOverlayMaskAll}"
+                                        helpers:BorderHelper.Overlay_State="Default"
+                                        helpers:BorderHelper.Overlay_DisplayOutline_AtDefault="True"/>
+                                <Label Grid.Row="4" Grid.Column="1"
+                                       Content="Default Outline False (Default)"
+                                       VerticalContentAlignment="Center"/>
                             </Grid>
                         </Border>
                     </Grid>

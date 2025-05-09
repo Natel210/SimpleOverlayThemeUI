@@ -1,16 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="$(MSBuildProjectDirectory)\..\Directory.Common.props" Condition="'$(SolutionDir)' == ''" />
+  <Import Project="$(SolutionDir)\Directory.Common.props" Condition="'$(SolutionDir)' != ''" />
+  <Import Project="Directory.Directory.props" />
 
   <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <BaseOutputPath>Bin\</BaseOutputPath>
-    <!-- Local Test -->
-    <VersionPrefix>999.0.4</VersionPrefix>
   </PropertyGroup>
 
-  <!-- Package Add -->
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
@@ -24,15 +19,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
-  <!-- Add PackageIn -->
-  <ItemGroup>
-      <Content Include="Build\CurrentThemeGeneraterToXaml.targets">
-          <Pack>True</Pack>
-          <PackagePath>Build\</PackagePath>
-      </Content>
-  </ItemGroup>    
-    
     
   <ItemGroup>
     <Compile Update="Resource\StringDictionary\ErrorCodes\ErrorMessage.Designer.cs">
@@ -40,31 +26,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ErrorMessage.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resource\StringDictionary\Helper\HelperKey.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>HelperKey.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>    
-    
+  </ItemGroup>
     
   <ItemGroup>
     <EmbeddedResource Update="Resource\StringDictionary\ErrorCodes\ErrorMessage.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMessage.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resource\StringDictionary\Helper\HelperKey.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>HelperKey.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>    
-    
-    
-  <ItemGroup>
-    <Folder Include="Behavior\" />
-    <Folder Include="Controls\" />
-    <Folder Include="Helpers\Common\" />
   </ItemGroup>
-
 
 </Project>

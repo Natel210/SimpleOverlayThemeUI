@@ -72,22 +72,22 @@ namespace SimpleOverlayTheme.Share.StringTable
         }
 
         /// <summary></summary>
-        static public class Tickness
+        static public class Thickness
         {
 
             /// <summary></summary>
             static public readonly Item.ThemePair Default
                 = new($"{NamespacePrefix}.{nameof(Default)}",
-                    nameof(ColorPalette), nameof(Default));
+                    nameof(Thickness), nameof(Default));
 
             /// <summary></summary>
             static public readonly Item.ThemePair Zero
                 = new($"{NamespacePrefix}.{nameof(Zero)}",
-                    nameof(ColorPalette), nameof(Zero));
+                    nameof(Thickness), nameof(Zero));
 
             /// <summary></summary>
             private const string NamespacePrefix
-                = $"SimpleOverlayTheme.{nameof(ThemeKey)}.{nameof(Tickness)}";
+                = $"SimpleOverlayTheme.{nameof(ThemeKey)}.{nameof(Thickness)}";
 
         }
 
