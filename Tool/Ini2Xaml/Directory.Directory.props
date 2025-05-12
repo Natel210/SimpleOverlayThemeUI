@@ -1,10 +1,32 @@
 <Project>
+    
+  <!--Git-->
+  <ItemGroup>
+    <None Include="..\..\.gitignore">
+      <Link>Git\.gitignore</Link>
+    </None>
+    <None Include="..\..\LICENSE">
+      <Link>Git\LICENSE</Link>
+    </None>
+    <None Include="..\..\README.md">
+      <Link>Git\README.md</Link>
+    </None>
+  </ItemGroup>
+    
   <!--Props-->
   <ItemGroup>
     <None Include="..\..\Share\Props\Directory.Common.props">
       <Link>Directory.Common.props</Link>
     </None>
   </ItemGroup>
+    
+  <!--Publish-->
+  <ItemGroup>
+      <None Include="..\..\Share\Tools\Ini2Xaml\**\*.*">
+          <Link>Publish\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      </None>
+  </ItemGroup>
+    
   <!--StringTable-->
   <ItemGroup>
     <Compile Include="..\..\Share\StringTable\Item\ThemeKeyPair\IniPair.cs">
@@ -17,73 +39,5 @@
       <Link>StringTable\ThemeKey.cs</Link>
     </Compile>
   </ItemGroup>
-  <!--Publish-->
-  <ItemGroup>
-      <None Include="..\..\Share\Tools\Ini2Xaml\**\*.*">
-          <Link>Publish\%(RecursiveDir)%(Filename)%(Extension)</Link>
-      </None>
-  </ItemGroup>
-  <!--Git-->
-  <ItemGroup>
-      <None Include="..\..\.gitignore">
-          <Link>Git\.gitignore</Link>
-      </None>
-      <None Include="..\..\LICENSE">
-          <Link>Git\LICENSE</Link>
-      </None>
-      <None Include="..\..\README.md">
-          <Link>Git\README.md</Link>
-      </None>
-  </ItemGroup>
-    
-    
-    
-    
-  <!--Solution Link--><!--
-  <ItemGroup>
-    --><!--Builds--><!--
-    <Content Include="$(RootPath)Builds\**\*.*">
-      <Link>SolutionFolder\Builds\%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </Content>
-
-    --><!--StringTable--><!--
-    <Compile Include="$(RootPath)Share\StringTable\Item\ThemeKeyPair\IniPair.cs">
-      <Link>StringTable\Item\ThemeKeyPair\IniPair.cs</Link>
-    </Compile>
-    <Compile Include="$(RootPath)Share\StringTable\Item\ThemeKeyPair\ThemePair.cs">
-      <Link>StringTable\Item\ThemeKeyPair\ThemePair.cs</Link>
-    </Compile>
-    <Compile Include="$(RootPath)Share\StringTable\ThemeKey.cs">
-      <Link>StringTable\ThemeKey.cs</Link>
-    </Compile>
-
-    --><!--Tools--><!--
-    <None Include="$(RootPath)Tools\**\*.*">
-      <Pack>True</Pack>
-      <PackagePath>Tools\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
-      <Link>SolutionFolder\Tools\%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </None>
-
-    --><!--Props--><!--
-    <None Include="$(RootPath)Directory.Common.props">
-      <Link>Directory.Common.props</Link>
-    </None>
-
-    --><!--Git--><!--  
-    <None Include="$(RootPath).gitignore">
-      <Link>Git\.gitignore</Link>
-    </None>
-
-    <None Include="$(RootPath)LICENSE">
-      <Pack>True</Pack>
-      <PackagePath>/</PackagePath>
-      <Link>Git\LICENSE</Link>
-    </None>
-    <None Include="$(RootPath)README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-      <Link>Git\README.md</Link>
-    </None>
-  </ItemGroup>-->
 
 </Project>
