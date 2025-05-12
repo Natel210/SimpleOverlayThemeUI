@@ -1,0 +1,54 @@
+<Project>
+    
+  <!--Git-->
+  <ItemGroup>
+    <None Include="..\.gitignore">
+      <Link>Git\.gitignore</Link>
+    </None>
+    <None Include="..\LICENSE">
+      <Link>Git\LICENSE</Link>
+    </None>
+    <None Include="..\README.md">
+      <Link>Git\README.md</Link>
+    </None>
+  </ItemGroup>
+    
+  <!--Props-->
+  <ItemGroup>
+    <None Include="..\Share\Props\Directory.Common.props">
+      <Link>Directory.Common.props</Link>
+    </None>
+  </ItemGroup>
+    
+  <!--Resource-->
+  <ItemGroup>
+    <Resource Include="..\Share\Resource\Mask\check.png">
+      <Link>Resource\Mask\check.png</Link>
+    </Resource>
+    <Resource Include="..\Share\Resource\Mask\close.png">
+      <Link>Resource\Mask\close.png</Link>
+    </Resource>
+    <Resource Include="..\Share\Resource\Mask\downArrow.png">
+      <Link>Resource\Mask\downArrow.png</Link>
+    </Resource>
+    <Resource Include="..\Share\Resource\Mask\maximize.png">
+      <Link>Resource\Mask\maximize.png</Link>
+    </Resource>
+    <Resource Include="..\Share\Resource\Mask\minimize.png">
+      <Link>Resource\Mask\minimize.png</Link>
+    </Resource>
+    <Resource Include="..\Share\Resource\Mask\minus.png">
+      <Link>Resource\Mask\minus.png</Link>
+    </Resource>
+    <Resource Include="..\Share\Resource\Mask\plus.png">
+      <Link>Resource\Mask\plus.png</Link>
+    </Resource>
+    <Resource Include="..\Share\Resource\Mask\restore.png">
+      <Link>Resource\Mask\restore.png</Link>
+    </Resource>
+    <Resource Include="..\Share\Resource\Mask\upArrow.png">
+      <Link>Resource\Mask\upArrow.png</Link>
+    </Resource>
+  </ItemGroup>
+
+</Project>

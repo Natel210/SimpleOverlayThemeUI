@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\..\Share\Props\Directory.Common.props"/>
-    <Import Project="Directory.Directory.props"/>
+  <Import Project="Directory.Directory.props"/>
   <PropertyGroup>
 
   </PropertyGroup>

@@ -1,0 +1,58 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:helpers="clr-namespace:SimpleOverlayTheme.Helpers"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Empty.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/LabelStyle/Label.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+
+    <Style x:Key="SimpleOverlayTheme.Styles.GroupBoxStyle.GroupBox" TargetType="GroupBox">
+        <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Background}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Outline}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.Thickness.Default}"/>
+        <Setter Property="FontSize" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.FontSize.Default}"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="helpers:GroupBoxHelper.CornerRadius" Value="0"/>
+        <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineBrush" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Outline}"/>
+        <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineHeight" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupBox">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding helpers:GroupBoxHelper.CornerRadius}"
+                            Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Empty}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <!-- Header -->
+                            <ContentPresenter Grid.Row="0" ContentSource="Header"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <!-- Underline -->
+                            <Border Grid.Row="1"
+                                    Background="{TemplateBinding helpers:GroupBoxHelper.HeaderUnderLineBrush}"
+                                    Height="{TemplateBinding helpers:GroupBoxHelper.HeaderUnderLineHeight}"/>
+                            <!-- Content -->
+                            <ContentControl x:Name="PART_Content" Grid.Row="2" FontSize="{TemplateBinding FontSize}">
+                                <ContentPresenter Margin="{TemplateBinding Padding}"/>
+                            </ContentControl>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground_Disable}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

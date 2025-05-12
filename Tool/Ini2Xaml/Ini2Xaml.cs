@@ -46,14 +46,24 @@ namespace SimpleOverlayTheme.Ini2Xaml
         /// <returns>True if data was loaded from INI, false if fallback/default was used.</returns>
         static public bool Execute(FileInfo outputPath)
         {
+            _iniState.Load();
+
             var formatSection = (string section) => $"<!-- {section} -->";
             var formatString = (ThemePair themePair, string defaultValue) => $"<System:String x:Key=\"{themePair.Xaml}\">{_iniState.GetValue($"{themePair.Ini.Section}", $"{themePair.Ini.Key}", defaultValue)}</System:String>";
             var formatDouble = (ThemePair themePair, double defaultValue) => $"<System:Double x:Key=\"{themePair.Xaml}\">{_iniState.GetValue($"{themePair.Ini.Section}", $"{themePair.Ini.Key}", $"{defaultValue}")}</System:Double>";
             var formatTickness = (ThemePair themePair, string defaultValue) => $"<Thickness x:Key=\"{themePair.Xaml}\">{_iniState.GetValue($"{themePair.Ini.Section}", $"{themePair.Ini.Key}", $"{defaultValue}")}</Thickness>";
-            var formatSolidColorBrush = (ThemePair themePair, string defaultValue) => $"<SolidColorBrush x:Key=\"{themePair.Xaml}\" Color=\"{_iniState.GetValue($"{themePair.Ini.Section}", $"themePair.Ini.Key", defaultValue)}\"/>";
 
+            var toHex = (string colorValue) => {
+                string[] colorArray = colorValue.Split(',', StringSplitOptions.RemoveEmptyEntries);
+                return colorArray.Length switch
+                {
+                    3 => $"#FF{byte.Parse(colorArray[0]):X2}{byte.Parse(colorArray[1]):X2}{byte.Parse(colorArray[2]):X2}",
+                    4 => $"#{byte.Parse(colorArray[0]):X2}{byte.Parse(colorArray[1]):X2}{byte.Parse(colorArray[2]):X2}{byte.Parse(colorArray[3]):X2}",
+                    _ => $"#00000000",
+                };
+            };
+            var formatSolidColorBrush = (ThemePair themePair, string defaultValue) => $"<SolidColorBrush x:Key=\"{themePair.Xaml}\" Color=\"{toHex(_iniState.GetValue($"{themePair.Ini.Section}", $"{themePair.Ini.Key}", defaultValue))}\"/>";
 
-            var toHex = (byte a, byte r, byte g, byte b) => { return $"#{a:X2}{r:X2}{g:X2}{b:X2}"; };
             bool result = _iniState.Load();
             var stringBuilder = new StringBuilder();
             stringBuilder.AppendLine($"<ResourceDictionary xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"");
@@ -76,35 +86,33 @@ namespace SimpleOverlayTheme.Ini2Xaml
             stringBuilder.AppendLine($"");
             stringBuilder.AppendLine($"    {formatSection(ThemeKey.Thickness.Default.Ini.Section)}");
             stringBuilder.AppendLine($"    {formatTickness(ThemeKey.Thickness.Default, "1")}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.Thickness.Zero, "0")}");
             stringBuilder.AppendLine($"");
             stringBuilder.AppendLine($"    {formatSection(ThemeKey.ColorPalette.Background.Ini.Section)}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.ColorPalette.Background, toHex(255, 255, 255, 255))}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.ColorPalette.Foreground, toHex(255, 21, 21, 21))}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.ColorPalette.Foreground_Disable, toHex(160, 128, 128, 128))}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.ColorPalette.Highlight, toHex(180, 21, 21, 21))}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.ColorPalette.Line, toHex(255, 128, 128, 128))}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.ColorPalette.Mask, toHex(160, 128, 128, 128))}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.ColorPalette.Outline, toHex(128, 128, 128, 128))}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.ColorPalette.Selection, toHex(255, 128, 128, 128))}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.ColorPalette.Background, "255, 255, 255, 255")}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.ColorPalette.Foreground, "255, 21, 21, 21")}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.ColorPalette.Foreground_Disable, "160, 128, 128, 128")}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.ColorPalette.Highlight, "180, 21, 21, 21")}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.ColorPalette.Mask, "160, 128, 128, 128")}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.ColorPalette.Outline, "128, 128, 128, 128")}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.ColorPalette.Selection, "255, 128, 128, 128")}");
             stringBuilder.AppendLine($"");
             stringBuilder.AppendLine($"    {formatSection(ThemeKey.Overlay.Background.Active.Ini.Section)}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.Overlay.Background.Active, toHex(5, 128, 128, 128))}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.Overlay.Background.Default, toHex(16, 128, 128, 128))}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.Overlay.Background.Disable, toHex(37, 128, 128, 128))}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.Overlay.Background.MouseOver, toHex(64, 128, 128, 128))}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.Overlay.Background.Active, "5, 128, 128, 128")}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.Overlay.Background.Default, "16, 128, 128, 128")}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.Overlay.Background.Disable, "37, 128, 128, 128")}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.Overlay.Background.Mouseover, "64, 128, 128, 128")}");
             stringBuilder.AppendLine($"");
             stringBuilder.AppendLine($"    {formatSection(ThemeKey.Overlay.Outline.Active.Ini.Section)}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.Overlay.Outline.Active, toHex(37, 128, 128, 128))}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.Overlay.Outline.Default, toHex(51, 21, 21, 21))}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.Overlay.Outline.Disable, toHex(128, 21, 21, 21))}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.Overlay.Outline.MouseOver, toHex(255, 21, 21, 21))}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.Overlay.Outline.Active, "37, 128, 128, 128")}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.Overlay.Outline.Default, "51, 21, 21, 21")}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.Overlay.Outline.Disable, "128, 21, 21, 21")}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.Overlay.Outline.Mouseover, "255, 21, 21, 21")}");
             stringBuilder.AppendLine($"");
             stringBuilder.AppendLine($"    {formatSection(ThemeKey.Overlay.Mask.Background.Active.Ini.Section)}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.Overlay.Mask.Background.Active, toHex(37, 21, 21, 21))}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.Overlay.Mask.Background.Default, toHex(80, 21, 21, 21))}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.Overlay.Mask.Background.Disable, toHex(160, 21, 21, 21))}");
-            stringBuilder.AppendLine($"    {formatTickness(ThemeKey.Overlay.Mask.Background.MouseOver, toHex(240, 21, 21, 21))}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.Overlay.Mask.Background.Active, "37, 21, 21, 21")}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.Overlay.Mask.Background.Default, "80, 21, 21, 21")}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.Overlay.Mask.Background.Disable, "160, 21, 21, 21")}");
+            stringBuilder.AppendLine($"    {formatSolidColorBrush(ThemeKey.Overlay.Mask.Background.Mouseover, "240, 21, 21, 21")}");
             stringBuilder.AppendLine($"");
             stringBuilder.AppendLine($"</ResourceDictionary>");
 

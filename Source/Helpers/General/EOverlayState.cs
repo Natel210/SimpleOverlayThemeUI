@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SimpleOverlayTheme.Helpers.General
+﻿namespace SimpleOverlayTheme.Helpers.General
 {
     /// <summary>
     /// 
@@ -18,6 +12,6 @@ namespace SimpleOverlayTheme.Helpers.General
         /// <summary> </summary>
         Disable,
         /// <summary> </summary>
-        MouseOver,
+        Mouseover,
     }
 }

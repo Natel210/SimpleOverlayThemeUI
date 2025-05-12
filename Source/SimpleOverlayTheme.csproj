@@ -1,10 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="$(MSBuildProjectDirectory)\..\Share\Props\Directory.Common.props" Condition="'$(SolutionDir)' == ''" />
-  <Import Project="$(SolutionDir)\Share\Props\Directory.Common.props" Condition="'$(SolutionDir)' != ''" />
+  <Import Project="..\Share\Props\Directory.Common.props" />
   <Import Project="Directory.Directory.props" />
 
   <PropertyGroup>
+      
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Styles\LabelStyle\Separator.xaml~RF175bd874.TMP" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
@@ -33,6 +37,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMessage.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+    
+  <ItemGroup>
+    <Folder Include="Helpers\GroupBox\" />
   </ItemGroup>
 
 </Project>

@@ -2,7 +2,7 @@
                     xmlns:helpers="clr-namespace:SimpleOverlayTheme.Helpers"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!-- Overlay Default Border -->
-    <Style x:Key="SimpleOverlayTheme.Style.BorderStyle.Overlay" TargetType="Border">
+    <Style x:Key="SimpleOverlayTheme.Styles.BorderStyle.Overlay" TargetType="Border">
         <!--General-->
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.Thickness.Default}"/>
@@ -20,6 +20,9 @@
         <Setter Property="helpers:BorderHelper.Overlay_DisplayOutline_AtDefault" Value="True"/>
         <Style.Triggers>
             <!--Background-->
+            <Trigger Property="helpers:BorderHelper.Overlay_DisplayBackground" Value="False">
+                <Setter Property="Background" Value="Transparent"/>
+            </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="helpers:BorderHelper.Overlay_State" Value="Active"/>
@@ -37,6 +40,14 @@
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
+                    <Condition Property="helpers:BorderHelper.Overlay_State" Value="Default"/>
+                    <Condition Property="helpers:BorderHelper.Overlay_DisplayBackground" Value="True"/>
+                    <Condition Property="helpers:BorderHelper.Overlay_DisplayBackground_AtDefault" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="Transparent"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
                     <Condition Property="helpers:BorderHelper.Overlay_State" Value="Disable"/>
                     <Condition Property="helpers:BorderHelper.Overlay_DisplayBackground" Value="True"/>
                 </MultiTrigger.Conditions>
@@ -44,10 +55,10 @@
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="helpers:BorderHelper.Overlay_State" Value="MouseOver"/>
+                    <Condition Property="helpers:BorderHelper.Overlay_State" Value="Mouseover"/>
                     <Condition Property="helpers:BorderHelper.Overlay_DisplayBackground" Value="True"/>
                 </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.Overlay.Background.MouseOver}"/>
+                <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.Overlay.Background.Mouseover}"/>
             </MultiTrigger>
             <!--Outline-->
             <Trigger Property="helpers:BorderHelper.Overlay_DisplayOutline" Value="False">
@@ -70,6 +81,14 @@
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
+                    <Condition Property="helpers:BorderHelper.Overlay_State" Value="Default"/>
+                    <Condition Property="helpers:BorderHelper.Overlay_DisplayOutline" Value="True"/>
+                    <Condition Property="helpers:BorderHelper.Overlay_DisplayOutline_AtDefault" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
                     <Condition Property="helpers:BorderHelper.Overlay_State" Value="Disable"/>
                     <Condition Property="helpers:BorderHelper.Overlay_DisplayOutline" Value="True"/>
                 </MultiTrigger.Conditions>
@@ -77,10 +96,10 @@
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="helpers:BorderHelper.Overlay_State" Value="MouseOver"/>
+                    <Condition Property="helpers:BorderHelper.Overlay_State" Value="Mouseover"/>
                     <Condition Property="helpers:BorderHelper.Overlay_DisplayOutline" Value="True"/>
                 </MultiTrigger.Conditions>
-                <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.Overlay.Outline.MouseOver}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.Overlay.Outline.Mouseover}"/>
             </MultiTrigger>
         </Style.Triggers>
     </Style>

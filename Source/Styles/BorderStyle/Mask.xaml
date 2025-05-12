@@ -2,10 +2,10 @@
                     xmlns:helpers="clr-namespace:SimpleOverlayTheme.Helpers"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!-- Mask Border -->
-    <Style x:Key="SimpleOverlayTheme.Style.BorderStyle.Mask" TargetType="Border" >
+    <Style x:Key="SimpleOverlayTheme.Styles.BorderStyle.Mask" TargetType="Border" >
         <!--General-->
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.Thickness.Zero}"/>
+        <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
@@ -40,7 +40,7 @@
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="helpers:BorderHelper.Overlay_State" Value="MouseOver"/>
+                    <Condition Property="helpers:BorderHelper.Overlay_State" Value="Mouseover"/>
                     <Condition Property="helpers:BorderHelper.CustomMask_Use_AtMouseover" Value="True"/>
                 </MultiTrigger.Conditions>
                 <Setter Property="OpacityMask" Value="{Binding RelativeSource={RelativeSource Self}, Path=(helpers:BorderHelper.CustomMask_ImageBrush_AtMouseover)}"/>
@@ -61,7 +61,7 @@
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="helpers:BorderHelper.Overlay_State" Value="MouseOver"/>
+                    <Condition Property="helpers:BorderHelper.Overlay_State" Value="Mouseover"/>
                     <Condition Property="helpers:BorderHelper.CustomMask_Use_AtMouseover" Value="False"/>
                 </MultiTrigger.Conditions>
                 <Setter Property="OpacityMask" Value="{Binding RelativeSource={RelativeSource Self}, Path=(helpers:BorderHelper.Mask_DefaultImageBrush)}"/>

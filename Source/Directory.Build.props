@@ -13,6 +13,6 @@
       <DocumentationFile>$(BaseOutputPath)/$(Configuration)/$(TargetFramework)/$(AssemblyName).xml</DocumentationFile>
 
       <!-- Local Test -->
-      <VersionPrefix>999.0.20</VersionPrefix>
+      <VersionPrefix>999.0.27</VersionPrefix>
   </PropertyGroup>
 </Project>

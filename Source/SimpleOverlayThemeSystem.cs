@@ -1,5 +1,5 @@
-﻿using SimpleOverlayTheme.Theme;
-using SimpleOverlayTheme.Theme.Interface;
+﻿using SimpleOverlayTheme.Themes;
+using SimpleOverlayTheme.Themes.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace SimpleOverlayTheme
         /// <summary>
         /// 
         /// </summary>
-        static public ICurrent Current { get; } = Theme.Current.Instance;
+        static public ICurrent Current { get; } = Themes.Current.Instance;
 
         static private Dictionary<string, ThemeObejct> _themes = new Dictionary<string, ThemeObejct>();
 
@@ -26,12 +26,12 @@ namespace SimpleOverlayTheme
         /// <summary>
         /// 
         /// </summary>
-        [ModuleInitializer]
+        //[ModuleInitializer]
         static public void Initialize()
         {
             Current.Load();
 
-            Theme.Current.Instance.Initialize();
+            Themes.Current.Instance.Initialize();
             Current.Save();
         }
 #pragma warning restore CA2255
@@ -50,7 +50,7 @@ namespace SimpleOverlayTheme
             }
             else
             {
-                themeObejct = Theme.Current.Instance.CreateCopy();
+                themeObejct = Themes.Current.Instance.CreateCopy();
             }
             return false;
             //if (name )

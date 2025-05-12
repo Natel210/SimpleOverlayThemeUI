@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style x:Key="SimpleOverlayTheme.Style.BorderStyle.Border" TargetType="Border" >
+    <Style x:Key="SimpleOverlayTheme.Styles.BorderStyle.Border" TargetType="Border" >
         <!--General-->
         <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Background}"/>
         <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.Thickness.Default}"/>

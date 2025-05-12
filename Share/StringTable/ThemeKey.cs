@@ -1,12 +1,4 @@
-﻿using SimpleOverlayTheme.Share.StringTable.Item;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SimpleOverlayTheme.Share.StringTable
+﻿namespace SimpleOverlayTheme.Share.StringTable
 {
     /// <summary></summary>
     static public class ThemeKey
@@ -81,11 +73,6 @@ namespace SimpleOverlayTheme.Share.StringTable
                     nameof(Thickness), nameof(Default));
 
             /// <summary></summary>
-            static public readonly Item.ThemePair Zero
-                = new($"{NamespacePrefix}.{nameof(Zero)}",
-                    nameof(Thickness), nameof(Zero));
-
-            /// <summary></summary>
             private const string NamespacePrefix
                 = $"SimpleOverlayTheme.{nameof(ThemeKey)}.{nameof(Thickness)}";
 
@@ -114,11 +101,6 @@ namespace SimpleOverlayTheme.Share.StringTable
             static public readonly Item.ThemePair Highlight
                 = new($"{NamespacePrefix}.{nameof(Highlight)}",
                     nameof(ColorPalette), nameof(Highlight));
-
-            /// <summary></summary>
-            static public readonly Item.ThemePair Line
-                = new($"{NamespacePrefix}.{nameof(Line)}",
-                    nameof(ColorPalette), nameof(Line));
 
             /// <summary></summary>
             static public readonly Item.ThemePair Mask
@@ -164,9 +146,9 @@ namespace SimpleOverlayTheme.Share.StringTable
                         Section, nameof(Disable));
 
                 /// <summary></summary>
-                static public readonly Item.ThemePair MouseOver
-                    = new($"{NamespacePrefix}.{nameof(MouseOver)}",
-                        Section, nameof(MouseOver));
+                static public readonly Item.ThemePair Mouseover
+                    = new($"{NamespacePrefix}.{nameof(Mouseover)}",
+                        Section, nameof(Mouseover));
 
                 /// <summary></summary>
                 private const string NamespacePrefix
@@ -197,9 +179,9 @@ namespace SimpleOverlayTheme.Share.StringTable
                         Section, nameof(Disable));
 
                 /// <summary></summary>
-                static public readonly Item.ThemePair MouseOver
-                    = new($"{NamespacePrefix}.{nameof(MouseOver)}",
-                        Section, nameof(MouseOver));
+                static public readonly Item.ThemePair Mouseover
+                    = new($"{NamespacePrefix}.{nameof(Mouseover)}",
+                        Section, nameof(Mouseover));
 
                 /// <summary></summary>
                 private const string NamespacePrefix
@@ -236,9 +218,9 @@ namespace SimpleOverlayTheme.Share.StringTable
                             Section, nameof(Disable));
 
                     /// <summary></summary>
-                    static public readonly Item.ThemePair MouseOver
-                        = new($"{NamespacePrefix}.{nameof(MouseOver)}",
-                            Section, nameof(MouseOver));
+                    static public readonly Item.ThemePair Mouseover
+                        = new($"{NamespacePrefix}.{nameof(Mouseover)}",
+                            Section, nameof(Mouseover));
 
                     /// <summary></summary>
                     private const string NamespacePrefix

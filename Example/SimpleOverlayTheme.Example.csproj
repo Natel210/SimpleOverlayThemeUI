@@ -1,25 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="$(MSBuildProjectDirectory)\..\Directory.Common.props" Condition="'$(SolutionDir)' == ''" />
-    <Import Project="$(SolutionDir)\Directory.Common.props" Condition="'$(SolutionDir)' != ''" />
+  <Import Project="..\Share\Props\Directory.Common.props" />
+  <Import Project="Directory.Directory.props" />
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF>
-    <Platforms>AnyCPU</Platforms>
+      
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ExampleList\Child\" />
+    <Folder Include="ExampleList\NewFolder\" />
+    <Folder Include="ExampleList\OverlayBorder\" />
+    <Folder Include="UserCustomControls\" />
+    <Folder Include="SimpleOverlayTheme\Dummy\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ILRepack" Version="2.0.41">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="SimpleOverlayTheme" Version="999.0.20" />
+    <ProjectReference Include="..\Source\SimpleOverlayTheme.csproj" />
   </ItemGroup>
 
 </Project>

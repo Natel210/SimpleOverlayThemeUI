@@ -1,12 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-namespace SimpleOverlayTheme.Helpers
+﻿namespace SimpleOverlayTheme.Helpers
 {
     /// <summary></summary>
     static public class KeyWord
@@ -101,7 +93,7 @@ namespace SimpleOverlayTheme.Helpers
             }
 
             /// <summary></summary>
-            static public class MouseOverImage
+            static public class MouseoverImage
             {
                 /// <summary></summary>
                 static public class Use
@@ -109,9 +101,9 @@ namespace SimpleOverlayTheme.Helpers
                     /// <summary></summary>
                     public const string PropertyName = $"{nameof(Use)}";
                     /// <summary></summary>
-                    public const string GetFuncDisplayName = $"{nameof(MouseOverImage)}.{nameof(Use)}";
+                    public const string GetFuncDisplayName = $"{nameof(MouseoverImage)}.{nameof(Use)}";
                     /// <summary></summary>
-                    public const string SetFuncDisplayName = $"{nameof(MouseOverImage)}.{nameof(Use)}";
+                    public const string SetFuncDisplayName = $"{nameof(MouseoverImage)}.{nameof(Use)}";
                 }
 
                 /// <summary></summary>
@@ -120,9 +112,9 @@ namespace SimpleOverlayTheme.Helpers
                     /// <summary></summary>
                     public const string PropertyName = $"{nameof(ImageBrush)}";
                     /// <summary></summary>
-                    public const string GetFuncDisplayName = $"{nameof(MouseOverImage)}.{nameof(ImageBrush)}";
+                    public const string GetFuncDisplayName = $"{nameof(MouseoverImage)}.{nameof(ImageBrush)}";
                     /// <summary></summary>
-                    public const string SetFuncDisplayName = $"{nameof(MouseOverImage)}.{nameof(ImageBrush)}";
+                    public const string SetFuncDisplayName = $"{nameof(MouseoverImage)}.{nameof(ImageBrush)}";
                 }
             }
 
