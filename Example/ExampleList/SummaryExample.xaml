@@ -5,13 +5,22 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SimpleOverlayTheme.Example.ExampleList"
              mc:Ignorable="d" 
-             xmlns:component="clr-namespace:SimpleOverlayTheme.Example.ExampleList.Component" Background="White">
+             xmlns:component="clr-namespace:SimpleOverlayTheme.Example.ExampleList.Component.Summary"
+             Style="{StaticResource SimpleOverlayTheme.Styles.UserControlStyle.Empty}"
+             d:Style="{StaticResource SimpleOverlayTheme.Styles.UserControlStyle.UserControl}">
     <StackPanel Orientation="Horizontal">
         <StackPanel>
-            <component:Border/>
-            <component:Label/>
+            <component:Border Margin="10"/>
         </StackPanel>
-        
-        
+        <StackPanel>
+            <component:TextBlock Margin="10"/>
+            <component:TextBox Margin="10"/>
+            <component:Label Margin="10"/>
+        </StackPanel>
+        <StackPanel>
+            <component:CheckBox Margin="10"/>
+            <component:GroupBox Margin="10"/>
+            <component:ListBox Margin="10"/>
+        </StackPanel>
     </StackPanel>
 </UserControl>

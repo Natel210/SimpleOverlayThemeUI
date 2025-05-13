@@ -40,7 +40,10 @@
   </ItemGroup>
     
   <ItemGroup>
-    <Folder Include="Helpers\GroupBox\" />
+    <Folder Include="Styles\DataGridStyle\" />
+    <Folder Include="Styles\ComboBoxStyle\" />
+    <Folder Include="Styles\ButtonStyle\" />
+    <Folder Include="Styles\WindowHeaderStyle\" />
   </ItemGroup>
 
 </Project>

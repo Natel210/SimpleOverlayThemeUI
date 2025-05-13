@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SimpleOverlayTheme.Example.ExampleList.Component
+namespace SimpleOverlayTheme.Example.ExampleList.Component.Summary
 {
     /// <summary>
-    /// Border.xaml에 대한 상호 작용 논리
+    /// GroupBox.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class Border : UserControl
+    public partial class GroupBox : UserControl
     {
-        public Border()
+        public GroupBox()
         {
             InitializeComponent();
         }

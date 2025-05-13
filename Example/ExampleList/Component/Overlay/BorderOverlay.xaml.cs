@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SimpleOverlayTheme.Example.ExampleList.Component
+namespace SimpleOverlayTheme.Example.ExampleList.Component.Overlay
 {
     /// <summary>
     /// BorderOverlay.xaml에 대한 상호 작용 논리

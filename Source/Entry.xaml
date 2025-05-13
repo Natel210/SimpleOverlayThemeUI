@@ -7,28 +7,38 @@
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Mask.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Overlay.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/OverlayMask.xaml"/>
+        <!--Button-->
+
+        <!--CheckBox-->
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/CheckBoxStyle/CheckBox.xaml"/>
+        <!--ComboBox-->
+
+        <!--DataGrid-->
+
+        <!--GroupBox-->
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/GroupBoxStyle/GroupBox.xaml"/>
         <!--Label-->
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/LabelStyle/Label.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/LabelStyle/Separator.xaml"/>
+        <!--ListBox-->
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/ListBoxItemStyle/ListBoxItem.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/ListBoxStyle/ListBox.xaml"/>
+        <!--NumericUpDown-->
 
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/GroupBoxStyle/GroupBox.xaml"/>
-
-
-
-        <!--<ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/BorderObject/Style.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/ButtonObject/Style.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/CheckBoxObject/Style.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/ComboBoxObject/Style.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/DataGridObject/Style.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/GroupBoxObject/Style.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/LabelObject/Style.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/ListBoxObject/Style.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/NumericUpDownObject/Style.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/PageObject/Style.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/TextBlockObject/Style.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/TextBoxObject/Style.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/UserControlObject/Style.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/WindowHeaderObject/Style.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Object/WindowObject/Style.xaml"/>-->
+        <!--Page-->
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/PageStyle/Empty.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/PageStyle/Page.xaml"/>
+        <!--TextBlock-->
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/TextBlockStyle/TextBlock.xaml"/>
+        <!--TextBox-->
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/TextBoxStyle/TextBox.xaml"/>
+        <!--UserControl-->
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/UserControlStyle/Empty.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/UserControlStyle/UserControl.xaml"/>
+        <!--WindowHeader-->
+        
+        <!--Window-->
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/WindowStyle/Window.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/WindowStyle/CustomHeader.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace SimpleOverlayTheme.Helpers.General
+namespace SimpleOverlayTheme.Helpers
 {
     /// <summary>
     /// Provides utility methods for registering attached dependency properties with common metadata options

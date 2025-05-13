@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SimpleOverlayTheme.Example.ExampleList.Component
+namespace SimpleOverlayTheme.Example.ExampleList.Component.Summary
 {
     /// <summary>
-    /// Label.xaml에 대한 상호 작용 논리
+    /// ListBox.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class Label : UserControl
+    public partial class ListBox : UserControl
     {
-        public Label()
+        public ListBox()
         {
             InitializeComponent();
         }

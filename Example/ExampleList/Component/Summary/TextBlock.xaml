@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="SimpleOverlayTheme.Example.ExampleList.Component.Summary.TextBlock"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimpleOverlayTheme.Example.ExampleList.Component.Summary"
+             xmlns:helpers="clr-namespace:SimpleOverlayTheme.Helpers;assembly=SimpleOverlayTheme"
+             mc:Ignorable="d"
+             Style="{StaticResource SimpleOverlayTheme.Styles.UserControlStyle.Empty}"
+             d:Style="{StaticResource SimpleOverlayTheme.Styles.UserControlStyle.UserControl}">
+    <UserControl.Resources>
+        <Style x:Key="GroupBox_TextBlock" TargetType="GroupBox" BasedOn="{StaticResource SimpleOverlayTheme.Styles.GroupBoxStyle.GroupBox}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Label Content="{Binding}"
+                               Background="#88ff9a75"
+                               VerticalAlignment="Stretch"
+                               HorizontalAlignment="Stretch"
+                               VerticalContentAlignment="Center"
+                               HorizontalContentAlignment="Center"
+                               Padding="10,2"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="FontSize" Value="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="#88ff9a75"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineHeight" Value="0"/>
+            <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="#88ff9a75"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <GroupBox Header="TextBlock" Style="{StaticResource GroupBox_TextBlock}"
+              FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header3}"
+              Padding="10"
+              helpers:GroupBoxHelper.CornerRadius="20">
+        <TextBlock Text="TextBlock"
+                   Style="{StaticResource SimpleOverlayTheme.Styles.TextBlockStyle.TextBlock}"
+                   FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"
+                   Padding="5,0,0,0"/>
+    </GroupBox>
+</UserControl>

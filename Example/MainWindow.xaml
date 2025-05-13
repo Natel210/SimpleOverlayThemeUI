@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:SimpleOverlayTheme.Example"
         xmlns:exampleList="clr-namespace:SimpleOverlayTheme.Example.ExampleList"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="1123">
+        Style="{StaticResource SimpleOverlayTheme.Styles.WindowStyle.Window}"
+        Title="MainWindow" Height="450" Width="800">
     <Grid>
         <TabControl>
             <TabItem Header="Summary">

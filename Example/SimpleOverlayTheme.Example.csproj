@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <Folder Include="ExampleList\NewFolder\" />
-    <Folder Include="ExampleList\OverlayBorder\" />
     <Folder Include="UserCustomControls\" />
     <Folder Include="SimpleOverlayTheme\Dummy\" />
   </ItemGroup>

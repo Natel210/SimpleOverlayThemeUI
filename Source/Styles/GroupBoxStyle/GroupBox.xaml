@@ -1,18 +1,19 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:helpers="clr-namespace:SimpleOverlayTheme.Helpers"
+                    xmlns:converters="clr-namespace:SimpleOverlayTheme.Converters"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Empty.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/LabelStyle/Label.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-
-
+    <converters:CornerClipConverter x:Key="CornerClipConverter"/>
     <Style x:Key="SimpleOverlayTheme.Styles.GroupBoxStyle.GroupBox" TargetType="GroupBox">
         <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Background}"/>
         <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Outline}"/>
         <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.Thickness.Default}"/>
         <Setter Property="FontSize" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.FontSize.Default}"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Padding" Value="5"/>
         <Setter Property="Margin" Value="0"/>
         <Setter Property="helpers:GroupBoxHelper.CornerRadius" Value="0"/>
@@ -25,7 +26,15 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding helpers:GroupBoxHelper.CornerRadius}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                             Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Empty}">
+                        <Border.Clip>
+                            <MultiBinding Converter="{StaticResource CornerClipConverter}">
+                                <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                <Binding Path="(helpers:GroupBoxHelper.CornerRadius)" RelativeSource="{RelativeSource TemplatedParent}"/>
+                            </MultiBinding>
+                        </Border.Clip>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -34,15 +43,19 @@
                             </Grid.RowDefinitions>
                             <!-- Header -->
                             <ContentPresenter Grid.Row="0" ContentSource="Header"
-                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             <!-- Underline -->
                             <Border Grid.Row="1"
                                     Background="{TemplateBinding helpers:GroupBoxHelper.HeaderUnderLineBrush}"
-                                    Height="{TemplateBinding helpers:GroupBoxHelper.HeaderUnderLineHeight}"/>
+                                    Height="{TemplateBinding helpers:GroupBoxHelper.HeaderUnderLineHeight}"
+                                    Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Empty}"/>
                             <!-- Content -->
-                            <ContentControl x:Name="PART_Content" Grid.Row="2" FontSize="{TemplateBinding FontSize}">
-                                <ContentPresenter Margin="{TemplateBinding Padding}"/>
+                            <ContentControl Grid.Row="2"
+                                            FontSize="{TemplateBinding FontSize}"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                <ContentPresenter Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                             </ContentControl>
                         </Grid>
                     </Border>

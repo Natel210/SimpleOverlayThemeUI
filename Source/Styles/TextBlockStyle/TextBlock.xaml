@@ -1,13 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style x:Key="SimpleOverlayTheme.Styles.LabelStyle.Label" TargetType="Label">
-        <Setter Property="Background" Value="Transparent"/>
+    <Style x:Key="SimpleOverlayTheme.Styles.TextBlockStyle.TextBlock" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground}"/>
         <Setter Property="FontSize" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.FontSize.Default}"/>
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        <Setter Property="VerticalAlignment" Value="Stretch"/>
-        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground_Disable}"/>

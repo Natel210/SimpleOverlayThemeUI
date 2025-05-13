@@ -1,10 +1,6 @@
-﻿using SimpleOverlayTheme.Helpers.General;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -50,11 +46,11 @@ namespace SimpleOverlayTheme.Helpers
         [Category(nameof(GroupBoxHelper))]
         [DisplayName("HeaderUnderLineBrush")]
         [AttachedPropertyBrowsableForType(typeof(GroupBox))]
-        public static Brush GetHeaderUnderLineBrush(UIElement element)
+        public static Brush? GetHeaderUnderLineBrush(UIElement element)
             => (Brush)element.GetValue(HeaderUnderLineBrushProperty);
 
         /// <summary></summary>
-        public static void SetHeaderUnderLineBrush(UIElement element, Brush value)
+        public static void SetHeaderUnderLineBrush(UIElement element, Brush? value)
             => element.SetValue(HeaderUnderLineBrushProperty, value);
 
         ////////////////////////////////////////

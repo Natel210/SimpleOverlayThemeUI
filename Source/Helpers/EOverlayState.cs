@@ -1,4 +1,4 @@
-﻿namespace SimpleOverlayTheme.Helpers.General
+﻿namespace SimpleOverlayTheme.Helpers
 {
     /// <summary>
     /// 

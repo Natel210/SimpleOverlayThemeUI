@@ -8,63 +8,64 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
-        <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
         <!--<Setter Property="OpacityMask" Value="{x:Null}"/>-->
         <!--helpers-->
-        <Setter Property="helpers:BorderHelper.CustomMask_Use_AtActive" Value="False"/>
-        <Setter Property="helpers:BorderHelper.CustomMask_Use_AtDisable" Value="False"/>
-        <Setter Property="helpers:BorderHelper.CustomMask_Use_AtMouseover" Value="False"/>
-        <Setter Property="helpers:BorderHelper.CustomMask_ImageBrush_AtActive" Value="{x:Null}"/>
-        <Setter Property="helpers:BorderHelper.CustomMask_ImageBrush_AtDisable" Value="{x:Null}"/>
-        <Setter Property="helpers:BorderHelper.CustomMask_ImageBrush_AtMouseover" Value="{x:Null}"/>
-        <Setter Property="helpers:BorderHelper.Overlay_State" Value="Default"/>
+        <Setter Property="helpers:BorderHelper.OverlayState" Value="Default"/>
+        <Setter Property="helpers:OverlayMaskImageHelper.ActiveImageMask" Value="{x:Null}"/>
+        <Setter Property="helpers:OverlayMaskImageHelper.DefaultImageMask" Value="{x:Null}"/>
+        <Setter Property="helpers:OverlayMaskImageHelper.DisableImageMask" Value="{x:Null}"/>
+        <Setter Property="helpers:OverlayMaskImageHelper.MouseoverImageMask" Value="{x:Null}"/>
+        <Setter Property="helpers:OverlayMaskImageHelper.UseActiveImageMask" Value="False"/>
+        <Setter Property="helpers:OverlayMaskImageHelper.UseDisableImageMask" Value="False"/>
+        <Setter Property="helpers:OverlayMaskImageHelper.UseMouseoverImageMask" Value="False"/>
         <Style.Triggers>
             <!--Mask-->
-            <Trigger Property="helpers:BorderHelper.Overlay_State" Value="Default">
-                <Setter Property="OpacityMask" Value="{Binding RelativeSource={RelativeSource Self}, Path=(helpers:BorderHelper.Mask_DefaultImageBrush)}"/>
+            <Trigger Property="helpers:BorderHelper.OverlayState" Value="Default">
+                <Setter Property="OpacityMask" Value="{Binding RelativeSource={RelativeSource Self}, Path=(helpers:OverlayMaskImageHelper.DefaultImageMask)}"/>
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="helpers:BorderHelper.Overlay_State" Value="Active"/>
-                    <Condition Property="helpers:BorderHelper.CustomMask_Use_AtActive" Value="True"/>
+                    <Condition Property="helpers:BorderHelper.OverlayState" Value="Active"/>
+                    <Condition Property="helpers:OverlayMaskImageHelper.UseActiveImageMask" Value="True"/>
                 </MultiTrigger.Conditions>
-                <Setter Property="OpacityMask" Value="{Binding RelativeSource={RelativeSource Self}, Path=(helpers:BorderHelper.CustomMask_ImageBrush_AtActive)}"/>
+                <Setter Property="OpacityMask" Value="{Binding RelativeSource={RelativeSource Self}, Path=(helpers:OverlayMaskImageHelper.ActiveImageMask)}"/>
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="helpers:BorderHelper.Overlay_State" Value="Disable"/>
-                    <Condition Property="helpers:BorderHelper.CustomMask_Use_AtDisable" Value="True"/>
+                    <Condition Property="helpers:BorderHelper.OverlayState" Value="Disable"/>
+                    <Condition Property="helpers:OverlayMaskImageHelper.UseDisableImageMask" Value="True"/>
                 </MultiTrigger.Conditions>
-                <Setter Property="OpacityMask" Value="{Binding RelativeSource={RelativeSource Self}, Path=(helpers:BorderHelper.CustomMask_ImageBrush_AtDisable)}"/>
+                <Setter Property="OpacityMask" Value="{Binding RelativeSource={RelativeSource Self}, Path=(helpers:OverlayMaskImageHelper.DisableImageMask)}"/>
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="helpers:BorderHelper.Overlay_State" Value="Mouseover"/>
-                    <Condition Property="helpers:BorderHelper.CustomMask_Use_AtMouseover" Value="True"/>
+                    <Condition Property="helpers:BorderHelper.OverlayState" Value="Mouseover"/>
+                    <Condition Property="helpers:OverlayMaskImageHelper.UseMouseoverImageMask" Value="True"/>
                 </MultiTrigger.Conditions>
-                <Setter Property="OpacityMask" Value="{Binding RelativeSource={RelativeSource Self}, Path=(helpers:BorderHelper.CustomMask_ImageBrush_AtMouseover)}"/>
+                <Setter Property="OpacityMask" Value="{Binding RelativeSource={RelativeSource Self}, Path=(helpers:OverlayMaskImageHelper.MouseoverImageMask)}"/>
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="helpers:BorderHelper.Overlay_State" Value="Active"/>
-                    <Condition Property="helpers:BorderHelper.CustomMask_Use_AtActive" Value="False"/>
+                    <Condition Property="helpers:BorderHelper.OverlayState" Value="Active"/>
+                    <Condition Property="helpers:OverlayMaskImageHelper.UseActiveImageMask" Value="False"/>
                 </MultiTrigger.Conditions>
-                <Setter Property="OpacityMask" Value="{Binding RelativeSource={RelativeSource Self}, Path=(helpers:BorderHelper.Mask_DefaultImageBrush)}"/>
+                <Setter Property="OpacityMask" Value="{Binding RelativeSource={RelativeSource Self}, Path=(helpers:OverlayMaskImageHelper.DefaultImageMask)}"/>
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="helpers:BorderHelper.Overlay_State" Value="Disable"/>
-                    <Condition Property="helpers:BorderHelper.CustomMask_Use_AtDisable" Value="False"/>
+                    <Condition Property="helpers:BorderHelper.OverlayState" Value="Disable"/>
+                    <Condition Property="helpers:OverlayMaskImageHelper.UseDisableImageMask" Value="False"/>
                 </MultiTrigger.Conditions>
-                <Setter Property="OpacityMask" Value="{Binding RelativeSource={RelativeSource Self}, Path=(helpers:BorderHelper.Mask_DefaultImageBrush)}"/>
+                <Setter Property="OpacityMask" Value="{Binding RelativeSource={RelativeSource Self}, Path=(helpers:OverlayMaskImageHelper.DefaultImageMask)}"/>
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="helpers:BorderHelper.Overlay_State" Value="Mouseover"/>
-                    <Condition Property="helpers:BorderHelper.CustomMask_Use_AtMouseover" Value="False"/>
+                    <Condition Property="helpers:BorderHelper.OverlayState" Value="Mouseover"/>
+                    <Condition Property="helpers:OverlayMaskImageHelper.UseMouseoverImageMask" Value="False"/>
                 </MultiTrigger.Conditions>
-                <Setter Property="OpacityMask" Value="{Binding RelativeSource={RelativeSource Self}, Path=(helpers:BorderHelper.Mask_DefaultImageBrush)}"/>
+                <Setter Property="OpacityMask" Value="{Binding RelativeSource={RelativeSource Self}, Path=(helpers:OverlayMaskImageHelper.DefaultImageMask)}"/>
             </MultiTrigger>
         </Style.Triggers>
     </Style>
