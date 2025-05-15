@@ -52,12 +52,12 @@
               Style="{StaticResource GroupBox_Overlay}"
               FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header3}"
               Padding="10"
-              helpers:GroupBoxHelper.CornerRadius="20">
+              helpers:CornerRadiusHelper.CornerRadius="20">
         <StackPanel Orientation="Horizontal">
             <GroupBox Header="State"
                       Style="{StaticResource GroupBox_Overlay}"
                       Margin="5"
-                      helpers:GroupBoxHelper.CornerRadius="10">
+                      helpers:CornerRadiusHelper.CornerRadius="10">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -98,7 +98,7 @@
             <GroupBox Header="Display"
                       Style="{StaticResource GroupBox_Overlay}"
                       Margin="5"
-                      helpers:GroupBoxHelper.CornerRadius="10">
+                      helpers:CornerRadiusHelper.CornerRadius="10">
                 <StackPanel>
                     <GroupBox Header="All (eg. active)"
                               Style="{StaticResource GroupBox_Overlay}"

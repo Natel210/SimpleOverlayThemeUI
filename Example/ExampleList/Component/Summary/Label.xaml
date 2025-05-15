@@ -9,53 +9,44 @@
              Style="{StaticResource SimpleOverlayTheme.Styles.UserControlStyle.Empty}"
              d:Style="{StaticResource SimpleOverlayTheme.Styles.UserControlStyle.UserControl}">
     <UserControl.Resources>
-        <Style x:Key="GroupBox_Label" TargetType="GroupBox" BasedOn="{StaticResource SimpleOverlayTheme.Styles.GroupBoxStyle.GroupBox}">
+        <Style TargetType="GroupBox" BasedOn="{StaticResource SimpleOverlayTheme.Styles.GroupBoxStyle.GroupBox}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Margin" Value="0"/>
-            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
             <Setter Property="HeaderTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Label Content="{Binding}" Background="#88ff9a75"
-                   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                   VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="10,2"/>
+                        <Label Content="{Binding}"
+                               Background="#8880823e"
+                               VerticalAlignment="Stretch"
+                               HorizontalAlignment="Stretch"
+                               VerticalContentAlignment="Center"
+                               HorizontalContentAlignment="Center"
+                               Padding="10,2"
+                               Style="{StaticResource SimpleOverlayTheme.Styles.LabelStyle.Label}"/>
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="FontSize" Value="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"/>
+            <Setter Property="FontSize" Value="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header3}"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush">
-                <Setter.Value>
-                    <SolidColorBrush Color="#88ff9a75"/>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="BorderBrush" Value="#8880823e"/>
             <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineHeight" Value="0"/>
-            <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineBrush">
-                <Setter.Value>
-                    <SolidColorBrush Color="#88ff9a75"/>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineBrush" Value="#8880823e"/>
+            <Setter Property="helpers:CornerRadiusHelper.CornerRadius" Value="20"/>
         </Style>
     </UserControl.Resources>
-    <GroupBox Header="Label" Style="{StaticResource GroupBox_Label}"
-              FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header3}"
-              Padding="10"
-              helpers:GroupBoxHelper.CornerRadius="20">
+    <GroupBox Header="Label">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0"
-                   Content="Label"
+            <Label Grid.Row="0" Content="Label" Margin="5"
                    FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"
-                   Margin="5"
                    Style="{StaticResource SimpleOverlayTheme.Styles.LabelStyle.Label}"/>
-            <Label Grid.Row="1"
-                   Content="Separator"
+            <Label Grid.Row="1" Content="Separator" Margin="5"
                    FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"
-                   Margin="5"
                    Style="{StaticResource SimpleOverlayTheme.Styles.LabelStyle.Separator}"/>
         </Grid>
     </GroupBox>

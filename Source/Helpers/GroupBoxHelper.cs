@@ -12,27 +12,6 @@ namespace SimpleOverlayTheme.Helpers
     public class GroupBoxHelper : APropertyHelper
     {
         ////////////////////////////////////////
-        // CornerRadius
-        ////////////////////////////////////////
-
-        /// <summary></summary>
-        public static readonly DependencyProperty CornerRadiusProperty
-            = GeneratorProperty("CornerRadius",
-                typeof(CornerRadius), typeof(GroupBoxHelper), new CornerRadius(0));
-
-        /// <summary></summary>
-        [Browsable(true)]
-        [Category(nameof(GroupBoxHelper))]
-        [DisplayName("CornerRadius")]
-        [AttachedPropertyBrowsableForType(typeof(GroupBox))]
-        public static CornerRadius GetCornerRadius(UIElement element)
-            => (CornerRadius)element.GetValue(CornerRadiusProperty);
-
-        /// <summary></summary>
-        public static void SetCornerRadius(UIElement element, CornerRadius value)
-            => element.SetValue(CornerRadiusProperty, value);
-
-        ////////////////////////////////////////
         // HeaderUnderLineBrush
         ////////////////////////////////////////
 

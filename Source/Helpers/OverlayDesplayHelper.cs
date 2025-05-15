@@ -30,8 +30,15 @@ namespace SimpleOverlayTheme.Helpers
         [Category(nameof(OverlayDesplayHelper))]
         [DisplayName("Background")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
-        [AttachedPropertyBrowsableForType(typeof(TextBoxBase))]
+        [AttachedPropertyBrowsableForType(typeof(CheckBox))]
+        [AttachedPropertyBrowsableForType(typeof(DataGridCell))]
+        [AttachedPropertyBrowsableForType(typeof(DataGridColumnHeader))]
+        [AttachedPropertyBrowsableForType(typeof(DataGridRowHeader))]
+        [AttachedPropertyBrowsableForType(typeof(DataGridRow))]
+        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         [AttachedPropertyBrowsableForType(typeof(ListBoxItem))]
+        [AttachedPropertyBrowsableForType(typeof(TextBox))]
+        
         public static bool GetBackground(UIElement element)
             => (bool)element.GetValue(BackgroundProperty);
 
@@ -53,8 +60,14 @@ namespace SimpleOverlayTheme.Helpers
         [Category(nameof(OverlayDesplayHelper))]
         [DisplayName("BackgroundAtDefault")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
-        [AttachedPropertyBrowsableForType(typeof(TextBoxBase))]
+        [AttachedPropertyBrowsableForType(typeof(CheckBox))]
+        [AttachedPropertyBrowsableForType(typeof(DataGridCell))]
+        [AttachedPropertyBrowsableForType(typeof(DataGridColumnHeader))]
+        [AttachedPropertyBrowsableForType(typeof(DataGridRowHeader))]
+        [AttachedPropertyBrowsableForType(typeof(DataGridRow))]
+        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         [AttachedPropertyBrowsableForType(typeof(ListBoxItem))]
+        [AttachedPropertyBrowsableForType(typeof(TextBox))]
         public static bool GetBackgroundAtDefault(UIElement element)
             => (bool)element.GetValue(BackgroundAtDefaultProperty);
 
@@ -76,8 +89,14 @@ namespace SimpleOverlayTheme.Helpers
         [Category(nameof(OverlayDesplayHelper))]
         [DisplayName("Outline")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
-        [AttachedPropertyBrowsableForType(typeof(TextBoxBase))]
+        [AttachedPropertyBrowsableForType(typeof(CheckBox))]
+        [AttachedPropertyBrowsableForType(typeof(DataGridCell))]
+        [AttachedPropertyBrowsableForType(typeof(DataGridColumnHeader))]
+        [AttachedPropertyBrowsableForType(typeof(DataGridRowHeader))]
+        [AttachedPropertyBrowsableForType(typeof(DataGridRow))]
+        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         [AttachedPropertyBrowsableForType(typeof(ListBoxItem))]
+        [AttachedPropertyBrowsableForType(typeof(TextBox))]
         public static bool GetOutline(UIElement element)
             => (bool)element.GetValue(OutlineProperty);
 
@@ -99,8 +118,14 @@ namespace SimpleOverlayTheme.Helpers
         [Category(nameof(OverlayDesplayHelper))]
         [DisplayName("OutlineAtDefault")]
         [AttachedPropertyBrowsableForType(typeof(Border))]
-        [AttachedPropertyBrowsableForType(typeof(TextBoxBase))]
+        [AttachedPropertyBrowsableForType(typeof(CheckBox))]
+        [AttachedPropertyBrowsableForType(typeof(DataGridCell))]
+        [AttachedPropertyBrowsableForType(typeof(DataGridColumnHeader))]
+        [AttachedPropertyBrowsableForType(typeof(DataGridRowHeader))]
+        [AttachedPropertyBrowsableForType(typeof(DataGridRow))]
+        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         [AttachedPropertyBrowsableForType(typeof(ListBoxItem))]
+        [AttachedPropertyBrowsableForType(typeof(TextBox))]
         public static bool GetOutlineAtDefault(UIElement element)
             => (bool)element.GetValue(OutlineAtDefaultProperty);
 

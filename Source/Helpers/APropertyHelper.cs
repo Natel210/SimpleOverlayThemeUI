@@ -61,12 +61,33 @@ namespace SimpleOverlayTheme.Helpers
         /// Thrown if the provided default value is not assignable to the specified property type.
         /// </exception>
         protected static DependencyProperty GeneratorProperty(string name, Type propertyType, Type ownerType, object? defaultValue)
+            => GeneratorProperty(name, propertyType, ownerType, defaultValue, null);
+
+
+        /// <summary>
+        /// Registers an attached <see cref="DependencyProperty"/> with the specified name, type, owner,
+        /// and a specified default value, validating type compatibility.
+        /// </summary>
+        /// <param name="name">The name of the dependency property to register.</param>
+        /// <param name="propertyType">The CLR type of the dependency property.</param>
+        /// <param name="ownerType">The owner type that defines and registers the dependency property.</param>
+        /// <param name="defaultValue">The default value to associate with the property.</param>
+        /// <param name="propertyChangedCallback">Value changed Callback Func.</param>
+        /// <returns>The registered <see cref="DependencyProperty"/> instance.</returns>
+        /// <exception cref="InvalidCastException">
+        /// Thrown if the provided default value is not assignable to the specified property type.
+        /// </exception>
+        protected static DependencyProperty GeneratorProperty(string name, Type propertyType, Type ownerType, object? defaultValue, PropertyChangedCallback? propertyChangedCallback)
         {
             if (defaultValue != null && !propertyType.IsAssignableFrom(defaultValue.GetType()))
                 throw new InvalidCastException($"Default value of type '{defaultValue.GetType()}' cannot be assigned to property type '{propertyType}'.");
 
-            return DependencyProperty.RegisterAttached(name, propertyType, ownerType,
-                new FrameworkPropertyMetadata(defaultValue, _frameworkPropertyMetadataOptions));
+            if (propertyChangedCallback is null)
+                return DependencyProperty.RegisterAttached(name, propertyType, ownerType,
+                    new FrameworkPropertyMetadata(defaultValue, _frameworkPropertyMetadataOptions));
+            else
+                return DependencyProperty.RegisterAttached(name, propertyType, ownerType,
+                    new FrameworkPropertyMetadata(defaultValue, _frameworkPropertyMetadataOptions, propertyChangedCallback));
         }
     }
 }

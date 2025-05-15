@@ -24,7 +24,7 @@ namespace SimpleOverlayTheme.Helpers
 
         /// <summary></summary>
         [Browsable(true)]
-        [Category(nameof(OverlayMaskImageHelper))]
+        [Category(nameof(CheckBoxHelper))]
         [DisplayName("CheckedMaskBrush")]
         [AttachedPropertyBrowsableForType(typeof(CheckBox))]
         public static Brush? GetCheckedMaskBrush(UIElement element)

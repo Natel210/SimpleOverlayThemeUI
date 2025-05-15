@@ -48,7 +48,7 @@
             <Setter Property="Margin" Value="5"/>
             <Setter Property="helpers:OverlayMaskImageHelper.DefaultImageMask">
                 <Setter.Value>
-                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/check.png"/>
+                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/Numeric1Box.png"/>
                 </Setter.Value>
             </Setter>
         </Style>
@@ -58,17 +58,17 @@
             <Setter Property="helpers:OverlayMaskImageHelper.UseMouseoverImageMask" Value="True"/>
             <Setter Property="helpers:OverlayMaskImageHelper.ActiveImageMask">
                 <Setter.Value>
-                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/close.png"/>
+                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/Numeric2Box.png"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="helpers:OverlayMaskImageHelper.DisableImageMask">
                 <Setter.Value>
-                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/maximize.png"/>
+                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/Numeric3Box.png"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="helpers:OverlayMaskImageHelper.MouseoverImageMask">
                 <Setter.Value>
-                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/upArrow.png"/>
+                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/Numeric4Box.png"/>
                 </Setter.Value>
             </Setter>
         </Style>
@@ -77,12 +77,12 @@
               Style="{StaticResource GroupBox_OverlayMask}"
               FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header3}"
               Padding="10"
-              helpers:GroupBoxHelper.CornerRadius="20">
+              helpers:CornerRadiusHelper.CornerRadius="20">
         <StackPanel Orientation="Horizontal">
             <GroupBox Header="State"
                       Style="{StaticResource GroupBox_OverlayMask}"
                       Margin="5"
-                      helpers:GroupBoxHelper.CornerRadius="10">
+                      helpers:CornerRadiusHelper.CornerRadius="10">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -124,7 +124,7 @@
             <GroupBox Header="Image"
                       Style="{StaticResource GroupBox_OverlayMask}"
                       Margin="5"
-                      helpers:GroupBoxHelper.CornerRadius="10">
+                      helpers:CornerRadiusHelper.CornerRadius="10">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -165,7 +165,7 @@
             <GroupBox Header="Display"
                       Style="{StaticResource GroupBox_OverlayMask}"
                       Margin="5"
-                      helpers:GroupBoxHelper.CornerRadius="10">
+                      helpers:CornerRadiusHelper.CornerRadius="10">
                 <StackPanel>
                     <GroupBox Header="All (eg. active)"
                               Style="{StaticResource GroupBox_OverlayMask}"

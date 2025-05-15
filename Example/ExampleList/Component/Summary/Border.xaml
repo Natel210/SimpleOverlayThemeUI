@@ -9,44 +9,38 @@
              Style="{StaticResource SimpleOverlayTheme.Styles.UserControlStyle.Empty}"
              d:Style="{StaticResource SimpleOverlayTheme.Styles.UserControlStyle.UserControl}">
     <UserControl.Resources>
-        <Style x:Key="GroupBox_Border" TargetType="GroupBox" BasedOn="{StaticResource SimpleOverlayTheme.Styles.GroupBoxStyle.GroupBox}">
+        <Style TargetType="GroupBox" BasedOn="{StaticResource SimpleOverlayTheme.Styles.GroupBoxStyle.GroupBox}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Margin" Value="0"/>
-            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
             <Setter Property="HeaderTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Label Content="{Binding}" Background="#8873abff"
-                   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                   VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="10,2"/>
+                        <Label Content="{Binding}"
+                               Background="#883e7f82"
+                               VerticalAlignment="Stretch"
+                               HorizontalAlignment="Stretch"
+                               VerticalContentAlignment="Center"
+                               HorizontalContentAlignment="Center" Padding="10,2"
+                               Style="{StaticResource SimpleOverlayTheme.Styles.LabelStyle.Label}"/>
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="FontSize" Value="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"/>
+            <Setter Property="FontSize" Value="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header3}"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush">
-                <Setter.Value>
-                    <SolidColorBrush Color="#8873abff"/>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="BorderBrush" Value="#883e7f82"/>
             <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineHeight" Value="0"/>
-            <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineBrush">
-                <Setter.Value>
-                    <SolidColorBrush Color="#8873abff"/>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineBrush" Value="#883e7f82"/>
+            <Setter Property="helpers:CornerRadiusHelper.CornerRadius" Value="20"/>
         </Style>
-        <Style x:Key="Label_Border" TargetType="Label" BasedOn="{StaticResource SimpleOverlayTheme.Styles.LabelStyle.Label}">
+        <Style TargetType="Label" BasedOn="{StaticResource SimpleOverlayTheme.Styles.LabelStyle.Label}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"/>
         </Style>
     </UserControl.Resources>
-    <GroupBox Header="Border" Style="{StaticResource GroupBox_Border}"
-              FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header3}"
-              Padding="10"
-              helpers:GroupBoxHelper.CornerRadius="20">
+    <GroupBox Header="Border">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -57,38 +51,21 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Row="0" Grid.Column="0"
-                    Width="50"
-                    Height="50"
+            <Border Grid.Row="0" Grid.Column="0" Width="50" Height="50"
                     Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Border}"
-                    Background="#73abff"
-                    BorderBrush="Black"
+                    Background="#3e7f82"
+                    BorderBrush="{StaticResource SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground}"
                     BorderThickness="2"/>
-            <Label Grid.Row="0" Grid.Column="1"
-                   Content="Border"
-                   Margin="10,0,0,0"
-                   Style="{StaticResource Label_Border}"/>
-            <Border Grid.Row="1" Grid.Column="0"
-                    Width="50"
-                    Height="50"
-                    Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Empty}"/>
-            <Label Grid.Row="1" Grid.Column="1"
-                   Content="Empty"
-                   Margin="10,0,0,0"
-                   Style="{StaticResource Label_Border}"/>
-            <Border Grid.Row="3" Grid.Column="0"
-                    Width="50"
-                    Height="50"
-                    Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Mask}"
-                    Background="#73abff">
+            <Label Grid.Row="0" Grid.Column="1" Content="Border" Margin="10,0,0,0" />
+            <Border Grid.Row="1" Grid.Column="0" Width="50" Height="50" Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Empty}"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="Empty" Margin="10,0,0,0"/>
+            <Border Grid.Row="3" Grid.Column="0" Width="50" Height="50" Background="#3e7f82"
+                    Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Mask}">
                 <helpers:OverlayMaskImageHelper.DefaultImageMask>
-                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/check.png"/>
+                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/Numeric1Box.png"/>
                 </helpers:OverlayMaskImageHelper.DefaultImageMask>
             </Border>
-            <Label Grid.Row="3" Grid.Column="1"
-                   Content="Mask"
-                   Margin="10,0,0,0"
-                   Style="{StaticResource Label_Border}"/>
+            <Label Grid.Row="3" Grid.Column="1" Content="Mask" Margin="10,0,0,0"/>
         </Grid>
     </GroupBox>
 </UserControl>

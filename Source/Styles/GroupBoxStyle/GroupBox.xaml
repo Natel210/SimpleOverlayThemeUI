@@ -16,7 +16,7 @@
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Padding" Value="5"/>
         <Setter Property="Margin" Value="0"/>
-        <Setter Property="helpers:GroupBoxHelper.CornerRadius" Value="0"/>
+        <Setter Property="helpers:CornerRadiusHelper.CornerRadius" Value="0"/>
         <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineBrush" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Outline}"/>
         <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineHeight" Value="1"/>
         <Setter Property="Template">
@@ -25,14 +25,14 @@
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding helpers:GroupBoxHelper.CornerRadius}"
+                            CornerRadius="{TemplateBinding helpers:CornerRadiusHelper.CornerRadius}"
                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                             Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Empty}">
                         <Border.Clip>
                             <MultiBinding Converter="{StaticResource CornerClipConverter}">
                                 <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}"/>
                                 <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                <Binding Path="(helpers:GroupBoxHelper.CornerRadius)" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                <Binding Path="(helpers:CornerRadiusHelper.CornerRadius)" RelativeSource="{RelativeSource TemplatedParent}"/>
                             </MultiBinding>
                         </Border.Clip>
                         <Grid>

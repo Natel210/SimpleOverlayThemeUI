@@ -17,12 +17,13 @@
                 <Setter.Value>
                     <DataTemplate>
                         <Label Content="{Binding}"
-                               Background="#88ff9a75"
+                               Background="#8880823e"
                                VerticalAlignment="Stretch"
                                HorizontalAlignment="Stretch"
                                VerticalContentAlignment="Center"
                                HorizontalContentAlignment="Center"
-                               Padding="10,2"/>
+                               Padding="10,2"
+                               Style="{StaticResource SimpleOverlayTheme.Styles.LabelStyle.Label}"/>
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
@@ -31,13 +32,13 @@
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush">
                 <Setter.Value>
-                    <SolidColorBrush Color="#88ff9a75"/>
+                    <SolidColorBrush Color="#8880823e"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineHeight" Value="0"/>
             <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineBrush">
                 <Setter.Value>
-                    <SolidColorBrush Color="#88ff9a75"/>
+                    <SolidColorBrush Color="#8880823e"/>
                 </Setter.Value>
             </Setter>
         </Style>
@@ -45,15 +46,13 @@
     <GroupBox Header="TextBox" Style="{StaticResource GroupBox_TextBox}"
               FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header3}"
               Padding="10"
-              helpers:GroupBoxHelper.CornerRadius="20">
+              helpers:CornerRadiusHelper.CornerRadius="20">
         <TextBox Text="TextBox"
                  Width="100"
-                 Height="30"
                  Style="{StaticResource SimpleOverlayTheme.Styles.TextBoxStyle.TextBox}"
                  FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"
-                 Foreground="#ff9a75"
-                 Padding="5,0,0,0"
-                 VerticalContentAlignment="Center">
+                 Foreground="#80823e"
+                 helpers:CornerRadiusHelper.CornerRadius="10">
         </TextBox>
 
     </GroupBox>

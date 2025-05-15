@@ -17,27 +17,28 @@
                 <Setter.Value>
                     <DataTemplate>
                         <Label Content="{Binding}"
-                               Background="#88b0fa82"
+                               Background="#8858823e"
                                VerticalAlignment="Stretch"
                                HorizontalAlignment="Stretch"
                                VerticalContentAlignment="Center"
                                HorizontalContentAlignment="Center"
+                               Style="{StaticResource SimpleOverlayTheme.Styles.LabelStyle.Label}"
                                Padding="10,2"/>
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="FontSize" Value="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"/>
+            <Setter Property="FontSize" Value="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header3}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush">
                 <Setter.Value>
-                    <SolidColorBrush Color="#88b0fa82"/>
+                    <SolidColorBrush Color="#8858823e"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineHeight" Value="0"/>
             <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineBrush">
                 <Setter.Value>
-                    <SolidColorBrush Color="#88b0fa82"/>
+                    <SolidColorBrush Color="#8858823e"/>
                 </Setter.Value>
             </Setter>
         </Style>
@@ -46,11 +47,53 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"/>
         </Style>
+        <Style TargetType="CheckBox" BasedOn="{StaticResource SimpleOverlayTheme.Styles.CheckBoxStyle.CheckBox}">
+            <Setter Property="FontSize" Value="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"/>
+            <Setter Property="IsChecked" Value="True"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="helpers:CheckBoxHelper.CheckedMaskBrush" Value="#58823e"/>
+        </Style>        
+        
     </UserControl.Resources>
     <GroupBox Header="Check Box"
               FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header3}"
               Padding="10"
-              helpers:GroupBoxHelper.CornerRadius="20">
-        <CheckBox Style="{StaticResource SimpleOverlayTheme.Styles.CheckBoxStyle.CheckBox}" Height="30" FontSize="16" Content="1234" />
+              helpers:CornerRadiusHelper.CornerRadius="20">
+        <StackPanel>
+            <CheckBox Content="Check Box" />
+            <CheckBox Content="Corner" helpers:CornerRadiusHelper.CornerRadius="10" />
+            <CheckBox Content="Image"
+                      ToolTip="[C]Clicked [D]Def [M]Mouseover [X]Disable"
+                      helpers:CornerRadiusHelper.CornerRadius="5"
+                      helpers:OverlayMaskImageHelper.UseDisableImageMask="True"
+                      helpers:OverlayMaskImageHelper.UseActiveImageMask="True"
+                      helpers:OverlayMaskImageHelper.UseMouseoverImageMask="True">
+                <CheckBox.Style>
+                    <Style TargetType="CheckBox" BasedOn="{StaticResource SimpleOverlayTheme.Styles.CheckBoxStyle.CheckBox}">
+                        <Setter Property="FontSize" Value="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"/>
+                        <Setter Property="IsChecked" Value="True"/>
+                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="helpers:CheckBoxHelper.CheckedMaskBrush" Value="#58823e"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="helpers:OverlayDesplayHelper.Outline" Value="False"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </CheckBox.Style>
+                <helpers:OverlayMaskImageHelper.DefaultImageMask>
+                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/AlphaDBox.png"/>
+                </helpers:OverlayMaskImageHelper.DefaultImageMask>
+                <helpers:OverlayMaskImageHelper.ActiveImageMask>
+                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/AlphaCBox.png"/>
+                </helpers:OverlayMaskImageHelper.ActiveImageMask>
+                <helpers:OverlayMaskImageHelper.MouseoverImageMask>
+                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/AlphaMBox.png"/>
+                </helpers:OverlayMaskImageHelper.MouseoverImageMask>
+                <helpers:OverlayMaskImageHelper.DisableImageMask>
+                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/AlphaXBox.png"/>
+                </helpers:OverlayMaskImageHelper.DisableImageMask>
+            </CheckBox>
+        </StackPanel>
     </GroupBox>
 </UserControl>

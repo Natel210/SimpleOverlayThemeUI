@@ -25,7 +25,7 @@
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                 Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Border}"
                                 VerticalAlignment="Stretch"/>
-                        <Border x:Name="PART_OverlayBackground"
+                        <Border x:Name="PART_Overlay"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 HorizontalAlignment="Stretch"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
@@ -51,13 +51,13 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="PART_OverlayBackground" Property="helpers:BorderHelper.OverlayState" Value="Disable"/>
+                            <Setter TargetName="PART_Overlay" Property="helpers:BorderHelper.OverlayState" Value="Disable"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="PART_OverlayBackground" Property="helpers:BorderHelper.OverlayState" Value="Mouseover"/>
+                            <Setter TargetName="PART_Overlay" Property="helpers:BorderHelper.OverlayState" Value="Mouseover"/>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="PART_OverlayBackground" Property="helpers:BorderHelper.OverlayState" Value="Active"/>
+                            <Setter TargetName="PART_Overlay" Property="helpers:BorderHelper.OverlayState" Value="Active"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

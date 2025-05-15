@@ -17,11 +17,12 @@
                 <Setter.Value>
                     <DataTemplate>
                         <Label Content="{Binding}"
-                               Background="#88b0fa82"
+                               Background="#8858823e"
                                VerticalAlignment="Stretch"
                                HorizontalAlignment="Stretch"
                                VerticalContentAlignment="Center"
                                HorizontalContentAlignment="Center"
+                               Style="{StaticResource SimpleOverlayTheme.Styles.LabelStyle.Label}"
                                Padding="10,2"/>
                     </DataTemplate>
                 </Setter.Value>
@@ -31,13 +32,13 @@
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush">
                 <Setter.Value>
-                    <SolidColorBrush Color="#88b0fa82"/>
+                    <SolidColorBrush Color="#8858823e"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineHeight" Value="0"/>
             <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineBrush">
                 <Setter.Value>
-                    <SolidColorBrush Color="#88b0fa82"/>
+                    <SolidColorBrush Color="#8858823e"/>
                 </Setter.Value>
             </Setter>
         </Style>
@@ -50,9 +51,10 @@
     <GroupBox Header="LsitBox"
               FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header3}"
               Padding="10"
-              helpers:GroupBoxHelper.CornerRadius="20">
+              helpers:CornerRadiusHelper.CornerRadius="20">
         <ListBox Style="{StaticResource SimpleOverlayTheme.Styles.ListBoxStyle.ListBox}"
-                 FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}">
+                 FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"
+                 SelectedIndex="2">
             <ListBoxItem Content="Item1"/>
             <ListBoxItem Content="Item2"/>
             <ListBoxItem Content="Item3"/>

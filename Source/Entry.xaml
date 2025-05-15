@@ -8,13 +8,21 @@
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Overlay.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/OverlayMask.xaml"/>
         <!--Button-->
-
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/ButtonStyle/Button.xaml"/>
         <!--CheckBox-->
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/CheckBoxStyle/CheckBox.xaml"/>
         <!--ComboBox-->
 
+        <!--DataGridCell-->
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/DataGridCellStyle/DataGridCell.xaml"/>
+        <!--DataGridColumnHeader-->
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/DataGridColumnHeaderStlye/DataGridColumnHeader.xaml"/>
+        <!--DataGridRowHeader-->
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/DataGridRowHeaderStyle/DataGridRowHeader.xaml"/>
+        <!--DataGridRow-->
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/DataGridRowStyle/DataGridRow.xaml"/>
         <!--DataGrid-->
-
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/DataGridStyle/DataGrid.xaml"/>
         <!--GroupBox-->
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/GroupBoxStyle/GroupBox.xaml"/>
         <!--Label-->

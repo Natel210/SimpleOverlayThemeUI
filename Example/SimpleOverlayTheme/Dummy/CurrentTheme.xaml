@@ -8,7 +8,7 @@
     <System:String x:Key="SimpleOverlayTheme.ThemeKey.Common.ThemeName">Temp</System:String>
 
     <!-- ColorPalette -->
-    <System:Double x:Key="SimpleOverlayTheme.ThemeKey.FontSize.Default">10</System:Double>
+    <System:Double x:Key="SimpleOverlayTheme.ThemeKey.FontSize.Default">16</System:Double>
     <System:Double x:Key="SimpleOverlayTheme.ThemeKey.FontSize.Header1">32</System:Double>
     <System:Double x:Key="SimpleOverlayTheme.ThemeKey.FontSize.Header2">24</System:Double>
     <System:Double x:Key="SimpleOverlayTheme.ThemeKey.FontSize.Header3">18.72</System:Double>
@@ -18,14 +18,12 @@
 
     <!-- Thickness -->
     <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Thickness.Default">1</Thickness>
-    <Thickness x:Key="SimpleOverlayTheme.ThemeKey.Thickness.Zero">0</Thickness>
 
     <!-- ColorPalette -->
-    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Background" Color="#FFFFFFFF"/>
-    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground" Color="#FF151515"/>
+    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Background" Color="#FF252525"/>
+    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground" Color="#FFDADADA"/>
     <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground_Disable" Color="#A0808080"/>
     <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Highlight" Color="#B4151515"/>
-    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Line" Color="#FF808080"/>
     <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Mask" Color="#A0808080"/>
     <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Outline" Color="#80808080"/>
     <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.ColorPalette.Selection" Color="#FF808080"/>
@@ -37,15 +35,15 @@
     <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Background.Mouseover" Color="#25808080"/>
 
     <!-- Overlay.Outline -->
-    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.Active" Color="#FF151515"/>
-    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.Default" Color="#33151515"/>
+    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.Active" Color="#FFEBEBEB"/>
+    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.Default" Color="#33EBEBEB"/>
     <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.Disable" Color="#25808080"/>
-    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.Mouseover" Color="#80151515"/>
+    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Outline.Mouseover" Color="#80EBEBEB"/>
 
     <!-- Overlay.Mask.Background -->
-    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.Active" Color="#F0151515"/>
-    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.Default" Color="#50151515"/>
-    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.Disable" Color="#25151515"/>
-    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.Mouseover" Color="#A0151515"/>
+    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.Active" Color="#F0EBEBEB"/>
+    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.Default" Color="#50EBEBEB"/>
+    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.Disable" Color="#25EBEBEB"/>
+    <SolidColorBrush x:Key="SimpleOverlayTheme.ThemeKey.Overlay.Mask.Background.Mouseover" Color="#A0EBEBEB"/>
 
 </ResourceDictionary>

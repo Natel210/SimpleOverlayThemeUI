@@ -9,53 +9,47 @@
              Style="{StaticResource SimpleOverlayTheme.Styles.UserControlStyle.Empty}"
              d:Style="{StaticResource SimpleOverlayTheme.Styles.UserControlStyle.UserControl}">
     <UserControl.Resources>
-        <Style x:Key="GroupBox_GroupBox" TargetType="GroupBox" BasedOn="{StaticResource SimpleOverlayTheme.Styles.GroupBoxStyle.GroupBox}">
+        <Style TargetType="GroupBox" BasedOn="{StaticResource SimpleOverlayTheme.Styles.GroupBoxStyle.GroupBox}">
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Margin" Value="0"/>
-            <Setter Property="Padding" Value="0"/>
+            <Setter Property="BorderBrush" Value="#8858823e"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header3}"/>
+            <Setter Property="Padding" Value="10"/>
             <Setter Property="HeaderTemplate">
                 <Setter.Value>
                     <DataTemplate>
                         <Label Content="{Binding}"
-                               Background="#88b0fa82"
+                               Background="#8858823e"
                                VerticalAlignment="Stretch"
                                HorizontalAlignment="Stretch"
                                VerticalContentAlignment="Center"
                                HorizontalContentAlignment="Center"
+                               Style="{StaticResource SimpleOverlayTheme.Styles.LabelStyle.Label}"
                                Padding="10,2"/>
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="FontSize" Value="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush">
-                <Setter.Value>
-                    <SolidColorBrush Color="#88b0fa82"/>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="Margin" Value="0"/>
             <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineHeight" Value="0"/>
-            <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineBrush">
-                <Setter.Value>
-                    <SolidColorBrush Color="#88b0fa82"/>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineBrush" Value="#8858823e"/>
         </Style>
     </UserControl.Resources>
-    <GroupBox Header="GroupBox" Style="{StaticResource GroupBox_GroupBox}"
-              FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header3}"
+    <GroupBox Header="GroupBox"
               Padding="10"
-              helpers:GroupBoxHelper.CornerRadius="20">
-        <GroupBox Header="GroupBox" Style="{StaticResource SimpleOverlayTheme.Styles.GroupBoxStyle.GroupBox}">
+              helpers:CornerRadiusHelper.CornerRadius="20">
+        <GroupBox Header="GroupBox"
+                  VerticalAlignment="Stretch"
+                  VerticalContentAlignment="Stretch"
+                  HorizontalAlignment="Stretch"
+                  HorizontalContentAlignment="Stretch"
+                  Style="{StaticResource SimpleOverlayTheme.Styles.GroupBoxStyle.GroupBox}">
             <GroupBox.HeaderTemplate>
                 <DataTemplate>
                     <Label Content="{Binding}"
-                           Background="#b0fa82"
-                           VerticalAlignment="Stretch"
-                           HorizontalAlignment="Stretch"
-                           VerticalContentAlignment="Center"
-                           HorizontalContentAlignment="Center"
+                           Background="#58823e"
                            FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"
+                           Style="{StaticResource SimpleOverlayTheme.Styles.LabelStyle.Label}"
                            Padding="10,2"/>
                 </DataTemplate>
             </GroupBox.HeaderTemplate>

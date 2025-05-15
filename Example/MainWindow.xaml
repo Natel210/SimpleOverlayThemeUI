@@ -9,12 +9,12 @@
         Style="{StaticResource SimpleOverlayTheme.Styles.WindowStyle.Window}"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TabControl>
-            <TabItem Header="Summary">
+        <TabControl Background="Transparent">
+            <TabItem Header="Summary" Background="Transparent">
                 <exampleList:SummaryExample/>
             </TabItem>
 
-            <TabItem Header="Overlay">
+            <TabItem Header="Overlay" Background="Transparent">
                 <exampleList:OverlayExample/>
             </TabItem>
         </TabControl>

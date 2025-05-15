@@ -22,32 +22,50 @@
     
   <!--Resource-->
   <ItemGroup>
-    <Resource Include="..\Share\Resource\Mask\check.png">
-      <Link>Resource\Mask\check.png</Link>
+    <Resource Include="..\Share\Resource\Mask\Numeric1Box.png">
+      <Link>Resource\Mask\Numeric1Box.png</Link>
     </Resource>
-    <Resource Include="..\Share\Resource\Mask\close.png">
-      <Link>Resource\Mask\close.png</Link>
+    <Resource Include="..\Share\Resource\Mask\Numeric2Box.png">
+      <Link>Resource\Mask\Numeric2Box.png</Link>
     </Resource>
-    <Resource Include="..\Share\Resource\Mask\downArrow.png">
-      <Link>Resource\Mask\downArrow.png</Link>
+    <Resource Include="..\Share\Resource\Mask\Numeric3Box.png">
+      <Link>Resource\Mask\Numeric3Box.png</Link>
     </Resource>
-    <Resource Include="..\Share\Resource\Mask\maximize.png">
-      <Link>Resource\Mask\maximize.png</Link>
+    <Resource Include="..\Share\Resource\Mask\Numeric4Box.png">
+      <Link>Resource\Mask\Numeric4Box.png</Link>
     </Resource>
-    <Resource Include="..\Share\Resource\Mask\minimize.png">
-      <Link>Resource\Mask\minimize.png</Link>
+    <Resource Include="..\Share\Resource\Mask\Numeric5Box.png">
+      <Link>Resource\Mask\Numeric5Box.png</Link>
     </Resource>
-    <Resource Include="..\Share\Resource\Mask\minus.png">
-      <Link>Resource\Mask\minus.png</Link>
+    <Resource Include="..\Share\Resource\Mask\Numeric6Box.png">
+      <Link>Resource\Mask\Numeric6Box.png</Link>
     </Resource>
-    <Resource Include="..\Share\Resource\Mask\plus.png">
-      <Link>Resource\Mask\plus.png</Link>
+    <Resource Include="..\Share\Resource\Mask\Numeric7Box.png">
+      <Link>Resource\Mask\Numeric7Box.png</Link>
     </Resource>
-    <Resource Include="..\Share\Resource\Mask\restore.png">
-      <Link>Resource\Mask\restore.png</Link>
+    <Resource Include="..\Share\Resource\Mask\Numeric8Box.png">
+      <Link>Resource\Mask\Numeric8Box.png</Link>
     </Resource>
-    <Resource Include="..\Share\Resource\Mask\upArrow.png">
-      <Link>Resource\Mask\upArrow.png</Link>
+    <Resource Include="..\Share\Resource\Mask\Numeric9Box.png">
+      <Link>Resource\Mask\Numeric9Box.png</Link>
+    </Resource>
+    <Resource Include="..\Share\Resource\Mask\Numeric10Box.png">
+      <Link>Resource\Mask\Numeric10Box.png</Link>
+    </Resource>
+    <Resource Include="..\Share\Resource\Mask\AlphaABox.png">
+      <Link>Resource\Mask\AlphaABox.png</Link>
+    </Resource>
+    <Resource Include="..\Share\Resource\Mask\AlphaCBox.png">
+      <Link>Resource\Mask\AlphaCBox.png</Link>
+    </Resource>
+    <Resource Include="..\Share\Resource\Mask\AlphaDBox.png">
+      <Link>Resource\Mask\AlphaDBox.png</Link>
+    </Resource>
+    <Resource Include="..\Share\Resource\Mask\AlphaMBox.png">
+      <Link>Resource\Mask\AlphaMBox.png</Link>
+    </Resource>
+    <Resource Include="..\Share\Resource\Mask\AlphaXBox.png">
+      <Link>Resource\Mask\AlphaXBox.png</Link>
     </Resource>
   </ItemGroup>
 

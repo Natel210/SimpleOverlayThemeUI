@@ -50,24 +50,24 @@
             <Setter Property="helpers:OverlayMaskImageHelper.UseActiveImageMask" Value="True"/>
             <Setter Property="helpers:OverlayMaskImageHelper.UseDisableImageMask" Value="True"/>
             <Setter Property="helpers:OverlayMaskImageHelper.UseMouseoverImageMask" Value="True"/>
-            <Setter Property="helpers:OverlayMaskImageHelper.DisableImageMask">
+            <Setter Property="helpers:OverlayMaskImageHelper.DefaultImageMask">
                 <Setter.Value>
-                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/check.png"/>
+                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/Numeric1Box.png"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="helpers:OverlayMaskImageHelper.ActiveImageMask">
                 <Setter.Value>
-                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/close.png"/>
+                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/Numeric2Box.png"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="helpers:OverlayMaskImageHelper.DisableImageMask">
                 <Setter.Value>
-                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/maximize.png"/>
+                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/Numeric3Box.png"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="helpers:OverlayMaskImageHelper.MouseoverImageMask">
                 <Setter.Value>
-                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/upArrow.png"/>
+                    <ImageBrush ImageSource="pack://application:,,,/SimpleOverlayTheme.Example;component/Resource/Mask/Numeric4Box.png"/>
                 </Setter.Value>
             </Setter>
         </Style>
@@ -75,7 +75,7 @@
     <GroupBox Header="Mask Image"
               FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header3}"
               Padding="10"
-              helpers:GroupBoxHelper.CornerRadius="20">
+              helpers:CornerRadiusHelper.CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

@@ -5,22 +5,105 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SimpleOverlayTheme.Example.ExampleList"
              mc:Ignorable="d" 
+             xmlns:helpers="clr-namespace:SimpleOverlayTheme.Helpers;assembly=SimpleOverlayTheme"
              xmlns:component="clr-namespace:SimpleOverlayTheme.Example.ExampleList.Component.Summary"
              Style="{StaticResource SimpleOverlayTheme.Styles.UserControlStyle.Empty}"
              d:Style="{StaticResource SimpleOverlayTheme.Styles.UserControlStyle.UserControl}">
-    <StackPanel Orientation="Horizontal">
-        <StackPanel>
-            <component:Border Margin="10"/>
-        </StackPanel>
-        <StackPanel>
-            <component:TextBlock Margin="10"/>
-            <component:TextBox Margin="10"/>
-            <component:Label Margin="10"/>
-        </StackPanel>
-        <StackPanel>
-            <component:CheckBox Margin="10"/>
-            <component:GroupBox Margin="10"/>
-            <component:ListBox Margin="10"/>
-        </StackPanel>
-    </StackPanel>
+    <UserControl.Resources>
+        <Style x:Key="GroupBox_Func" TargetType="GroupBox" BasedOn="{StaticResource SimpleOverlayTheme.Styles.GroupBoxStyle.GroupBox}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="FontSize" Value="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header2}"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Label Content="{Binding}"
+                               Background="#88ff9a75"
+                               VerticalAlignment="Stretch"
+                               HorizontalAlignment="Stretch"
+                               VerticalContentAlignment="Center"
+                               HorizontalContentAlignment="Center"
+                               Padding="10,2"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="#88ff9a75"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineHeight" Value="0"/>
+            <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="#88ff9a75"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineHeight" Value="0"/>
+        </Style>
+        <Style x:Key="GroupBox_Item" TargetType="GroupBox" BasedOn="{StaticResource SimpleOverlayTheme.Styles.GroupBoxStyle.GroupBox}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="FontSize" Value="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header2}"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Label Content="{Binding}"
+                               Background="#88ff9a75"
+                               VerticalAlignment="Stretch"
+                               HorizontalAlignment="Stretch"
+                               VerticalContentAlignment="Center"
+                               HorizontalContentAlignment="Center"
+                               Padding="10,2"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="#88ff9a75"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineHeight" Value="0"/>
+            <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="#88ff9a75"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Func" Grid.Row="0" Style="{StaticResource GroupBox_Func}" Margin="10">
+            
+        </GroupBox>
+        <GroupBox Header="Item" Grid.Row="1" Style="{StaticResource GroupBox_Item}" Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <component:Border Margin="10"/>
+                </StackPanel>
+                <StackPanel>
+                    <component:TextBlock Margin="10"/>
+                    <component:TextBox Margin="10"/>
+                    <component:Label Margin="10"/>
+                </StackPanel>
+                <StackPanel>
+                    <component:Button Margin="10"/>
+                    <component:CheckBox Margin="10"/>
+                    <component:GroupBox Margin="10"/>
+                    <component:ListBox Margin="10"/>
+                </StackPanel>
+                <StackPanel>
+                    <component:DataGrid Margin="10"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
 </UserControl>
