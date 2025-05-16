@@ -47,13 +47,23 @@
               FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header3}"
               Padding="10"
               helpers:CornerRadiusHelper.CornerRadius="20">
-        <TextBox Text="TextBox"
-                 Width="100"
-                 Style="{StaticResource SimpleOverlayTheme.Styles.TextBoxStyle.TextBox}"
-                 FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"
-                 Foreground="#80823e"
-                 helpers:CornerRadiusHelper.CornerRadius="10">
-        </TextBox>
-
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0"
+                     FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"
+                     Margin="5"
+                     Text="TextBox"
+                     Style="{StaticResource SimpleOverlayTheme.Styles.TextBoxStyle.TextBox}"/>
+            <TextBox Grid.Row="1"
+                     FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"
+                     Foreground="#80823e"
+                     Margin="5"
+                     Text="Corner"
+                     Style="{StaticResource SimpleOverlayTheme.Styles.TextBoxStyle.TextBox}"
+                     helpers:CornerRadiusHelper.CornerRadius="10"/>
+        </Grid>
     </GroupBox>
 </UserControl>

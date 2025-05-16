@@ -13,21 +13,16 @@
         <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Outline}"/>
         <Setter Property="BorderThickness" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.Thickness.Default}"/>
         <Setter Property="FontSize" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.FontSize.Default}"/>
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Padding" Value="5"/>
-        <Setter Property="Margin" Value="0"/>
         <Setter Property="helpers:CornerRadiusHelper.CornerRadius" Value="0"/>
         <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineBrush" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Outline}"/>
         <Setter Property="helpers:GroupBoxHelper.HeaderUnderLineHeight" Value="1"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="GroupBox">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding helpers:CornerRadiusHelper.CornerRadius}"
-                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                            Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Empty}">
+                    <Border SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                            Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Empty}"
+                            UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                         <Border.Clip>
                             <MultiBinding Converter="{StaticResource CornerClipConverter}">
                                 <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}"/>
@@ -41,6 +36,16 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
+                            <Border Grid.Row="0" Grid.RowSpan="3"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="{TemplateBinding helpers:CornerRadiusHelper.CornerRadius}"
+                                    HorizontalAlignment="Stretch"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                    Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Empty}"
+                                    UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                                    VerticalAlignment="Stretch"/>
                             <!-- Header -->
                             <ContentPresenter Grid.Row="0" ContentSource="Header"
                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"

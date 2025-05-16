@@ -76,34 +76,27 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <GroupBox Header="Func" Grid.Row="0" Style="{StaticResource GroupBox_Func}" Margin="10">
-            
-        </GroupBox>
-        <GroupBox Header="Item" Grid.Row="1" Style="{StaticResource GroupBox_Item}" Margin="10">
-            <StackPanel Orientation="Horizontal">
-                <StackPanel>
-                    <component:Border Margin="10"/>
-                </StackPanel>
-                <StackPanel>
-                    <component:TextBlock Margin="10"/>
-                    <component:TextBox Margin="10"/>
-                    <component:Label Margin="10"/>
-                </StackPanel>
-                <StackPanel>
-                    <component:Button Margin="10"/>
-                    <component:CheckBox Margin="10"/>
-                    <component:GroupBox Margin="10"/>
-                    <component:ListBox Margin="10"/>
-                </StackPanel>
-                <StackPanel>
-                    <component:DataGrid Margin="10"/>
-                </StackPanel>
-            </StackPanel>
-        </GroupBox>
-    </Grid>
+    <StackPanel Orientation="Horizontal">
+        <StackPanel>
+            <component:Border Margin="10"/>
+        </StackPanel>
+        <StackPanel>
+            <component:TextBlock Margin="10"/>
+            <component:TextBox Margin="10"/>
+            <component:Label Margin="10"/>
+        </StackPanel>
+        <StackPanel>
+            <component:Button Margin="10"/>
+        </StackPanel>
+        <StackPanel>
+            <component:CheckBox Margin="10"/>
+            <component:GroupBox Margin="10"/>
+        </StackPanel>
+        <StackPanel>
+            <component:ListBox Margin="10"/>
+        </StackPanel>
+        <StackPanel>
+            <component:DataGrid Margin="10"/>
+        </StackPanel>
+    </StackPanel>
 </UserControl>

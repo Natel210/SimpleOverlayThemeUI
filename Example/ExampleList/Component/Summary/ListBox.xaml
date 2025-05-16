@@ -52,13 +52,15 @@
               FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header3}"
               Padding="10"
               helpers:CornerRadiusHelper.CornerRadius="20">
-        <ListBox Style="{StaticResource SimpleOverlayTheme.Styles.ListBoxStyle.ListBox}"
-                 FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"
-                 SelectedIndex="2">
-            <ListBoxItem Content="Item1"/>
-            <ListBoxItem Content="Item2"/>
-            <ListBoxItem Content="Item3"/>
-            <ListBoxItem Content="Item4"/>
-        </ListBox>
+        <StackPanel>
+            <ListBox FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"
+                     SelectedIndex="2"
+                     Style="{StaticResource SimpleOverlayTheme.Styles.ListBoxStyle.ListBox}">
+                <ListBoxItem Content="Item1"/>
+                <ListBoxItem Content="Item2"/>
+                <ListBoxItem Content="Item3"/>
+                <ListBoxItem Content="Item4"/>
+            </ListBox>
+        </StackPanel>
     </GroupBox>
 </UserControl>

@@ -38,8 +38,6 @@ namespace SimpleOverlayTheme.Example.ExampleList.Component.Summary
             var data3 = new Person { ID = 3, Check = false, Name = "Sam Brown", Age = 35 };
 
             dataGrid.ItemsSource = new List<Person> { data1, data2, data3 };
-            //dataGrid2.ItemsSource = new List<Person> { data1, data2, data3 };
-            dataGrid3.ItemsSource = new List<Person> { data1, data2, data3 };
         }
 
         public class Person
@@ -48,6 +46,27 @@ namespace SimpleOverlayTheme.Example.ExampleList.Component.Summary
             public bool Check { get; set; }
             public string? Name { get; set; }
             public int Age { get; set; }
+        }
+
+        private void SelectionUnit_Cell_Checked(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid is null)
+                return;
+            dataGrid.SelectionUnit = DataGridSelectionUnit.Cell;
+        }
+
+        private void SelectionUnit_CellOrRowHeader_Checked(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid is null)
+                return;
+            dataGrid.SelectionUnit = DataGridSelectionUnit.CellOrRowHeader;
+        }
+
+        private void SelectionUnit_FullRow_Checked(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid is null)
+                return;
+            dataGrid.SelectionUnit = DataGridSelectionUnit.FullRow;
         }
     }
 }

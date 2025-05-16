@@ -3,11 +3,12 @@
                     xmlns:converters="clr-namespace:SimpleOverlayTheme.Converters"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Empty.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Border.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Overlay.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <converters:AlphaMultiplyConverter x:Key="AlphaMultiplyConverter" />
-    
+    <converters:CornerClipConverter x:Key="CornerClipConverter"/>
     <Style x:Key="SimpleOverlayTheme.Styles.TextBoxStyle.TextBox" TargetType="TextBox">
         <Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Background}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Outline}"/>
@@ -15,10 +16,7 @@
         <Setter Property="CaretBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=Foreground}"/>
         <Setter Property="FontSize" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.FontSize.Default}"/>
         <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground}"/>
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-        <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="Padding" Value="3,0,0,1"/>
-        <Setter Property="TextWrapping" Value="NoWrap"/>
         <Setter Property="SelectionBrush">
             <Setter.Value>
                 <Binding Path="Foreground"
@@ -27,7 +25,7 @@
                          ConverterParameter="0.5"/>
             </Setter.Value>
         </Setter>
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="TextWrapping" Value="NoWrap"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         <Setter Property="helpers:CornerRadiusHelper.CornerRadius" Value="0"/>
@@ -38,38 +36,50 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
-                    <Grid>
-                        <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{TemplateBinding helpers:CornerRadiusHelper.CornerRadius}"
-                                HorizontalAlignment="Stretch"
-                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Border}"
-                                VerticalAlignment="Stretch"/>
-
-                        <ScrollViewer x:Name="PART_ContentHost"
-                                      HorizontalAlignment="Stretch"
-                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      HorizontalScrollBarVisibility="Hidden"
-                                      VerticalAlignment="Stretch"
-                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      VerticalScrollBarVisibility="Hidden"
-                                      Margin="{TemplateBinding Padding}"
-                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                        <Border x:Name="PART_Overlay"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{TemplateBinding helpers:CornerRadiusHelper.CornerRadius}"
-                                HorizontalAlignment="Stretch"
-                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Overlay}"
-                                VerticalAlignment="Stretch"
-                                helpers:BorderHelper.OverlayState="Default"
-                                helpers:OverlayDesplayHelper.Background="{TemplateBinding helpers:OverlayDesplayHelper.Background}"
-                                helpers:OverlayDesplayHelper.BackgroundAtDefault="{TemplateBinding helpers:OverlayDesplayHelper.BackgroundAtDefault}"
-                                helpers:OverlayDesplayHelper.Outline="{TemplateBinding helpers:OverlayDesplayHelper.Outline}"
-                                helpers:OverlayDesplayHelper.OutlineAtDefault="{TemplateBinding helpers:OverlayDesplayHelper.OutlineAtDefault}"/>
-                    </Grid>
+                    <Border SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                            Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Empty}"
+                            UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                        <Border.Clip>
+                            <MultiBinding Converter="{StaticResource CornerClipConverter}">
+                                <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                <Binding Path="(helpers:CornerRadiusHelper.CornerRadius)" RelativeSource="{RelativeSource TemplatedParent}"/>
+                            </MultiBinding>
+                        </Border.Clip>
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="{TemplateBinding helpers:CornerRadiusHelper.CornerRadius}"
+                                    HorizontalAlignment="Stretch"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                    Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Empty}"
+                                    UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                                    VerticalAlignment="Stretch"/>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          HorizontalAlignment="Stretch"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalAlignment="Stretch"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          VerticalScrollBarVisibility="Hidden"
+                                          Margin="{TemplateBinding Padding}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            <Border x:Name="PART_Overlay"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="{TemplateBinding helpers:CornerRadiusHelper.CornerRadius}"
+                                    HorizontalAlignment="Stretch"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                    Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Overlay}"
+                                    UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                                    VerticalAlignment="Stretch"
+                                    helpers:BorderHelper.OverlayState="Default"
+                                    helpers:OverlayDesplayHelper.Background="{TemplateBinding helpers:OverlayDesplayHelper.Background}"
+                                    helpers:OverlayDesplayHelper.BackgroundAtDefault="{TemplateBinding helpers:OverlayDesplayHelper.BackgroundAtDefault}"
+                                    helpers:OverlayDesplayHelper.Outline="{TemplateBinding helpers:OverlayDesplayHelper.Outline}"
+                                    helpers:OverlayDesplayHelper.OutlineAtDefault="{TemplateBinding helpers:OverlayDesplayHelper.OutlineAtDefault}"/>
+                        </Grid>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="PART_Overlay" Property="helpers:BorderHelper.OverlayState" Value="Disable"/>
@@ -106,8 +116,6 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="PART_Overlay" Property="helpers:BorderHelper.OverlayState" Value="Mouseover"/>
                         </MultiTrigger>
-
-
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
