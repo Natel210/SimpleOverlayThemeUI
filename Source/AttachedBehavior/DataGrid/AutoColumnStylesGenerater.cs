@@ -1,34 +1,31 @@
 ﻿using SimpleOverlayTheme.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
 
-namespace SimpleOverlayTheme.AttachedBehavior
+namespace SimpleOverlayTheme.AttachedBehavior.DataGrid
 {
-    internal static class DataGridAutoColumnStylesGenerater
+    internal static class AutoColumnStylesGenerater
     {
-        public static void Attach(DataGrid dataGrid)
+        public static void Attach(System.Windows.Controls.DataGrid dataGrid)
         {
-            if (dataGrid == null) return;
+            if (dataGrid == null)
+                return;
 
             dataGrid.AutoGeneratingColumn -= OnAutoGeneratingColumn;
             dataGrid.AutoGeneratingColumn += OnAutoGeneratingColumn;
         }
 
-        public static void Detach(DataGrid dataGrid)
+        public static void Detach(System.Windows.Controls.DataGrid dataGrid)
         {
-            if (dataGrid == null) return;
+            if (dataGrid == null)
+                return;
 
             dataGrid.AutoGeneratingColumn -= OnAutoGeneratingColumn;
         }
 
         private static void OnAutoGeneratingColumn(object? sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if (sender is not DataGrid dataGrid)
+            if (sender is not System.Windows.Controls.DataGrid dataGrid)
                 return;
 
             Style? style = null;

@@ -1,4 +1,9 @@
-﻿using System.Text;
+﻿using SimpleOverlayTheme.AttachedBehavior.WindowHeader;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -6,23 +11,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SimpleOverlayTheme.Example
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// TestWindow.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TestWindow : Window
     {
-        public MainWindow()
+        public TestWindow()
         {
             InitializeComponent();
-            TestWindow testWindow1 = new TestWindow();
-            testWindow1.Show();
-            TestWindow testWindow2 = new TestWindow();
-            testWindow2.Show();
+            WindowPlacement.Attach(this.Test);
         }
     }
 }
