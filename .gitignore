@@ -594,3 +594,5 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/csharp,visualstudio,visualstudiocode
+
+!Share\Tools\Ini2Xaml\net8.0\SimpleOverlayTheme.Ini2Xaml.exe

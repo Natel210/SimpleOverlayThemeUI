@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace SimpleOverlayTheme.Controls
     /// <summary>
     /// 
     /// </summary>
-    public partial class WindowHeader : Control
+    public partial class WindowHeader : ContentControl
     {
         /// <summary>
         /// 
@@ -58,6 +59,15 @@ namespace SimpleOverlayTheme.Controls
         /// 
         /// </summary>
         public object? TitleContent { get { return GetValue(TitleContentProperty); } set { SetValue(TitleContentProperty, value); } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty TitleContentTemplateProperty = PropertyRegister(nameof(TitleContentTemplate), typeof(DataTemplate), null);
+        /// <summary>
+        /// 
+        /// </summary>
+        public DataTemplate? TitleContentTemplate { get { return GetValue(TitleContentTemplateProperty) as DataTemplate; } set { SetValue(TitleContentTemplateProperty, value); } }
 
         /// <summary>
         /// 
@@ -109,20 +119,48 @@ namespace SimpleOverlayTheme.Controls
 
     public partial class WindowHeader
     {
+        /// <summary>
+        /// 
+        /// </summary>
         static WindowHeader()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(WindowHeader),
                 new FrameworkPropertyMetadata(typeof(WindowHeader)));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private static readonly FrameworkPropertyMetadataOptions _frameworkPropertyMetadataOptions
             = FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="propertyType"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
         private static DependencyProperty PropertyRegister(string name, Type propertyType, object? defaultValue = null)
         {
             return DependencyProperty.Register(name, propertyType, 
                 typeof(WindowHeader), new FrameworkPropertyMetadata(defaultValue, _frameworkPropertyMetadataOptions));
         }
+
+
+
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public override void OnApplyTemplate()
+        //{
+        //    base.OnApplyTemplate();
+        //    if (CloseButton is null)
+        //    {
+        //        CloseButton = new Button
+        //    }
+        //}
     }
 
 

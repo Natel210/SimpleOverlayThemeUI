@@ -2,8 +2,8 @@
   <!-- See https://aka.ms/dotnet/msbuild/customize for more details on customizing your build -->
   <PropertyGroup>
       <!-- Project -->
-      <!--<TargetFramework>net8.0-windows</TargetFramework>-->
-      <TargetFrameworks>net8.0-windows7.0</TargetFrameworks>
+      
+      <TargetFrameworks>net8.0-windows;net9.0-windows</TargetFrameworks>
       <Nullable>enable</Nullable>
       <UseWPF>true</UseWPF>
       <ImplicitUsings>enable</ImplicitUsings>
@@ -11,8 +11,7 @@
       <AssemblyName>SimpleOverlayTheme</AssemblyName>
       <GenerateDocumentationFile>true</GenerateDocumentationFile>
       <DocumentationFile>$(BaseOutputPath)/$(Configuration)/$(TargetFramework)/$(AssemblyName).xml</DocumentationFile>
-
       <!-- Local Test -->
-      <VersionPrefix>999.0.31</VersionPrefix>
+      <VersionPrefix>999.0.32</VersionPrefix>
   </PropertyGroup>
 </Project>

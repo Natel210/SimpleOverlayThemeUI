@@ -64,7 +64,7 @@
             <CheckBox Content="Corner" helpers:CornerRadiusHelper.CornerRadius="10" />
             <CheckBox Content="Image"
                       ToolTip="[C]Clicked [D]Def [M]Mouseover [X]Disable"
-                      helpers:CornerRadiusHelper.CornerRadius="5"
+                      helpers:CornerRadiusHelper.CornerRadius="7"
                       helpers:OverlayMaskImageHelper.UseDisableImageMask="True"
                       helpers:OverlayMaskImageHelper.UseActiveImageMask="True"
                       helpers:OverlayMaskImageHelper.UseMouseoverImageMask="True">

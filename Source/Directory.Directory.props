@@ -94,11 +94,16 @@
     
   <!--Tools-->
   <ItemGroup>
-    <None Include="..\Share\Tools\Ini2Xaml\SimpleOverlayTheme.Ini2Xaml.exe">
+    <None Include="..\Share\Tools\Ini2Xaml\**\*.exe">
       <Pack>True</Pack>
-      <PackagePath>tools\net8.0\SimpleOverlayTheme.Ini2Xaml.exe</PackagePath>
-      <Link>Tools\Ini2Xaml\SimpleOverlayTheme.Ini2Xaml.exe</Link>
+      <PackagePath>tools\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <Link>Tools\Ini2Xaml\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </None>
   </ItemGroup>
-
+    <!--Publish--><!--
+    <ItemGroup>
+        <None Include="..\..\Share\Tools\Ini2Xaml\**\*.*">
+            <Link>Publish\%(RecursiveDir)%(Filename)%(Extension)</Link>
+        </None>
+    </ItemGroup>-->
 </Project>

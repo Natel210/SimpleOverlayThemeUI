@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleOverlayTheme.Example"
+        xmlns:controls="clr-namespace:SimpleOverlayTheme.Controls;assembly=SimpleOverlayTheme"
         mc:Ignorable="d"
         Title="TestWindow" Height="450" Width="800">
-    <Grid>
-        <Border x:Name="Test" Background="Aquamarine" Width="200" Height="50"/>
-    </Grid>
+    <StackPanel>
+        <controls:WindowHeader Background="Gray" TitleContent="1234"/>
+    </StackPanel>
 </Window>

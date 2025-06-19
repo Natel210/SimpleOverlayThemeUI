@@ -9,8 +9,8 @@ namespace SimpleOverlayTheme.Helpers
     public abstract class APropertyHelper
     {
         /// <summary>
-        /// Defines the default <see cref="FrameworkPropertyMetadataOptions"/> 
-        /// applied to all attached properties registered using this helper.
+        /// Defines the default <see cref="FrameworkPropertyMetadataOptions"/>
+        /// applied to all attached properties registered using this helper. <br/>
         /// It affects both rendering and layout measurements.
         /// </summary>
         private static readonly FrameworkPropertyMetadataOptions _frameworkPropertyMetadataOptions

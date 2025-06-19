@@ -3,7 +3,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Border.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Empty.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Overlay.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <Style x:Key="SimpleOverlayTheme.Styles.ListBoxItemStyle.ListBoxItem" TargetType="ListBoxItem">
@@ -37,7 +36,7 @@
                                 helpers:OverlayDesplayHelper.Outline="{TemplateBinding helpers:OverlayDesplayHelper.Outline}"
                                 helpers:OverlayDesplayHelper.OutlineAtDefault="{TemplateBinding helpers:OverlayDesplayHelper.OutlineAtDefault}"/>
                         <Border Padding="{TemplateBinding Padding}"
-                                Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Empty}">
+                                Background="Transparent" BorderBrush="Transparent" BorderThickness="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
                             <ContentPresenter 
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 

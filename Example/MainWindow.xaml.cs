@@ -19,10 +19,12 @@ namespace SimpleOverlayTheme.Example
         public MainWindow()
         {
             InitializeComponent();
-            TestWindow testWindow1 = new TestWindow();
-            testWindow1.Show();
-            TestWindow testWindow2 = new TestWindow();
-            testWindow2.Show();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TestWindow testWindow = new TestWindow();
+            testWindow.Show();
         }
     }
 }

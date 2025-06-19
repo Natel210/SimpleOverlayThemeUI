@@ -3,7 +3,6 @@
                     xmlns:converters="clr-namespace:SimpleOverlayTheme.Converters"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Empty.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/LabelStyle/Label.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <converters:CornerClipConverter x:Key="CornerClipConverter"/>
@@ -20,8 +19,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="GroupBox">
-                    <Border SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                            Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Empty}"
+                    <Border Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                             UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                         <Border.Clip>
                             <MultiBinding Converter="{StaticResource CornerClipConverter}">
@@ -43,7 +42,6 @@
                                     CornerRadius="{TemplateBinding helpers:CornerRadiusHelper.CornerRadius}"
                                     HorizontalAlignment="Stretch"
                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                    Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Empty}"
                                     UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
                                     VerticalAlignment="Stretch"/>
                             <!-- Header -->
@@ -54,8 +52,9 @@
                             <!-- Underline -->
                             <Border Grid.Row="1"
                                     Background="{TemplateBinding helpers:GroupBoxHelper.HeaderUnderLineBrush}"
-                                    Height="{TemplateBinding helpers:GroupBoxHelper.HeaderUnderLineHeight}"
-                                    Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Empty}"/>
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0"
+                                    Height="{TemplateBinding helpers:GroupBoxHelper.HeaderUnderLineHeight}"/>
                             <!-- Content -->
                             <ContentControl Grid.Row="2"
                                             FontSize="{TemplateBinding FontSize}"

@@ -5,9 +5,11 @@ VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleOverlayTheme", "Source\SimpleOverlayTheme.csproj", "{21FB14FE-4C08-D42D-0F14-42542CC68512}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleOverlayTheme.Ini2Xaml", "Tool\Ini2Xaml\SimpleOverlayTheme.Ini2Xaml.csproj", "{8D7C4C40-0D92-AA0F-AF36-9B2F945F35D1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleOverlayTheme.Example", "Example\SimpleOverlayTheme.Example.csproj", "{64E58CBF-1A70-1525-0FB1-C5D718DA9F7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleOverlayTheme.Ini2Xaml", "Tools\Ini2Xaml\SimpleOverlayTheme.Ini2Xaml.csproj", "{5DF0106A-B94B-B1C7-BAE4-23F805BAAD78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleOverlayTheme.LocalizationDocument", "Tools\LocalizationDocument\SimpleOverlayTheme.LocalizationDocument.csproj", "{B0FC83E0-C5CB-6784-6510-77466B7801D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +21,18 @@ Global
 		{21FB14FE-4C08-D42D-0F14-42542CC68512}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21FB14FE-4C08-D42D-0F14-42542CC68512}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21FB14FE-4C08-D42D-0F14-42542CC68512}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8D7C4C40-0D92-AA0F-AF36-9B2F945F35D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8D7C4C40-0D92-AA0F-AF36-9B2F945F35D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8D7C4C40-0D92-AA0F-AF36-9B2F945F35D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8D7C4C40-0D92-AA0F-AF36-9B2F945F35D1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{64E58CBF-1A70-1525-0FB1-C5D718DA9F7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{64E58CBF-1A70-1525-0FB1-C5D718DA9F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64E58CBF-1A70-1525-0FB1-C5D718DA9F7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64E58CBF-1A70-1525-0FB1-C5D718DA9F7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DF0106A-B94B-B1C7-BAE4-23F805BAAD78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DF0106A-B94B-B1C7-BAE4-23F805BAAD78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DF0106A-B94B-B1C7-BAE4-23F805BAAD78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DF0106A-B94B-B1C7-BAE4-23F805BAAD78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0FC83E0-C5CB-6784-6510-77466B7801D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0FC83E0-C5CB-6784-6510-77466B7801D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0FC83E0-C5CB-6784-6510-77466B7801D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0FC83E0-C5CB-6784-6510-77466B7801D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

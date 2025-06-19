@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 
 namespace SimpleOverlayTheme.AttachedBehavior.WindowHeader
 {
-    public static class WindowPlacement
+    /// <summary>
+    /// Provides window dragging and maximize/restore behavior when interacting with a custom drag area
+    /// (such as a custom window header) in a WPF application. <br/>
+    /// Supports double-click to toggle window state, and drag to move or restore window.
+    /// </summary>
+    internal static class WindowPlacement
     {
         private static readonly TimeSpan DoubleClickThreshold = TimeSpan.FromMilliseconds(200);
         private static Point _lastClickPosition;
@@ -16,6 +16,8 @@ namespace SimpleOverlayTheme.AttachedBehavior.WindowHeader
         private static bool _isDragging = false;
         private static Point _restoreClickPoint;
 
+        /// <summary> Attaches the mouse event handlers to a UI element to enable custom window dragging behavior. </summary>
+        /// <param name="dragArea">The UI element (typically a header) that will act as a drag surface.</param>
         public static void Attach(FrameworkElement dragArea)
         {
             dragArea.MouseLeftButtonDown += OnMouseLeftButtonDown;
@@ -24,6 +26,8 @@ namespace SimpleOverlayTheme.AttachedBehavior.WindowHeader
             dragArea.LostMouseCapture += OnLostMouseCapture;
         }
 
+        /// <summary> Detaches the previously attached mouse event handlers from the UI element. </summary>
+        /// <param name="dragArea">The drag surface element to remove event bindings from.</param>
         public static void Detach(FrameworkElement dragArea)
         {
             dragArea.MouseLeftButtonDown -= OnMouseLeftButtonDown;
@@ -32,6 +36,7 @@ namespace SimpleOverlayTheme.AttachedBehavior.WindowHeader
             dragArea.LostMouseCapture -= OnLostMouseCapture;
         }
 
+        /// <summary> Handles the MouseLeftButtonDown event. Captures the mouse and checks for double-click to toggle window state. </summary>
         private static void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (sender is not FrameworkElement element) return;
@@ -42,7 +47,7 @@ namespace SimpleOverlayTheme.AttachedBehavior.WindowHeader
             var now = DateTime.Now;
             var position = e.GetPosition(window);
 
-            // 더블 클릭 감지
+            // double click detection
             if ((now - _lastClickTime) <= DoubleClickThreshold &&
                 (Math.Abs(position.X - _lastClickPosition.X) < SystemParameters.MinimumHorizontalDragDistance &&
                  Math.Abs(position.Y - _lastClickPosition.Y) < SystemParameters.MinimumVerticalDragDistance))
@@ -60,11 +65,14 @@ namespace SimpleOverlayTheme.AttachedBehavior.WindowHeader
                 _restoreClickPoint = e.GetPosition(window);
             }
 
-            // Capture 마우스
             element.CaptureMouse();
             _isDragging = true;
         }
 
+        /// <summary>
+        /// Handles the MouseMove event to allow window dragging. <br/>
+        /// If maximized, restores the window and repositions it before drag.
+        /// </summary>
         private static void OnMouseMove(object sender, MouseEventArgs e)
         {
             if (!_isDragging) return;
@@ -84,7 +92,7 @@ namespace SimpleOverlayTheme.AttachedBehavior.WindowHeader
 
             if (window.WindowState == WindowState.Maximized)
             {
-                // 살짝 움직일 때만 복원
+                // Restore when a valid move is made.
                 if (Math.Sqrt(Math.Pow(pos.X - _restoreClickPoint.X, 2) + Math.Pow(pos.Y - _restoreClickPoint.Y, 2)) > 2)
                 {
                     double percentX = pos.X / window.ActualWidth;
@@ -105,30 +113,36 @@ namespace SimpleOverlayTheme.AttachedBehavior.WindowHeader
             }
         }
 
+        /// <summary> Handles the MouseLeftButtonUp event. Ends the dragging operation. </summary>
         private static void OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (sender is not FrameworkElement element) return;
             EndDrag(element);
         }
 
+        /// <summary> Handles the LostMouseCapture event. Ensures drag state is reset when mouse capture is lost. </summary>
         private static void OnLostMouseCapture(object sender, MouseEventArgs e)
         {
             if (sender is not FrameworkElement element) return;
             EndDrag(element);
         }
 
+        /// <summary> Ends the drag operation and releases the mouse capture. </summary>
+        /// <param name="element">The UI element that captured the mouse.</param>
         private static void EndDrag(FrameworkElement element)
         {
             _isDragging = false;
             element.ReleaseMouseCapture();
         }
 
+        /// <summary> Toggles the window state between Normal and Maximized. </summary>
+        /// <param name="window">The window to toggle state for.</param>
         private static void ToggleWindowState(Window window)
         {
             if (window.WindowState == WindowState.Maximized)
-                window.WindowState = WindowState.Normal;
+                window.SetCurrentValue(Window.WindowStateProperty, WindowState.Normal);
             else
-                window.WindowState = WindowState.Maximized;
+                window.SetCurrentValue(Window.WindowStateProperty, WindowState.Maximized);
         }
     }
 }

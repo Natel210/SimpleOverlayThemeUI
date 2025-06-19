@@ -59,11 +59,11 @@ namespace SimpleOverlayTheme
             //}
 
 
-            if (_themes.ContainsKey(name))
-                return false;
-            var theme = new ThemeObejct(name);
-            _themes.Add(name, theme);
-            return true;
+            //if (_themes.ContainsKey(name))
+            //    return false;
+            //var theme = new ThemeObejct(name);
+            //_themes.Add(name, theme);
+            //return true;
         }
 
 

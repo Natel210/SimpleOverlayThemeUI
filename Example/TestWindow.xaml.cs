@@ -23,7 +23,7 @@ namespace SimpleOverlayTheme.Example
         public TestWindow()
         {
             InitializeComponent();
-            WindowPlacement.Attach(this.Test);
+            //WindowPlacement.Attach(this.Test);
         }
     }
 }

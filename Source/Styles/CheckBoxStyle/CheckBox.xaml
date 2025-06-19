@@ -4,7 +4,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Border.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Empty.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Overlay.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Mask.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/OverlayMask.xaml"/>
@@ -38,74 +37,72 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="CheckBox">
-                    <Border Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Empty}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Border Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Empty}">
-                                <Border.Clip>
-                                    <MultiBinding Converter="{StaticResource CornerClipConverter}">
-                                        <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}"/>
-                                        <Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}"/>
-                                        <Binding Path="(helpers:CornerRadiusHelper.CornerRadius)" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                    </MultiBinding>
-                                </Border.Clip>
-                                <Grid>
-                                    <Border Background="{TemplateBinding Background}"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                            CornerRadius="{TemplateBinding helpers:CornerRadiusHelper.CornerRadius}"
-                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                            Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Border}"/>
-                                    <Border x:Name="PART_Overlay"
-                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                            CornerRadius="{TemplateBinding helpers:CornerRadiusHelper.CornerRadius}"
-                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                            Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Overlay}"
-                                            helpers:BorderHelper.OverlayState="Default"
-                                            helpers:OverlayDesplayHelper.Background="{TemplateBinding helpers:OverlayDesplayHelper.Background}"
-                                            helpers:OverlayDesplayHelper.BackgroundAtDefault="{TemplateBinding helpers:OverlayDesplayHelper.BackgroundAtDefault}"
-                                            helpers:OverlayDesplayHelper.Outline="{TemplateBinding helpers:OverlayDesplayHelper.Outline}"
-                                            helpers:OverlayDesplayHelper.OutlineAtDefault="{TemplateBinding helpers:OverlayDesplayHelper.OutlineAtDefault}"/>
-                                    <Border x:Name="PART_Mask" Grid.Column="0"
-                                            Background="{TemplateBinding helpers:CheckBoxHelper.CheckedMaskBrush}"
-                                            Height="{TemplateBinding ActualHeight}"
-                                            Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Mask}"
-                                            Width="{TemplateBinding ActualHeight}"
-                                            helpers:OverlayMaskImageHelper.ActiveImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.ActiveImageMask}"
-                                            helpers:OverlayMaskImageHelper.DefaultImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.DefaultImageMask}"
-                                            helpers:OverlayMaskImageHelper.DisableImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.DisableImageMask}"
-                                            helpers:OverlayMaskImageHelper.MouseoverImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.MouseoverImageMask}"
-                                            helpers:OverlayMaskImageHelper.UseActiveImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.UseActiveImageMask}"
-                                            helpers:OverlayMaskImageHelper.UseDisableImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.UseDisableImageMask}"
-                                            helpers:OverlayMaskImageHelper.UseMouseoverImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.UseMouseoverImageMask}"/>
-                                    <Border x:Name="PART_OverlayMask" Grid.Column="0"
-                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                            Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.OverlayMask}"
-                                            helpers:BorderHelper.OverlayState="Default"
-                                            helpers:OverlayDesplayHelper.Background="{TemplateBinding helpers:OverlayDesplayHelper.Background}"
-                                            helpers:OverlayDesplayHelper.BackgroundAtDefault="{TemplateBinding helpers:OverlayDesplayHelper.BackgroundAtDefault}"
-                                            helpers:OverlayDesplayHelper.Outline="False"
-                                            helpers:OverlayDesplayHelper.OutlineAtDefault="False"
-                                            helpers:OverlayMaskImageHelper.ActiveImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.ActiveImageMask}"
-                                            helpers:OverlayMaskImageHelper.DefaultImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.DefaultImageMask}"
-                                            helpers:OverlayMaskImageHelper.DisableImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.DisableImageMask}"
-                                            helpers:OverlayMaskImageHelper.MouseoverImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.MouseoverImageMask}"
-                                            helpers:OverlayMaskImageHelper.UseActiveImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.UseActiveImageMask}"
-                                            helpers:OverlayMaskImageHelper.UseDisableImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.UseDisableImageMask}"
-                                            helpers:OverlayMaskImageHelper.UseMouseoverImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.UseMouseoverImageMask}"/>
-                                </Grid>
-                            </Border>
-                            <ContentPresenter Grid.Column="1"
-                                              Content="{TemplateBinding Content}"
-                                              Margin="{TemplateBinding Padding}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                        </Grid>
-                    </Border>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderBrush="Transparent" BorderThickness="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                            <Border.Clip>
+                                <MultiBinding Converter="{StaticResource CornerClipConverter}">
+                                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}"/>
+                                    <Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}"/>
+                                    <Binding Path="(helpers:CornerRadiusHelper.CornerRadius)" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                </MultiBinding>
+                            </Border.Clip>
+                            <Grid>
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="{TemplateBinding helpers:CornerRadiusHelper.CornerRadius}"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                        Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Border}"/>
+                                <Border x:Name="PART_Overlay"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="{TemplateBinding helpers:CornerRadiusHelper.CornerRadius}"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                        Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Overlay}"
+                                        helpers:BorderHelper.OverlayState="Default"
+                                        helpers:OverlayDesplayHelper.Background="{TemplateBinding helpers:OverlayDesplayHelper.Background}"
+                                        helpers:OverlayDesplayHelper.BackgroundAtDefault="{TemplateBinding helpers:OverlayDesplayHelper.BackgroundAtDefault}"
+                                        helpers:OverlayDesplayHelper.Outline="{TemplateBinding helpers:OverlayDesplayHelper.Outline}"
+                                        helpers:OverlayDesplayHelper.OutlineAtDefault="{TemplateBinding helpers:OverlayDesplayHelper.OutlineAtDefault}"/>
+                                <Border x:Name="PART_Mask" Grid.Column="0"
+                                        Background="{TemplateBinding helpers:CheckBoxHelper.CheckedMaskBrush}"
+                                        Height="{TemplateBinding ActualHeight}"
+                                        Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Mask}"
+                                        Width="{TemplateBinding ActualHeight}"
+                                        helpers:OverlayMaskImageHelper.ActiveImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.ActiveImageMask}"
+                                        helpers:OverlayMaskImageHelper.DefaultImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.DefaultImageMask}"
+                                        helpers:OverlayMaskImageHelper.DisableImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.DisableImageMask}"
+                                        helpers:OverlayMaskImageHelper.MouseoverImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.MouseoverImageMask}"
+                                        helpers:OverlayMaskImageHelper.UseActiveImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.UseActiveImageMask}"
+                                        helpers:OverlayMaskImageHelper.UseDisableImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.UseDisableImageMask}"
+                                        helpers:OverlayMaskImageHelper.UseMouseoverImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.UseMouseoverImageMask}"/>
+                                <Border x:Name="PART_OverlayMask" Grid.Column="0"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                        Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.OverlayMask}"
+                                        helpers:BorderHelper.OverlayState="Default"
+                                        helpers:OverlayDesplayHelper.Background="{TemplateBinding helpers:OverlayDesplayHelper.Background}"
+                                        helpers:OverlayDesplayHelper.BackgroundAtDefault="{TemplateBinding helpers:OverlayDesplayHelper.BackgroundAtDefault}"
+                                        helpers:OverlayDesplayHelper.Outline="False"
+                                        helpers:OverlayDesplayHelper.OutlineAtDefault="False"
+                                        helpers:OverlayMaskImageHelper.ActiveImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.ActiveImageMask}"
+                                        helpers:OverlayMaskImageHelper.DefaultImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.DefaultImageMask}"
+                                        helpers:OverlayMaskImageHelper.DisableImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.DisableImageMask}"
+                                        helpers:OverlayMaskImageHelper.MouseoverImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.MouseoverImageMask}"
+                                        helpers:OverlayMaskImageHelper.UseActiveImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.UseActiveImageMask}"
+                                        helpers:OverlayMaskImageHelper.UseDisableImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.UseDisableImageMask}"
+                                        helpers:OverlayMaskImageHelper.UseMouseoverImageMask="{TemplateBinding helpers:OverlayMaskImageHelper.UseMouseoverImageMask}"/>
+                            </Grid>
+                        </Border>
+                        <ContentPresenter Grid.Column="1"
+                                          Content="{TemplateBinding Content}"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <!--Use Overlay-->
                         <Trigger Property="helpers:CheckBoxHelper.UseOverlayBackground" Value="True">

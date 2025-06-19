@@ -12,8 +12,6 @@
       <![CDATA[
         WPF resource DLL for simple themes.
         You can use it as basic WPF.
-        Example samples are included.
-        The created environment is .NET 8.0
       ]]>
     </Description>
     <!-- Repository -->

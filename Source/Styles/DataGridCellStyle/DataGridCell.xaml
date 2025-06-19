@@ -24,32 +24,31 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridCell}">
-                    <Border Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                        Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Border}">
-                        <Grid>
-                            <ContentPresenter Content="{TemplateBinding Content}"
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Border}"/>
+                        <ContentPresenter Content="{TemplateBinding Content}"
                                           ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
                                           Margin="{TemplateBinding Padding}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            <Border x:Name="PART_Overlay" Grid.ColumnSpan="2"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    HorizontalAlignment="Stretch"
-                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                    Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Overlay}"
-                                    VerticalAlignment="Stretch"
-                                    helpers:BorderHelper.OverlayState="Default"
-                                    helpers:OverlayDesplayHelper.Background="{TemplateBinding helpers:OverlayDesplayHelper.Background}"
-                                    helpers:OverlayDesplayHelper.BackgroundAtDefault="{TemplateBinding helpers:OverlayDesplayHelper.BackgroundAtDefault}"
-                                    helpers:OverlayDesplayHelper.Outline="{TemplateBinding helpers:OverlayDesplayHelper.Outline}"
-                                    helpers:OverlayDesplayHelper.OutlineAtDefault="{TemplateBinding helpers:OverlayDesplayHelper.OutlineAtDefault}"/>
-                        </Grid>
-                    </Border>
+                        <Border x:Name="PART_Overlay"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                HorizontalAlignment="Stretch"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Overlay}"
+                                VerticalAlignment="Stretch"
+                                helpers:BorderHelper.OverlayState="Default"
+                                helpers:OverlayDesplayHelper.Background="{TemplateBinding helpers:OverlayDesplayHelper.Background}"
+                                helpers:OverlayDesplayHelper.BackgroundAtDefault="{TemplateBinding helpers:OverlayDesplayHelper.BackgroundAtDefault}"
+                                helpers:OverlayDesplayHelper.Outline="{TemplateBinding helpers:OverlayDesplayHelper.Outline}"
+                                helpers:OverlayDesplayHelper.OutlineAtDefault="{TemplateBinding helpers:OverlayDesplayHelper.OutlineAtDefault}"/>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <!--Grid SelectionUnit-->
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=SelectionUnit}" Value="{x:Null}">
@@ -138,31 +137,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
-        <!--Cell = 0,
-        FullRow = 1,
-        CellOrRowHeader = 2-->
         <Style.Triggers>
-            <!--<MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=SelectionUnit}" Value="FullRow" />
-                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
-                    <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="False" />
-                    <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="False" />
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Background" Value="LightBlue"/>
-            </MultiDataTrigger>
-
-
-
-            <Trigger Property="IsMouseOver" Value="True">
-                --><!--<Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.Overlay.Background.Mouseover}"/>--><!--
-                <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.Overlay.Outline.Mouseover}"/>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.ColorPalette.Foreground_Disable}"/>
             </Trigger>
-            <Trigger Property="IsSelected" Value="True">
-                --><!--<Setter Property="Background" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.Overlay.Outline.Active}"/>--><!--
-                <Setter Property="BorderBrush" Value="{DynamicResource SimpleOverlayTheme.ThemeKey.Overlay.Outline.Active}"/>
-            </Trigger>-->
         </Style.Triggers>
     </Style>
 </ResourceDictionary>

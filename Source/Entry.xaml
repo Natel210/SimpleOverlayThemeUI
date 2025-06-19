@@ -3,7 +3,6 @@
     <ResourceDictionary.MergedDictionaries>
         <!--Border-->
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Border.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Empty.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Mask.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/Overlay.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/OverlayMask.xaml"/>
@@ -44,7 +43,7 @@
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/UserControlStyle/Empty.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/UserControlStyle/UserControl.xaml"/>
         <!--WindowHeader-->
-        
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/WindowHeaderStyle/WindowHeader.xaml"/>
         <!--Window-->
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/WindowStyle/Window.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/WindowStyle/CustomHeader.xaml"/>
