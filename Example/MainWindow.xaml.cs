@@ -19,7 +19,6 @@ namespace SimpleOverlayTheme.Example
         public MainWindow()
         {
             InitializeComponent();
-            //SimpleOverlayTheme.Helpers.APropertyHelper
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

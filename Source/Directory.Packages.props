@@ -1,17 +1,13 @@
 <Project>
   <PropertyGroup>
     <!-- Enable central package management, https://learn.microsoft.com/en-us/nuget/consume-packages/Central-Package-Management -->
-      <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>  
-      <!-- Repository -->
-      <RepositoryType>git</RepositoryType>
-      <RepositoryUrl>https://github.com/Natel210/SimpleOverlayThemeUI.git</RepositoryUrl>
-      
-      <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-      <GenerateDocumentationFile>true</GenerateDocumentationFile>
-      <DocumentationFile>$(BaseOutputPath)/$(Configuration)/$(TargetFramework)/$(AssemblyName).xml</DocumentationFile>
-      
-      
-    
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+    <!-- Repository -->
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Natel210/SimpleOverlayThemeUI.git</RepositoryUrl>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>$(BaseOutputPath)/$(Configuration)/$(TargetFramework)/$(AssemblyName).xml</DocumentationFile>
     <!-- Package -->
     <!--<PackageIcon>none.png</PackageIcon>-->
     <!--<PackageLicenseExpression>$(Copyright)</PackageLicenseExpression>-->
@@ -23,30 +19,17 @@
     <PackageTags>Simple;Theme;OverlayTheme;SimpleTheme;SimpleOverlayThemeUI</PackageTags>
     <PackageReleaseNotes>https://github.com/Natel210/SimpleOverlayThemeUI/releases</PackageReleaseNotes>
   </PropertyGroup>
-
-
   <!--InternalSource-->
   <ItemGroup>
-      <Content Include="SimpleOverlayTheme.targets">
-          <Pack>True</Pack>
-          <PackagePath>build\net8.0\</PackagePath>
-          <Visible>true</Visible>
-      </Content>
-      <None Include="Documents\SimpleOverlayTheme.en.xml">
+    <Content Include="SimpleOverlayTheme.targets">
+      <Pack>True</Pack>
+      <PackagePath>build\net8.0\</PackagePath>
+      <Visible>true</Visible>
+    </Content>
+    <!--<None Include="Documents\SimpleOverlayTheme.en.xml">
           <Pack>True</Pack>
           <PackagePath>SimpleOverlayTheme.xml</PackagePath>
           <Visible>true</Visible>
-      </None>
-      <None Include="Documents\SimpleOverlayTheme.en.xml">
-          <Pack>True</Pack>
-          <PackagePath>lib\$(TargetFramework)\en\SimpleOverlayTheme.xml</PackagePath>
-          <Visible>true</Visible>
-      </None>
-      <None Include="Documents\SimpleOverlayTheme.kr.xml">
-          <Pack>True</Pack>
-          <PackagePath>lib\$(TargetFramework)\kr\SimpleOverlayTheme.xml</PackagePath>
-          <Visible>true</Visible>
-      </None>
+      </None>-->
   </ItemGroup>
-
 </Project>

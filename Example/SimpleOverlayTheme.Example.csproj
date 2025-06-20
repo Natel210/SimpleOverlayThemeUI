@@ -11,4 +11,8 @@
     <Folder Include="SimpleOverlayTheme\Dummy\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="SimpleOverlayTheme" Version="999.0.34" />
+  </ItemGroup>
+
 </Project>

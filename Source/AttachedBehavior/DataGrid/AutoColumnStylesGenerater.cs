@@ -5,8 +5,6 @@ using System.ComponentModel;
 
 namespace SimpleOverlayTheme.AttachedBehavior.DataGrid
 {
-    [Localizable(true)]
-    /// <summary>$Resources.ErrorCodes.ErrorMessage.Test1$</summary>
     internal static class AutoColumnStylesGenerater
     {
         public static void Attach(System.Windows.Controls.DataGrid dataGrid)

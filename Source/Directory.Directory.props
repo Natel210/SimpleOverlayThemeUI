@@ -16,16 +16,6 @@
       <Link>Git\README.md</Link>
     </None>
   </ItemGroup>
-
-
-    
-  <!--Props-->
-  <ItemGroup>
-    <None Include="..\Share\Props\Directory.Common.props">
-      <Link>Directory.Common.props</Link>
-    </None>
-  </ItemGroup>
-    
   <!--Resource-->
   <ItemGroup>
     <Resource Include="..\Share\Resource\Mask\Check.png">
@@ -99,30 +89,4 @@
             <Link>Publish\%(RecursiveDir)%(Filename)%(Extension)</Link>
         </None>
     </ItemGroup>-->
-
-
-    
-    
-    <!--<ItemGroup>
-        <Content  Include="Documents\SimpleOverlayTheme.en.xml">
-            <Pack>True</Pack>
-            <PackagePath>SimpleOverlayTheme.xml</PackagePath>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <TargetPath>SimpleOverlayTheme.xml</TargetPath>
-        </Content >
-        <Content  Include="Documents\SimpleOverlayTheme.en.xml">
-            <Pack>True</Pack>
-            <PackagePath>lib\$(TargetFramework)\en\SimpleOverlayTheme.xml</PackagePath>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <TargetPath>en\SimpleOverlayTheme.xml</TargetPath>
-        </Content >
-        <Content  Include="Documents\SimpleOverlayTheme.kr.xml">
-            <Pack>True</Pack>
-            <PackagePath>lib\$(TargetFramework)\kr\SimpleOverlayTheme.xml</PackagePath>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <TargetPath>kr\SimpleOverlayTheme.xml</TargetPath>
-        </Content >
-    </ItemGroup>-->
-
-
 </Project>
