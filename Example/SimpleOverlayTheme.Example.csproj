@@ -11,8 +11,4 @@
     <Folder Include="SimpleOverlayTheme\Dummy\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Source\SimpleOverlayTheme.csproj" />
-  </ItemGroup>
-
 </Project>

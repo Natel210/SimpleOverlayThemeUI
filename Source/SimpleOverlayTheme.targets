@@ -1,11 +1,27 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <!--If you want, you can customize it by creating a target for the project location.-->
-    <Target Name="GenerateDummyCurrentThemeXaml" BeforeTargets="Build" Condition="!Exists('$(ProjectDir)\SimpleOverlayTheme.targets')">
-        <Message Text="****************************************" Importance="High" />
-        <Message Text="**** [SimpleOverlayTheme] Generater Dummy Xaml From current.ini ****" Importance="High" />
-        <Exec Command='"$(MSBuildThisFileDirectory)..\..\tools\net8.0\SimpleOverlayTheme.Ini2Xaml.exe" "$(TargetDir)Theme\current.ini" "$(ProjectDir)SimpleOverlayTheme\Dummy\CurrentTheme.xaml"' />
-        <Message Text="**** [SimpleOverlayTheme] End ****" Importance="High" />
-        <Message Text="****************************************" Importance="High" />
-    </Target>
+  <!--If you want, you can customize it by creating a target for the project location.-->
+  <Target Name="GenerateDummyCurrentThemeXaml" BeforeTargets="Build" Condition="!Exists('$(ProjectDir)\SimpleOverlayTheme.targets')">
+    <Message Text="****************************************" Importance="High" />
+    <Message Text="**** [SimpleOverlayTheme] Generater Dummy Xaml From current.ini ****" Importance="High" />
+    <Exec Command='"$(MSBuildThisFileDirectory)..\..\tools\net8.0\SimpleOverlayTheme.Ini2Xaml.exe" "$(TargetDir)Theme\current.ini" "$(ProjectDir)SimpleOverlayTheme\Dummy\CurrentTheme.xaml"' />
+    <Message Text="**** [SimpleOverlayTheme] End ****" Importance="High" />
+    <Message Text="****************************************" Importance="High" />
+  </Target>
 
+  <PropertyGroup>
+      <DocXmlBasePath>$(MSBuildThisFileDirectory)lib\net8.0-windows7.0\</DocXmlBasePath>
+      <TargetDocXml>$(DocXmlBasePath)SimpleOverlayTheme.xml</TargetDocXml>
+      <SourceDocXml>$(DocXmlBasePath)$(PreferredDocLanguage)\SimpleOverlayTheme.xml</SourceDocXml>
+      <FallbackDocXml>$(DocXmlBasePath)en\SimpleOverlayTheme.xml</FallbackDocXml>
+  </PropertyGroup>
+  <Target Name="RunOnceAfterNuGetRestore" InitialTargets="RunOnceAfterNuGetRestore">
+      <Message Importance="High" Text="📦 NuGet 패키지가 restore되어 targets가 적용되었습니다." />
+  </Target>
+  <!-- Local --><!--
+  <Target Name="ReplaceDocXml" AfterTargets="Build" Condition="!Exists('$(ProjectDir)\SimpleOverlayTheme.targets')">
+  <Copy SourceFiles="$(MSBuildThisFileDirectory)lib\net8.0-windows7.0\kr\SimpleOverlayTheme.xml"
+        DestinationFiles="$(MSBuildThisFileDirectory)lib\net8.0-windows7.0\SimpleOverlayTheme.xml"
+        OverwriteReadOnlyFiles="true" />
+  </Target>-->
+    
 </Project>

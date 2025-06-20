@@ -45,51 +45,6 @@
           }
         }
       }
-    },
-    "net8.0/win-x64": {
-      "CsvHelper/33.0.1": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Microsoft.NET.ILLink.Tasks/8.0.15": {
-        "type": "package",
-        "build": {
-          "build/Microsoft.NET.ILLink.Tasks.props": {}
-        }
-      },
-      "SimpleFileIO/0.1.6": {
-        "type": "package",
-        "dependencies": {
-          "CsvHelper": "33.0.1"
-        },
-        "compile": {
-          "lib/net8.0/SimpleFileIO.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/SimpleFileIO.dll": {
-            "related": ".xml"
-          }
-        },
-        "resource": {
-          "lib/net8.0/en/SimpleFileIO.resources.dll": {
-            "locale": "en"
-          },
-          "lib/net8.0/ko/SimpleFileIO.resources.dll": {
-            "locale": "ko"
-          }
-        }
-      }
     }
   },
   "libraries": {
@@ -206,7 +161,7 @@
       "projectName": "SimpleOverlayTheme.Ini2Xaml",
       "projectPath": "D:\\----\\GitHub\\SimpleOverlayThemeUI\\Tools\\Ini2Xaml\\SimpleOverlayTheme.Ini2Xaml.csproj",
       "packagesPath": "C:\\Users\\hosung\\.nuget\\packages\\",
-      "outputPath": "D:\\----\\GitHub\\SimpleOverlayThemeUI\\Tools\\Ini2Xaml\\..\\..\\Intermediate\\Tools\\Ini2Xaml\\",
+      "outputPath": "D:\\----\\GitHub\\SimpleOverlayThemeUI\\Intermediate\\Tools\\Ini2Xaml\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -271,19 +226,7 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-            "version": "[8.0.15, 8.0.15]"
-          },
-          {
             "name": "Microsoft.NETCore.App.Crossgen2.win-x64",
-            "version": "[8.0.15, 8.0.15]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Runtime.win-x64",
-            "version": "[8.0.15, 8.0.15]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
             "version": "[8.0.15, 8.0.15]"
           }
         ],
@@ -293,11 +236,6 @@
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
-      }
-    },
-    "runtimes": {
-      "win-x64": {
-        "#import": []
       }
     }
   }

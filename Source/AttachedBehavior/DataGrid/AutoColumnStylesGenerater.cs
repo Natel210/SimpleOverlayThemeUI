@@ -1,21 +1,14 @@
 ﻿using SimpleOverlayTheme.Helpers;
 using System.Windows.Controls;
 using System.Windows;
+using System.ComponentModel;
 
 namespace SimpleOverlayTheme.AttachedBehavior.DataGrid
 {
-    /// <summary xml:lang="en">
-    /// <inheritdoc/>
-    /// Provides behavior to apply custom styles automatically to auto-generated columns
-    /// in a <see cref="System.Windows.Controls.DataGrid"/>.
-    /// </summary>
+    [Localizable(true)]
+    /// <summary>$Resources.ErrorCodes.ErrorMessage.Test1$</summary>
     internal static class AutoColumnStylesGenerater
     {
-        /// <summary>
-        /// Attaches the style generation behavior to the specified <see cref="System.Windows.Controls.DataGrid"/>. <br/>
-        /// This ensures that custom styles are applied to all auto-generated columns.
-        /// </summary>
-        /// <param name="dataGrid">The target <see cref="System.Windows.Controls.DataGrid"/> control.</param>
         public static void Attach(System.Windows.Controls.DataGrid dataGrid)
         {
             if (dataGrid == null)
@@ -35,19 +28,6 @@ namespace SimpleOverlayTheme.AttachedBehavior.DataGrid
             dataGrid.AutoGeneratingColumn -= OnAutoGeneratingColumn;
         }
 
-        /// <summary>
-        /// Handles the <see cref="System.Windows.Controls.DataGrid.AutoGeneratingColumn"/> event and applies
-        /// appropriate styles based on the column type.
-        ///   <list type="bullet">
-        ///     <item><description>Text</description></item>
-        ///     <item><description>CheckBox</description></item>
-        ///     <item><description>ComboBox</description></item>
-        ///     <item><description>Hyperlink</description></item>
-        ///     <item><description>NumericUpDown(yet...)</description></item>
-        ///   </list>
-        /// </summary>
-        /// <param name="sender">The source <see cref="System.Windows.Controls.DataGrid"/> triggering the event.</param>
-        /// <param name="e">The column generation event arguments.</param>
         private static void OnAutoGeneratingColumn(object? sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if (sender is not System.Windows.Controls.DataGrid dataGrid)

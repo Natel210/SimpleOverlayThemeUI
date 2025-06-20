@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\Share\Props\Directory.Common.props" />
   <Import Project="Directory.Directory.props" />
-
+  <!--<Import Project="Documents\Documents.targets" />-->
+    
   <PropertyGroup>
 
   </PropertyGroup>
@@ -42,4 +43,20 @@
       <LastGenOutput>ErrorMessage.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+
+    <!--<ItemGroup>
+        <None Include="$(MSBuildProjectDirectory)\Documents\SimpleOverlayTheme.kr.xml"
+              Condition="Exists('$(MSBuildProjectDirectory)\Documents\SimpleOverlayTheme.kr.xml')">
+            <Pack>true</Pack>
+            <PackagePath>$([System.String]::Format('lib\{0}\kr\SimpleOverlayTheme.xml', '$(TargetFramework)'))</PackagePath>
+            <IncludeInPackage>true</IncludeInPackage>
+        </None>
+    </ItemGroup>--><!--
+    <ItemGroup>
+        <None Include="$(MSBuildProjectDirectory)\Documents\SimpleOverlayTheme.kr.xml"
+              Condition="'$(TargetFramework)' == 'net8.0-windows'">
+            <Pack>true</Pack>
+            <PackagePath>lib/net8.0-windows/kr/SimpleOverlayTheme.xml</PackagePath>
+        </None>
+    </ItemGroup>-->
 </Project>

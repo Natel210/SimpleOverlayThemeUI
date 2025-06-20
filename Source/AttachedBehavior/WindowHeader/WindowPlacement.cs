@@ -3,11 +3,7 @@ using System.Windows.Input;
 
 namespace SimpleOverlayTheme.AttachedBehavior.WindowHeader
 {
-    /// <summary>
-    /// Provides window dragging and maximize/restore behavior when interacting with a custom drag area
-    /// (such as a custom window header) in a WPF application. <br/>
-    /// Supports double-click to toggle window state, and drag to move or restore window.
-    /// </summary>
+
     internal static class WindowPlacement
     {
         private static readonly TimeSpan DoubleClickThreshold = TimeSpan.FromMilliseconds(200);
