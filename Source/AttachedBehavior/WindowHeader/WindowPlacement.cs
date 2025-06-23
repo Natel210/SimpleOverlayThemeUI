@@ -12,8 +12,7 @@ namespace SimpleOverlayTheme.AttachedBehavior.WindowHeader
         private static bool _isDragging = false;
         private static Point _restoreClickPoint;
 
-        /// <summary> Attaches the mouse event handlers to a UI element to enable custom window dragging behavior. </summary>
-        /// <param name="dragArea">The UI element (typically a header) that will act as a drag surface.</param>
+        /// <summary></summary>
         public static void Attach(FrameworkElement dragArea)
         {
             dragArea.MouseLeftButtonDown += OnMouseLeftButtonDown;
@@ -22,8 +21,7 @@ namespace SimpleOverlayTheme.AttachedBehavior.WindowHeader
             dragArea.LostMouseCapture += OnLostMouseCapture;
         }
 
-        /// <summary> Detaches the previously attached mouse event handlers from the UI element. </summary>
-        /// <param name="dragArea">The drag surface element to remove event bindings from.</param>
+        /// <summary></summary>
         public static void Detach(FrameworkElement dragArea)
         {
             dragArea.MouseLeftButtonDown -= OnMouseLeftButtonDown;
@@ -32,7 +30,6 @@ namespace SimpleOverlayTheme.AttachedBehavior.WindowHeader
             dragArea.LostMouseCapture -= OnLostMouseCapture;
         }
 
-        /// <summary> Handles the MouseLeftButtonDown event. Captures the mouse and checks for double-click to toggle window state. </summary>
         private static void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (sender is not FrameworkElement element) return;
@@ -65,10 +62,6 @@ namespace SimpleOverlayTheme.AttachedBehavior.WindowHeader
             _isDragging = true;
         }
 
-        /// <summary>
-        /// Handles the MouseMove event to allow window dragging. <br/>
-        /// If maximized, restores the window and repositions it before drag.
-        /// </summary>
         private static void OnMouseMove(object sender, MouseEventArgs e)
         {
             if (!_isDragging) return;
@@ -109,30 +102,24 @@ namespace SimpleOverlayTheme.AttachedBehavior.WindowHeader
             }
         }
 
-        /// <summary> Handles the MouseLeftButtonUp event. Ends the dragging operation. </summary>
         private static void OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (sender is not FrameworkElement element) return;
             EndDrag(element);
         }
 
-        /// <summary> Handles the LostMouseCapture event. Ensures drag state is reset when mouse capture is lost. </summary>
         private static void OnLostMouseCapture(object sender, MouseEventArgs e)
         {
             if (sender is not FrameworkElement element) return;
             EndDrag(element);
         }
 
-        /// <summary> Ends the drag operation and releases the mouse capture. </summary>
-        /// <param name="element">The UI element that captured the mouse.</param>
         private static void EndDrag(FrameworkElement element)
         {
             _isDragging = false;
             element.ReleaseMouseCapture();
         }
 
-        /// <summary> Toggles the window state between Normal and Maximized. </summary>
-        /// <param name="window">The window to toggle state for.</param>
         private static void ToggleWindowState(Window window)
         {
             if (window.WindowState == WindowState.Maximized)

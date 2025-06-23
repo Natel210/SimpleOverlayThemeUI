@@ -8,8 +8,8 @@
         mc:Ignorable="d"
         Title="TestWindow2" Height="450" Width="800">
     <StackPanel>
-        <controls:WindowHeader Background="DarkSalmon" TitleContent="1"/>
-        <controls:WindowHeader Foreground="Yellow" Background="DarkKhaki" TitleContent="2"/>
+        <controls:WindowHeader Background="DarkSalmon" Content="1"/>
+        <controls:WindowHeader Foreground="Yellow" Background="DarkKhaki" Content="2"/>
 
     </StackPanel>
 </Window>

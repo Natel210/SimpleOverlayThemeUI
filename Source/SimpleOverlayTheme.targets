@@ -8,7 +8,7 @@
     <Message Text="****************************************" Importance="High" />
   </Target>
 
-  <PropertyGroup>
+  <!--<PropertyGroup>
       <DocXmlBasePath>$(MSBuildThisFileDirectory)lib\net8.0-windows7.0\</DocXmlBasePath>
       <TargetDocXml>$(DocXmlBasePath)SimpleOverlayTheme.xml</TargetDocXml>
       <SourceDocXml>$(DocXmlBasePath)$(PreferredDocLanguage)\SimpleOverlayTheme.xml</SourceDocXml>
@@ -16,7 +16,7 @@
   </PropertyGroup>
   <Target Name="RunOnceAfterNuGetRestore" InitialTargets="RunOnceAfterNuGetRestore">
       <Message Importance="High" Text="📦 NuGet 패키지가 restore되어 targets가 적용되었습니다." />
-  </Target>
+  </Target>-->
   <!-- Local --><!--
   <Target Name="ReplaceDocXml" AfterTargets="Build" Condition="!Exists('$(ProjectDir)\SimpleOverlayTheme.targets')">
   <Copy SourceFiles="$(MSBuildThisFileDirectory)lib\net8.0-windows7.0\kr\SimpleOverlayTheme.xml"

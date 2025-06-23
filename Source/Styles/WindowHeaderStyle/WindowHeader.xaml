@@ -10,6 +10,7 @@
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/ButtonStyle/ButtonMask.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <Style TargetType="{x:Type controls:WindowHeader}">
+        <Setter Property="Content" Value="{x:Null}" />
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
@@ -19,34 +20,42 @@
                 </DataTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="TitleContentTemplate">
+        <Setter Property="CloseButtonTemplate" >
             <Setter.Value>
                 <DataTemplate>
-                    <Label Content="{Binding}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                    <Button Content="X" Style="{StaticResource SimpleOverlayTheme.Styles.ButtonStyle.Button}"/>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="CloseButton" >
+        <Setter Property="MaximizeRestoreButtonTemplate">
             <Setter.Value>
-                <Button Content="X" Style="{StaticResource SimpleOverlayTheme.Styles.ButtonStyle.Button}"/>
+                <DataTemplate>
+                    <ToggleButton Content="O"/>
+                </DataTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="MaximizeRestoreButton">
+        <Setter Property="MinimizeButtonTemplate">
             <Setter.Value>
-                <ToggleButton Content="O"/>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="MinimizeButton">
-            <Setter.Value>
-                <Button Content="-" Style="{StaticResource SimpleOverlayTheme.Styles.ButtonStyle.Button}"/>
+                <DataTemplate>
+                    <Button Content="_" Style="{StaticResource SimpleOverlayTheme.Styles.ButtonStyle.Button}"/>
+                </DataTemplate>
             </Setter.Value>
         </Setter>
         <Setter Property="TailContent" Value="{x:Null}"/>
+        <Setter Property="TailContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Label Content="{Binding}"
+                           HorizontalContentAlignment="{Binding RelativeSource={RelativeSource AncestorType=controls:WindowHeader}, Path=HorizontalContentAlignment}"
+                           VerticalContentAlignment="{Binding RelativeSource={RelativeSource AncestorType=controls:WindowHeader}, Path=VerticalContentAlignment}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
         <Setter Property="WindowUnlocked" Value="True"/>
-        <Setter Property="VisibleCloseButton" Value="Visible"/>
-        <Setter Property="VisibleMaximizeRestoreButton" Value="Visible"/>
-        <Setter Property="VisibleMinimizeButton" Value="Visible"/>
-        <Setter Property="VisibleTailContent" Value="Visible"/>
+        <Setter Property="VisibleClose" Value="Visible"/>
+        <Setter Property="VisibleMaximizeRestore" Value="Visible"/>
+        <Setter Property="VisibleMinimize" Value="Visible"/>
+        <Setter Property="VisibleTail" Value="Visible"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -69,27 +78,33 @@
                                     Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     />
-                            <ContentPresenter Grid.Column="0"
-                                              Content="{TemplateBinding TitleContent}"
-                                              ContentTemplate="{TemplateBinding TitleContentTemplate}"/>
 
-                            <ContentPresenter Grid.Column="1"
+                            <ContentPresenter Grid.Column="0"
                                               Content="{TemplateBinding Content}"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               Margin="{TemplateBinding Padding}"
                                               HorizontalAlignment="Stretch"
                                               VerticalAlignment="Stretch"
                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-
+                            
+                            <ContentPresenter Grid.Column="1"
+                                              Content="{TemplateBinding TailContent}"
+                                              ContentTemplate="{TemplateBinding TailContentTemplate}"
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="Stretch"
+                                              VerticalAlignment="Stretch"
+                                              Visibility="{TemplateBinding VisibleTail}"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            
                             <Grid Grid.Column="2" HorizontalAlignment="Right">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <ContentPresenter Grid.Column="0" Content="{TemplateBinding MinimizeButton}" Visibility="{TemplateBinding VisibleMinimizeButton}"/>
-                                <ContentPresenter Grid.Column="1" Content="{TemplateBinding MaximizeRestoreButton}" Visibility="{TemplateBinding VisibleMaximizeRestoreButton}"/>
-                                <ContentPresenter Grid.Column="2" Content="{TemplateBinding CloseButton}" Visibility="{TemplateBinding VisibleCloseButton}"/>
+                                <ContentPresenter Grid.Column="0" ContentTemplate="{TemplateBinding MinimizeButtonTemplate}" Visibility="{TemplateBinding VisibleMinimize}"/>
+                                <ContentPresenter Grid.Column="1" ContentTemplate="{TemplateBinding MaximizeRestoreButtonTemplate}" Visibility="{TemplateBinding VisibleMaximizeRestore}"/>
+                                <ContentPresenter Grid.Column="2" ContentTemplate="{TemplateBinding CloseButtonTemplate}" Visibility="{TemplateBinding VisibleClose}"/>
                             </Grid>
                         </Grid>
                     </Border>

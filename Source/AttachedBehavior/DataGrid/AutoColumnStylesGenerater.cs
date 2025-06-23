@@ -7,6 +7,7 @@ namespace SimpleOverlayTheme.AttachedBehavior.DataGrid
 {
     internal static class AutoColumnStylesGenerater
     {
+        /// <summary></summary>
         public static void Attach(System.Windows.Controls.DataGrid dataGrid)
         {
             if (dataGrid == null)
@@ -16,8 +17,7 @@ namespace SimpleOverlayTheme.AttachedBehavior.DataGrid
             dataGrid.AutoGeneratingColumn += OnAutoGeneratingColumn;
         }
 
-        /// <summary> Detaches the style generation behavior from the specified <see cref="System.Windows.Controls.DataGrid"/>. </summary>
-        /// <param name="dataGrid">The target <see cref="System.Windows.Controls.DataGrid"/> control.</param>
+        /// <summary></summary>
         public static void Detach(System.Windows.Controls.DataGrid dataGrid)
         {
             if (dataGrid == null)

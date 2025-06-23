@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using SimpleOverlayTheme.Controls;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,8 @@ namespace SimpleOverlayTheme.Example
         public MainWindow()
         {
             InitializeComponent();
+            SimpleOverlayTheme.SimpleOverlayThemeSystem.Current.AutoSave= true;
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
