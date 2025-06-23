@@ -22,6 +22,18 @@
     
   <!--Resource-->
   <ItemGroup>
+    <Resource Include="..\Share\Resource\Mask\WindowMinimize.png">
+      <Link>Resource\Mask\WindowMinimize.png</Link>
+    </Resource>
+    <Resource Include="..\Share\Resource\Mask\WindowRestore.png">
+      <Link>Resource\Mask\WindowRestore.png</Link>
+    </Resource>
+    <Resource Include="..\Share\Resource\Mask\WindowMaximize.png">
+      <Link>Resource\Mask\WindowMaximize.png</Link>
+    </Resource>
+    <Resource Include="..\Share\Resource\Mask\WindowClose.png">
+      <Link>Resource\Mask\WindowClose.png</Link>
+    </Resource>
     <Resource Include="..\Share\Resource\Mask\Numeric1Box.png">
       <Link>Resource\Mask\Numeric1Box.png</Link>
     </Resource>

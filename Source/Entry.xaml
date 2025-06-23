@@ -8,6 +8,7 @@
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/BorderStyle/OverlayMask.xaml"/>
         <!--Button-->
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/ButtonStyle/Button.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/ButtonStyle/ButtonMask.xaml"/>
         <!--CheckBox-->
         <ResourceDictionary Source="pack://application:,,,/SimpleOverlayTheme;component/Styles/CheckBoxStyle/CheckBox.xaml"/>
         <!--ComboBox-->

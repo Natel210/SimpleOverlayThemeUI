@@ -44,8 +44,8 @@
                                         HorizontalAlignment="Stretch"
                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                         Style="{StaticResource SimpleOverlayTheme.Styles.BorderStyle.Border}"
-                                        VerticalAlignment="Stretch">
-                                </Border>
+                                        VerticalAlignment="Stretch"/>
+
                                 <ContentPresenter Content="{TemplateBinding Content}"
                                                   Margin="{TemplateBinding Padding}"
                                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -110,5 +110,4 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
 </ResourceDictionary>

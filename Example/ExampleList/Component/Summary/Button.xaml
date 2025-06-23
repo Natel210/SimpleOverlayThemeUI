@@ -8,6 +8,7 @@
              mc:Ignorable="d" 
              Style="{StaticResource SimpleOverlayTheme.Styles.UserControlStyle.Empty}"
              d:Style="{StaticResource SimpleOverlayTheme.Styles.UserControlStyle.UserControl}">
+    
     <UserControl.Resources>
         <Style TargetType="GroupBox" BasedOn="{StaticResource SimpleOverlayTheme.Styles.GroupBoxStyle.GroupBox}">
             <Setter Property="Background" Value="Transparent"/>
@@ -58,6 +59,23 @@
                     Margin="5"
                     Style="{StaticResource SimpleOverlayTheme.Styles.ButtonStyle.Button}"
                     helpers:CornerRadiusHelper.CornerRadius="10"/>
+            <Button Margin="5" Style="{StaticResource SimpleOverlayTheme.Styles.ButtonStyle.ButtonMask}" Height="30">
+                <helpers:OverlayMaskImageHelper.ActiveImageMask>
+                    <ImageBrush ImageSource="/Resource/Mask/WindowMaximize.png"/>
+                </helpers:OverlayMaskImageHelper.ActiveImageMask>
+                <helpers:OverlayMaskImageHelper.DefaultImageMask>
+                    <ImageBrush ImageSource="/Resource/Mask/WindowMinimize.png"/>
+                </helpers:OverlayMaskImageHelper.DefaultImageMask>
+                <helpers:OverlayMaskImageHelper.DisableImageMask>
+                    <ImageBrush ImageSource="/Resource/Mask/WindowClose.png"/>
+                </helpers:OverlayMaskImageHelper.DisableImageMask>
+                <helpers:OverlayMaskImageHelper.MouseoverImageMask>
+                    <ImageBrush ImageSource="/Resource/Mask/WindowRestore.png"/>
+                </helpers:OverlayMaskImageHelper.MouseoverImageMask>
+                <helpers:OverlayMaskImageHelper.UseActiveImageMask>True</helpers:OverlayMaskImageHelper.UseActiveImageMask>
+                <helpers:OverlayMaskImageHelper.UseDisableImageMask>True</helpers:OverlayMaskImageHelper.UseDisableImageMask>
+                <helpers:OverlayMaskImageHelper.UseMouseoverImageMask>True</helpers:OverlayMaskImageHelper.UseMouseoverImageMask>
+            </Button>
         </StackPanel>
     </GroupBox>
 </UserControl>
