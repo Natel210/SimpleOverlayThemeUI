@@ -48,6 +48,10 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header4}"/>
         </Style>
+        <ImageBrush x:Key="ActiveImageMask" ImageSource="/Resource/Mask/WindowMaximize.png"/>
+        <ImageBrush x:Key="DefaultImageMask" ImageSource="/Resource/Mask/WindowMinimize.png"/>
+        <ImageBrush x:Key="DisableImageMask" ImageSource="/Resource/Mask/WindowClose.png"/>
+        <ImageBrush x:Key="MouseoverImageMask" ImageSource="/Resource/Mask/WindowRestore.png"/>
     </UserControl.Resources>
     <GroupBox Header="Button"
               FontSize="{StaticResource SimpleOverlayTheme.ThemeKey.FontSize.Header3}"
@@ -59,7 +63,8 @@
                     Margin="5"
                     Style="{StaticResource SimpleOverlayTheme.Styles.ButtonStyle.Button}"
                     helpers:CornerRadiusHelper.CornerRadius="10"/>
-            <Button Margin="5" Style="{StaticResource SimpleOverlayTheme.Styles.ButtonStyle.ButtonMask}" Height="30">
+            <Button Margin="5" Style="{StaticResource SimpleOverlayTheme.Styles.ButtonStyle.ButtonMask}" Width="50" Height="50"
+                    helpers:CornerRadiusHelper.CornerRadius="100">
                 <helpers:OverlayMaskImageHelper.ActiveImageMask>
                     <ImageBrush ImageSource="/Resource/Mask/WindowMaximize.png"/>
                 </helpers:OverlayMaskImageHelper.ActiveImageMask>
