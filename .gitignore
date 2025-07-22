@@ -595,4 +595,4 @@ FodyWeavers.xsd
 
 # End of https://www.toptal.com/developers/gitignore/api/csharp,visualstudio,visualstudiocode
 
-!Share\Tools\Ini2Xaml\net8.0\SimpleOverlayTheme.Ini2Xaml.exe
+!Share\Tools\Ini2Xaml\net8.0\SimpleVisualTheme.Ini2Xaml.exe

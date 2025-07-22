@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyTitle>Theme Management Program (to json)(.net8.0)</AssemblyTitle>
+    <OutputType>Library</OutputType>
+    <UseWPF>True</UseWPF>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <!-- Deterministic -->
+    <Deterministic>true</Deterministic>
+    <!-- Make summary .xml -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- Link porterble .pdb -->
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <!-- not popup "use?" -->
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <!-- Active Source Link-->
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <!-- Package Info-->
+    <PackageVersion>$(VersionPrefix)</PackageVersion>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>Simple;Theme;Saving;Eazy;Custom</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Natel210/SimpleVisualThemeUI</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Natel210/SimpleVisualThemeUI.git</RepositoryUrl>
+    <Description>Theme Management Program (to json)(.net8.0)</Description>
+    <PackageReleaseNotes>https://github.com/Natel210/SimpleVisualThemeUI/releases</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="True" PackagePath="\" Visible="False" />
+    <Content Include="SimpleVisualTheme.targets" Pack="True" PackagePath="build\$(TargetFramework)\" />
+    <!-- Must need [ThemeXamlGenerator] (exe, dll) -->
+    <None Include="..\Bin\$(Configuration)\ThemeXamlGenerator\*.*">
+      <Pack>True</Pack>
+      <PackagePath>tools\$(TargetFramework)\ThemeXamlGenerator\%(Filename)%(Extension)</PackagePath>
+      <Visible>false</Visible>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+  </ItemGroup>
+</Project>

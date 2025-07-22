@@ -1,16 +1,23 @@
 <Project>
-  <!-- See https://aka.ms/dotnet/msbuild/customize for more details on customizing your build -->
   <PropertyGroup>
-      <!-- Project -->
-      <TargetFramework>net8.0-windows7.0</TargetFramework>
-      <Nullable>enable</Nullable>
-      <UseWPF>true</UseWPF>
-      <ImplicitUsings>enable</ImplicitUsings>
-      <BaseOutputPath>Bin\</BaseOutputPath>
-      <AssemblyName>SimpleOverlayTheme</AssemblyName>
-      <GenerateDocumentationFile>true</GenerateDocumentationFile>
-      <DocumentationFile>$(BaseOutputPath)/$(Configuration)/$(TargetFramework)/$(AssemblyName).xml</DocumentationFile>
-      <!-- Local Test -->
-      <VersionPrefix>999.0.34</VersionPrefix>
+    <!-- Default -->
+    <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
+    <!-- Project -->
+    <Nullable>enable</Nullable>
+    <DebugType>portable</DebugType>
+    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <VersionPrefix>1.2.3</VersionPrefix>
+    <!-- Path -->
+    <BaseIntermediateOutputPath>..\Intermediate\$(AssemblyName)\</BaseIntermediateOutputPath>
+    <OutputPath>..\Bin\$(Configuration)\$(AssemblyName)\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <!-- Info -->
+    <Authors>Natel210</Authors>
+    <Company>$(Authors)</Company>
+    <Copyright>© 2025 $(Authors)</Copyright>
+    <!-- Build -->
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
+
   </PropertyGroup>
 </Project>

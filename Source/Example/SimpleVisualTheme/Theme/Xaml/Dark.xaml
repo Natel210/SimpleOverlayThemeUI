@@ -1,0 +1,16 @@
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <!-- ============================== -->
+  <!-- | * Dark Theme Dummy (Only Design View) * -->
+  <!-- | * Generated at 2025-07-18 16:21:28.556 * -->
+  <!-- ============================== -->
+  <system:Double x:Key="SimpleVisualTheme.ThemeKey.FontSize.Default">24.0</system:Double>
+  <SolidColorBrush x:Key="SimpleVisualTheme.ThemeKey.Color.Effect.Background.Mouseover">#25808080</SolidColorBrush>
+  <SolidColorBrush x:Key="SimpleVisualTheme.ThemeKey.Color.Common.Outline.Default">#FF808080</SolidColorBrush>
+  <SolidColorBrush x:Key="SimpleVisualTheme.ThemeKey.Color.Common.Background.Default">#FFFFFFFF</SolidColorBrush>
+  <system:Double x:Key="SimpleVisualTheme.ThemeKey.FontSize.Header">44.0</system:Double>
+  <SolidColorBrush x:Key="SimpleVisualTheme.ThemeKey.Color.Common.Foreground.Default">#FF151515</SolidColorBrush>
+  <SolidColorBrush x:Key="SimpleVisualTheme.ThemeKey.Color.Effect.Background.Active">#40808080</SolidColorBrush>
+  <SolidColorBrush x:Key="SimpleVisualTheme.ThemeKey.Color.Effect.Outline.Active">#FF000000</SolidColorBrush>
+  <SolidColorBrush x:Key="SimpleVisualTheme.ThemeKey.Color.Effect.Outline.Mouseover">#D0000000</SolidColorBrush>
+  <SolidColorBrush x:Key="SimpleVisualTheme.ThemeKey.Color.Common.Foreground.Disable">#A0808080</SolidColorBrush>
+</ResourceDictionary>

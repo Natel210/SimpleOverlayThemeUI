@@ -1,0 +1,53 @@
+﻿<Window x:Class="Example.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Example"
+        mc:Ignorable="d"
+        Foreground="{DynamicResource SimpleVisualTheme.ThemeKey.Color.Common.Foreground.Default}"
+        Background="{DynamicResource SimpleVisualTheme.ThemeKey.Color.Common.Background.Default}"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+        <Label Content="Header"
+               Foreground="{DynamicResource SimpleVisualTheme.ThemeKey.Color.Common.Foreground.Default}"
+               BorderBrush="{DynamicResource SimpleVisualTheme.ThemeKey.Color.Common.Outline.Default}"
+               FontSize="{DynamicResource SimpleVisualTheme.ThemeKey.FontSize.Header}"/>
+        <Label Content="  - Default"
+               Foreground="{DynamicResource SimpleVisualTheme.ThemeKey.Color.Common.Foreground.Default}"
+               BorderBrush="{DynamicResource SimpleVisualTheme.ThemeKey.Color.Common.Outline.Default}"
+               FontSize="{DynamicResource SimpleVisualTheme.ThemeKey.FontSize.Default}"/>
+        
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <Button Content="Dark"
+                    FontSize="{DynamicResource SimpleVisualTheme.ThemeKey.FontSize.Default}"
+                    Foreground="{DynamicResource SimpleVisualTheme.ThemeKey.Color.Common.Foreground.Default}"
+                    Background="{DynamicResource SimpleVisualTheme.ThemeKey.Color.Common.Background.Default}"
+                    BorderBrush="{DynamicResource SimpleVisualTheme.ThemeKey.Color.Common.Outline.Default}"
+                    Width="100" Height="50" Click="Button_Click"/>
+            <Button Content="Light"
+                    FontSize="{DynamicResource SimpleVisualTheme.ThemeKey.FontSize.Default}"
+                    Foreground="{DynamicResource SimpleVisualTheme.ThemeKey.Color.Common.Foreground.Default}"
+                    Background="{DynamicResource SimpleVisualTheme.ThemeKey.Color.Common.Background.Default}"
+                    BorderBrush="{DynamicResource SimpleVisualTheme.ThemeKey.Color.Common.Outline.Default}"
+                    Width="100" Height="50" Click="Button_Click_1"/>
+
+            <TextBox Text="Light"
+                     FontSize="{DynamicResource SimpleVisualTheme.ThemeKey.FontSize.Default}"
+                     Foreground="{DynamicResource SimpleVisualTheme.ThemeKey.Color.Common.Foreground.Default}"
+                     Background="{DynamicResource SimpleVisualTheme.ThemeKey.Color.Common.Background.Default}"
+                     BorderBrush="{DynamicResource SimpleVisualTheme.ThemeKey.Color.Common.Outline.Default}"
+                     VerticalContentAlignment="Center"
+                     Padding="5,0,0,0"
+                     Width="100" Height="50" />
+
+        </StackPanel>
+        <ListBox x:Name="PART_LIST"
+                 Width="400" Height="400" HorizontalAlignment="Left"
+                 Foreground="{DynamicResource SimpleVisualTheme.ThemeKey.Color.Common.Foreground.Default}"
+                 Background="{DynamicResource SimpleVisualTheme.ThemeKey.Color.Common.Background.Default}"
+                 BorderBrush="{DynamicResource SimpleVisualTheme.ThemeKey.Color.Common.Outline.Default}"/>
+    </StackPanel>
+
+</Window>

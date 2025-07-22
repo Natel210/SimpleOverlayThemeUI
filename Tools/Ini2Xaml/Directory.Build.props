@@ -1,9 +1,0 @@
-<Project>
-  <PropertyGroup>
-      <AssemblyName>SimpleOverlayTheme.Ini2Xaml</AssemblyName>
-      <AssemblyTitle>INI =&gt; Xaml (only Simple Overlay Theme) </AssemblyTitle>
-      <OutputType>Exe</OutputType>
-      <ImplicitUsings>enable</ImplicitUsings>
-      <BaseIntermediateOutputPath>..\..\Intermediate\Tools\Ini2Xaml\</BaseIntermediateOutputPath>
-  </PropertyGroup>
-</Project>

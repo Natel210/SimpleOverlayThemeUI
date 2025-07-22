@@ -1,4 +1,4 @@
-# SimpleOverlayThemeUI
+# SimpleVisualThemeUI
 WPF resource DLL for simple themes.</br>
 You can use it as basic WPF.</br>
 Example samples are included.</br>

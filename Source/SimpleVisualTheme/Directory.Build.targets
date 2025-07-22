@@ -1,0 +1,12 @@
+<Project>
+    <Target Name="CleanWpftmpFolder" AfterTargets="Build" Condition="'$(UseWPF)' == 'true'">
+        <ItemGroup>
+            <WpftmpDirs Include="$([System.IO.Directory]::GetDirectories('$(OutputPath)../', '$(AssemblyName)*_wpftmp'))" />
+        </ItemGroup>
+        <Message Text="==== CleanWpftmpFolder ====" Importance="High" />
+        <Message Text="Found wpftmp folders" Importance="High" />
+        <Message Text="  %(WpftmpDirs.Identity)" Importance="High" />
+        <RemoveDir Directories="@(WpftmpDirs)" />
+        <Message Text="==== ====" Importance="High" />
+    </Target>
+</Project>

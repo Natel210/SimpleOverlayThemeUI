@@ -1,0 +1,8 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="Run_ThemeXamlGenerate" BeforeTargets="Build" Condition="!Exists('$(ProjectDir)\SimpleVisualTheme.targets')">
+    <!--<Message Text="==== ThemeXamlGenerator ====" Importance="High" />-->
+    <!-- [ Generator ( nuget origin file ) ] [ Source ( json ) ] [ Output ( Xaml ) ] [ Schema Path ( Json ) ] -->
+      <Exec Command="&quot;$(MSBuildThisFileDirectory)..\..\tools\$(TargetFramework)\ThemeXamlGenerator\ThemeXamlGenerator.exe&quot; &quot;$(TargetDir)Theme&quot; &quot;$(ProjectDir)SimpleVisualTheme\Theme\Xaml&quot;"/>
+    <!--<Message Text="==== ====" Importance="High" />-->
+  </Target>
+</Project>
